@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
-import MobileStickyBar from '../Components/MobileStickyBar';
 import { CheckCircle2, AlertCircle, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -24,7 +23,7 @@ export default function AppLayout({ children }) {
     }, [flash]);
 
     return (
-        <div className="min-h-screen flex flex-col bg-white selection:bg-emerald-700 selection:text-white">
+        <div className="min-h-screen flex flex-col bg-white selection:bg-emerald-700 selection:text-white w-full max-w-full overflow-x-hidden relative">
             {/* Top Navbar */}
             <Navbar />
 
@@ -62,14 +61,11 @@ export default function AppLayout({ children }) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -15 }}
                     transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-                    className="flex-1"
+                    className="flex-1 w-full max-w-full overflow-x-hidden"
                 >
                     {children}
                 </motion.main>
             </AnimatePresence>
-
-            {/* Mobile Bottom Bar */}
-            <MobileStickyBar />
 
             {/* Footer */}
             <Footer />

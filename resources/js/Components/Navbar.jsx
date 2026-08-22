@@ -42,30 +42,37 @@ export default function Navbar() {
     return (
         <>
             <header 
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full max-w-full overflow-x-hidden ${
                     scrolled 
                         ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 py-2.5' 
-                        : 'bg-gradient-to-b from-slate-950/90 via-slate-950/60 to-transparent py-3 sm:py-4'
+                        : 'bg-gradient-to-b from-slate-950/90 via-slate-950/60 to-transparent py-2.5 sm:py-4'
                 }`}
             >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between gap-2 lg:gap-4">
                         {/* 1. Logo & Brand */}
-                        <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+                        <Link href="/" className="flex items-center gap-2 group shrink min-w-0 max-w-[60%] sm:max-w-none">
                             {siteSettings.site_logo ? (
-                                <img src={siteSettings.site_logo} alt="Logo" className="w-auto h-9 sm:h-10 object-contain shrink-0" />
+                                <img 
+                                    src={siteSettings.site_logo} 
+                                    alt="PT. Sugiyama Indonesia" 
+                                    className="w-auto h-8 sm:h-10 object-contain shrink-0 max-w-[36px] sm:max-w-[44px]"
+                                    onError={(e) => {
+                                        e.currentTarget.style.display = 'none';
+                                    }}
+                                />
                             ) : (
-                                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-700 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-md group-hover:bg-emerald-600 transition-colors shrink-0">
+                                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-700 flex items-center justify-center text-white font-bold text-base sm:text-xl shadow-md group-hover:bg-emerald-600 transition-colors shrink-0">
                                     <span className="font-jp">ス</span>
                                 </div>
                             )}
-                            <div className="flex flex-col">
-                                <span className={`font-black tracking-tight text-sm sm:text-base transition-colors leading-tight ${
+                            <div className="flex flex-col min-w-0">
+                                <span className={`font-black tracking-tight text-xs sm:text-base transition-colors leading-tight truncate ${
                                     scrolled ? 'text-slate-900' : 'text-white'
                                 }`}>
                                     PT. Sugiyama Indonesia
                                 </span>
-                                <span className={`text-[9px] sm:text-[10px] font-semibold tracking-wider font-jp transition-colors leading-none mt-0.5 ${
+                                <span className={`text-[8px] sm:text-[10px] font-semibold tracking-wider font-jp transition-colors leading-none mt-0.5 truncate ${
                                     scrolled ? 'text-emerald-700' : 'text-emerald-300'
                                 }`}>
                                     株式会社スギヤマ / SUGIYAMA
@@ -134,15 +141,16 @@ export default function Navbar() {
                         </div>
 
                         {/* 4. Mobile Menu Button & Quick Switcher */}
-                        <div className="flex items-center gap-2 xl:hidden">
+                        <div className="flex items-center gap-1.5 sm:gap-2 xl:hidden shrink-0">
                             {/* Mobile Language Switcher */}
-                            <div className="flex items-center rounded-full p-0.5 bg-slate-900/70 border border-white/20 text-white text-[10px] font-bold">
+                            <div className="flex items-center rounded-full p-0.5 bg-slate-900/80 border border-white/20 text-white text-[9px] sm:text-[10px] font-bold">
                                 {['id', 'en', 'ja'].map((code) => (
                                     <button
                                         key={code}
+                                        type="button"
                                         onClick={() => setLang(code)}
-                                        className={`px-2 py-0.5 rounded-full uppercase transition-all ${
-                                            lang === code ? 'bg-emerald-700 text-white' : 'opacity-70'
+                                        className={`px-1.5 sm:px-2 py-0.5 rounded-full uppercase transition-all cursor-pointer ${
+                                            lang === code ? 'bg-emerald-700 text-white' : 'opacity-70 hover:opacity-100'
                                         }`}
                                     >
                                         {code}
@@ -151,9 +159,10 @@ export default function Navbar() {
                             </div>
 
                             <button
+                                type="button"
                                 onClick={() => setMobileOpen(true)}
                                 aria-label="Open Navigation Menu"
-                                className={`p-2 rounded-xl border transition-colors ${
+                                className={`p-1.5 sm:p-2 rounded-xl border transition-colors cursor-pointer ${
                                     scrolled 
                                         ? 'bg-slate-100 border-slate-200 text-slate-800' 
                                         : 'bg-white/10 border-white/20 text-white'

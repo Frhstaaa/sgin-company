@@ -29,12 +29,12 @@ export default function ScrollReveal({
     };
 
     return (
-        <div style={{ width }} className={className}>
+        <div style={{ width }} className={`w-full max-w-full overflow-hidden ${className}`}>
             <motion.div
                 variants={variants}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true, margin: "-20px" }}
                 className="w-full h-full"
             >
                 {children}

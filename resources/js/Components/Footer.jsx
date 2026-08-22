@@ -16,7 +16,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="bg-emerald-950 text-white border-t border-emerald-900/60 pt-16 pb-24 md:pb-12">
+        <footer className="bg-emerald-950 text-white border-t border-emerald-900/60 pt-16 pb-12 w-full max-w-full overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Top Row: Brand & Quick Action */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-12 border-b border-emerald-900/80">

@@ -40,9 +40,9 @@ export default function Home({
             {/* ========================================================================= */}
             {/* 1. HERO SECTION (Japanese Kanji Typography + Background) */}
             {/* ========================================================================= */}
-            <section className="relative min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-between pt-20 bg-slate-950">
+            <section className="relative min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-between pt-16 sm:pt-20 bg-slate-950 w-full max-w-full overflow-hidden">
                 {/* Hero Background Image & Atmospheric Gradients */}
-                <div className="absolute inset-0 z-0 overflow-hidden">
+                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <img 
                         src={activeSlide.image_url} 
                         alt="PT. Sugiyama Indonesia Precision Facility" 
@@ -53,12 +53,12 @@ export default function Home({
                 </div>
 
                 {/* Hero Main Content */}
-                <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-24 pb-16 flex-1 flex flex-col justify-start sm:justify-center">
-                    <div className="max-w-3xl space-y-6">
+                <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-24 pb-16 flex-1 flex flex-col justify-start sm:justify-center w-full">
+                    <div className="max-w-3xl space-y-4 sm:space-y-6">
                         {/* Japanese Kanji Badge */}
-                        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-bold backdrop-blur-md shadow-lg">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                            <span className="font-jp tracking-wider">PT. SUGIYAMA INDONESIA / 株式会社スギヤマ</span>
+                        <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-[10px] sm:text-xs font-bold backdrop-blur-md shadow-lg max-w-full">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0" />
+                            <span className="font-jp tracking-wider truncate">PT. SUGIYAMA INDONESIA / 株式会社スギヤマ</span>
                         </div>
 
                         {/* Main Title */}
@@ -66,13 +66,13 @@ export default function Home({
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.2 }}
-                            className="space-y-2"
+                            className="space-y-2 max-w-full"
                         >
-                            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15] drop-shadow-md">
-                                <span className="font-jp inline-block bg-emerald-700 text-white px-4 py-1.5 sm:py-2 mb-2 tracking-wider">
+                            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2] drop-shadow-md break-words">
+                                <span className="font-jp inline-block bg-emerald-700 text-white px-3 sm:px-4 py-1 sm:py-1.5 mb-1 sm:mb-2 tracking-wider text-lg sm:text-2xl lg:text-3xl">
                                     SUGIYAMA INDONESIA
                                 </span>
-                                <span className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-100 block mt-2 font-display">
+                                <span className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-slate-100 block mt-1 font-display">
                                     {activeSlide.title_id || t('tagline_sub', 'Menempa Teknologi, Membangun Masa Depan')}
                                 </span>
                             </h1>
@@ -82,15 +82,15 @@ export default function Home({
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.7, delay: 0.4 }}
-                            className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-xl font-normal drop-shadow-sm"
+                            className="text-slate-200 text-xs sm:text-base leading-relaxed max-w-xl font-normal drop-shadow-sm"
                         >
                             {t('hero_desc', activeSlide.subtitle)}
                         </motion.p>
 
-                        <div className="flex flex-wrap items-center gap-4 pt-3">
+                        <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2 sm:pt-3">
                             <Link
                                 href={activeSlide.button_link || "/kontak"}
-                                className="px-7 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-emerald-950/60 hover:shadow-emerald-700/50 transition-all flex items-center gap-2 group"
+                                className="px-5 sm:px-7 py-3 sm:py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-emerald-950/60 hover:shadow-emerald-700/50 transition-all flex items-center justify-center gap-2 group"
                             >
                                 <span>{(lang !== 'id' && !rawActiveSlide[`button_text_${lang === 'ja' ? 'jp' : 'en'}`]) ? t('hero_btn_contact', 'Hubungi Kami') : (activeSlide.button_text || t('hero_btn_contact', 'Hubungi Kami'))}</span>
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -98,7 +98,7 @@ export default function Home({
 
                             <Link
                                 href="/teknologi"
-                                className="px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm uppercase tracking-wider backdrop-blur-md border border-white/20 hover:border-white/40 transition-all"
+                                className="px-5 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm uppercase tracking-wider backdrop-blur-md border border-white/20 hover:border-white/40 transition-all text-center"
                             >
                                 {t('hero_btn_tech', 'Pelajari Teknologi')}
                             </Link>
@@ -111,9 +111,9 @@ export default function Home({
 
                 {/* Floating Mission Quote Box precisely centered on the border (50% on hero, 50% on content below) */}
                 <div className="relative z-30 w-full max-w-4xl mx-auto px-4 -mb-16 sm:-mb-20">
-                    <div className="bg-white/98 backdrop-blur-md p-6 sm:p-8 md:p-9 rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-100/90 text-center space-y-3 transition-all hover:shadow-emerald-950/15">
-                        <div className="w-10 h-1 bg-emerald-600 rounded-full mx-auto mb-1" />
-                        <p className="text-sm sm:text-base md:text-lg font-bold text-slate-800 leading-relaxed font-display">
+                    <div className="bg-white/98 backdrop-blur-md p-5 sm:p-8 md:p-9 rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-100/90 text-center space-y-2 sm:space-y-3 transition-all hover:shadow-emerald-950/15">
+                        <div className="w-8 sm:w-10 h-1 bg-emerald-600 rounded-full mx-auto mb-1" />
+                        <p className="text-xs sm:text-base md:text-lg font-bold text-slate-800 leading-relaxed font-display">
                             "{t('hero_quote', 'Sebagai seorang ahli penempaan, kami akan merevolusi kualitas manufaktur presisi dunia melalui keterampilan teknis tanpa kompromi.')}"
                         </p>
                     </div>

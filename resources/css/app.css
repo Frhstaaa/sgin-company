@@ -26,6 +26,20 @@
     --color-brand-950: #002920;
 }
 
+/* Global Overflow & Mobile Layout Fixes */
+html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 /* Custom Utilities */
 .glass-panel {
     background: rgba(255, 255, 255, 0.85);
