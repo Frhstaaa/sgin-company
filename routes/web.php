@@ -58,6 +58,9 @@ Route::get('/karir/{slug}', [CareerController::class, 'show'])->name('career.sho
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
 
+// SEO Sitemap XML
+Route::get('/sitemap.xml', [\App\Http\Controllers\Public\SitemapController::class, 'index'])->name('sitemap');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Authentication Routes

@@ -35,7 +35,11 @@ export default function Home({
 
     return (
         <AppLayout>
-            <Head title={`PT. Sugiyama Indonesia - ${t('tagline_sub', 'Menempa Teknologi, Membangun Masa Depan')}`} />
+            <Head>
+                <title>{`PT. Sugiyama Indonesia | 株式会社スギヤマ - ${t('tagline_sub', 'Menempa Teknologi, Membangun Masa Depan')}`}</title>
+                <meta name="description" content="PT. Sugiyama Indonesia (株式会社スギヤマ / Sugiyama) adalah produsen manufaktur presisi spesialis cold forging (penempaan dingin), CNC machining, komponen powertrain otomotif & EV berstandar IATF 16949 di GIIC Cikarang." />
+                <meta name="keywords" content="PT Sugiyama Indonesia, PT Sugiyama, Sugiyama, 株式会社スギヤマ, Sugiyama Indonesia, Sugiyama Precision, cold forging, penempaan dingin, suku cadang presisi otomotif, GIIC Cikarang, IATF 16949" />
+            </Head>
 
             {/* ========================================================================= */}
             {/* 1. HERO SECTION (Japanese Kanji Typography + Background) */}

@@ -5,7 +5,130 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#005944">
 
-    <title inertia>{{ config('app.name', 'Sagayama Precision') }}</title>
+    <!-- Primary SEO Meta Tags -->
+    <title inertia>PT. Sugiyama Indonesia | 株式会社スギヤマ - Presisi Penempaan Dingin & Manufaktur Otomotif</title>
+    <meta name="description" content="PT. Sugiyama Indonesia (株式会社スギヤマ / Sugiyama) adalah produsen manufaktur presisi spesialis cold forging (penempaan dingin), pemesinan CNC multi-axis, komponen powertrain otomotif, terminal tembaga inverter EV, dan fastener industri bersertifikasi IATF 16949 & ISO 9001 di GIIC Cikarang & Aichi Jepang.">
+    <meta name="keywords" content="PT Sugiyama Indonesia, PT Sugiyama, Sugiyama, 株式会社スギヤマ, Sugiyama Indonesia, Sugiyama Precision, cold forging Indonesia, penempaan dingin, suku cadang presisi otomotif, GIIC Cikarang, pabrik Cikarang, IATF 16949, ISO 9001, suku cadang EV, manufaktur presisi Jepang">
+    <meta name="author" content="PT. Sugiyama Indonesia">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PT. Sugiyama Indonesia (株式会社スギヤマ)">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="PT. Sugiyama Indonesia | 株式会社スギヤマ - Keahlian Presisi Penempaan Dingin">
+    <meta property="og:description" content="Produsen manufaktur presisi spesialis cold forging, permesinan CNC, dan suku cadang otomotif & EV berstandar IATF 16949 di Kawasan Industri GIIC Cikarang.">
+    <meta property="og:image" content="{{ asset('images/og-image.jpg') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:locale:alternate" content="ja_JP">
+    <meta property="og:locale:alternate" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PT. Sugiyama Indonesia | 株式会社スギヤマ">
+    <meta name="twitter:description" content="Spesialis penempaan dingin (cold forging) dan manufaktur presisi berstandar mutu Jepang di GIIC Cikarang.">
+    <meta name="twitter:image" content="{{ asset('images/og-image.jpg') }}">
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Corporation",
+          "@id": "https://sgin.frahesta.com/#organization",
+          "name": "PT. Sugiyama Indonesia",
+          "alternateName": [
+            "PT Sugiyama",
+            "Sugiyama",
+            "Sugiyama Indonesia",
+            "株式会社スギヤマ",
+            "Sugiyama Precision Co., Ltd.",
+            "Sugiyama Group"
+          ],
+          "legalName": "PT. Sugiyama Indonesia",
+          "url": "https://sgin.frahesta.com",
+          "logo": "https://sgin.frahesta.com/favicon.ico",
+          "foundingDate": "1952-03",
+          "description": "PT. Sugiyama Indonesia adalah produsen presisi cold forging dan CNC machining otomotif berstandar internasional IATF 16949 & ISO 9001.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Kawasan Industri GIIC Blok AA-12, Kota Deltamas, Cikarang Pusat",
+            "addressLocality": "Bekasi",
+            "addressRegion": "Jawa Barat",
+            "postalCode": "17530",
+            "addressCountry": "ID"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+62-21-000000",
+            "contactType": "customer service",
+            "availableLanguage": ["Indonesian", "Japanese", "English"]
+          },
+          "knowsAbout": [
+            "Cold Forging",
+            "Penempaan Dingin",
+            "CNC Machining",
+            "Automotive Precision Components",
+            "IATF 16949",
+            "ISO 9001"
+          ]
+        },
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://sgin.frahesta.com/#localbusiness",
+          "name": "PT. Sugiyama Indonesia",
+          "image": "https://sgin.frahesta.com/favicon.ico",
+          "url": "https://sgin.frahesta.com",
+          "telephone": "+62-21-000000",
+          "priceRange": "$$$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Kawasan Industri GIIC Blok AA-12, Kota Deltamas, Cikarang Pusat",
+            "addressLocality": "Bekasi",
+            "addressRegion": "Jawa Barat",
+            "postalCode": "17530",
+            "addressCountry": "ID"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -6.3931805,
+            "longitude": 107.1579642
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "17:00"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://sgin.frahesta.com/#website",
+          "url": "https://sgin.frahesta.com",
+          "name": "PT. Sugiyama Indonesia",
+          "alternateName": "Sugiyama",
+          "publisher": {
+            "@id": "https://sgin.frahesta.com/#organization"
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://sgin.frahesta.com/produk?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
+      ]
+    }
+    </script>
 
     <!-- Google Fonts: Noto Sans JP + Plus Jakarta Sans + Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

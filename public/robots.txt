@@ -1,2 +1,6 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin/
+Disallow: /update.php
+
+Sitemap: https://sgin.frahesta.com/sitemap.xml
