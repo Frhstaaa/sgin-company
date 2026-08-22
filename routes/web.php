@@ -12,6 +12,7 @@ use App\Http\Controllers\Public\AboutController;
 use App\Http\Controllers\Public\NewsController;
 use App\Http\Controllers\Public\CareerController;
 use App\Http\Controllers\Public\ContactController;
+use App\Http\Controllers\Public\SitemapController;
 
 // Admin Controllers
 use App\Http\Controllers\Admin\AdminAuthController;
@@ -59,7 +60,7 @@ Route::get('/kontak', [ContactController::class, 'index'])->name('contact.index'
 Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
 
 // SEO Sitemap XML
-Route::get('/sitemap.xml', [\App\Http\Controllers\Public\SitemapController::class, 'index'])->name('sitemap');
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 /*
 |--------------------------------------------------------------------------
