@@ -608,69 +608,78 @@ export default function Home({
             </section>
 
             {/* ========================================================================= */}
-            {/* 9. CONTACT CTA SECTION */}
+            {/* 9. CONTACT CTA & LOCATION MAP (COMBINED 2-COLUMN GRID) */}
             {/* ========================================================================= */}
-            <section className="py-16 md:py-20 bg-white">
+            <section className="py-12 md:py-20 bg-slate-50 border-t border-slate-200/60">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <ScrollReveal delay={0.2} direction="up">
-                        <div className="p-6 sm:p-12 rounded-2xl bg-slate-900 text-white shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
-                            <div className="space-y-3 max-w-xl text-center md:text-left">
-                                <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                    {t('cta_badge', 'Hubungi Kami / お問い合わせ')}
-                                </span>
-                                <h2 className="text-xl sm:text-3xl font-extrabold text-white">
-                                    {t('cta_title', 'Konsultasi Kebutuhan Manufaktur Presisi Anda')}
-                                </h2>
-                                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                    {t('cta_desc', 'Dapatkan estimasi biaya penempaan dingin, evaluasi gambar teknik 3D CAD, atau konsultasi langsung dengan staf ahli kami.')}
-                                </p>
-                            </div>
-
-                            <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
-                                <div className="text-center sm:text-right hidden lg:block">
-                                    <p className="text-[11px] text-slate-400 font-semibold">{t('cta_phone_lbl', 'Hotline Kantor Pusat')}</p>
-                                    <p className="text-lg font-black font-mono text-emerald-400">
-                                        {settings.contact_phone || '0567-68-7077'}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+                        {/* Column 1: Hubungi Kami (Contact CTA) */}
+                        <ScrollReveal delay={0.1} direction="up" className="h-full">
+                            <div className="p-6 sm:p-8 lg:p-10 rounded-3xl bg-slate-900 text-white shadow-xl flex flex-col justify-between h-full relative overflow-hidden border border-slate-800">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
+                                
+                                <div className="space-y-3 relative z-10">
+                                    <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest block">
+                                        {t('cta_badge', 'Hubungi Kami / お問い合わせ')}
+                                    </span>
+                                    <h2 className="text-xl sm:text-2xl font-extrabold text-white leading-tight">
+                                        {t('cta_title', 'Konsultasi Kebutuhan Manufaktur Presisi Anda')}
+                                    </h2>
+                                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                        {t('cta_desc', 'Dapatkan estimasi biaya penempaan dingin, evaluasi gambar teknik 3D CAD, atau konsultasi langsung dengan staf ahli kami.')}
                                     </p>
                                 </div>
 
-                                <Link
-                                    href="/kontak"
-                                    className="px-7 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-600/40 transition-all flex items-center gap-2"
-                                >
-                                    <span>{t('cta_btn', 'Formulir Kontak & Permintaan Penawaran (RFQ)')}</span>
-                                    <ArrowRight className="w-4 h-4" />
-                                </Link>
+                                <div className="mt-6 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
+                                    <div>
+                                        <p className="text-[10px] text-slate-400 font-semibold">{t('cta_phone_lbl', 'Hotline Kantor Pusat')}</p>
+                                        <p className="text-base sm:text-lg font-black font-mono text-emerald-400">
+                                            {settings.contact_phone || '0567-68-7077'}
+                                        </p>
+                                    </div>
+
+                                    <Link
+                                        href="/kontak"
+                                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-600/40 transition-all shrink-0"
+                                    >
+                                        <span>{t('cta_btn', 'Formulir RFQ & Kontak')}</span>
+                                        <ArrowRight className="w-3.5 h-3.5" />
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
-                    </ScrollReveal>
-                </div>
-            </section>
+                        </ScrollReveal>
 
-            {/* ========================================================================= */}
-            {/* 10. LOCATION MAP SECTION */}
-            {/* ========================================================================= */}
-            <section className="py-20 bg-slate-50 border-t border-slate-200/60">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <ScrollReveal>
-                        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
-                            <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
-                                {t('map_badge', 'Lokasi Kami / アクセス')}
-                            </span>
-                            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-                                {t('map_title', 'Kunjungi Pabrik & Kantor Kami')}
-                            </h2>
-                        </div>
+                        {/* Column 2: Lokasi Kami (Location Map) */}
+                        <ScrollReveal delay={0.2} direction="up" className="h-full">
+                            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between h-full">
+                                <div>
+                                    <div className="flex items-center justify-between gap-2">
+                                        <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-widest block">
+                                            {t('map_badge', 'Lokasi Kami / アクセス')}
+                                        </span>
+                                        <span className="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold">
+                                            GIIC Cikarang
+                                        </span>
+                                    </div>
+                                    <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1 leading-tight">
+                                        {t('map_title', 'Kunjungi Pabrik & Kantor Kami')}
+                                    </h2>
+                                    <p className="text-xs text-slate-500 mt-1 line-clamp-1">
+                                        {settings.contact_address || 'Kawasan Industri GIIC Blok AA-12, Kota Deltamas, Cikarang Pusat'}
+                                    </p>
+                                </div>
 
-                        <div className="bg-white p-2 rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-                            <div 
-                                className="w-full h-80 sm:h-96 rounded-2xl overflow-hidden [&>iframe]:w-full [&>iframe]:h-full"
-                                dangerouslySetInnerHTML={{ 
-                                    __html: settings.google_map_embed || '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63440.101695046!2d107.15796418063826!3d-6.393180535225231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699ec8d0450783%3A0xf8f55f1cd8f651bb!2sPT.%20Sugiyama%20Indonesia!5e0!3m2!1sen!2sus!4v1787366226439!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>'
-                                }}
-                            />
-                        </div>
-                    </ScrollReveal>
+                                <div className="mt-4 rounded-2xl overflow-hidden border border-slate-200/80 h-52 sm:h-60 bg-slate-100">
+                                    <div 
+                                        className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full"
+                                        dangerouslySetInnerHTML={{ 
+                                            __html: settings.google_map_embed || '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63440.101695046!2d107.15796418063826!3d-6.393180535225231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699ec8d0450783%3A0xf8f55f1cd8f651bb!2sPT.%20Sugiyama%20Indonesia!5e0!3m2!1sen!2sus!4v1787366226439!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>'
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        </ScrollReveal>
+                    </div>
                 </div>
             </section>
         </AppLayout>
