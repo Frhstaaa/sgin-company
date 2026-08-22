@@ -40,7 +40,7 @@ export default function Home({
             {/* ========================================================================= */}
             {/* 1. HERO SECTION (Japanese Kanji Typography + Background) */}
             {/* ========================================================================= */}
-            <section className="relative min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-between pt-16 sm:pt-20 bg-slate-950 w-full max-w-full overflow-hidden">
+            <section className="relative min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-between pt-16 sm:pt-20 bg-slate-950 w-full max-w-full">
                 {/* Hero Background Image & Atmospheric Gradients */}
                 <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                     <img 
