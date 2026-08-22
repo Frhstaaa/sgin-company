@@ -48,15 +48,15 @@ export default function Navbar() {
                         : 'bg-gradient-to-b from-slate-950/90 via-slate-950/60 to-transparent py-2.5 sm:py-4'
                 }`}
             >
-                <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between gap-2 lg:gap-4">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between gap-2 lg:gap-4 w-full">
                         {/* 1. Logo & Brand */}
-                        <Link href="/" className="flex items-center gap-2 group shrink min-w-0 max-w-[60%] sm:max-w-none">
+                        <Link href="/" className="flex items-center gap-2.5 group min-w-0 flex-1">
                             {siteSettings.site_logo ? (
                                 <img 
                                     src={siteSettings.site_logo} 
                                     alt="PT. Sugiyama Indonesia" 
-                                    className="w-auto h-8 sm:h-10 object-contain shrink-0 max-w-[36px] sm:max-w-[44px]"
+                                    className="w-auto h-7 sm:h-9 object-contain shrink-0 max-h-9"
                                     onError={(e) => {
                                         e.currentTarget.style.display = 'none';
                                     }}
