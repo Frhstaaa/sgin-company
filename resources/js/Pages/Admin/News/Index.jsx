@@ -85,7 +85,7 @@ export default function AdminNewsIndex({ news, filters = {} }) {
 
     return (
         <AdminLayout title="Kelola Berita & Pengumuman">
-            <Head title="Kelola Berita | Sagayama CMS" />
+            <Head title="Kelola Berita | Sugiyama CMS" />
 
             <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

@@ -90,7 +90,7 @@ export default function AdminTechnologiesIndex({ technologies = [] }) {
 
     return (
         <AdminLayout title="Kelola Pilar Teknologi">
-            <Head title="Kelola Teknologi | Sagayama CMS" />
+            <Head title="Kelola Teknologi | Sugiyama CMS" />
 
             <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

@@ -73,7 +73,7 @@ export default function AdminProductCategoriesIndex({ categories = [] }) {
 
     return (
         <AdminLayout title="Kelola Kategori Produk">
-            <Head title="Kategori Produk | Sagayama CMS" />
+            <Head title="Kategori Produk | Sugiyama CMS" />
 
             <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

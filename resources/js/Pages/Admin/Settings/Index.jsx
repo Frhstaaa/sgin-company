@@ -5,17 +5,17 @@ import { Save, CheckCircle2, Settings, Phone, MapPin, Globe } from 'lucide-react
 
 export default function AdminSettingsIndex({ settings = {} }) {
     const { data, setData, post, processing, recentlySuccessful } = useForm({
-        site_name: settings.site_name || 'Sagayama Precision',
-        site_name_jp: settings.site_name_jp || '株式会社サガヤマ',
+        site_name: settings.site_name || 'PT. Sugiyama Indonesia',
+        site_name_jp: settings.site_name_jp || '株式会社スギヤマ',
         site_tagline: settings.site_tagline || '技術を鍛え 未来を造る - Menempa Teknologi, Membangun Masa Depan',
         contact_phone: settings.contact_phone || '0567-68-7077',
         contact_fax: settings.contact_fax || '0567-68-7080',
-        contact_email: settings.contact_email || 'info@sagayama.co.jp',
+        contact_email: settings.contact_email || 'info@sugiyama.co.id',
         whatsapp_number: settings.whatsapp_number || '+6281234567890',
         contact_address: settings.contact_address || '〒498-0000 123-4 Kajiya-cho, Yatomi City, Aichi Prefecture, Japan',
         contact_address_id: settings.contact_address_id || 'Kawasan Industri GIIC Blok AA-12, Deltamas, Cikarang Pusat, Bekasi 17530, Indonesia',
         office_hours: settings.office_hours || 'Senin - Jumat: 08:00 - 17:00 JST / WIB',
-        copyright_text: settings.copyright_text || '© 2026 Sagayama Precision Co., Ltd. All Rights Reserved.',
+        copyright_text: settings.copyright_text || '© 2026 PT. Sugiyama Indonesia. All Rights Reserved.',
         google_map_embed: settings.google_map_embed || '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63440.101695046!2d107.15796418063826!3d-6.393180535225231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699ec8d0450783%3A0xf8f55f1cd8f651bb!2sPT.%20Sugiyama%20Indonesia!5e0!3m2!1sen!2sus!4v1787366226439!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>',
         logo: null,
     });
@@ -30,7 +30,7 @@ export default function AdminSettingsIndex({ settings = {} }) {
 
     return (
         <AdminLayout title="Pengaturan Situs & Kontak">
-            <Head title="Pengaturan Situs | Sagayama CMS" />
+            <Head title="Pengaturan Situs | Sugiyama CMS" />
 
             <div className="max-w-4xl mx-auto space-y-6">
                 <div>

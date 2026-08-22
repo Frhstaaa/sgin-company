@@ -79,7 +79,7 @@ export default function AdminBusinessUnitsIndex({ businesses = [] }) {
 
     return (
         <AdminLayout title="Kelola Unit Bisnis">
-            <Head title="Kelola Unit Bisnis | Sagayama CMS" />
+            <Head title="Kelola Unit Bisnis | Sugiyama CMS" />
 
             <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

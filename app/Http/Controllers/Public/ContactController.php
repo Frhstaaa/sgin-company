@@ -53,6 +53,6 @@ class ContactController extends Controller
 
         $this->inquiryService->create($validated);
 
-        return back()->with('success', 'Terima kasih, pesan atau permintaan penawaran Anda telah berhasil terkirim. Tim teknis Sagayama akan segera menghubungi Anda.');
+        return back()->with('success', 'Terima kasih, pesan atau permintaan penawaran Anda telah berhasil terkirim. Tim teknis PT. Sugiyama Indonesia akan segera menghubungi Anda.');
     }
 }

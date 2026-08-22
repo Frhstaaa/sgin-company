@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#005944">
 
+    <!-- Favicon & Brand Icons -->
+    <link rel="icon" type="image/webp" href="{{ asset('favicon.webp') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+
     <!-- Primary SEO Meta Tags -->
     <title inertia>PT. Sugiyama Indonesia | 株式会社スギヤマ - Presisi Penempaan Dingin & Manufaktur Otomotif</title>
     <meta name="description" content="PT. Sugiyama Indonesia (株式会社スギヤマ / Sugiyama) adalah produsen manufaktur presisi spesialis cold forging (penempaan dingin), pemesinan CNC multi-axis, komponen powertrain otomotif, terminal tembaga inverter EV, dan fastener industri bersertifikasi IATF 16949 & ISO 9001 di GIIC Cikarang & Aichi Jepang.">

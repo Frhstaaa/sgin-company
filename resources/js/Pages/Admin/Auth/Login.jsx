@@ -4,7 +4,7 @@ import { Lock, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 
 export default function Login() {
     const { data, setData, post, processing, errors } = useForm({
-        email: 'admin@sagayama.co.jp',
+        email: 'admin@sugiyama.co.id',
         password: 'password123',
         remember: true,
     });
@@ -16,16 +16,16 @@ export default function Login() {
 
     return (
         <div className="min-h-screen bg-slate-950 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden font-sans">
-            <Head title="Admin CMS Login | Sagayama Precision" />
+            <Head title="Admin CMS Login | PT. Sugiyama Indonesia" />
 
             <div className="absolute inset-0 bg-[radial-gradient(#007155_1px,transparent_1px)] [background-size:24px_24px] opacity-15" />
 
             <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center space-y-3">
                 <div className="w-14 h-14 rounded-2xl bg-emerald-600 flex items-center justify-center font-bold text-white text-3xl mx-auto shadow-xl shadow-emerald-950/60">
-                    <span className="font-jp">サ</span>
+                    <span className="font-jp">ス</span>
                 </div>
                 <h2 className="text-2xl font-extrabold text-white tracking-tight">
-                    Sagayama CMS Portal
+                    Sugiyama CMS Portal
                 </h2>
                 <p className="text-xs text-emerald-400 font-semibold tracking-wider uppercase">
                     Panel Manajemen Konten Perusahaan
@@ -95,7 +95,7 @@ export default function Login() {
 
                     <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-900 space-y-1">
                         <p className="font-bold">Kredensial Default Demo:</p>
-                        <p>Email: <strong className="font-mono">admin@sagayama.co.jp</strong></p>
+                        <p>Email: <strong className="font-mono">admin@sugiyama.co.id</strong></p>
                         <p>Password: <strong className="font-mono">password123</strong></p>
                     </div>
                 </div>

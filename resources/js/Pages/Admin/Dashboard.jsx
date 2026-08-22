@@ -16,7 +16,7 @@ export default function Dashboard({ stats, recentInquiries = [], recentNews = []
 
     return (
         <AdminLayout title="Dashboard Overview">
-            <Head title="Admin Dashboard | Sagayama" />
+            <Head title="Admin Dashboard | PT. Sugiyama Indonesia" />
 
             <div className="space-y-8">
                 {/* KPI Cards */}

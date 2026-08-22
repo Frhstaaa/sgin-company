@@ -47,7 +47,7 @@ class CompanyProfileTest extends TestCase
             'email' => 'johndoe@example.com',
             'phone' => '081299998888',
             'subject' => 'Permintaan Penawaran Part Presisi',
-            'message' => 'Halo tim Sagayama, kami butuh penawaran untuk 10.000 pcs flange shaft.',
+            'message' => 'Halo tim PT. Sugiyama Indonesia, kami butuh penawaran untuk 10.000 pcs flange shaft.',
         ]);
 
         $response->assertRedirect();
@@ -62,13 +62,13 @@ class CompanyProfileTest extends TestCase
         $this->get('/admin/login')->assertStatus(200);
 
         $loginResponse = $this->post('/admin/login', [
-            'email' => 'admin@sagayama.co.jp',
+            'email' => 'admin@sugiyama.co.id',
             'password' => 'password123',
         ]);
 
         $loginResponse->assertRedirect('/admin/dashboard');
 
-        $user = User::where('email', 'admin@sagayama.co.jp')->first();
+        $user = User::where('email', 'admin@sugiyama.co.id')->first();
         $this->actingAs($user)->get('/admin/dashboard')->assertStatus(200);
         $this->actingAs($user)->get('/admin/products')->assertStatus(200);
         $this->actingAs($user)->get('/admin/inquiries')->assertStatus(200);

@@ -729,7 +729,7 @@ export const modelTranslations = {
                 category: 'お知らせ',
             }
         },
-        'program-pelatihan-insinyur-muda-sagayama-2026': {
+        'program-pelatihan-insinyur-muda-sugiyama-2026': {
             en: {
                 title: 'Launch of Sugiyama Young Engineers Global Acceleration Program 2026',
                 excerpt: 'Engineering exchange initiative between Japan and Indonesia plants to transfer die-making expertise.',
@@ -783,7 +783,7 @@ export const modelTranslations = {
             company_name: 'PT. Sugiyama Indonesia',
             company_name_jp: '株式会社スギヤマ',
             president_name: 'Takeshi Sugiyama',
-            president_message: 'Sejak didirikan pada tahun 1952, Sagayama Precision terus berkomitmen menempa batas kemampuan teknik manufaktur. Di era elektrifikasi kendaraan dan otomasi cerdas saat ini, dedikasi kami terhadap toleransi mikron, integritas metalurgi, dan inovasi ramah lingkungan tetap menjadi fondasi kepercayaan mitra global kami di Jepang, Asia Tenggara, dan seluruh dunia.',
+            president_message: 'Sejak didirikan pada tahun 1952, Sugiyama Precision terus berkomitmen menempa batas kemampuan teknik manufaktur. Di era elektrifikasi kendaraan dan otomasi cerdas saat ini, dedikasi kami terhadap toleransi mikron, integritas metalurgi, dan inovasi ramah lingkungan tetap menjadi fondasi kepercayaan mitra global kami di Jepang, Asia Tenggara, dan seluruh dunia.',
             philosophy: 'Menempa kualitas terbaik melalui penguasaan teknologi, dedikasi karyawan, dan kepuasan pelanggan yang berkelanjutan.',
             vision: 'Menjadi tolok ukur global dalam teknologi penempaan dingin dan komponen presisi masa depan.',
             mission: 'Menghadirkan produk presisi bernilai tambah tinggi dengan efisiensi sumber daya maksimal.',

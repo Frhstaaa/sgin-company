@@ -90,7 +90,7 @@ export default function AdminEquipmentIndex({ equipments = [], categories = [] }
 
     return (
         <AdminLayout title="Kelola Mesin & Peralatan">
-            <Head title="Kelola Peralatan | Sagayama CMS" />
+            <Head title="Kelola Peralatan | Sugiyama CMS" />
 
             <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

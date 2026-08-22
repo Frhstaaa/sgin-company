@@ -86,7 +86,7 @@ export default function AdminCareersIndex({ careers = [] }) {
 
     return (
         <AdminLayout title="Kelola Lowongan Karir">
-            <Head title="Kelola Karir | Sagayama CMS" />
+            <Head title="Kelola Karir | Sugiyama CMS" />
 
             <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

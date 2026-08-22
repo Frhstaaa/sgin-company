@@ -26,7 +26,7 @@ export default function AdminInquiriesIndex({ inquiries, filters = {}, unreadCou
 
     return (
         <AdminLayout title="Kotak Masuk Pesan & RFQ">
-            <Head title="Kotak Masuk RFQ | Sagayama CMS" />
+            <Head title="Kotak Masuk RFQ | Sugiyama CMS" />
 
             <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

@@ -82,7 +82,7 @@ export default function AdminHeroIndex({ slides = [] }) {
 
     return (
         <AdminLayout title="Kelola Hero Banner & Slider">
-            <Head title="Kelola Hero Slides | Sagayama CMS" />
+            <Head title="Kelola Hero Slides | Sugiyama CMS" />
 
             <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

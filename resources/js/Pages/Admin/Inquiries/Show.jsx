@@ -18,7 +18,7 @@ export default function AdminInquiriesShow({ inquiry }) {
 
     return (
         <AdminLayout title={`Detail Pesan #${inquiry.id}`}>
-            <Head title={`Pesan dari ${inquiry.name} | Sagayama CMS`} />
+            <Head title={`Pesan dari ${inquiry.name} | Sugiyama CMS`} />
 
             <div className="max-w-4xl mx-auto space-y-6">
                 <Link
@@ -99,7 +99,7 @@ export default function AdminInquiriesShow({ inquiry }) {
                             </a>
                             {inquiry.phone && (
                                 <a
-                                    href={`https://wa.me/${inquiry.phone.replace(/[^0-9]/g, '')}?text=Halo%20${encodeURIComponent(inquiry.name)},%20kami%20dari%20Sagayama%20Precision%20menindaklanjuti%20permintaan%20Anda.`}
+                                    href={`https://wa.me/${inquiry.phone.replace(/[^0-9]/g, '')}?text=Halo%20${encodeURIComponent(inquiry.name)},%20kami%20dari%20PT.%20Sugiyama%20Indonesia%20menindaklanjuti%20permintaan%20Anda.`}
                                     target="_blank"
                                     rel="noreferrer"
                                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold text-xs"

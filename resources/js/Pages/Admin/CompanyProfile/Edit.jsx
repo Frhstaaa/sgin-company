@@ -28,7 +28,7 @@ export default function AdminCompanyProfileEdit({ profile }) {
 
     return (
         <AdminLayout title="Kelola Profil Perusahaan">
-            <Head title="Edit Profil Perusahaan | Sagayama CMS" />
+            <Head title="Edit Profil Perusahaan | Sugiyama CMS" />
 
             <div className="max-w-4xl mx-auto space-y-6">
                 <div>
