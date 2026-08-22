@@ -237,12 +237,12 @@ export default function Home({
                                 <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-widest block">
                                     {t('tech_badge', 'Teknologi Kami / 技術紹介')}
                                 </span>
-                                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mt-1 leading-tight">
+                                <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mt-1 leading-tight">
                                     {t('tech_title', 'Teknologi & Keunggulan Rekayasa Presisi')}
                                 </h2>
                             </div>
 
-                            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            <p className="text-xs sm:text-base text-slate-600 leading-relaxed">
                                 {t('tech_desc', 'Menggabungkan keahlian cetakan penempaan dingin dengan pemesinan CNC multi-sumbu untuk efisiensi material dan kekuatan mekanis tertinggi.')}
                             </p>
 
@@ -311,10 +311,10 @@ export default function Home({
                         <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-widest">
                             {t('biz_badge', 'Unit Bisnis / 事業紹介')}
                         </span>
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+                        <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
                             {t('biz_title', 'Bidang Usaha & Keahlian Manufaktur')}
                         </h2>
-                        <p className="text-sm text-slate-600">
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
                             {t('biz_desc', 'Solusi manufaktur presisi komprehensif mulai dari penempaan dingin net-shape, turning CNC, hingga rekayasa aditif 3D.')}
                         </p>
                     </div>
@@ -459,10 +459,10 @@ export default function Home({
                                 <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-widest">
                                     {t('about_badge', 'Tentang Kami / 会社概要')}
                                 </span>
-                                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+                                <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
                                     {t('about_title', 'Keahlian Presisi Jepang Berstandar Global')}
                                 </h2>
-                                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                                <p className="text-xs sm:text-base text-slate-600 leading-relaxed">
                                     {t('about_lead', 'Sejak didirikan pada tahun 1952 di Aichi, Jepang, PT. Sugiyama Indonesia (Sugiyama Group) terus menempa batas inovasi teknik penempaan dingin.')}
                                 </p>
 
@@ -583,10 +583,10 @@ export default function Home({
                             </div>
 
                             <div className="relative z-10 max-w-2xl space-y-4">
-                                <span className="px-3 py-1 rounded-full bg-emerald-800 text-emerald-300 text-[11px] font-bold">
+                                <span className="px-3 py-1 rounded-full bg-emerald-800 text-emerald-300 text-[10px] sm:text-xs font-bold">
                                     {t('career_badge', 'Informasi Rekrutmen / 採用情報')}
                                 </span>
-                                <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                                <h2 className="text-xl sm:text-3xl font-extrabold text-white">
                                     {t('career_title', 'Mari Menempa Masa Depan Bersama Insinyur Sugiyama')}
                                 </h2>
                                 <p className="text-xs sm:text-sm text-emerald-200/90 leading-relaxed">
@@ -610,15 +610,15 @@ export default function Home({
             {/* ========================================================================= */}
             {/* 9. CONTACT CTA SECTION */}
             {/* ========================================================================= */}
-            <section className="py-20 bg-white">
+            <section className="py-16 md:py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <ScrollReveal delay={0.2} direction="up">
-                        <div className="p-8 sm:p-12 rounded-2xl bg-slate-900 text-white shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div className="p-6 sm:p-12 rounded-2xl bg-slate-900 text-white shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
                             <div className="space-y-3 max-w-xl text-center md:text-left">
-                                <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">
+                                <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
                                     {t('cta_badge', 'Hubungi Kami / お問い合わせ')}
                                 </span>
-                                <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+                                <h2 className="text-xl sm:text-3xl font-extrabold text-white">
                                     {t('cta_title', 'Konsultasi Kebutuhan Manufaktur Presisi Anda')}
                                 </h2>
                                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">

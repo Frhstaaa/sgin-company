@@ -141,16 +141,22 @@ export default function Navbar() {
                         </div>
 
                         {/* 4. Mobile Menu Button & Quick Switcher */}
-                        <div className="flex items-center gap-1.5 sm:gap-2 xl:hidden shrink-0">
-                            {/* Mobile Language Switcher */}
-                            <div className="flex items-center rounded-full p-0.5 bg-slate-900/80 border border-white/20 text-white text-[9px] sm:text-[10px] font-bold">
+                        <div className="flex items-center gap-2 xl:hidden shrink-0">
+                            {/* Mobile Language Switcher Pill */}
+                            <div className={`h-8 sm:h-9 flex items-center rounded-full p-0.5 border shadow-xs transition-colors ${
+                                scrolled 
+                                    ? 'bg-slate-100 border-slate-200 text-slate-700' 
+                                    : 'bg-slate-900/80 border-white/20 text-white backdrop-blur-xs'
+                            }`}>
                                 {['id', 'en', 'ja'].map((code) => (
                                     <button
                                         key={code}
                                         type="button"
                                         onClick={() => setLang(code)}
-                                        className={`px-1.5 sm:px-2 py-0.5 rounded-full uppercase transition-all cursor-pointer ${
-                                            lang === code ? 'bg-emerald-700 text-white' : 'opacity-70 hover:opacity-100'
+                                        className={`px-2 py-1 text-[10px] font-bold rounded-full uppercase transition-all cursor-pointer leading-none ${
+                                            lang === code 
+                                                ? 'bg-emerald-700 text-white shadow-xs' 
+                                                : 'opacity-70 hover:opacity-100 hover:text-emerald-400'
                                         }`}
                                     >
                                         {code}
@@ -158,17 +164,20 @@ export default function Navbar() {
                                 ))}
                             </div>
 
+                            {/* Elegant Custom Burger Menu Button */}
                             <button
                                 type="button"
                                 onClick={() => setMobileOpen(true)}
-                                aria-label="Open Navigation Menu"
-                                className={`p-1.5 sm:p-2 rounded-xl border transition-colors cursor-pointer ${
+                                aria-label="Buka Menu Navigasi"
+                                className={`h-8 w-8 sm:h-9 sm:w-9 rounded-full flex flex-col items-center justify-center gap-1 border shadow-xs transition-all duration-200 cursor-pointer active:scale-95 ${
                                     scrolled 
-                                        ? 'bg-slate-100 border-slate-200 text-slate-800' 
-                                        : 'bg-white/10 border-white/20 text-white'
+                                        ? 'bg-slate-100 border-slate-200 text-slate-800 hover:bg-slate-200' 
+                                        : 'bg-slate-900/80 border-white/20 text-white hover:bg-slate-900 backdrop-blur-xs'
                                 }`}
                             >
-                                <Menu className="w-5 h-5" />
+                                <span className="w-3.5 h-0.5 rounded-full bg-current transition-all" />
+                                <span className="w-4 h-0.5 rounded-full bg-current transition-all" />
+                                <span className="w-2.5 h-0.5 rounded-full bg-current transition-all self-center" />
                             </button>
                         </div>
                     </div>
