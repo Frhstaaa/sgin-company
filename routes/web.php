@@ -1,0 +1,121 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+// Public Controllers
+use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\TechnologyController;
+use App\Http\Controllers\Public\BusinessController;
+use App\Http\Controllers\Public\EquipmentController;
+use App\Http\Controllers\Public\ProductController;
+use App\Http\Controllers\Public\AboutController;
+use App\Http\Controllers\Public\NewsController;
+use App\Http\Controllers\Public\CareerController;
+use App\Http\Controllers\Public\ContactController;
+
+// Admin Controllers
+use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\AdminHeroController;
+use App\Http\Controllers\Admin\AdminStatController;
+use App\Http\Controllers\Admin\AdminTechnologyController;
+use App\Http\Controllers\Admin\AdminBusinessController;
+use App\Http\Controllers\Admin\AdminEquipmentController;
+use App\Http\Controllers\Admin\AdminProductCategoryController;
+use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminCompanyProfileController;
+use App\Http\Controllers\Admin\AdminNewsController;
+use App\Http\Controllers\Admin\AdminCareerController;
+use App\Http\Controllers\Admin\AdminInquiryController;
+use App\Http\Controllers\Admin\AdminSettingController;
+
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/teknologi', [TechnologyController::class, 'index'])->name('technology.index');
+Route::get('/teknologi/{slug}', [TechnologyController::class, 'show'])->name('technology.show');
+
+Route::get('/bisnis', [BusinessController::class, 'index'])->name('business.index');
+Route::get('/bisnis/{slug}', [BusinessController::class, 'show'])->name('business.show');
+
+Route::get('/peralatan', [EquipmentController::class, 'index'])->name('equipment.index');
+
+Route::get('/produk', [ProductController::class, 'index'])->name('product.index');
+Route::get('/produk/{slug}', [ProductController::class, 'show'])->name('product.show');
+
+Route::get('/tentang-kami', [AboutController::class, 'index'])->name('about.index');
+
+Route::get('/berita', [NewsController::class, 'index'])->name('news.index');
+Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
+
+Route::get('/karir', [CareerController::class, 'index'])->name('career.index');
+Route::get('/karir/{slug}', [CareerController::class, 'show'])->name('career.show');
+
+Route::get('/kontak', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Authentication Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
+    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.post');
+    Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Protected Admin Routes
+    |--------------------------------------------------------------------------
+    */
+    Route::middleware('auth')->name('admin.')->group(function () {
+        Route::get('/', fn () => redirect()->route('admin.dashboard'));
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        // Hero Slides
+        Route::resource('hero', AdminHeroController::class)->except(['create', 'show', 'edit']);
+
+        // Stats
+        Route::resource('stats', AdminStatController::class)->except(['create', 'show', 'edit']);
+
+        // Technologies
+        Route::resource('technologies', AdminTechnologyController::class)->except(['create', 'show', 'edit']);
+
+        // Business Units
+        Route::resource('business-units', AdminBusinessController::class)->except(['create', 'show', 'edit']);
+
+        // Equipment
+        Route::resource('equipment', AdminEquipmentController::class)->except(['create', 'show', 'edit']);
+
+        // Product Categories
+        Route::resource('product-categories', AdminProductCategoryController::class)->except(['create', 'show', 'edit']);
+
+        // Products
+        Route::resource('products', AdminProductController::class)->except(['create', 'show', 'edit']);
+
+        // Company Profile
+        Route::get('/company-profile', [AdminCompanyProfileController::class, 'edit'])->name('company-profile.edit');
+        Route::put('/company-profile', [AdminCompanyProfileController::class, 'update'])->name('company-profile.update');
+
+        // News
+        Route::resource('news', AdminNewsController::class)->except(['create', 'show', 'edit']);
+
+        // Careers
+        Route::resource('careers', AdminCareerController::class)->except(['create', 'show', 'edit']);
+
+        // Inquiries / RFQs
+        Route::get('/inquiries', [AdminInquiryController::class, 'index'])->name('inquiries.index');
+        Route::get('/inquiries/{inquiry}', [AdminInquiryController::class, 'show'])->name('inquiries.show');
+        Route::patch('/inquiries/{inquiry}/status', [AdminInquiryController::class, 'updateStatus'])->name('inquiries.updateStatus');
+        Route::delete('/inquiries/{inquiry}', [AdminInquiryController::class, 'destroy'])->name('inquiries.destroy');
+
+        // Site Settings
+        Route::get('/settings', [AdminSettingController::class, 'index'])->name('settings.index');
+        Route::post('/settings', [AdminSettingController::class, 'update'])->name('settings.update');
+    });
+});
