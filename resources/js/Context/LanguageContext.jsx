@@ -34,11 +34,18 @@ export function LanguageProvider({ children }) {
     const translateModel = (item, type = 'generic') => {
         if (!item) return item;
 
-        // Custom slug override
-        if (type && modelTranslations[type] && item.slug && modelTranslations[type][item.slug]) {
-            const overrides = modelTranslations[type][item.slug][lang];
-            if (overrides) {
-                return { ...item, ...overrides };
+        // Custom slug override or singleton type override
+        if (type && modelTranslations[type]) {
+            if (item.slug && modelTranslations[type][item.slug]) {
+                const overrides = modelTranslations[type][item.slug][lang];
+                if (overrides) {
+                    return { ...item, ...overrides };
+                }
+            } else if (modelTranslations[type][lang]) {
+                const overrides = modelTranslations[type][lang];
+                if (overrides) {
+                    return { ...item, ...overrides };
+                }
             }
         }
 

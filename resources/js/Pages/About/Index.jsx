@@ -10,9 +10,10 @@ import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
 
 export default function AboutIndex({ profile = {} }) {
-    const { t, lang } = useLanguage();
+    const { t, lang, translateModel } = useLanguage();
+    const p = translateModel(profile, 'company_profile');
 
-    const companyName = lang === 'ja' ? (profile.company_name_jp || '株式会社スギヤマ') : (profile.company_name || 'PT. Sugiyama Indonesia');
+    const companyName = lang === 'ja' ? (p.company_name_jp || '株式会社スギヤマ') : (p.company_name || 'PT. Sugiyama Indonesia');
 
     return (
         <AppLayout>
@@ -50,12 +51,12 @@ export default function AboutIndex({ profile = {} }) {
                             </h2>
                             
                             <p className="text-sm sm:text-base text-slate-700 leading-relaxed italic border-l-4 border-emerald-700 pl-4 py-1">
-                                "{profile.president_message || 'Sebagai seorang ahli penempaan, kami akan merevolusi kualitas manufaktur presisi dunia melalui keterampilan teknis tanpa kompromi.'}"
+                                "{p.president_message || 'Sebagai seorang ahli penempaan, kami akan merevolusi kualitas manufaktur presisi dunia melalui keterampilan teknis tanpa kompromi.'}"
                             </p>
 
                             <div className="space-y-1">
                                 <p className="font-bold text-slate-900 text-base">
-                                    {t('about_president_name', profile.president_name || 'Takeshi Sugiyama')}
+                                    {p.president_name || 'Takeshi Sugiyama'}
                                 </p>
                                 <p className="text-xs text-emerald-800 font-semibold">
                                     {t('about_president_role', 'Presiden Direktur PT. Sugiyama Indonesia')}
@@ -66,7 +67,7 @@ export default function AboutIndex({ profile = {} }) {
                         <div className="lg:col-span-5">
                             <div className="rounded-3xl overflow-hidden shadow-2xl aspect-4/3 bg-slate-900">
                                 <img
-                                    src={profile.president_photo_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'}
+                                    src={p.president_photo_url || profile.president_photo_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'}
                                     alt="President PT. Sugiyama Indonesia"
                                     className="w-full h-full object-cover"
                                 />
@@ -90,7 +91,7 @@ export default function AboutIndex({ profile = {} }) {
                                 {t('about_philosophy_title', 'Filosofi Perusahaan')}
                             </h3>
                             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                {profile.philosophy || 'Menempa kualitas terbaik melalui penguasaan teknologi, dedikasi karyawan, dan kepuasan pelanggan yang berkelanjutan.'}
+                                {p.philosophy || 'Menempa kualitas terbaik melalui penguasaan teknologi, dedikasi karyawan, dan kepuasan pelanggan yang berkelanjutan.'}
                             </p>
                         </div>
                         </ScrollReveal>
@@ -104,7 +105,7 @@ export default function AboutIndex({ profile = {} }) {
                                 {t('about_vision_title', 'Visi Kami')}
                             </h3>
                             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                {profile.vision || 'Menjadi tolok ukur global dalam teknologi penempaan dingin dan komponen presisi masa depan.'}
+                                {p.vision || 'Menjadi tolok ukur global dalam teknologi penempaan dingin dan komponen presisi masa depan.'}
                             </p>
                         </div>
                         </ScrollReveal>
@@ -118,7 +119,7 @@ export default function AboutIndex({ profile = {} }) {
                                 {t('about_mission_title', 'Misi Kami')}
                             </h3>
                             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                {profile.mission || 'Menghadirkan produk presisi bernilai tambah tinggi dengan efisiensi sumber daya maksimal.'}
+                                {p.mission || 'Menghadirkan produk presisi bernilai tambah tinggi dengan efisiensi sumber daya maksimal.'}
                             </p>
                         </div>
                         </ScrollReveal>
@@ -136,20 +137,20 @@ export default function AboutIndex({ profile = {} }) {
 
                         <div className="bg-slate-50 rounded-2xl sm:rounded-3xl border border-slate-200 overflow-hidden divide-y divide-slate-200">
                             <div className="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-3 gap-4 hover:bg-slate-100/50 transition-colors">
-                                <span className="font-bold text-slate-500 text-xs uppercase">Nama Perusahaan</span>
+                                <span className="font-bold text-slate-500 text-xs uppercase">{t('about_company_name_label', 'Nama Perusahaan')}</span>
                                 <span className="col-span-2 font-bold text-slate-900 text-sm">{companyName}</span>
                             </div>
                             <div className="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-3 gap-4 hover:bg-slate-100/50 transition-colors">
                                 <span className="font-bold text-slate-500 text-xs uppercase">{t('about_est_label', 'Tahun Berdiri')}</span>
-                                <span className="col-span-2 font-semibold text-slate-800 text-sm">{profile.established_date || 'Maret 1952'}</span>
+                                <span className="col-span-2 font-semibold text-slate-800 text-sm">{p.established_date || 'Maret 1952'}</span>
                             </div>
                             <div className="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-3 gap-4 hover:bg-slate-100/50 transition-colors">
                                 <span className="font-bold text-slate-500 text-xs uppercase">{t('about_capital_label', 'Modal Dasar')}</span>
-                                <span className="col-span-2 font-semibold text-slate-800 text-sm">{profile.capital || '50,000,000 JPY'}</span>
+                                <span className="col-span-2 font-semibold text-slate-800 text-sm">{p.capital || '50,000,000 JPY'}</span>
                             </div>
                             <div className="p-5 sm:p-6 grid grid-cols-1 sm:grid-cols-3 gap-4 hover:bg-slate-100/50 transition-colors">
                                 <span className="font-bold text-slate-500 text-xs uppercase">{t('about_emp_label', 'Jumlah Karyawan')}</span>
-                                <span className="col-span-2 font-semibold text-slate-800 text-sm">{profile.employees_count || '280 Karyawan'}</span>
+                                <span className="col-span-2 font-semibold text-slate-800 text-sm">{p.employees_count || '280 Karyawan'}</span>
                             </div>
                         </div>
                     </ScrollReveal>
@@ -157,7 +158,7 @@ export default function AboutIndex({ profile = {} }) {
             </section>
 
             {/* Timeline */}
-            {profile.history_timeline && Array.isArray(profile.history_timeline) && (
+            {p.history_timeline && Array.isArray(p.history_timeline) && (
                 <section className="py-20 bg-slate-50 border-b border-slate-200/60">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
                         <ScrollReveal>
@@ -167,7 +168,7 @@ export default function AboutIndex({ profile = {} }) {
                         </ScrollReveal>
 
                         <div className="relative border-l-2 border-emerald-700 ml-4 pl-6 sm:pl-8 space-y-8">
-                            {profile.history_timeline.map((item, idx) => (
+                            {p.history_timeline.map((item, idx) => (
                                 <ScrollReveal key={idx} delay={0.1}>
                                     <div className="relative group">
                                         <div className="w-3.5 h-3.5 rounded-full bg-emerald-700 absolute -left-[31px] sm:-left-[39px] top-1.5 border-4 border-white shadow-xs group-hover:scale-125 transition-transform" />
@@ -186,7 +187,7 @@ export default function AboutIndex({ profile = {} }) {
             )}
 
             {/* Global Branches Network */}
-            {profile.branches && Array.isArray(profile.branches) && (
+            {p.branches && Array.isArray(p.branches) && (
                 <section className="py-20 bg-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
                         <ScrollReveal>
@@ -196,7 +197,7 @@ export default function AboutIndex({ profile = {} }) {
                         </ScrollReveal>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {profile.branches.map((b, idx) => (
+                            {p.branches.map((b, idx) => (
                                 <ScrollReveal key={idx} delay={idx * 0.1}>
                                     <div className="p-6 rounded-3xl bg-slate-50 hover:bg-slate-100 border border-slate-200 space-y-2 h-full transition-colors">
                                         <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">

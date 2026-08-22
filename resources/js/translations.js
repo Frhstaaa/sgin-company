@@ -115,6 +115,7 @@ export const translations = {
         about_certs_title: 'Sertifikasi Sistem Manajemen Mutu',
         about_branches_title: 'Jaringan Pabrik & Kantor Global',
         about_data_title: 'Ringkasan Data Perusahaan',
+        about_company_name_label: 'Nama Perusahaan',
         about_est_label: 'Tahun Berdiri',
         about_capital_label: 'Modal Dasar',
         about_emp_label: 'Jumlah Karyawan',
@@ -297,6 +298,7 @@ export const translations = {
         about_certs_title: 'Quality Management Certifications',
         about_branches_title: 'Global Plants & Office Network',
         about_data_title: 'Company Factsheet',
+        about_company_name_label: 'Company Name',
         about_est_label: 'Established Date',
         about_capital_label: 'Registered Capital',
         about_emp_label: 'Total Workforce',
@@ -479,6 +481,7 @@ export const translations = {
         about_certs_title: '品質マネジメントシステム認証',
         about_branches_title: 'グローバル拠点ネットワーク',
         about_data_title: '企業基本データ',
+        about_company_name_label: '会社名',
         about_est_label: '創業',
         about_capital_label: '資本金',
         about_emp_label: '従業員数',
@@ -763,6 +766,81 @@ export const modelTranslations = {
                 location: 'GIIC チカラン工場',
                 salary_range: '月給制・年次賞与あり',
             }
+        }
+    },
+
+    company_profile: {
+        id: {
+            company_name: 'PT. Sugiyama Indonesia',
+            company_name_jp: '株式会社スギヤマ',
+            president_name: 'Takeshi Sugiyama',
+            president_message: 'Sejak didirikan pada tahun 1952, Sagayama Precision terus berkomitmen menempa batas kemampuan teknik manufaktur. Di era elektrifikasi kendaraan dan otomasi cerdas saat ini, dedikasi kami terhadap toleransi mikron, integritas metalurgi, dan inovasi ramah lingkungan tetap menjadi fondasi kepercayaan mitra global kami di Jepang, Asia Tenggara, dan seluruh dunia.',
+            philosophy: 'Menempa kualitas terbaik melalui penguasaan teknologi, dedikasi karyawan, dan kepuasan pelanggan yang berkelanjutan.',
+            vision: 'Menjadi tolok ukur global dalam teknologi penempaan dingin dan komponen presisi masa depan.',
+            mission: 'Menghadirkan produk presisi bernilai tambah tinggi dengan efisiensi sumber daya maksimal.',
+            established_date: 'Maret 1952',
+            capital: '50,000,000 JPY',
+            employees_count: '280 Karyawan (Total Grup)',
+            history_timeline: [
+                { year: '1952', event: 'Didirikan sebagai Sugiyama Metal Works di Kota Yatomi, Prefektur Aichi, Jepang. Memulai produksi massal komponen penempaan dingin.' },
+                { year: '1975', event: 'Mengadopsi mesin cold former multi-station berkecepatan tinggi dan fokus pada komponen powertrain otomotif.' },
+                { year: '1998', event: 'Meraih sertifikasi Sistem Manajemen Mutu ISO 9001.' },
+                { year: '2012', event: 'Mendirikan pabrik anak perusahaan PT. Sugiyama Indonesia di Kawasan Industri GIIC Cikarang.' },
+                { year: '2020', event: 'Meraih sertifikasi standar otomotif internasional IATF 16949:2016.' },
+                { year: '2025', event: 'Ekspansi lini produksi khusus terminal tembaga inverter EV dan shaft pinion transmisi presisi.' }
+            ],
+            branches: [
+                { name: 'Kantor Pusat & Pabrik Aichi (Jepang)', role: 'Pusat Riset, Pengembangan & Cetakan', address: '〒498-0000 123-4 Kajiya-cho, Yatomi City, Aichi Prefecture, Japan' },
+                { name: 'Pabrik Indonesia (PT. Sugiyama Indonesia)', role: 'Pabrik Produksi Massal & Pemesinan Presisi ASEAN', address: 'Kawasan Industri GIIC Blok AA-12, Kota Deltamas, Cikarang Pusat, Bekasi 17530, Indonesia' }
+            ]
+        },
+        en: {
+            company_name: 'PT. Sugiyama Indonesia',
+            company_name_jp: 'Sugiyama Precision Co., Ltd.',
+            president_name: 'Takeshi Sugiyama',
+            president_message: 'Since our founding in 1952, Sugiyama Precision has been dedicated to pushing the boundaries of cold forging manufacturing. In today\'s era of EV electrification and smart automation, our commitment to micron tolerances, metallurgical excellence, and sustainable innovation remains the cornerstone of trust with global partners across Japan, Southeast Asia, and worldwide.',
+            philosophy: 'Forging premier quality through technological mastery, dedicated craftsmanship, and sustainable customer satisfaction.',
+            vision: 'To be the global benchmark in cold forging technology and next-generation precision components.',
+            mission: 'Delivering high-value precision forged and machined solutions with maximum resource efficiency and sustainability.',
+            established_date: 'March 1952',
+            capital: '50,000,000 JPY',
+            employees_count: '280 Employees (Group Total)',
+            history_timeline: [
+                { year: '1952', event: 'Founded as Sugiyama Metal Works in Yatomi City, Aichi Prefecture, Japan. Started mass production of cold forged components.' },
+                { year: '1975', event: 'Introduced multi-station high-speed cold formers, establishing specialized automotive drivetrain manufacturing.' },
+                { year: '1998', event: 'Achieved ISO 9001 Quality Management System certification.' },
+                { year: '2012', event: 'Established overseas subsidiary and manufacturing hub PT. Sugiyama Indonesia at GIIC Cikarang.' },
+                { year: '2020', event: 'Awarded automotive international standard IATF 16949:2016 certification.' },
+                { year: '2025', event: 'Expanded dedicated high-precision cold forming lines for EV inverter copper busbars and powertrain shafts.' }
+            ],
+            branches: [
+                { name: 'Japan Headquarters & Aichi Plant', role: 'Global HQ & Tooling Tech Center', address: '〒498-0000 123-4 Kajiya-cho, Yatomi City, Aichi Prefecture, Japan' },
+                { name: 'Indonesia Hub (PT. Sugiyama Indonesia)', role: 'ASEAN Mass-Production Plant & CNC Machining Hub', address: 'GIIC Industrial Zone Block AA-12, Kota Deltamas, Central Cikarang, Bekasi 17530, Indonesia' }
+            ]
+        },
+        ja: {
+            company_name: '株式会社スギヤマ / PT. Sugiyama Indonesia',
+            company_name_jp: '株式会社スギヤマ',
+            president_name: '杉山 武',
+            president_message: '1952年の創業以来、スギヤマは精密ものづくりの極限に挑み続けてまいりました。電動化（EV）や高度自動化が進む現代においても、ミクロン単位の加工精度、金属組織の完全性、そして環境負荷低減への飽くなき追求こそが、日本・東南アジアをはじめ世界のお客様から選ばれ続ける揺るぎない信頼の礎です。',
+            philosophy: '技術の研鑽、従業員の熱意、そして持続可能な顧客満足を通じて、最高峰の品質と信頼を鍛え上げます。',
+            vision: '冷間鍛造技術と次世代精密金属コンポーネントにおける世界的ベンチマーク（世界標準）となる。',
+            mission: '極限の省資源・高効率工法を追求し、高付加価値な精密鍛造・切削製品をグローバル社会へ安定供給する。',
+            established_date: '1952年3月',
+            capital: '5,000万円',
+            employees_count: '280名（グループ連結）',
+            history_timeline: [
+                { year: '1952年', event: '愛知県弥富市にてスギヤマ金属工作所として創業。冷間鍛造パーツの量産を開始。' },
+                { year: '1975年', event: '多段式高速コールドフォーマー設備を導入し、自動車駆動系部品の専業体制を確立。' },
+                { year: '1998年', event: '品質マネジメント規格 ISO 9001 認証を取得。' },
+                { year: '2012年', event: 'インドネシア・チカラン（GIIC工業団地）に PT. Sugiyama Indonesia 工場を新設・稼働。' },
+                { year: '2020年', event: '自動車産業国際規格 IATF 16949:2016 認証を取得。' },
+                { year: '2025年', event: 'EVインバータ端子・次世代バッテリーパーツ専用の精密冷間フォーミングラインを増設。' }
+            ],
+            branches: [
+                { name: '日本本社・愛知工場', role: 'グローバル統括本部 / 金型技術センター', address: '〒498-0000 愛知県弥富市加治屋町123-4' },
+                { name: 'インドネシア工場（PT. Sugiyama Indonesia）', role: 'ASEAN量産拠点 / 熱処理・精密切削工場', address: 'Kawasan Industri GIIC Blok AA-12, Kota Deltamas, Cikarang Pusat, Bekasi 17530, Indonesia' }
+            ]
         }
     }
 };
