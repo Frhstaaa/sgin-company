@@ -33,6 +33,7 @@
     <meta name="twitter:image" content="{{ asset('images/og-image.jpg') }}">
 
     <!-- Schema.org JSON-LD Structured Data -->
+    @verbatim
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -129,6 +130,7 @@
       ]
     }
     </script>
+    @endverbatim
 
     <!-- Google Fonts: Noto Sans JP + Plus Jakarta Sans + Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
