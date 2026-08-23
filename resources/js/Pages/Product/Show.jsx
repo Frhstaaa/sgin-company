@@ -6,14 +6,14 @@ import { ArrowLeft, Send, CheckCircle2, ShieldCheck, ArrowRight, Package } from 
 import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
 
-export default function ProductShow({ product, relatedProducts = [] }) {
-    const { t, lang } = useLanguage();
-
-    const productName = lang === 'ja' && product.name_jp ? product.name_jp : product.name;
+export default function ProductShow({ product: rawProduct, relatedProducts = [] }) {
+    const { t, lang, translateModel } = useLanguage();
+    const product = translateModel(rawProduct, 'product');
+    const category = product.category ? translateModel(product.category, 'product_category') : null;
 
     return (
         <AppLayout>
-            <Head title={`${productName} | PT. Sugiyama Indonesia`} />
+            <Head title={`${product.name} | PT. Sugiyama Indonesia`} />
 
             <div className="bg-emerald-950 text-white pt-32 pb-16 relative overflow-hidden">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
@@ -25,14 +25,14 @@ export default function ProductShow({ product, relatedProducts = [] }) {
                         <span>{t('prd_back_all', 'Kembali ke Katalog Produk')}</span>
                     </Link>
 
-                    {product.category && (
+                    {category && (
                         <span className="px-3.5 py-1 rounded-full bg-emerald-800 text-emerald-200 text-xs font-bold block w-fit">
-                            {lang === 'ja' && product.category.name_jp ? product.category.name_jp : product.category.name}
+                            {category.name}
                         </span>
                     )}
 
                     <h1 className="text-2xl sm:text-4xl font-extrabold text-white">
-                        {productName}
+                        {product.name}
                     </h1>
 
                     {product.sku && (

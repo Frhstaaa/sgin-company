@@ -860,6 +860,42 @@ export const modelTranslations = {
                 excerpt: '日本本社とインドネシア工場間の技術者交流を通じて、金型設計・CAE解析の高度技能伝承を推進します。',
                 category: 'プレスリリース',
             }
+        },
+        'program-pelatihan-insinyur-muda-Sugiyama-2026': {
+            en: {
+                title: 'Launch of Sugiyama Young Engineers Global Acceleration Program 2026',
+                excerpt: 'Engineering exchange initiative between Japan and Indonesia plants to transfer die-making expertise.',
+                category: 'Media',
+            },
+            ja: {
+                title: '2026年度 若手グローバルエンジニア育成プログラムの開始について',
+                excerpt: '日本本社とインドネシア工場間の技術者交流を通じて、金型設計・CAE解析の高度技能伝承を推進します。',
+                category: 'プレスリリース',
+            }
+        },
+        'Peluncuran Program Akselerasi Karir Insinyur Muda Sugiyama Precision 2026': {
+            en: {
+                title: 'Launch of Sugiyama Young Engineers Global Acceleration Program 2026',
+                excerpt: 'Engineering exchange initiative between Japan and Indonesia plants to transfer die-making expertise.',
+                category: 'Media',
+            },
+            ja: {
+                title: '2026年度 若手グローバルエンジニア育成プログラムの開始について',
+                excerpt: '日本本社とインドネシア工場間の技術者交流を通じて、金型設計・CAE解析の高度技能伝承を推進します。',
+                category: 'プレスリリース',
+            }
+        },
+        'Peluncuran Program Akselerasi Karir Insinyur Muda PT. Sugiyama Indonesia 2026': {
+            en: {
+                title: 'Launch of Sugiyama Young Engineers Global Acceleration Program 2026',
+                excerpt: 'Engineering exchange initiative between Japan and Indonesia plants to transfer die-making expertise.',
+                category: 'Media',
+            },
+            ja: {
+                title: '2026年度 若手グローバルエンジニア育成プログラムの開始について',
+                excerpt: '日本本社とインドネシア工場間の技術者交流を通じて、金型設計・CAE解析の高度技能伝承を推進します。',
+                category: 'プレスリリース',
+            }
         }
     },
 

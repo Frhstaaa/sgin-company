@@ -79,19 +79,22 @@ export default function ProductIndex({ products, categories = [], filters = {} }
                             >
                                 {t('prd_filter_all', 'Semua Kategori')}
                             </button>
-                            {categories.map((c) => (
-                                <button
-                                    key={c.id}
-                                    onClick={() => handleCategoryClick(c.slug)}
-                                    className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
-                                        selectedCategory === c.slug
-                                            ? 'bg-emerald-700 text-white shadow-xs'
-                                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                                    }`}
-                                >
-                                    {lang === 'ja' && c.name_jp ? c.name_jp : c.name}
-                                </button>
-                            ))}
+                            {categories.map((rawC) => {
+                                const c = translateModel(rawC, 'product_category');
+                                return (
+                                    <button
+                                        key={c.id}
+                                        onClick={() => handleCategoryClick(c.slug)}
+                                        className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
+                                            selectedCategory === c.slug
+                                                ? 'bg-emerald-700 text-white shadow-xs'
+                                                : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                        }`}
+                                    >
+                                        {c.name}
+                                    </button>
+                                );
+                            })}
                         </div>
 
                         {/* Search Input */}
@@ -109,7 +112,9 @@ export default function ProductIndex({ products, categories = [], filters = {} }
 
                     {/* Products Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {products.data && products.data.map((p, idx) => (
+                        {products.data && products.data.map((rawP, idx) => {
+                            const p = translateModel(rawP, 'product');
+                            return (
                             <ScrollReveal key={p.id} delay={0.1 * (idx % 4)}>
                             <div
                                 className="bg-white rounded-3xl overflow-hidden shadow-xs hover:shadow-xl border border-slate-200 hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group h-full"
@@ -132,7 +137,7 @@ export default function ProductIndex({ products, categories = [], filters = {} }
 
                                     <div className="p-5 space-y-3">
                                         <h3 className="font-bold text-slate-900 group-hover:text-emerald-800 transition-colors text-sm line-clamp-1">
-                                            {lang === 'ja' && p.name_jp ? p.name_jp : p.name}
+                                            {p.name}
                                         </h3>
 
                                         <div className="space-y-1 text-xs text-slate-500">
@@ -164,7 +169,8 @@ export default function ProductIndex({ products, categories = [], filters = {} }
                                 </div>
                             </div>
                             </ScrollReveal>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>

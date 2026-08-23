@@ -6,8 +6,9 @@ import { ArrowLeft, MapPin, Clock, CheckCircle2, Send, Briefcase } from 'lucide-
 import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
 
-export default function CareerShow({ career }) {
-    const { t } = useLanguage();
+export default function CareerShow({ career: rawCareer }) {
+    const { t, translateModel } = useLanguage();
+    const career = translateModel(rawCareer, 'career');
 
     return (
         <AppLayout>

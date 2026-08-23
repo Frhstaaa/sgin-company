@@ -120,34 +120,68 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
                 item.step_number,
                 item.name,
                 item.title,
+                item.title_id,
                 item.model_number,
                 item.id ? String(item.id) : null
             ].filter(Boolean);
 
-            // A. Type-specific lookup (e.g. type='company_profile', type='technology', type='equipment', type='process')
+            const findEntryInDict = (dict) => {
+                if (!dict || typeof dict !== 'object') return null;
+
+                for (const cand of candidates) {
+                    const strCand = String(cand).trim().toLowerCase();
+                    const normCand = strCand.replace(/[^a-z0-9]/g, '');
+
+                    // 1. Direct match
+                    if (dict[cand] && dict[cand][lang]) return dict[cand][lang];
+
+                    // 2. Case-insensitive key match
+                    for (const k in dict) {
+                        if (k.toLowerCase() === strCand && dict[k] && dict[k][lang]) {
+                            return dict[k][lang];
+                        }
+                    }
+
+                    // 3. Normalized alphanumeric match
+                    for (const k in dict) {
+                        const normK = k.toLowerCase().replace(/[^a-z0-9]/g, '');
+                        if (normK && normCand && (normK === normCand) && dict[k] && dict[k][lang]) {
+                            return dict[k][lang];
+                        }
+                    }
+
+                    // 4. Substring inclusion match (if >= 6 chars)
+                    if (normCand.length >= 6) {
+                        for (const k in dict) {
+                            const normK = k.toLowerCase().replace(/[^a-z0-9]/g, '');
+                            if (normK && normCand && (normK.includes(normCand) || normCand.includes(normK)) && dict[k] && dict[k][lang]) {
+                                return dict[k][lang];
+                            }
+                        }
+                    }
+                }
+                return null;
+            };
+
+            // A. Type-specific lookup
             if (type && modelTranslations[type]) {
-                // Check if type is singleton with direct locale object (e.g. company_profile.ja)
                 if (modelTranslations[type][lang]) {
                     Object.assign(result, modelTranslations[type][lang]);
                     return result;
                 }
-
-                // Check candidate keys under type
-                for (const id of candidates) {
-                    if (modelTranslations[type][id] && modelTranslations[type][id][lang]) {
-                        Object.assign(result, modelTranslations[type][id][lang]);
-                        return result;
-                    }
+                const match = findEntryInDict(modelTranslations[type]);
+                if (match) {
+                    Object.assign(result, match);
+                    return result;
                 }
             }
 
-            // B. Global search across all categories in modelTranslations
+            // B. Search across all categories in modelTranslations
             for (const cat in modelTranslations) {
-                for (const id of candidates) {
-                    if (modelTranslations[cat] && modelTranslations[cat][id] && modelTranslations[cat][id][lang]) {
-                        Object.assign(result, modelTranslations[cat][id][lang]);
-                        return result;
-                    }
+                const match = findEntryInDict(modelTranslations[cat]);
+                if (match) {
+                    Object.assign(result, match);
+                    return result;
                 }
             }
         }
