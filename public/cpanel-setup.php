@@ -82,14 +82,31 @@ if ($action === 'git_pull') {
         $zipUrl = 'https://github.com/Frhstaaa/sgin-company/archive/refs/heads/main.zip';
         $tmpZip = sys_get_temp_dir() . '/sgin_github_latest.zip';
         
-        $opts = [
-            'http' => [
-                'method' => 'GET',
-                'header' => "User-Agent: SGIN-Deployer\r\n"
-            ]
-        ];
-        $context = stream_context_create($opts);
-        $zipContent = @file_get_contents($zipUrl, false, $context);
+        $zipContent = null;
+        if (function_exists('curl_init')) {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $zipUrl);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_USERAGENT, 'SGIN-Deployer');
+            $zipContent = curl_exec($ch);
+            curl_close($ch);
+        }
+        if (!$zipContent) {
+            $opts = [
+                'http' => [
+                    'method' => 'GET',
+                    'header' => "User-Agent: SGIN-Deployer\r\n"
+                ],
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                ]
+            ];
+            $context = stream_context_create($opts);
+            $zipContent = @file_get_contents($zipUrl, false, $context);
+        }
         
         if ($zipContent) {
             @file_put_contents($tmpZip, $zipContent);
