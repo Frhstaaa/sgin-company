@@ -196,7 +196,7 @@ if ($action === 'git_pull') {
 } elseif ($action === 'fix_htaccess') {
     $outputLog .= "=== PASANG / PERBAIKI .HTACCESS ROOT ===\n";
     $htaccessPath = $basePath . '/.htaccess';
-    $htaccessContent = "<IfModule mod_rewrite.c>\n    RewriteEngine On\n\n    # Prioritize Laravel public index.php\n    DirectoryIndex public/index.php index.php\n\n    # 1. Block access to sensitive files and directories\n    RewriteRule ^\\.(env|git|editorconfig|gitignore|gitattributes) - [F,L,NC]\n    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)/(.*) - [F,L,NC]\n    RewriteRule ^(composer\\.(json|lock)|package(-lock)?\\.json|phpunit\\.xml|vite\\.config\.js) - [F,L,NC]\n\n    # 2. Redirect all traffic to the public directory\n    RewriteCond %{REQUEST_URI} !^/public/\n    RewriteRule ^(.*)$ public/$1 [L]\n</IfModule>\n";
+    $htaccessContent = "<IfModule mod_rewrite.c>\n    RewriteEngine On\n\n    # Prioritize Laravel public index.php\n    DirectoryIndex public/index.php index.php\n\n    # 1. Block access to sensitive files and directories\n    RewriteRule ^\\.(env|git|editorconfig|gitignore|gitattributes) - [F,L,NC]\n    RewriteRule ^(app|bootstrap|config|database|resources|routes|tests|vendor)/(.*) - [F,L,NC]\n    RewriteRule ^(composer\\.(json|lock)|package(-lock)?\\.json|phpunit\\.xml|vite\\.config\.js) - [F,L,NC]\n\n    # 2. Redirect all traffic to the public directory\n    RewriteCond %{REQUEST_URI} !^/public/\n    RewriteRule ^(.*)$ public/$1 [L]\n</IfModule>\n";
     if (@file_put_contents($htaccessPath, $htaccessContent)) {
         $outputLog .= "✅ File .htaccess di root berhasil diperbarui!\n";
     } else {

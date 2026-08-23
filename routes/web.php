@@ -62,6 +62,29 @@ Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store
 // SEO Sitemap XML
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
+// Public Storage File Delivery Fallback (For cPanel & Shared Hosting)
+Route::get('/storage/{path}', function (string $path) {
+    $filePath = storage_path('app/public/' . $path);
+    if (!file_exists($filePath)) {
+        abort(404);
+    }
+    $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+    $mimeType = match ($extension) {
+        'webp' => 'image/webp',
+        'png' => 'image/png',
+        'jpg', 'jpeg' => 'image/jpeg',
+        'svg' => 'image/svg+xml',
+        'gif' => 'image/gif',
+        'ico' => 'image/x-icon',
+        'pdf' => 'application/pdf',
+        default => @mime_content_type($filePath) ?: 'application/octet-stream'
+    };
+    return response()->file($filePath, [
+        'Content-Type' => $mimeType,
+        'Cache-Control' => 'public, max-age=604800, immutable',
+    ]);
+})->where('path', '.*')->name('storage.file');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Authentication Routes
