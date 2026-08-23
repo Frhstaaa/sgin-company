@@ -5,7 +5,7 @@ import {
     Cog, Package, FolderTree, Building2, Newspaper, 
     UserCheck, Inbox, Settings, LogOut, Menu, X, 
     CheckCircle2, AlertCircle, ExternalLink, ChevronRight, User, ShieldCheck, LayoutTemplate, Workflow,
-    Users, KeyRound, Crown, Feather, Search, Bell, Calendar, Sparkles, Plus, ArrowUpRight
+    Users, KeyRound, Crown, Feather, Search, Bell, Calendar, Sparkles, Plus, ArrowUpRight, FileText
 } from 'lucide-react';
 
 export default function AdminLayout({ children, title = 'Dashboard Overview' }) {
@@ -82,6 +82,7 @@ export default function AdminLayout({ children, title = 'Dashboard Overview' }) 
                 { name: 'Profil Perusahaan', href: '/admin/company-profile', icon: Building2, active: currentUrl.startsWith('/admin/company-profile'), minRole: 'Admin' },
                 { name: 'Berita & Update', href: '/admin/news', icon: Newspaper, active: currentUrl.startsWith('/admin/news'), minRole: 'Editor' },
                 { name: 'Lowongan Karir', href: '/admin/careers', icon: UserCheck, active: currentUrl.startsWith('/admin/careers'), minRole: 'Editor' },
+                { name: 'Pelamar & CV Karir', href: '/admin/job-applications', icon: FileText, active: currentUrl.startsWith('/admin/job-applications'), minRole: 'Admin' },
             ]
         },
         {

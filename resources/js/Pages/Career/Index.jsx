@@ -96,10 +96,22 @@ export default function CareerIndex({ careers = [] }) {
             {/* Open Vacancies */}
             <section className="py-20 bg-slate-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-                    <div>
-                        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-                            {t('career_open_positions', 'Lowongan Posisi Terbuka')}
-                        </h2>
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-6">
+                        <div>
+                            <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-widest">
+                                {t('career_badge', 'Informasi Rekrutmen / 採用情報')}
+                            </span>
+                            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">
+                                {t('career_open_positions', 'Lowongan Posisi Terbuka')}
+                            </h2>
+                        </div>
+                        <Link
+                            href="/karir/lamar"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-emerald-900/30 shrink-0"
+                        >
+                            <span>Formulir Lamaran / Kirim CV</span>
+                            <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
                     </div>
 
                     <div className="space-y-6">
@@ -141,12 +153,19 @@ export default function CareerIndex({ careers = [] }) {
                                     </div>
                                 </div>
 
-                                <div className="shrink-0">
+                                <div className="shrink-0 flex items-center gap-3">
                                     <Link
                                         href={`/karir/${career.slug}`}
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold shadow-md hover:shadow-lg transition-all"
+                                        className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-all"
                                     >
                                         <span>{t('career_view_detail', 'Lihat Rincian Posisi')}</span>
+                                        <ArrowRight className="w-3.5 h-3.5" />
+                                    </Link>
+                                    <Link
+                                        href={`/karir/${career.slug}/lamar`}
+                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold shadow-md hover:shadow-lg transition-all"
+                                    >
+                                        <span>{t('career_apply_btn', 'Lamar Posisi Ini')}</span>
                                         <ArrowRight className="w-3.5 h-3.5" />
                                     </Link>
                                 </div>
@@ -154,8 +173,15 @@ export default function CareerIndex({ careers = [] }) {
                         )})}
 
                         {careers.length === 0 && (
-                            <div className="text-center py-16 bg-white rounded-3xl border border-slate-200 text-slate-500 text-sm">
-                                {t('career_no_positions', 'Belum ada lowongan posisi terbuka saat ini. Silakan kirimkan CV umum Anda melalui form kontak.')}
+                            <div className="text-center py-16 bg-white rounded-3xl border border-slate-200 text-slate-500 text-sm space-y-4">
+                                <p>{t('career_no_positions', 'Belum ada lowongan posisi terbuka saat ini. Silakan kirimkan CV umum Anda melalui formulir lamaran.')}</p>
+                                <Link
+                                    href="/karir/lamar"
+                                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-800 text-white font-bold text-xs uppercase tracking-wider"
+                                >
+                                    <span>Isi Formulir Lamaran Umum</span>
+                                    <ArrowRight className="w-3.5 h-3.5" />
+                                </Link>
                             </div>
                         )}
                     </div>

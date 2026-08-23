@@ -109,11 +109,11 @@ export default function CareerShow({ career: rawCareer }) {
                                 {t('career_apply_box_title', 'Tertarik dengan Posisi Ini?')}
                             </h4>
                             <p className="text-xs text-emerald-200 mt-1">
-                                {t('career_apply_box_desc', 'Kirimkan CV dan dokumen pendukung Anda melalui formulir kontak rekrutmen kami.')}
+                                {t('career_apply_box_desc', 'Lengkapi biodata dan unggah berkas CV/Resume Anda (Maksimal 2 MB) melalui formulir lamaran resmi kami.')}
                             </p>
                         </div>
                         <Link
-                            href={`/kontak?type=career&subject=Lamaran:${encodeURIComponent(career.title)}`}
+                            href={`/karir/${career.slug}/lamar`}
                             className="px-6 py-3.5 rounded-full bg-white text-emerald-950 hover:bg-emerald-50 text-xs font-bold shrink-0 shadow-md flex items-center gap-2"
                         >
                             <span>{t('career_apply_btn', 'Lamar Posisi Ini')}</span>

@@ -12,6 +12,7 @@ use App\Http\Controllers\Public\ProductionProcessController;
 use App\Http\Controllers\Public\AboutController;
 use App\Http\Controllers\Public\NewsController;
 use App\Http\Controllers\Public\CareerController;
+use App\Http\Controllers\Public\CareerApplicationController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\SitemapController;
 use App\Http\Controllers\LocaleController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminCompanyProfileController;
 use App\Http\Controllers\Admin\AdminNewsController;
 use App\Http\Controllers\Admin\AdminCareerController;
+use App\Http\Controllers\Admin\AdminJobApplicationController;
 use App\Http\Controllers\Admin\AdminInquiryController;
 use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\Admin\AdminPageBannerController;
@@ -64,6 +66,9 @@ Route::get('/berita', [NewsController::class, 'index'])->name('news.index');
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
 
 Route::get('/karir', [CareerController::class, 'index'])->name('career.index');
+Route::get('/karir/lamar', [CareerApplicationController::class, 'create'])->name('career.apply');
+Route::get('/karir/{slug}/lamar', [CareerApplicationController::class, 'createForCareer'])->name('career.apply.position');
+Route::post('/karir/lamar', [CareerApplicationController::class, 'store'])->name('career.apply.store');
 Route::get('/karir/{slug}', [CareerController::class, 'show'])->name('career.show');
 
 Route::get('/kontak', [ContactController::class, 'index'])->name('contact.index');
@@ -150,6 +155,11 @@ Route::prefix('admin')->group(function () {
 
         // Careers
         Route::resource('careers', AdminCareerController::class)->except(['create', 'show', 'edit']);
+
+        // Job Applications (Pelamar Kerja & CV)
+        Route::get('/job-applications', [AdminJobApplicationController::class, 'index'])->name('job-applications.index');
+        Route::patch('/job-applications/{application}/status', [AdminJobApplicationController::class, 'updateStatus'])->name('job-applications.updateStatus');
+        Route::delete('/job-applications/{application}', [AdminJobApplicationController::class, 'destroy'])->name('job-applications.destroy');
 
         // Inquiries / RFQs
         Route::get('/inquiries', [AdminInquiryController::class, 'index'])->name('inquiries.index');

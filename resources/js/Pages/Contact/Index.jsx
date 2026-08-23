@@ -1,11 +1,11 @@
 import React from 'react';
-import { Head, useForm, usePage } from '@inertiajs/react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import AppLayout from '../../Layouts/AppLayout';
 import { useLanguage } from '../../Context/LanguageContext';
 import YouTubeEmbed from '../../Components/YouTubeEmbed';
 import { 
     Phone, Mail, MapPin, Send, CheckCircle2, 
-    MessageSquare, Building2, HelpCircle, Clock 
+    MessageSquare, Building2, HelpCircle, Clock, Briefcase
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
@@ -15,8 +15,10 @@ export default function ContactIndex({ selectedProduct, products = [], defaultTy
     const siteSettings = props.siteSettings || {};
     const { t, lang } = useLanguage();
 
+    const initialType = defaultType === 'career' ? 'general' : defaultType;
+
     const { data, setData, post, processing, errors, reset, recentlySuccessful } = useForm({
-        type: defaultType,
+        type: initialType,
         name: '',
         company_name: '',
         email: '',
@@ -92,26 +94,39 @@ export default function ContactIndex({ selectedProduct, products = [], defaultTy
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                                         {t('contact_type_label', 'Jenis Permintaan')} <span className="text-rose-500">*</span>
                                     </label>
-                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                                         {[
                                             { id: 'general', label: t('contact_type_general', 'Pertanyaan Umum') },
                                             { id: 'rfq', label: t('contact_type_rfq', 'Minta RFQ') },
                                             { id: 'consultation', label: t('contact_type_consult', 'Konsultasi Teknik') },
-                                            { id: 'career', label: t('contact_type_career', 'Karir') },
                                         ].map((item) => (
                                             <button
                                                 key={item.id}
                                                 type="button"
                                                 onClick={() => setData('type', item.id)}
-                                                className={`py-2 px-3 rounded-xl text-xs font-bold border transition-all ${
-                                                    data.type === item.id
-                                                        ? 'bg-emerald-700 text-white border-emerald-700 shadow-xs'
+                                                className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all border text-center ${
+                                                    data.type === item.id 
+                                                        ? 'bg-emerald-800 text-white border-emerald-800 shadow-xs' 
                                                         : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                                                 }`}
                                             >
                                                 {item.label}
                                             </button>
                                         ))}
+                                    </div>
+
+                                    {/* Career Application Callout */}
+                                    <div className="mt-3 p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80 text-xs text-emerald-950 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                        <div className="flex items-center gap-2">
+                                            <Briefcase className="w-4 h-4 text-emerald-700 shrink-0" />
+                                            <span>Mencari lowongan pekerjaan atau ingin melamar karir?</span>
+                                        </div>
+                                        <Link 
+                                            href="/karir/lamar" 
+                                            className="font-bold text-emerald-800 hover:text-emerald-600 underline shrink-0 inline-flex items-center gap-1"
+                                        >
+                                            <span>Formulir Lamaran Kerja &rarr;</span>
+                                        </Link>
                                     </div>
                                     {errors.type && <p className="text-rose-500 text-xs mt-1">{errors.type}</p>}
                                 </div>

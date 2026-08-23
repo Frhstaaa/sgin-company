@@ -35,4 +35,10 @@ class Career extends Model
     {
         return $query->where('is_active', true)->orderBy('created_at', 'desc');
     }
+
+    public function applications()
+    {
+        return $this->hasMany(JobApplication::class, 'career_id');
+    }
 }
+
