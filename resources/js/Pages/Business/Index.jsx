@@ -10,7 +10,7 @@ import ScrollReveal from '../../Components/ScrollReveal';
 export default function BusinessIndex({ businesses = [] }) {
     const { props = {} } = usePage();
     const siteSettings = props.siteSettings || {};
-    const { t, translateModel } = useLanguage();
+    const { t, lang, translateModel } = useLanguage();
 
     return (
         <AppLayout>

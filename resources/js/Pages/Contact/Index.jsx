@@ -13,7 +13,7 @@ import ScrollReveal from '../../Components/ScrollReveal';
 export default function ContactIndex({ selectedProduct, products = [], defaultType = 'general' }) {
     const { props = {} } = usePage();
     const siteSettings = props.siteSettings || {};
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
 
     const { data, setData, post, processing, errors, reset, recentlySuccessful } = useForm({
         type: defaultType,

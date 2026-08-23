@@ -10,7 +10,7 @@ import ScrollReveal from '../../Components/ScrollReveal';
 export default function EquipmentIndex({ equipments = [], categories = [] }) {
     const { props = {} } = usePage();
     const siteSettings = props.siteSettings || {};
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
     const [selectedCategory, setSelectedCategory] = useState('ALL');
 
     const filtered = selectedCategory === 'ALL'
