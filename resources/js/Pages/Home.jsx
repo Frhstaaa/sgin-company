@@ -691,23 +691,19 @@ export default function Home({
             </section>
 
             {/* ========================================================================= */}
-            {/* 6. KATALOG PRODUK UNGGULAN SECTION */}
+            {/* 5. KATALOG PRODUK UNGGULAN SECTION */}
             {/* ========================================================================= */}
-            <section className="py-16 md:py-24 bg-slate-950 text-white relative overflow-hidden">
-                {/* Subtle Ambient Background Gradients */}
-                <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-teal-600/10 rounded-full blur-3xl pointer-events-none" />
-
+            <section className="py-16 md:py-24 bg-slate-50 border-t border-slate-200/60 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
                         <div className="space-y-3 max-w-2xl">
-                            <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 inline-block">
+                            <span className="text-[10px] sm:text-xs font-bold text-emerald-800 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 inline-block">
                                 {t('home_prd_badge', 'Katalog Produk / 製品情報')}
                             </span>
-                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
                                 {t('home_prd_title', 'Komponen Presisi Otomotif & Elektrifikasi EV')}
                             </h2>
-                            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                                 {t('home_prd_desc', 'Suku cadang powertrain otomotif, stepped rivet shaft, terminal tembaga inverter EV, dan micro gear berstandar mutu tinggi Jepang.')}
                             </p>
                         </div>
@@ -715,7 +711,7 @@ export default function Home({
                         <div className="shrink-0 flex items-center gap-3">
                             <Link
                                 href="/produk"
-                                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-emerald-600/30"
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-emerald-800 hover:bg-emerald-700 active:bg-emerald-900 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-emerald-900/20"
                             >
                                 <span>{t('home_prd_view_all', 'Lihat Semua Produk')}</span>
                                 <ArrowRight className="w-4 h-4" />
@@ -733,44 +729,44 @@ export default function Home({
                                 <ScrollReveal key={prd.id || idx} delay={idx * 0.1}>
                                     <Link
                                         href={`/produk/${prd.slug}`}
-                                        className="group bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-emerald-400/50 p-4 transition-all duration-300 flex flex-col justify-between h-full hover:shadow-2xl hover:shadow-emerald-950/50 block"
+                                        className="group bg-white hover:bg-slate-50/50 rounded-2xl border border-slate-200/90 hover:border-emerald-300 p-4 transition-all duration-300 flex flex-col justify-between h-full shadow-xs hover:shadow-xl hover:shadow-emerald-950/10 block"
                                     >
                                         <div className="space-y-4">
-                                            <div className="relative aspect-square rounded-xl overflow-hidden bg-slate-900">
+                                            <div className="relative aspect-square rounded-xl overflow-hidden bg-slate-100">
                                                 <img 
                                                     src={prd.image_url} 
                                                     alt={prd.name} 
                                                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
                                                 />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
                                                 <div className="absolute top-2.5 left-2.5">
-                                                    <span className="px-2 py-0.5 rounded-md bg-emerald-900/90 text-emerald-200 text-[10px] font-bold border border-emerald-500/30 backdrop-blur-xs">
+                                                    <span className="px-2 py-0.5 rounded-md bg-emerald-100/90 text-emerald-800 text-[10px] font-bold border border-emerald-300/60 backdrop-blur-xs">
                                                         {categoryName}
                                                     </span>
                                                 </div>
                                                 {prd.tolerance && (
-                                                    <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px] text-slate-300 font-mono">
-                                                        <span className="bg-black/60 px-2 py-0.5 rounded backdrop-blur-xs">Toleransi: {prd.tolerance}</span>
+                                                    <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px] text-slate-200 font-mono">
+                                                        <span className="bg-slate-900/80 px-2 py-0.5 rounded backdrop-blur-xs">Toleransi: {prd.tolerance}</span>
                                                     </div>
                                                 )}
                                             </div>
 
                                             <div className="space-y-1.5">
-                                                <h3 className="font-bold text-sm sm:text-base text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
+                                                <h3 className="font-bold text-sm sm:text-base text-slate-900 group-hover:text-emerald-800 transition-colors line-clamp-1">
                                                     {prd.name}
                                                 </h3>
                                                 {prd.name_jp && lang !== 'ja' && (
                                                     <p className="text-[11px] text-slate-400 font-jp line-clamp-1">{prd.name_jp}</p>
                                                 )}
                                                 {prd.application && (
-                                                    <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                                                    <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
                                                         {prd.application}
                                                     </p>
                                                 )}
                                             </div>
                                         </div>
 
-                                        <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-emerald-400 group-hover:text-emerald-300">
+                                        <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-800 group-hover:text-emerald-600">
                                             <span>{t('prd_btn_detail', 'Lihat Detail Komponen')}</span>
                                             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                                         </div>
@@ -781,13 +777,13 @@ export default function Home({
                     </div>
 
                     {/* RFQ Callout Strip */}
-                    <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-900/80 via-emerald-950 to-slate-900 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xl">
+                    <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-900 via-emerald-950 to-slate-900 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xl">
                         <div className="space-y-1.5">
                             <h4 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
                                 <Sparkles className="w-5 h-5 text-emerald-400" />
                                 <span>Butuh Komponen Kustom dengan Gambar Teknik 2D/3D CAD?</span>
                             </h4>
-                            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                            <p className="text-xs sm:text-sm text-emerald-200/80 max-w-2xl leading-relaxed">
                                 Tim rekayasa kami siap menganalisis efisiensi biaya penempaan dingin dan kelayakan manufaktur komponen Anda.
                             </p>
                         </div>
@@ -805,14 +801,14 @@ export default function Home({
             {/* ========================================================================= */}
             {/* 6. ABOUT SECTION (Corporate Heritage & Leadership) */}
             {/* ========================================================================= */}
-            <section className="py-20 md:py-28 bg-slate-900 text-white relative overflow-hidden">
-                {/* Background Japanese Watermark & Blueprint Ambient Effects */}
+            <section className="py-20 md:py-28 bg-white text-slate-900 relative overflow-hidden border-t border-slate-200/60">
+                {/* Background Japanese Watermark & Subtle Blueprint Grid */}
                 <div className="absolute inset-0 z-0 pointer-events-none">
-                    <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl" />
-                    <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-900/20 rounded-full blur-3xl" />
-                    <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-10" />
+                    <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-100/50 rounded-full blur-3xl" />
+                    <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-slate-100/70 rounded-full blur-3xl" />
+                    <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-15" />
                     {/* Subtle Japanese Kanji watermark in background */}
-                    <div className="absolute right-8 top-1/2 -translate-y-1/2 text-slate-800/20 font-black text-9xl select-none font-jp hidden xl:block">
+                    <div className="absolute right-8 top-1/2 -translate-y-1/2 text-slate-100/80 font-black text-9xl select-none font-jp hidden xl:block">
                         株式会社スギヤマ
                     </div>
                 </div>
@@ -824,29 +820,29 @@ export default function Home({
                             {/* LEFT: Leadership & Legacy Story */}
                             <div className="lg:col-span-7 space-y-6">
                                 <div className="space-y-3">
-                                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-xs font-bold shadow-lg backdrop-blur-md">
-                                        <Building2 className="w-3.5 h-3.5 text-emerald-400" />
+                                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold shadow-xs">
+                                        <Building2 className="w-3.5 h-3.5 text-emerald-700" />
                                         <span>{(lang === 'id' && settings.about_hero_badge) ? settings.about_hero_badge : t('about_badge', 'Tentang Kami / 会社概要')}</span>
                                     </div>
-                                    <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
+                                    <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
                                         {(lang === 'id' && settings.about_hero_title) ? settings.about_hero_title : t('about_title', 'Keahlian Presisi Jepang Berstandar Global')}
                                     </h2>
-                                    <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
+                                    <p className="text-slate-600 text-xs sm:text-base leading-relaxed">
                                         {(lang === 'id' && settings.about_hero_lead) ? settings.about_hero_lead : t('about_lead', 'Sejak didirikan pada tahun 1952 di Aichi, Jepang, PT. Sugiyama Indonesia (Sugiyama Group) terus menempa batas inovasi teknik penempaan dingin dan komponen presisi berstandar mutu otomotif global.')}
                                     </p>
                                 </div>
 
                                 {/* President Quote Card */}
-                                <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-slate-800/90 to-emerald-950/80 border border-emerald-500/20 shadow-2xl relative overflow-hidden backdrop-blur-md">
-                                    <Quote className="w-10 h-10 text-emerald-500/20 absolute right-4 top-4 pointer-events-none" />
+                                <div className="p-6 sm:p-7 rounded-3xl bg-slate-50/80 border border-slate-200/90 shadow-md relative overflow-hidden">
+                                    <Quote className="w-10 h-10 text-emerald-800/10 absolute right-4 top-4 pointer-events-none" />
                                     <div className="space-y-4 relative z-10">
-                                        <p className="text-xs sm:text-sm text-emerald-100/90 italic font-medium leading-relaxed">
+                                        <p className="text-xs sm:text-sm text-slate-700 italic font-medium leading-relaxed">
                                             "{translatedAbout.president_message || 'Sebagai seorang ahli penempaan, kami akan merevolusi kualitas manufaktur presisi dunia melalui keterampilan teknis tanpa kompromi.'}"
                                         </p>
 
-                                        <div className="pt-3 border-t border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                        <div className="pt-3 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-emerald-400/50 shadow-md shrink-0 bg-slate-800">
+                                                <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-emerald-600 shadow-xs shrink-0 bg-slate-100">
                                                     <img 
                                                         src={about.president_photo_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'} 
                                                         alt={translatedAbout.president_name || 'Takeshi Sugiyama'} 
@@ -854,10 +850,10 @@ export default function Home({
                                                     />
                                                 </div>
                                                 <div>
-                                                    <p className="font-extrabold text-white text-sm">
+                                                    <p className="font-extrabold text-slate-900 text-sm">
                                                         {translatedAbout.president_name || 'Takeshi Sugiyama'}
                                                     </p>
-                                                    <p className="text-[11px] text-emerald-300 font-medium">
+                                                    <p className="text-[11px] text-emerald-800 font-bold">
                                                         {t('about_president_role', 'Presiden Direktur PT. Sugiyama Indonesia')}
                                                     </p>
                                                 </div>
@@ -865,7 +861,7 @@ export default function Home({
 
                                             <Link
                                                 href="/tentang-kami"
-                                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-700 hover:bg-emerald-600 active:bg-emerald-800 text-white font-bold text-xs shadow-lg hover:shadow-emerald-900/50 transition-all shrink-0"
+                                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-800 hover:bg-emerald-700 active:bg-emerald-900 text-white font-bold text-xs shadow-md hover:shadow-emerald-950/20 transition-all shrink-0"
                                             >
                                                 <span>{t('about_btn_more', 'Profil Lengkap & Sejarah')}</span>
                                                 <ArrowRight className="w-3.5 h-3.5" />
@@ -878,46 +874,46 @@ export default function Home({
                             {/* RIGHT: Visual Showcase & Floating Badges */}
                             <div className="lg:col-span-5 relative">
                                 {/* Main Facility Showcase Image Card */}
-                                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-700/70 group aspect-4/3 bg-slate-950">
+                                <div className="relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 group aspect-4/3 bg-slate-100">
                                     <img 
                                         src={settings.home_about_image || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop'} 
                                         alt="Fasilitas Manufaktur PT. Sugiyama Indonesia" 
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/40" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
 
                                     {/* Top Overlay Badges inside the card (Never clipped) */}
                                     <div className="absolute top-3.5 left-3.5 right-3.5 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 z-10">
                                         {/* Quality Badge */}
-                                        <div className="py-1.5 px-3 rounded-xl bg-slate-950/85 border border-emerald-500/40 text-white shadow-lg backdrop-blur-md flex items-center gap-2">
-                                            <div className="w-6 h-6 rounded-lg bg-emerald-600/30 text-emerald-300 flex items-center justify-center border border-emerald-400/30 shrink-0">
+                                        <div className="py-1.5 px-3 rounded-xl bg-white/95 border border-slate-200 text-slate-900 shadow-md backdrop-blur-md flex items-center gap-2">
+                                            <div className="w-6 h-6 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center border border-emerald-200 shrink-0">
                                                 <ShieldCheck className="w-3.5 h-3.5" />
                                             </div>
                                             <div className="text-left">
-                                                <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider leading-none">Standar Mutu</p>
-                                                <p className="text-[11px] font-black text-white font-mono leading-tight mt-0.5">{settings.home_about_badge_quality || 'IATF 16949 & ISO 9001'}</p>
+                                                <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider leading-none">Standar Mutu</p>
+                                                <p className="text-[11px] font-black text-slate-900 font-mono leading-tight mt-0.5">{settings.home_about_badge_quality || 'IATF 16949 & ISO 9001'}</p>
                                             </div>
                                         </div>
 
                                         {/* Heritage Badge */}
-                                        <div className="py-1.5 px-3 rounded-xl bg-slate-950/85 border border-amber-500/40 text-white shadow-lg backdrop-blur-md flex items-center gap-2">
-                                            <div className="w-6 h-6 rounded-lg bg-amber-600/30 text-amber-300 flex items-center justify-center border border-amber-400/30 shrink-0">
+                                        <div className="py-1.5 px-3 rounded-xl bg-white/95 border border-slate-200 text-slate-900 shadow-md backdrop-blur-md flex items-center gap-2">
+                                            <div className="w-6 h-6 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center border border-amber-200 shrink-0">
                                                 <Award className="w-3.5 h-3.5" />
                                             </div>
                                             <div className="text-left">
-                                                <p className="text-[9px] font-bold text-amber-400/80 uppercase tracking-wider leading-none">Sejak 1952</p>
-                                                <p className="text-[11px] font-black text-white leading-tight mt-0.5">{settings.home_about_badge_heritage || 'Aichi, Jepang'}</p>
+                                                <p className="text-[9px] font-bold text-amber-700 uppercase tracking-wider leading-none">Sejak 1952</p>
+                                                <p className="text-[11px] font-black text-slate-900 leading-tight mt-0.5">{settings.home_about_badge_heritage || 'Aichi, Jepang'}</p>
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* Plant Label on Bottom */}
-                                    <div className="absolute bottom-3.5 left-3.5 right-3.5 p-3 sm:p-3.5 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs z-10 shadow-lg">
+                                    <div className="absolute bottom-3.5 left-3.5 right-3.5 p-3 sm:p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 text-slate-900 flex items-center justify-between text-xs z-10 shadow-lg">
                                         <div>
-                                            <p className="font-extrabold text-white text-xs sm:text-sm">{settings.home_about_plant_title || 'Pabrik & Kantor GIIC Cikarang'}</p>
-                                            <p className="text-[10px] text-slate-400">{settings.home_about_plant_subtitle || 'Greenland International Industrial Center (GIIC)'}</p>
+                                            <p className="font-extrabold text-slate-900 text-xs sm:text-sm">{settings.home_about_plant_title || 'Pabrik & Kantor GIIC Cikarang'}</p>
+                                            <p className="text-[10px] text-slate-500">{settings.home_about_plant_subtitle || 'Greenland International Industrial Center (GIIC)'}</p>
                                         </div>
-                                        <span className="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 font-mono font-bold text-[10px] border border-emerald-500/30 shrink-0">
+                                        <span className="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 font-mono font-bold text-[10px] border border-emerald-300/60 shrink-0">
                                             {settings.home_about_plant_tag || 'ASEAN Hub'}
                                         </span>
                                     </div>
@@ -928,33 +924,33 @@ export default function Home({
 
                         {/* 3 Key Corporate Pillars Mini-Cards */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6">
-                            <div className="p-4.5 rounded-2xl bg-slate-800/60 border border-slate-700/60 flex items-center gap-3.5 backdrop-blur-xs">
-                                <div className="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
+                            <div className="p-4.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center gap-3.5 shadow-2xs">
+                                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center justify-center shrink-0">
                                     <Globe className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <h4 className="font-extrabold text-white text-xs sm:text-sm">Jaringan Global Aichi & GIIC</h4>
-                                    <p className="text-[11px] text-slate-400">3 Fasilitas di Jepang & 1 Hub ASEAN di Cikarang</p>
+                                    <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm">Jaringan Global Aichi & GIIC</h4>
+                                    <p className="text-[11px] text-slate-500">3 Fasilitas di Jepang & 1 Hub ASEAN di Cikarang</p>
                                 </div>
                             </div>
 
-                            <div className="p-4.5 rounded-2xl bg-slate-800/60 border border-slate-700/60 flex items-center gap-3.5 backdrop-blur-xs">
-                                <div className="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
+                            <div className="p-4.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center gap-3.5 shadow-2xs">
+                                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center justify-center shrink-0">
                                     <Cpu className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <h4 className="font-extrabold text-white text-xs sm:text-sm">Presisi Mikro ±0.005 mm</h4>
-                                    <p className="text-[11px] text-slate-400">Pemesinan CNC 5-Axis & Cold Former 6-Die</p>
+                                    <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm">Presisi Mikro ±0.005 mm</h4>
+                                    <p className="text-[11px] text-slate-500">Pemesinan CNC 5-Axis & Cold Former 6-Die</p>
                                 </div>
                             </div>
 
-                            <div className="p-4.5 rounded-2xl bg-slate-800/60 border border-slate-700/60 flex items-center gap-3.5 backdrop-blur-xs">
-                                <div className="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
+                            <div className="p-4.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center gap-3.5 shadow-2xs">
+                                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center justify-center shrink-0">
                                     <ShieldCheck className="w-5 h-5" />
                                 </div>
                                 <div>
-                                    <h4 className="font-extrabold text-white text-xs sm:text-sm">Filosofi Mutu Kaizen</h4>
-                                    <p className="text-[11px] text-slate-400">Inovasi tanpa henti & Zero-Defect Quality</p>
+                                    <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm">Filosofi Mutu Kaizen</h4>
+                                    <p className="text-[11px] text-slate-500">Inovasi tanpa henti & Zero-Defect Quality</p>
                                 </div>
                             </div>
                         </div>
@@ -1207,32 +1203,30 @@ export default function Home({
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
                         {/* Column 1: Hubungi Kami (Contact CTA) */}
                         <ScrollReveal delay={0.1} direction="up" className="h-full">
-                            <div className="p-6 sm:p-8 lg:p-10 rounded-3xl bg-slate-900 text-white shadow-xl flex flex-col justify-between h-full relative overflow-hidden border border-slate-800">
-                                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
-                                
+                            <div className="p-6 sm:p-8 lg:p-10 rounded-3xl bg-white text-slate-900 shadow-sm flex flex-col justify-between h-full relative overflow-hidden border border-slate-200">
                                 <div className="space-y-3 relative z-10">
-                                    <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest block">
+                                    <span className="text-[10px] sm:text-xs font-bold text-emerald-800 uppercase tracking-widest block">
                                         {t('cta_badge', 'Hubungi Kami / お問い合わせ')}
                                     </span>
-                                    <h2 className="text-xl sm:text-2xl font-extrabold text-white leading-tight">
+                                    <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 leading-tight">
                                         {t('cta_title', 'Konsultasi Kebutuhan Manufaktur Presisi Anda')}
                                     </h2>
-                                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                                         {t('cta_desc', 'Dapatkan estimasi biaya penempaan dingin, evaluasi gambar teknik 3D CAD, atau konsultasi langsung dengan staf ahli kami.')}
                                     </p>
                                 </div>
 
-                                <div className="mt-6 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
+                                <div className="mt-6 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 relative z-10">
                                     <div>
-                                        <p className="text-[10px] text-slate-400 font-semibold">{t('cta_phone_lbl', 'Hotline Kantor Pusat')}</p>
-                                        <p className="text-base sm:text-lg font-black font-mono text-emerald-400">
+                                        <p className="text-[10px] text-slate-500 font-semibold">{t('cta_phone_lbl', 'Hotline Kantor Pusat')}</p>
+                                        <p className="text-base sm:text-lg font-black font-mono text-emerald-800">
                                             {settings.contact_phone || '0567-68-7077'}
                                         </p>
                                     </div>
 
                                     <Link
                                         href="/kontak"
-                                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:shadow-emerald-600/40 transition-all shrink-0"
+                                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-emerald-800 hover:bg-emerald-700 active:bg-emerald-900 text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-emerald-950/20 transition-all shrink-0"
                                     >
                                         <span>{t('cta_btn', 'Formulir RFQ & Kontak')}</span>
                                         <ArrowRight className="w-3.5 h-3.5" />
