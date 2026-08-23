@@ -196,12 +196,23 @@ if ($action === 'git_pull') {
 } elseif ($action === 'fix_htaccess') {
     $outputLog .= "=== PASANG / PERBAIKI .HTACCESS ROOT ===\n";
     $htaccessPath = $basePath . '/.htaccess';
-    $htaccessContent = "<IfModule mod_rewrite.c>\n    RewriteEngine On\n\n    # Prioritize Laravel public index.php\n    DirectoryIndex public/index.php index.php\n\n    # 1. Block access to sensitive files and directories\n    RewriteRule ^\\.(env|git|editorconfig|gitignore|gitattributes) - [F,L,NC]\n    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)/(.*) - [F,L,NC]\n    RewriteRule ^(composer\\.(json|lock)|package(-lock)?\\.json|phpunit\\.xml|vite\\.config\\.js) - [F,L,NC]\n\n    # 2. Redirect all traffic to the public directory\n    RewriteCond %{REQUEST_URI} !^/public/\n    RewriteRule ^(.*)$ public/$1 [L]\n</IfModule>\n";
+    $htaccessContent = "<IfModule mod_rewrite.c>\n    RewriteEngine On\n\n    # Prioritize Laravel public index.php\n    DirectoryIndex public/index.php index.php\n\n    # 1. Block access to sensitive files and directories\n    RewriteRule ^\\.(env|git|editorconfig|gitignore|gitattributes) - [F,L,NC]\n    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)/(.*) - [F,L,NC]\n    RewriteRule ^(composer\\.(json|lock)|package(-lock)?\\.json|phpunit\\.xml|vite\\.config\.js) - [F,L,NC]\n\n    # 2. Redirect all traffic to the public directory\n    RewriteCond %{REQUEST_URI} !^/public/\n    RewriteRule ^(.*)$ public/$1 [L]\n</IfModule>\n";
     if (@file_put_contents($htaccessPath, $htaccessContent)) {
         $outputLog .= "✅ File .htaccess di root berhasil diperbarui!\n";
     } else {
         $outputLog .= "❌ Gagal menulis .htaccess (periksa permission folder)\n";
     }
+} elseif ($action === 'fix_permissions') {
+    $outputLog .= "=== PERBAIKI PERMISSION STORAGE & BOOTSTRAP ===\n";
+    $folders = ['storage', 'storage/app', 'storage/app/public', 'storage/framework', 'storage/framework/cache', 'storage/framework/cache/data', 'storage/framework/sessions', 'storage/framework/views', 'storage/logs', 'bootstrap/cache'];
+    foreach ($folders as $f) {
+        $p = $basePath . '/' . $f;
+        if (!is_dir($p)) {
+            @mkdir($p, 0775, true);
+        }
+        @chmod($p, 0775);
+    }
+    $outputLog .= "✅ Permission direktori storage dan cache berhasil diatur ke 0775\n";
 }
 
 // Cek status environment
@@ -218,6 +229,14 @@ foreach ($requiredExtensions as $ext) {
     if (!extension_loaded($ext)) {
         $missingExtensions[] = $ext;
     }
+}
+
+// Baca log terbaru jika ada
+$logFile = $basePath . '/storage/logs/laravel.log';
+$latestLog = '';
+if (file_exists($logFile) && filesize($logFile) > 0) {
+    $lines = file($logFile);
+    $latestLog = implode('', array_slice($lines, -50));
 }
 ?>
 <!DOCTYPE html>
@@ -369,6 +388,9 @@ foreach ($requiredExtensions as $ext) {
             <a href="?token=<?= $secretToken ?>&action=remove_maintenance_html" class="btn btn-slate">
                 🗑️ Hapus index.html Lama
             </a>
+            <a href="?token=<?= $secretToken ?>&action=fix_permissions" class="btn btn-slate">
+                🛡️ Perbaiki Permission Folder
+            </a>
             <a href="?token=<?= $secretToken ?>&action=clear_cache" class="btn btn-slate">
                 🧹 Bersihkan Cache Laravel
             </a>
@@ -385,6 +407,13 @@ foreach ($requiredExtensions as $ext) {
     <div class="card">
         <h2>📄 Output Log Eksekusi:</h2>
         <pre><?= htmlspecialchars($outputLog) ?></pre>
+    </div>
+    <?php endif; ?>
+
+    <?php if (!empty($latestLog)): ?>
+    <div class="card">
+        <h2>📋 Log Error Laravel Terbaru (laravel.log):</h2>
+        <pre style="color:#fca5a5;font-size:12px;"><?= htmlspecialchars($latestLog) ?></pre>
     </div>
     <?php endif; ?>
 
