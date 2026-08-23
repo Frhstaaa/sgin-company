@@ -138,7 +138,7 @@ Route::prefix('admin')->group(function () {
 
         // Company Profile
         Route::get('/company-profile', [AdminCompanyProfileController::class, 'edit'])->name('company-profile.edit');
-        Route::put('/company-profile', [AdminCompanyProfileController::class, 'update'])->name('company-profile.update');
+        Route::match(['put', 'post'], '/company-profile', [AdminCompanyProfileController::class, 'update'])->name('company-profile.update');
 
         // News
         Route::resource('news', AdminNewsController::class)->except(['create', 'show', 'edit']);

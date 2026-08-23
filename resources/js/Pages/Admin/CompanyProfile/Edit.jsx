@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, useForm, router } from '@inertiajs/react';
 import AdminLayout from '../../../Layouts/AdminLayout';
 import { Save, CheckCircle2, Building2, User, Target, Quote, Sparkles, Calendar, DollarSign, Users, Award, LayoutTemplate, Image as ImageIcon } from 'lucide-react';
 
 export default function AdminCompanyProfileEdit({ profile = {}, settings = {} }) {
-    const { data, setData, put, processing, recentlySuccessful, errors } = useForm({
+    const { data, setData, processing, recentlySuccessful, errors } = useForm({
         // Header Banner Section
         about_hero_badge: settings.about_hero_badge || 'TENTANG KAMI / 会社概要',
         about_hero_title: settings.about_hero_title || 'Keahlian Presisi Jepang Berstandar Global',
@@ -41,7 +41,11 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        put('/admin/company-profile', {
+        router.post('/admin/company-profile', {
+            _method: 'PUT',
+            ...data,
+        }, {
+            forceFormData: true,
             preserveScroll: true,
         });
     };
