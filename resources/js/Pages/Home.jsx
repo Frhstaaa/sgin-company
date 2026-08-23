@@ -4,11 +4,11 @@ import AppLayout from '../Layouts/AppLayout';
 import { useLanguage } from '../Context/LanguageContext';
 import YouTubeEmbed from '../Components/YouTubeEmbed';
 import { 
-    Calendar, Globe, Cpu, ArrowRight, ChevronRight, Phone, 
+    Calendar, Globe, Cpu, ArrowRight, ChevronRight, ChevronLeft, Phone, 
     ShieldCheck, Sparkles, Building2, Layers, CheckCircle2,
     Cog, ExternalLink, ArrowUpRight, Award, Flame, Zap
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../Components/ScrollReveal';
 
 export default function Home({ 
@@ -24,6 +24,17 @@ export default function Home({
 }) {
     const { t, lang, translateModel } = useLanguage();
     const [activeTechIndex, setActiveTechIndex] = useState(0);
+    const [activeBizIndex, setActiveBizIndex] = useState(0);
+
+    const nextBiz = () => {
+        if (businesses.length === 0) return;
+        setActiveBizIndex((prev) => (prev + 1) % businesses.length);
+    };
+
+    const prevBiz = () => {
+        if (businesses.length === 0) return;
+        setActiveBizIndex((prev) => (prev - 1 + businesses.length) % businesses.length);
+    };
 
     const rawActiveSlide = heroSlides[0] || {
         title_jp: '技術を鍛え 未来を造る',
@@ -334,7 +345,107 @@ export default function Home({
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {/* Mobile Carousel View (< md) */}
+                    <div className="block md:hidden">
+                        {businesses.length > 0 && (() => {
+                            const rawBiz = businesses[activeBizIndex] || businesses[0];
+                            const biz = translateModel(rawBiz, 'business');
+
+                            return (
+                                <div className="space-y-4">
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key={activeBizIndex}
+                                            initial={{ opacity: 0, x: 20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: -20 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200/90 flex flex-col justify-between"
+                                        >
+                                            <div>
+                                                <div className="relative h-48 sm:h-52 overflow-hidden bg-slate-900">
+                                                    <img 
+                                                        src={biz.image_url} 
+                                                        alt={biz.title} 
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                                                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                                                        <span className="px-2.5 py-1 rounded-full bg-emerald-700/95 text-white text-[10px] font-bold backdrop-blur-xs shadow-xs">
+                                                            {biz.tag || 'Core Business'}
+                                                        </span>
+                                                        <span className="px-2.5 py-0.5 rounded-full bg-black/60 text-white text-[10px] font-mono font-bold backdrop-blur-xs">
+                                                            {String(activeBizIndex + 1).padStart(2, '0')} / {String(businesses.length).padStart(2, '0')}
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="p-5 space-y-2">
+                                                    <h3 className="text-base font-bold text-slate-900">
+                                                        {biz.title}
+                                                    </h3>
+                                                    {biz.title_jp && lang !== 'ja' && (
+                                                        <p className="text-[11px] text-slate-400 font-jp">{biz.title_jp}</p>
+                                                    )}
+                                                    <p className="text-xs text-slate-600 leading-relaxed">
+                                                        {biz.description}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div className="p-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-2">
+                                                <Link
+                                                    href={`/bisnis/${biz.slug}`}
+                                                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 hover:text-emerald-600 transition-colors py-2"
+                                                >
+                                                    <span>{t('tech_read_more', 'Pelajari Selengkapnya')}</span>
+                                                    <ArrowRight className="w-3.5 h-3.5" />
+                                                </Link>
+
+                                                {/* Prev / Next controls */}
+                                                <div className="flex items-center gap-1.5">
+                                                    <button
+                                                        type="button"
+                                                        onClick={prevBiz}
+                                                        className="w-8 h-8 rounded-full bg-slate-100 active:bg-emerald-100 text-slate-700 flex items-center justify-center cursor-pointer transition-colors"
+                                                        aria-label="Previous business unit"
+                                                    >
+                                                        <ChevronLeft className="w-4 h-4" />
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={nextBiz}
+                                                        className="w-8 h-8 rounded-full bg-emerald-800 active:bg-emerald-700 text-white flex items-center justify-center cursor-pointer transition-colors shadow-xs"
+                                                        aria-label="Next business unit"
+                                                    >
+                                                        <ChevronRight className="w-4 h-4" />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    </AnimatePresence>
+
+                                    {/* Carousel Pagination Dots */}
+                                    <div className="flex items-center justify-center gap-2 pt-1">
+                                        {businesses.map((_, i) => (
+                                            <button
+                                                key={i}
+                                                type="button"
+                                                onClick={() => setActiveBizIndex(i)}
+                                                className={`h-2 rounded-full transition-all duration-300 ${
+                                                    activeBizIndex === i ? 'w-6 bg-emerald-700' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                                                }`}
+                                                aria-label={`Go to slide ${i + 1}`}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        })()}
+                    </div>
+
+                    {/* Desktop Grid View (>= md) */}
+                    <div className="hidden md:grid md:grid-cols-3 gap-8">
                         {businesses.map((rawBiz, idx) => {
                             const biz = translateModel(rawBiz, 'business');
                             return (
