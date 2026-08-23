@@ -802,6 +802,147 @@ export const modelTranslations = {
         }
     },
 
+    stat: {
+        'Tahun Berdiri': {
+            id: {
+                title: 'Tahun Berdiri',
+                value: '1952',
+                unit: 'Tahun',
+                subtext: 'Lebih dari 70 tahun dedikasi presisi',
+                badge: '創業年 / TAHUN BERDIRI',
+            },
+            en: {
+                title: 'Founded Year',
+                value: '1952',
+                unit: 'Year',
+                subtext: 'Over 70 years of precision craftsmanship',
+                badge: 'ESTABLISHED / 創業年',
+            },
+            ja: {
+                title: '創業年',
+                value: '1952',
+                unit: '年',
+                subtext: '70年以上の歴史と培われた技術力',
+                badge: '創業年 / ESTABLISHED',
+            }
+        },
+        '創業年': {
+            id: {
+                title: 'Tahun Berdiri',
+                value: '1952',
+                unit: 'Tahun',
+                subtext: 'Lebih dari 70 tahun dedikasi presisi',
+                badge: '創業年 / TAHUN BERDIRI',
+            },
+            en: {
+                title: 'Founded Year',
+                value: '1952',
+                unit: 'Year',
+                subtext: 'Over 70 years of precision craftsmanship',
+                badge: 'ESTABLISHED / 創業年',
+            },
+            ja: {
+                title: '創業年',
+                value: '1952',
+                unit: '年',
+                subtext: '70年以上の歴史と培われた技術力',
+                badge: '創業年 / ESTABLISHED',
+            }
+        },
+        'Basis Operasional': {
+            id: {
+                title: 'Basis Operasional',
+                value: 'Jepang 3 Luar Negeri 1',
+                unit: '',
+                subtext: '3 Pabrik di Jepang & 1 di Indonesia',
+                badge: '拠点数 / BASIS OPERASIONAL',
+            },
+            en: {
+                title: 'Global Bases',
+                value: '3 Japan & 1 Overseas',
+                unit: '',
+                subtext: '3 Plants in Japan & 1 in Indonesia',
+                badge: 'GLOBAL BASES / 拠点数',
+            },
+            ja: {
+                title: '拠点数',
+                value: '日本 3 海外 1',
+                unit: '',
+                subtext: '国内3工場（愛知）・海外1拠点（インドネシア）',
+                badge: '拠点数 / GLOBAL BASES',
+            }
+        },
+        '拠点数': {
+            id: {
+                title: 'Basis Operasional',
+                value: 'Jepang 3 Luar Negeri 1',
+                unit: '',
+                subtext: '3 Pabrik di Jepang & 1 di Indonesia',
+                badge: '拠点数 / BASIS OPERASIONAL',
+            },
+            en: {
+                title: 'Global Bases',
+                value: '3 Japan & 1 Overseas',
+                unit: '',
+                subtext: '3 Plants in Japan & 1 in Indonesia',
+                badge: 'GLOBAL BASES / 拠点数',
+            },
+            ja: {
+                title: '拠点数',
+                value: '日本 3 海外 1',
+                unit: '',
+                subtext: '国内3工場（愛知）・海外1拠点（インドネシア）',
+                badge: '拠点数 / GLOBAL BASES',
+            }
+        },
+        'Produksi Tahunan': {
+            id: {
+                title: 'Produksi Tahunan',
+                value: '± 50 Juta',
+                unit: 'Pcs',
+                subtext: 'Hingga 50 juta pcs komponen presisi/tahun',
+                badge: '年間生産数 / PRODUKSI TAHUNAN',
+            },
+            en: {
+                title: 'Annual Production',
+                value: '± 50 Million',
+                unit: 'Pcs',
+                subtext: 'Up to 50 million precision parts per year',
+                badge: 'ANNUAL OUTPUT / 年間生産数',
+            },
+            ja: {
+                title: '年間生産数',
+                value: '約 5,000',
+                unit: '万個',
+                subtext: '月産400万個超の安定供給体制',
+                badge: '年間生産数 / ANNUAL OUTPUT',
+            }
+        },
+        '年間生産数': {
+            id: {
+                title: 'Produksi Tahunan',
+                value: '± 50 Juta',
+                unit: 'Pcs',
+                subtext: 'Hingga 50 juta pcs komponen presisi/tahun',
+                badge: '年間生産数 / PRODUKSI TAHUNAN',
+            },
+            en: {
+                title: 'Annual Production',
+                value: '± 50 Million',
+                unit: 'Pcs',
+                subtext: 'Up to 50 million precision parts per year',
+                badge: 'ANNUAL OUTPUT / 年間生産数',
+            },
+            ja: {
+                title: '年間生産数',
+                value: '約 5,000',
+                unit: '万個',
+                subtext: '月産400万個超の安定供給体制',
+                badge: '年間生産数 / ANNUAL OUTPUT',
+            }
+        }
+    },
+
     product: {
         'precision-flange-shaft-pinion': {
             en: {

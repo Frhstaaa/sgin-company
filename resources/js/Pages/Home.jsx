@@ -148,9 +148,10 @@ export default function Home({
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
                         {stats && stats.length > 0 ? (
-                            stats.map((st, idx) => {
+                            stats.map((rawSt, idx) => {
+                                const st = translateModel(rawSt, 'stat');
                                 const statTitle = lang === 'ja' && st.title_jp ? st.title_jp : (st.title_id || st.title || '');
-                                const badgeTitle = st.title_jp ? `${st.title_jp} / ${(st.title_id || '').toUpperCase()}` : (st.title_id || 'STATISTIK');
+                                const badgeTitle = st.badge || (st.title_jp ? `${st.title_jp} / ${(st.title_id || '').toUpperCase()}` : (st.title_id || 'STATISTIK'));
                                 
                                 const renderStatIcon = (iconName) => {
                                     switch (iconName) {

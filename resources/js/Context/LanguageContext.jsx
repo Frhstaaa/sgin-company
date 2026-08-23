@@ -90,30 +90,27 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
         // Clone item to avoid mutating original props
         const result = { ...item };
 
-        // 1. If language is Indonesian ('id'), return the database object directly
-        if (lang === 'id') {
-            return result;
-        }
+        // 1. Dynamic column translation for en / ja / id from database columns (e.g. title_en, title_jp, title_id)
+        if (lang !== 'id') {
+            const suffixes = lang === 'ja' ? ['_jp', '_ja'] : ['_en'];
+            for (const key in item) {
+                for (const sfx of suffixes) {
+                    const translatedKey = `${key}${sfx}`;
+                    const baseKey = key.endsWith('_id') ? key.replace('_id', '') : key;
+                    const alternativeKey = `${baseKey}${sfx}`;
 
-        // 2. Dynamic column translation for en / ja from database columns (e.g. title_en, title_jp, etc.)
-        const suffixes = lang === 'ja' ? ['_jp', '_ja'] : ['_en'];
-        for (const key in item) {
-            for (const sfx of suffixes) {
-                const translatedKey = `${key}${sfx}`;
-                const baseKey = key.endsWith('_id') ? key.replace('_id', '') : key;
-                const alternativeKey = `${baseKey}${sfx}`;
-
-                if (item[translatedKey] !== undefined && item[translatedKey] !== null && item[translatedKey] !== '') {
-                    result[key] = item[translatedKey];
-                    break;
-                } else if (item[alternativeKey] !== undefined && item[alternativeKey] !== null && item[alternativeKey] !== '') {
-                    result[key] = item[alternativeKey];
-                    break;
+                    if (item[translatedKey] !== undefined && item[translatedKey] !== null && item[translatedKey] !== '') {
+                        result[key] = item[translatedKey];
+                        break;
+                    } else if (item[alternativeKey] !== undefined && item[alternativeKey] !== null && item[alternativeKey] !== '') {
+                        result[key] = item[alternativeKey];
+                        break;
+                    }
                 }
             }
         }
 
-        // 3. Fallback to modelTranslations dictionary for hardcoded seed models if translation columns are empty
+        // 2. Fallback to modelTranslations dictionary for hardcoded seed models if available
         if (modelTranslations) {
             const candidates = [
                 item.slug,
