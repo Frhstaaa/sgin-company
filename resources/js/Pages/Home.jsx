@@ -6,7 +6,8 @@ import YouTubeEmbed from '../Components/YouTubeEmbed';
 import { 
     Calendar, Globe, Cpu, ArrowRight, ChevronRight, ChevronLeft, Phone, 
     ShieldCheck, Sparkles, Building2, Layers, CheckCircle2,
-    Cog, ExternalLink, ArrowUpRight, Award, Flame, Zap, Workflow, Package
+    Cog, ExternalLink, ArrowUpRight, Award, Flame, Zap, Workflow, Package,
+    Newspaper, Tag, Clock
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../Components/ScrollReveal';
@@ -17,7 +18,7 @@ export default function Home({
     technologies = [], 
     businesses = [], 
     featuredProducts = [], 
-    equipmentCount = 0,
+    equipmentCount = 0, 
     about = {}, 
     latestNews = [], 
     settings = {} 
@@ -25,6 +26,7 @@ export default function Home({
     const { t, lang, translateModel } = useLanguage();
     const [activeTechIndex, setActiveTechIndex] = useState(0);
     const [activeBizIndex, setActiveBizIndex] = useState(0);
+    const [activeNewsIndex, setActiveNewsIndex] = useState(0);
 
     const nextBiz = () => {
         if (businesses.length === 0) return;
@@ -34,6 +36,18 @@ export default function Home({
     const prevBiz = () => {
         if (businesses.length === 0) return;
         setActiveBizIndex((prev) => (prev - 1 + businesses.length) % businesses.length);
+    };
+
+    const nextNews = () => {
+        const total = Math.min(latestNews.length, 3);
+        if (total === 0) return;
+        setActiveNewsIndex((prev) => (prev + 1) % total);
+    };
+
+    const prevNews = () => {
+        const total = Math.min(latestNews.length, 3);
+        if (total === 0) return;
+        setActiveNewsIndex((prev) => (prev - 1 + total) % total);
     };
 
     const defaultFeaturedProducts = [
@@ -850,54 +864,190 @@ export default function Home({
             {/* ========================================================================= */}
             {/* 7. NEWS SECTION */}
             {/* ========================================================================= */}
-            <section className="py-12 md:py-20 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
-                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-100 pb-4 sm:pb-6">
-                        <div>
-                            <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-widest">
-                                {t('news_badge', 'Berita & Informasi / お知らせ')}
+            <section className="py-16 md:py-24 bg-white border-t border-slate-200/60">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                    <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-100 pb-6">
+                        <div className="space-y-2">
+                            <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/60 inline-flex items-center gap-1.5">
+                                <Newspaper className="w-3.5 h-3.5" />
+                                <span>{t('news_badge', 'Berita & Informasi / お知らせ')}</span>
                             </span>
-                            <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 mt-1">
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
                                 {t('news_title', 'Update Berita Terkini & Informasi Perusahaan')}
                             </h2>
+                            <p className="text-xs sm:text-sm text-slate-500 max-w-xl">
+                                Kabar korporasi terbaru, ekspansi fasilitas manufaktur, dan pencapaian standar mutu industri.
+                            </p>
                         </div>
                         <Link 
                             href="/berita" 
-                            className="text-xs font-bold text-emerald-800 hover:text-emerald-600 inline-flex items-center gap-1 shrink-0"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-100 hover:bg-emerald-50 text-slate-800 hover:text-emerald-800 font-bold text-xs uppercase tracking-wider transition-colors border border-slate-200/80 shrink-0 shadow-2xs"
                         >
                             <span>{t('news_view_all', 'Lihat Semua Berita')}</span>
                             <ArrowRight className="w-3.5 h-3.5" />
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {latestNews.slice(0, 3).map((rawItem) => {
+                    {/* Mobile News Carousel (< md) */}
+                    <div className="block md:hidden">
+                        {latestNews.length > 0 && (() => {
+                            const rawItem = latestNews[activeNewsIndex] || latestNews[0];
                             const item = translateModel(rawItem, 'news');
+                            const fallbacks = [
+                                'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop',
+                                'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop',
+                                'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop',
+                            ];
+                            const coverImg = item.cover_image || fallbacks[activeNewsIndex % fallbacks.length];
+
                             return (
-                                <ScrollReveal key={item.id} delay={0.1} direction="up" className="h-full">
+                                <div className="space-y-4">
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key={activeNewsIndex}
+                                            initial={{ opacity: 0, x: 20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: -20 }}
+                                            transition={{ duration: 0.3 }}
+                                            className="bg-white rounded-3xl overflow-hidden shadow-md border border-slate-200 flex flex-col justify-between"
+                                        >
+                                            <div>
+                                                <div className="relative h-48 overflow-hidden bg-slate-900">
+                                                    <img 
+                                                        src={coverImg} 
+                                                        alt={item.title} 
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                                                    
+                                                    <div className="absolute top-3 left-3 right-3 flex items-center justify-between">
+                                                        <span className="px-2.5 py-1 rounded-full bg-emerald-700/95 text-white font-bold text-[10px] backdrop-blur-xs shadow-xs">
+                                                            {item.category || 'Berita'}
+                                                        </span>
+                                                        <span className="px-2.5 py-0.5 rounded-full bg-black/60 text-white text-[10px] font-mono font-bold backdrop-blur-xs">
+                                                            {String(activeNewsIndex + 1).padStart(2, '0')} / {String(Math.min(latestNews.length, 3)).padStart(2, '0')}
+                                                        </span>
+                                                    </div>
+
+                                                    <div className="absolute bottom-3 left-3 flex items-center gap-1.5 text-[11px] text-slate-200 font-mono">
+                                                        <Calendar className="w-3 h-3 text-emerald-400" />
+                                                        <span>{item.published_at ? new Date(item.published_at).toISOString().split('T')[0] : ''}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="p-5 space-y-2">
+                                                    <h3 className="font-bold text-slate-900 text-base leading-snug">
+                                                        {item.title}
+                                                    </h3>
+                                                    <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                                                        {item.excerpt}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div className="p-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-2">
+                                                <Link
+                                                    href={`/berita/${item.slug}`}
+                                                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 hover:text-emerald-600 transition-colors py-2"
+                                                >
+                                                    <span>{t('tech_read_more', 'Baca Selengkapnya')}</span>
+                                                    <ArrowRight className="w-3.5 h-3.5" />
+                                                </Link>
+
+                                                <div className="flex items-center gap-1.5">
+                                                    <button
+                                                        type="button"
+                                                        onClick={prevNews}
+                                                        className="w-8 h-8 rounded-full bg-slate-100 active:bg-emerald-100 text-slate-700 flex items-center justify-center cursor-pointer transition-colors"
+                                                        aria-label="Previous news"
+                                                    >
+                                                        <ChevronLeft className="w-4 h-4" />
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={nextNews}
+                                                        className="w-8 h-8 rounded-full bg-emerald-800 active:bg-emerald-700 text-white flex items-center justify-center cursor-pointer transition-colors shadow-xs"
+                                                        aria-label="Next news"
+                                                    >
+                                                        <ChevronRight className="w-4 h-4" />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    </AnimatePresence>
+
+                                    {/* Carousel Pagination Dots */}
+                                    <div className="flex items-center justify-center gap-2 pt-1">
+                                        {latestNews.slice(0, 3).map((_, i) => (
+                                            <button
+                                                key={i}
+                                                type="button"
+                                                onClick={() => setActiveNewsIndex(i)}
+                                                className={`h-2 rounded-full transition-all duration-300 ${
+                                                    activeNewsIndex === i ? 'w-6 bg-emerald-700' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                                                }`}
+                                                aria-label={`Go to news slide ${i + 1}`}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        })()}
+                    </div>
+
+                    {/* Desktop News Grid (>= md) */}
+                    <div className="hidden md:grid md:grid-cols-3 gap-8">
+                        {latestNews.slice(0, 3).map((rawItem, idx) => {
+                            const item = translateModel(rawItem, 'news');
+                            const fallbacks = [
+                                'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop',
+                                'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop',
+                                'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop',
+                            ];
+                            const coverImg = item.cover_image || fallbacks[idx % fallbacks.length];
+
+                            return (
+                                <ScrollReveal key={item.id || idx} delay={idx * 0.1} direction="up" className="h-full">
                                     <Link 
                                         href={`/berita/${item.slug}`}
-                                        className="group p-5 sm:p-6 rounded-2xl bg-slate-50 hover:bg-white border border-slate-200/70 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 flex flex-col justify-between space-y-4 h-full"
+                                        className="group bg-white rounded-3xl overflow-hidden shadow-xs hover:shadow-xl border border-slate-200/90 hover:border-emerald-300 transition-all duration-500 flex flex-col justify-between h-full"
                                     >
-                                        <div className="space-y-3">
-                                            <div className="flex items-center justify-between text-xs">
-                                                <span className="font-mono font-bold text-slate-400">
-                                                    {item.published_at ? new Date(item.published_at).toISOString().split('T')[0] : ''}
-                                                </span>
-                                                <span className="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">
-                                                    {item.category}
-                                                </span>
+                                        <div>
+                                            <div className="relative h-52 overflow-hidden bg-slate-900">
+                                                <img 
+                                                    src={coverImg} 
+                                                    alt={item.title} 
+                                                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                                                
+                                                <div className="absolute top-3.5 left-3.5">
+                                                    <span className="px-3 py-1 rounded-full bg-emerald-800/95 text-white font-bold text-[10px] backdrop-blur-xs shadow-xs">
+                                                        {item.category || 'Berita'}
+                                                    </span>
+                                                </div>
+
+                                                <div className="absolute bottom-3.5 left-3.5 flex items-center gap-1.5 text-[11px] text-slate-200 font-mono">
+                                                    <Calendar className="w-3.5 h-3.5 text-emerald-400" />
+                                                    <span>{item.published_at ? new Date(item.published_at).toISOString().split('T')[0] : ''}</span>
+                                                </div>
                                             </div>
-                                            <h3 className="font-bold text-slate-900 group-hover:text-emerald-800 transition-colors line-clamp-2 text-sm leading-snug">
-                                                {item.title}
-                                            </h3>
-                                            <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
-                                                {item.excerpt}
-                                            </p>
+
+                                            <div className="p-6 space-y-2.5">
+                                                <h3 className="font-bold text-slate-900 group-hover:text-emerald-700 transition-colors line-clamp-2 text-base leading-snug">
+                                                    {item.title}
+                                                </h3>
+                                                <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">
+                                                    {item.excerpt}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div className="flex items-center gap-1 text-xs font-bold text-emerald-700">
-                                            <span>{t('tech_read_more', 'Baca Selengkapnya')}</span>
-                                            <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+
+                                        <div className="p-6 pt-0">
+                                            <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-800 group-hover:text-emerald-600">
+                                                <span>{t('tech_read_more', 'Baca Selengkapnya')}</span>
+                                                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                                            </div>
                                         </div>
                                     </Link>
                                 </ScrollReveal>
