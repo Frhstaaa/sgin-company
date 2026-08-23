@@ -65,9 +65,11 @@ class RolePermissionSeeder extends Seeder
         ]);
 
         // 3. Assign Super Admin to existing admin users
-        $superAdmins = User::whereIn('email', ['admin@sugiyama.co.id', 'admin@sagayama.co.jp'])->get();
-        foreach ($superAdmins as $user) {
-            $user->assignRole($superAdminRole);
+        $allUsers = User::all();
+        foreach ($allUsers as $user) {
+            if ($user->roles()->count() === 0) {
+                $user->assignRole($superAdminRole);
+            }
         }
     }
 }
