@@ -4,9 +4,9 @@ import { Lock, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
 
 export default function Login() {
     const { data, setData, post, processing, errors } = useForm({
-        email: 'admin@sugiyama.co.id',
-        password: 'password123',
-        remember: true,
+        email: '',
+        password: '',
+        remember: false,
     });
 
     const handleSubmit = (e) => {
@@ -34,7 +34,7 @@ export default function Login() {
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4">
                 <div className="bg-white/95 backdrop-blur-md py-8 px-6 sm:px-10 shadow-2xl rounded-3xl border border-slate-100 space-y-6">
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off">
                         <div>
                             <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
                                 Email Administrator
@@ -43,6 +43,8 @@ export default function Login() {
                                 <input
                                     type="email"
                                     required
+                                    autoComplete="off"
+                                    placeholder="Masukkan email admin..."
                                     value={data.email}
                                     onChange={(e) => setData('email', e.target.value)}
                                     className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-emerald-600"
@@ -60,6 +62,8 @@ export default function Login() {
                                 <input
                                     type="password"
                                     required
+                                    autoComplete="new-password"
+                                    placeholder="Masukkan kata sandi..."
                                     value={data.password}
                                     onChange={(e) => setData('password', e.target.value)}
                                     className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-emerald-600"
@@ -70,7 +74,7 @@ export default function Login() {
                         </div>
 
                         <div className="flex items-center justify-between pt-1">
-                            <label className="flex items-center text-xs text-slate-600">
+                            <label className="flex items-center text-xs text-slate-600 cursor-pointer">
                                 <input
                                     type="checkbox"
                                     checked={data.remember}
@@ -85,19 +89,13 @@ export default function Login() {
                             <button
                                 type="submit"
                                 disabled={processing}
-                                className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                                className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
                             >
                                 <span>{processing ? 'Memverifikasi...' : 'Masuk ke CMS Dashboard'}</span>
                                 <ArrowRight className="w-4 h-4" />
                             </button>
                         </div>
                     </form>
-
-                    <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-900 space-y-1">
-                        <p className="font-bold">Kredensial Default Demo:</p>
-                        <p>Email: <strong className="font-mono">admin@sugiyama.co.id</strong></p>
-                        <p>Password: <strong className="font-mono">password123</strong></p>
-                    </div>
                 </div>
             </div>
         </div>
