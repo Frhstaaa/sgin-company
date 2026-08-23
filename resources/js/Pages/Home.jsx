@@ -7,7 +7,7 @@ import {
     Calendar, Globe, Cpu, ArrowRight, ChevronRight, ChevronLeft, Phone, 
     ShieldCheck, Sparkles, Building2, Layers, CheckCircle2,
     Cog, ExternalLink, ArrowUpRight, Award, Flame, Zap, Workflow, Package,
-    Newspaper, Tag, Clock
+    Newspaper, Tag, Clock, Quote
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../Components/ScrollReveal';
@@ -803,60 +803,158 @@ export default function Home({
             </section>
 
             {/* ========================================================================= */}
-            {/* 6. ABOUT SECTION */}
+            {/* 6. ABOUT SECTION (Corporate Heritage & Leadership) */}
             {/* ========================================================================= */}
-            <section className="py-16 md:py-24 bg-slate-50 border-t border-slate-200/60">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <ScrollReveal>
-                    <div className="bg-white rounded-2xl p-6 sm:p-12 lg:p-16 border border-slate-200/80 shadow-xs">
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
-                            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
-                                <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-widest">
-                                    {t('about_badge', 'Tentang Kami / 会社概要')}
-                                </span>
-                                <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-                                    {t('about_title', 'Keahlian Presisi Jepang Berstandar Global')}
-                                </h2>
-                                <p className="text-xs sm:text-base text-slate-600 leading-relaxed">
-                                    {t('about_lead', 'Sejak didirikan pada tahun 1952 di Aichi, Jepang, PT. Sugiyama Indonesia (Sugiyama Group) terus menempa batas inovasi teknik penempaan dingin.')}
-                                </p>
+            <section className="py-20 md:py-28 bg-slate-900 text-white relative overflow-hidden">
+                {/* Background Japanese Watermark & Blueprint Ambient Effects */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl" />
+                    <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-900/20 rounded-full blur-3xl" />
+                    <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-10" />
+                    {/* Subtle Japanese Kanji watermark in background */}
+                    <div className="absolute right-8 top-1/2 -translate-y-1/2 text-slate-800/20 font-black text-9xl select-none font-jp hidden xl:block">
+                        株式会社スギヤマ
+                    </div>
+                </div>
 
-                                <div className="p-5 sm:p-6 rounded-xl bg-emerald-50/70 border border-emerald-100 text-[11px] sm:text-sm text-emerald-950 font-medium italic leading-relaxed">
-                                    "{translatedAbout.president_message || 'Sebagai seorang ahli penempaan, kami akan merevolusi kualitas manufaktur presisi dunia melalui keterampilan teknis tanpa kompromi.'}"
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+                    <ScrollReveal>
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+                            
+                            {/* LEFT: Leadership & Legacy Story */}
+                            <div className="lg:col-span-7 space-y-6">
+                                <div className="space-y-3">
+                                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-xs font-bold shadow-lg backdrop-blur-md">
+                                        <Building2 className="w-3.5 h-3.5 text-emerald-400" />
+                                        <span>{t('about_badge', 'Tentang Kami / 会社概要')}</span>
+                                    </div>
+                                    <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
+                                        {t('about_title', 'Keahlian Presisi Jepang Berstandar Global')}
+                                    </h2>
+                                    <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
+                                        {t('about_lead', 'Sejak didirikan pada tahun 1952 di Aichi, Jepang, PT. Sugiyama Indonesia (Sugiyama Group) terus menempa batas inovasi teknik penempaan dingin dan komponen presisi berstandar mutu otomotif global.')}
+                                    </p>
                                 </div>
 
-                                <div className="pt-2 flex items-center gap-4">
-                                    <div>
-                                        <p className="font-bold text-slate-900 text-sm">
-                                            {translatedAbout.president_name || 'Takeshi Sugiyama'}
+                                {/* President Quote Card */}
+                                <div className="p-6 sm:p-7 rounded-3xl bg-gradient-to-br from-slate-800/90 to-emerald-950/80 border border-emerald-500/20 shadow-2xl relative overflow-hidden backdrop-blur-md">
+                                    <Quote className="w-10 h-10 text-emerald-500/20 absolute right-4 top-4 pointer-events-none" />
+                                    <div className="space-y-4 relative z-10">
+                                        <p className="text-xs sm:text-sm text-emerald-100/90 italic font-medium leading-relaxed">
+                                            "{translatedAbout.president_message || 'Sebagai seorang ahli penempaan, kami akan merevolusi kualitas manufaktur presisi dunia melalui keterampilan teknis tanpa kompromi.'}"
                                         </p>
-                                        <p className="text-xs text-slate-500">
-                                            {t('about_president_role', 'Presiden Direktur PT. Sugiyama Indonesia')}
-                                        </p>
+
+                                        <div className="pt-3 border-t border-slate-700/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-emerald-400/50 shadow-md shrink-0 bg-slate-800">
+                                                    <img 
+                                                        src={about.president_photo_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'} 
+                                                        alt={translatedAbout.president_name || 'Takeshi Sugiyama'} 
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <p className="font-extrabold text-white text-sm">
+                                                        {translatedAbout.president_name || 'Takeshi Sugiyama'}
+                                                    </p>
+                                                    <p className="text-[11px] text-emerald-300 font-medium">
+                                                        {t('about_president_role', 'Presiden Direktur PT. Sugiyama Indonesia')}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <Link
+                                                href="/tentang-kami"
+                                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-700 hover:bg-emerald-600 active:bg-emerald-800 text-white font-bold text-xs shadow-lg hover:shadow-emerald-900/50 transition-all shrink-0"
+                                            >
+                                                <span>{t('about_btn_more', 'Profil Lengkap & Sejarah')}</span>
+                                                <ArrowRight className="w-3.5 h-3.5" />
+                                            </Link>
+                                        </div>
                                     </div>
-                                    <div className="h-8 w-px bg-slate-200 mx-2" />
-                                    <Link
-                                        href="/tentang-kami"
-                                        className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 hover:text-emerald-600 transition-colors"
-                                    >
-                                        <span>{t('about_btn_more', 'Profil Perusahaan')}</span>
-                                        <ArrowRight className="w-3.5 h-3.5" />
-                                    </Link>
                                 </div>
                             </div>
 
-                            <div className="lg:col-span-5">
-                                <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-4/3 bg-slate-900">
+                            {/* RIGHT: Visual Showcase & Floating Badges */}
+                            <div className="lg:col-span-5 relative">
+                                {/* Main Facility Showcase Image */}
+                                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-700/70 group aspect-4/3 bg-slate-950">
                                     <img 
-                                        src={about.president_photo_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'} 
-                                        alt="President Director PT. Sugiyama Indonesia" 
-                                        className="w-full h-full object-cover"
+                                        src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop" 
+                                        alt="Fasilitas Manufaktur PT. Sugiyama Indonesia" 
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+
+                                    {/* Plant Label on Bottom */}
+                                    <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs">
+                                        <div>
+                                            <p className="font-extrabold text-white">Pabrik & Kantor GIIC Cikarang</p>
+                                            <p className="text-[10px] text-slate-400">Greenland International Industrial Center (GIIC)</p>
+                                        </div>
+                                        <span className="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 font-mono font-bold text-[10px] border border-emerald-500/30">
+                                            ASEAN Hub
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Floating Quality Badge (Top Right) */}
+                                <div className="absolute -top-4 -right-2 sm:-right-4 p-3 rounded-2xl bg-slate-900/95 border border-emerald-500/40 text-white shadow-xl backdrop-blur-md flex items-center gap-2.5 z-20">
+                                    <div className="w-8 h-8 rounded-xl bg-emerald-600/30 text-emerald-300 flex items-center justify-center border border-emerald-400/30">
+                                        <ShieldCheck className="w-4 h-4" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Standar Mutu Otomotif</p>
+                                        <p className="text-xs font-black text-white font-mono">IATF 16949 & ISO 9001</p>
+                                    </div>
+                                </div>
+
+                                {/* Floating Heritage Badge (Bottom Left) */}
+                                <div className="absolute -bottom-4 -left-2 sm:-left-4 p-3 rounded-2xl bg-slate-900/95 border border-amber-500/40 text-white shadow-xl backdrop-blur-md flex items-center gap-2.5 z-20">
+                                    <div className="w-8 h-8 rounded-xl bg-amber-600/30 text-amber-300 flex items-center justify-center border border-amber-400/30">
+                                        <Award className="w-4 h-4" />
+                                    </div>
+                                    <div>
+                                        <p className="text-[10px] font-bold text-amber-400/80 uppercase tracking-wider">Warisan Keahlian</p>
+                                        <p className="text-xs font-black text-white">Sejak 1952 (Aichi, Jepang)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {/* 3 Key Corporate Pillars Mini-Cards */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-6">
+                            <div className="p-4.5 rounded-2xl bg-slate-800/60 border border-slate-700/60 flex items-center gap-3.5 backdrop-blur-xs">
+                                <div className="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
+                                    <Globe className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <h4 className="font-extrabold text-white text-xs sm:text-sm">Jaringan Global Aichi & GIIC</h4>
+                                    <p className="text-[11px] text-slate-400">3 Fasilitas di Jepang & 1 Hub ASEAN di Cikarang</p>
+                                </div>
+                            </div>
+
+                            <div className="p-4.5 rounded-2xl bg-slate-800/60 border border-slate-700/60 flex items-center gap-3.5 backdrop-blur-xs">
+                                <div className="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
+                                    <Cpu className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <h4 className="font-extrabold text-white text-xs sm:text-sm">Presisi Mikro ±0.005 mm</h4>
+                                    <p className="text-[11px] text-slate-400">Pemesinan CNC 5-Axis & Cold Former 6-Die</p>
+                                </div>
+                            </div>
+
+                            <div className="p-4.5 rounded-2xl bg-slate-800/60 border border-slate-700/60 flex items-center gap-3.5 backdrop-blur-xs">
+                                <div className="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-500/30 text-emerald-400 flex items-center justify-center shrink-0">
+                                    <ShieldCheck className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <h4 className="font-extrabold text-white text-xs sm:text-sm">Filosofi Mutu Kaizen</h4>
+                                    <p className="text-[11px] text-slate-400">Inovasi tanpa henti & Zero-Defect Quality</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </ScrollReveal>
                 </div>
             </section>
