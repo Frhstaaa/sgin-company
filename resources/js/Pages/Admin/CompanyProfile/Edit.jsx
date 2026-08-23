@@ -411,7 +411,7 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
 
                             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-2">
                                 <div className="md:col-span-8 space-y-4">
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                         <div>
                                             <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
                                                 Nama Lengkap Presiden Direktur <span className="text-rose-500">*</span>
@@ -434,6 +434,19 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
                                                 value={data.about_president_role}
                                                 onChange={(e) => setData('about_president_role', e.target.value)}
                                                 placeholder="Presiden Direktur PT. Sugiyama Indonesia"
+                                                className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                                Tag Badge Eksekutif
+                                            </label>
+                                            <input
+                                                type="text"
+                                                value={data.about_president_tag}
+                                                onChange={(e) => setData('about_president_tag', e.target.value)}
+                                                placeholder="Sugiyama Group Executive"
                                                 className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
                                             />
                                         </div>

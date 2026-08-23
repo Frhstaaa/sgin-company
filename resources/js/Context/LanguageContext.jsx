@@ -90,27 +90,30 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
         // Clone item to avoid mutating original props
         const result = { ...item };
 
-        // 1. Dynamic column translation for en / ja / id from database columns (e.g. title_en, title_jp, title_id)
-        if (lang !== 'id') {
-            const suffixes = lang === 'ja' ? ['_jp', '_ja'] : ['_en'];
-            for (const key in item) {
-                for (const sfx of suffixes) {
-                    const translatedKey = `${key}${sfx}`;
-                    const baseKey = key.endsWith('_id') ? key.replace('_id', '') : key;
-                    const alternativeKey = `${baseKey}${sfx}`;
+        // 1. If language is 'id' (Indonesian / default base data), return the database object directly
+        if (lang === 'id') {
+            return result;
+        }
 
-                    if (item[translatedKey] !== undefined && item[translatedKey] !== null && item[translatedKey] !== '') {
-                        result[key] = item[translatedKey];
-                        break;
-                    } else if (item[alternativeKey] !== undefined && item[alternativeKey] !== null && item[alternativeKey] !== '') {
-                        result[key] = item[alternativeKey];
-                        break;
-                    }
+        // 2. Dynamic column translation for en / ja from database columns (e.g. title_en, title_jp, title_id)
+        const suffixes = lang === 'ja' ? ['_jp', '_ja'] : ['_en'];
+        for (const key in item) {
+            for (const sfx of suffixes) {
+                const translatedKey = `${key}${sfx}`;
+                const baseKey = key.endsWith('_id') ? key.replace('_id', '') : key;
+                const alternativeKey = `${baseKey}${sfx}`;
+
+                if (item[translatedKey] !== undefined && item[translatedKey] !== null && item[translatedKey] !== '') {
+                    result[key] = item[translatedKey];
+                    break;
+                } else if (item[alternativeKey] !== undefined && item[alternativeKey] !== null && item[alternativeKey] !== '') {
+                    result[key] = item[alternativeKey];
+                    break;
                 }
             }
         }
 
-        // 2. Fallback to modelTranslations dictionary for hardcoded seed models if available
+        // 3. Fallback to modelTranslations dictionary for missing seed items in 'en' or 'ja'
         if (modelTranslations) {
             const candidates = [
                 item.slug,
@@ -163,12 +166,21 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
             // A. Type-specific lookup
             if (type && modelTranslations[type]) {
                 if (modelTranslations[type][lang]) {
-                    Object.assign(result, modelTranslations[type][lang]);
+                    const typeDict = modelTranslations[type][lang];
+                    for (const k in typeDict) {
+                        if (!result[k] || result[k] === item[k]) {
+                            result[k] = typeDict[k];
+                        }
+                    }
                     return result;
                 }
                 const match = findEntryInDict(modelTranslations[type]);
                 if (match) {
-                    Object.assign(result, match);
+                    for (const k in match) {
+                        if (!result[k] || result[k] === item[k]) {
+                            result[k] = match[k];
+                        }
+                    }
                     return result;
                 }
             }
@@ -177,7 +189,11 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
             for (const cat in modelTranslations) {
                 const match = findEntryInDict(modelTranslations[cat]);
                 if (match) {
-                    Object.assign(result, match);
+                    for (const k in match) {
+                        if (!result[k] || result[k] === item[k]) {
+                            result[k] = match[k];
+                        }
+                    }
                     return result;
                 }
             }
