@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
 
 export default function BusinessShow({ business, relatedProducts = [] }) {
-    const { t, translateModel } = useLanguage();
+    const { t, lang, translateModel } = useLanguage();
     const biz = translateModel(business, 'business');
 
     return (

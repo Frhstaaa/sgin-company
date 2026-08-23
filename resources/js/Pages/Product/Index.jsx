@@ -10,7 +10,7 @@ import ScrollReveal from '../../Components/ScrollReveal';
 export default function ProductIndex({ products, categories = [], filters = {} }) {
     const { props = {} } = usePage();
     const siteSettings = props.siteSettings || {};
-    const { t, lang } = useLanguage();
+    const { t, lang, translateModel } = useLanguage();
     const [search, setSearch] = useState(filters.search || '');
     const [selectedCategory, setSelectedCategory] = useState(filters.category || '');
 

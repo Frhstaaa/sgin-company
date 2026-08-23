@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
 
 export default function TechnologyShow({ technology, otherTechnologies = [] }) {
-    const { t, translateModel } = useLanguage();
+    const { t, lang, translateModel } = useLanguage();
     const tech = translateModel(technology, 'technology');
 
     return (

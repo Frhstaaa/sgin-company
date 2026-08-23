@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
 
 export default function NewsShow({ article, news = article, latestNews = [], recentNews = latestNews }) {
-    const { t, translateModel } = useLanguage();
+    const { t, lang, translateModel } = useLanguage();
     const itemData = translateModel(article || news || {}, 'news');
 
     if (!itemData || !itemData.title) {

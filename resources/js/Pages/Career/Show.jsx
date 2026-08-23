@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
 
 export default function CareerShow({ career: rawCareer }) {
-    const { t, translateModel } = useLanguage();
+    const { t, lang, translateModel } = useLanguage();
     const career = translateModel(rawCareer, 'career');
 
     return (
