@@ -105,8 +105,12 @@ export default function CareerShow({ career: rawCareer }) {
                     {/* Apply Card */}
                     <div className="p-8 rounded-3xl bg-emerald-900 text-white space-y-4 shadow-xl text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
                         <div>
-                            <h4 className="text-lg font-bold">Tertarik dengan Posisi Ini?</h4>
-                            <p className="text-xs text-emerald-200 mt-1">Kirimkan CV dan dokumen pendukung Anda melalui formulir kontak rekrutmen kami.</p>
+                            <h4 className="text-lg font-bold">
+                                {t('career_apply_box_title', 'Tertarik dengan Posisi Ini?')}
+                            </h4>
+                            <p className="text-xs text-emerald-200 mt-1">
+                                {t('career_apply_box_desc', 'Kirimkan CV dan dokumen pendukung Anda melalui formulir kontak rekrutmen kami.')}
+                            </p>
                         </div>
                         <Link
                             href={`/kontak?type=career&subject=Lamaran:${encodeURIComponent(career.title)}`}

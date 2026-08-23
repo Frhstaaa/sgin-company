@@ -58,9 +58,11 @@ export default function CareerIndex({ careers = [] }) {
                             <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
                                 <Award className="w-5 h-5" />
                             </div>
-                            <h3 className="font-bold text-slate-900 text-base">Teknologi Mutakhir</h3>
+                            <h3 className="font-bold text-slate-900 text-base">
+                                {t('career_why_01_title', 'Teknologi Mutakhir')}
+                            </h3>
                             <p className="text-xs text-slate-600 leading-relaxed">
-                                Kesempatan bekerja langsung dengan mesin penempa dingin 6-Die dan pusat bubut CNC 5-Axis termutakhir.
+                                {t('career_why_01_desc', 'Kesempatan bekerja langsung dengan mesin penempa dingin 6-Die dan pusat bubut CNC 5-Axis termutakhir.')}
                             </p>
                         </div>
 
@@ -68,9 +70,11 @@ export default function CareerIndex({ careers = [] }) {
                             <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
                                 <Briefcase className="w-5 h-5" />
                             </div>
-                            <h3 className="font-bold text-slate-900 text-base">Pelatihan di Jepang</h3>
+                            <h3 className="font-bold text-slate-900 text-base">
+                                {t('career_why_02_title', 'Pelatihan di Jepang')}
+                            </h3>
                             <p className="text-xs text-slate-600 leading-relaxed">
-                                Program pelatihan teknis dan transfer keahlian cetakan langsung di kantor pusat Aichi, Jepang.
+                                {t('career_why_02_desc', 'Program pelatihan teknis dan transfer keahlian cetakan langsung di kantor pusat Aichi, Jepang.')}
                             </p>
                         </div>
 
@@ -78,9 +82,11 @@ export default function CareerIndex({ careers = [] }) {
                             <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
                                 <HeartHandshake className="w-5 h-5" />
                             </div>
-                            <h3 className="font-bold text-slate-900 text-base">Jenjang Karir Global</h3>
+                            <h3 className="font-bold text-slate-900 text-base">
+                                {t('career_why_03_title', 'Jenjang Karir Global')}
+                            </h3>
                             <p className="text-xs text-slate-600 leading-relaxed">
-                                Budaya kerja Kaizen yang menghargai inovasi individu, keselamatan kerja, dan kesejahteraan jangka panjang.
+                                {t('career_why_03_desc', 'Budaya kerja Kaizen yang menghargai inovasi individu, keselamatan kerja, dan kesejahteraan jangka panjang.')}
                             </p>
                         </div>
                     </div>
@@ -129,7 +135,7 @@ export default function CareerIndex({ careers = [] }) {
                                         {career.deadline && (
                                             <span className="flex items-center gap-1.5">
                                                 <Clock className="w-3.5 h-3.5 text-slate-400" />
-                                                Batas: {career.deadline}
+                                                {t('career_deadline_label', 'Batas:')} {career.deadline}
                                             </span>
                                         )}
                                     </div>
@@ -149,7 +155,7 @@ export default function CareerIndex({ careers = [] }) {
 
                         {careers.length === 0 && (
                             <div className="text-center py-16 bg-white rounded-3xl border border-slate-200 text-slate-500 text-sm">
-                                Belum ada lowongan posisi terbuka saat ini. Silakan kirimkan CV umum Anda melalui form kontak.
+                                {t('career_no_positions', 'Belum ada lowongan posisi terbuka saat ini. Silakan kirimkan CV umum Anda melalui form kontak.')}
                             </div>
                         )}
                     </div>
