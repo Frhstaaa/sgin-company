@@ -14,6 +14,7 @@ use App\Http\Controllers\Public\NewsController;
 use App\Http\Controllers\Public\CareerController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\SitemapController;
+use App\Http\Controllers\LocaleController;
 
 // Admin Controllers
 use App\Http\Controllers\Admin\AdminAuthController;
@@ -40,6 +41,8 @@ use App\Http\Controllers\Admin\AdminProfileController;
 | Public Routes
 |--------------------------------------------------------------------------
 */
+Route::match(['get', 'post'], '/locale/{locale}', [LocaleController::class, 'switch'])->name('locale.switch');
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/teknologi', [TechnologyController::class, 'index'])->name('technology.index');

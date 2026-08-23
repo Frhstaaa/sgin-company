@@ -1,9 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { usePage, router } from '@inertiajs/react';
 import { translations, modelTranslations } from '../translations';
 
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
+    const pageProps = usePage()?.props || {};
+    const serverLocale = pageProps.locale || 'id';
+
     const [lang, setLangState] = useState(() => {
         if (typeof window !== 'undefined') {
             const saved = localStorage.getItem('sugiyama_lang');
@@ -11,21 +15,53 @@ export function LanguageProvider({ children }) {
                 return saved;
             }
         }
-        return 'id'; // Default Indonesian
+        return serverLocale;
     });
+
+    // Synchronize if server locale changes
+    useEffect(() => {
+        if (pageProps.locale && ['id', 'en', 'ja'].includes(pageProps.locale)) {
+            if (pageProps.locale !== lang) {
+                setLangState(pageProps.locale);
+                if (typeof window !== 'undefined') {
+                    localStorage.setItem('sugiyama_lang', pageProps.locale);
+                }
+            }
+        }
+    }, [pageProps.locale]);
 
     const setLang = (newLang) => {
         if (['id', 'en', 'ja'].includes(newLang)) {
             setLangState(newLang);
             if (typeof window !== 'undefined') {
                 localStorage.setItem('sugiyama_lang', newLang);
+                document.cookie = `app_locale=${newLang};path=/;max-age=${60 * 60 * 24 * 365}`;
             }
+
+            // Sync with Laravel server session via Inertia
+            router.post(`/locale/${newLang}`, {}, {
+                preserveScroll: true,
+                preserveState: false, // refresh props from server with translated data
+            });
         }
     };
 
+    /**
+     * Translate string using Laravel backend dictionary with client fallback
+     */
     const t = (key, fallback = '') => {
+        // 1. Check Laravel server shared translations for current locale
+        if (pageProps.translations && pageProps.translations[key] !== undefined) {
+            return pageProps.translations[key];
+        }
+
+        // 2. Check bundled client-side translations dictionary
         const dict = translations[lang] || translations.id;
-        return dict[key] !== undefined ? dict[key] : (fallback || key);
+        if (dict && dict[key] !== undefined) {
+            return dict[key];
+        }
+
+        return fallback || key;
     };
 
     /**
@@ -37,22 +73,37 @@ export function LanguageProvider({ children }) {
         // Clone item to avoid mutating original props
         const result = { ...item };
 
-        // 1. If language is Indonesian ('id'), return the database object directly!
+        // 1. If language is Indonesian ('id'), return the database object directly
         if (lang === 'id') {
             return result;
         }
 
         // 2. Dynamic column translation for en / ja from database columns (e.g. title_en, title_jp, etc.)
-        const suffix = lang === 'ja' ? '_jp' : '_en';
+        const suffixes = lang === 'ja' ? ['_jp', '_ja'] : ['_en'];
         for (const key in item) {
-            const translatedKey = `${key}${suffix}`;
-            const baseKey = key.endsWith('_id') ? key.replace('_id', '') : key;
-            const alternativeKey = `${baseKey}${suffix}`;
+            for (const sfx of suffixes) {
+                const translatedKey = `${key}${sfx}`;
+                const baseKey = key.endsWith('_id') ? key.replace('_id', '') : key;
+                const alternativeKey = `${baseKey}${sfx}`;
 
-            if (item[translatedKey] !== undefined && item[translatedKey] !== null && item[translatedKey] !== '') {
-                result[key] = item[translatedKey];
-            } else if (item[alternativeKey] !== undefined && item[alternativeKey] !== null && item[alternativeKey] !== '') {
-                result[key] = item[alternativeKey];
+                if (item[translatedKey] !== undefined && item[translatedKey] !== null && item[translatedKey] !== '') {
+                    result[key] = item[translatedKey];
+                    break;
+                } else if (item[alternativeKey] !== undefined && item[alternativeKey] !== null && item[alternativeKey] !== '') {
+                    result[key] = item[alternativeKey];
+                    break;
+                }
+            }
+        }
+
+        // 3. Fallback to modelTranslations dictionary for hardcoded seed models if translation columns are empty
+        if (modelTranslations && modelTranslations[lang]) {
+            const dict = modelTranslations[lang];
+            
+            // Check by ID or Slug or Title
+            const identifier = item.slug || item.id || item.title || item.name;
+            if (identifier && dict[identifier]) {
+                return { ...result, ...dict[identifier] };
             }
         }
 
@@ -60,7 +111,7 @@ export function LanguageProvider({ children }) {
     };
 
     return (
-        <LanguageContext.Provider value={{ lang, setLang, t, translateModel }}>
+        <LanguageContext.Provider value={{ lang, setLang, t, translateModel, availableLocales: ['id', 'ja', 'en'] }}>
             {children}
         </LanguageContext.Provider>
     );
@@ -74,6 +125,7 @@ export function useLanguage() {
             setLang: () => {},
             t: (key, fallback) => (translations.id[key] !== undefined ? translations.id[key] : (fallback || key)),
             translateModel: (item) => item,
+            availableLocales: ['id', 'ja', 'en'],
         };
     }
     return context;

@@ -43,8 +43,18 @@ class HandleInertiaRequests extends Middleware
             // DB not ready or during initial install
         }
 
+        $currentLocale = app()->getLocale();
+        $translations = [];
+        $langFile = base_path("lang/{$currentLocale}.json");
+        if (file_exists($langFile)) {
+            $translations = json_decode(file_get_contents($langFile), true) ?: [];
+        }
+
         return [
             ...parent::share($request),
+            'locale' => $currentLocale,
+            'translations' => $translations,
+            'availableLocales' => ['id', 'ja', 'en'],
             'auth' => [
                 'user' => $request->user() ? [
                     'id' => $request->user()->id,

@@ -84,10 +84,14 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                                 <Factory className="w-6 h-6" />
                             </div>
                             <div>
-                                <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider">Hulu / Upstream (Japan)</span>
-                                <h3 className="text-base font-bold text-slate-900 mt-0.5">Penempaan Blank di Aichi</h3>
+                                <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider">
+                                    {t('prod_chain_01_badge', 'Hulu / Upstream (Japan)')}
+                                </span>
+                                <h3 className="text-base font-bold text-slate-900 mt-0.5">
+                                    {t('prod_chain_01_title', 'Penempaan Blank di Aichi')}
+                                </h3>
                                 <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                                    Bahan baku tempa dingin berstandar JIS Jepang dengan integritas serat metalurgi optimal.
+                                    {t('prod_chain_01_desc', 'Bahan baku tempa dingin berstandar JIS Jepang dengan integritas serat metalurgi optimal.')}
                                 </p>
                             </div>
                         </div>
@@ -97,10 +101,14 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                                 <Ship className="w-6 h-6" />
                             </div>
                             <div>
-                                <span className="text-[10px] font-bold text-sky-700 uppercase tracking-wider">Rantai Pasok / Logistics</span>
-                                <h3 className="text-base font-bold text-slate-900 mt-0.5">Pengiriman Kontainer Laut</h3>
+                                <span className="text-[10px] font-bold text-sky-700 uppercase tracking-wider">
+                                    {t('prod_chain_02_badge', 'Rantai Pasok / Logistics')}
+                                </span>
+                                <h3 className="text-base font-bold text-slate-900 mt-0.5">
+                                    {t('prod_chain_02_title', 'Pengiriman Kontainer Laut')}
+                                </h3>
                                 <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                                    Logistik maritim berkala dengan proteksi anti-korosi VCI untuk efisiensi biaya produksi mitra.
+                                    {t('prod_chain_02_desc', 'Logistik maritim berkala dengan proteksi anti-korosi VCI untuk efisiensi biaya produksi mitra.')}
                                 </p>
                             </div>
                         </div>
@@ -110,10 +118,14 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                                 <Cog className="w-6 h-6" />
                             </div>
                             <div>
-                                <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider">Hilir / Production (Indonesia)</span>
-                                <h3 className="text-base font-bold text-slate-900 mt-0.5">Permesinan CNC & QC 100%</h3>
+                                <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider">
+                                    {t('prod_chain_03_badge', 'Hilir / Production (Indonesia)')}
+                                </span>
+                                <h3 className="text-base font-bold text-slate-900 mt-0.5">
+                                    {t('prod_chain_03_title', 'Permesinan CNC & QC 100%')}
+                                </h3>
                                 <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                                    Pemesinan presisi mikro di Karawang dan inspeksi visual menyeluruh sebelum distribusi.
+                                    {t('prod_chain_03_desc', 'Pemesinan presisi mikro di Karawang dan inspeksi visual menyeluruh sebelum distribusi.')}
                                 </p>
                             </div>
                         </div>
@@ -129,10 +141,10 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                         <div>
                             <div className="flex items-center gap-2 text-emerald-700 text-xs font-bold uppercase tracking-widest mb-1.5">
                                 <Sparkles className="w-4 h-4" />
-                                <span>TAHAPAN LENGKAP PRODUKSI</span>
+                                <span>{t('prod_steps_badge', 'TAHAPAN LENGKAP PRODUKSI')}</span>
                             </div>
                             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
-                                Integrasi Langkah Proses Produksi
+                                {t('prod_steps_title', 'Integrasi Langkah Proses Produksi')}
                             </h2>
                         </div>
 
@@ -147,7 +159,7 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                                         : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                                 }`}
                             >
-                                Semua Tahapan ({processes.length})
+                                {t('prod_tab_all', 'Semua Tahapan')} ({processes.length})
                             </button>
                             <button
                                 type="button"
@@ -158,7 +170,7 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                                         : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                                 }`}
                             >
-                                Alur Manufaktur Utama
+                                {t('prod_tab_main', 'Alur Manufaktur Utama')}
                             </button>
                             <button
                                 type="button"
@@ -169,7 +181,7 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                                         : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                                 }`}
                             >
-                                Kontrol Kualitas (QC)
+                                {t('prod_tab_qc', 'Kontrol Kualitas (QC)')}
                             </button>
                         </div>
                     </div>
@@ -282,13 +294,13 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                     <div className="text-center max-w-3xl mx-auto space-y-3">
                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
                             <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                            <span>JAMINAN MUTU TANPA KOMPROMI</span>
+                            <span>{t('prod_qc_header_badge', 'STANDAR JAMINAN MUTU JEPANG')}</span>
                         </div>
                         <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                            Peralatan & Metrologi Kontrol Kualitas
+                            {t('prod_qc_header_title', 'Komitmen Kualitas & Presisi Nol Cacat (Zero Defect)')}
                         </h2>
                         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                            Di PT. Sugiyama Indonesia, kami melakukan inspeksi kualitas dan pengecekan visual menyeluruh yang sama persis seperti kantor pusat kami di Jepang untuk memastikan setiap produk memenuhi standar toleransi tertinggi.
+                            {t('prod_qc_header_desc', 'Sistem manajemen mutu kami dirancang untuk mematuhi regulasi ketat industri otomotif dan energi baru (EV).')}
                         </p>
                     </div>
 
@@ -341,13 +353,13 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
                     <div className="space-y-2 max-w-2xl">
                         <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                            KONSULTASI ALUR PRODUKSI KUSTOM
+                            {t('prod_badge', 'KONSULTASI ALUR PRODUKSI KUSTOM')}
                         </span>
                         <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-                            Butuh Solusi Penempaan & Permesinan untuk Komponen Anda?
+                            {t('prod_cta_title', 'Butuh Solusi Penempaan & Permesinan untuk Komponen Anda?')}
                         </h2>
                         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                            Diskusikan spesifikasi gambar CAD atau kebutuhan volume produksi Anda bersama tim insinyur PT. Sugiyama Indonesia.
+                            {t('prod_cta_desc', 'Diskusikan spesifikasi gambar CAD atau kebutuhan volume produksi Anda bersama tim insinyur PT. Sugiyama Indonesia.')}
                         </p>
                     </div>
 
@@ -356,7 +368,7 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                             href="/kontak"
                             className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xl shadow-emerald-950/40 hover:shadow-2xl transition-all"
                         >
-                            <span>Konsultasi Teknik Sekarang</span>
+                            <span>{t('prod_cta_btn_contact', 'Konsultasi Teknik Sekarang')}</span>
                             <ArrowRight className="w-4 h-4" />
                         </Link>
                     </div>
