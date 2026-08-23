@@ -79,7 +79,7 @@ export default function Home({
                                         SUGIYAMA INDONESIA
                                     </span>
                                     <span className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-slate-100 block mt-1 font-display">
-                                        {activeSlide.title_id || t('tagline_sub', 'Menempa Teknologi, Membangun Masa Depan')}
+                                        {(lang === 'id' && activeSlide.title_id) ? activeSlide.title_id : t('tagline_sub', 'Menempa Teknologi, Membangun Masa Depan')}
                                     </span>
                                 </h1>
                             </motion.div>
@@ -90,7 +90,7 @@ export default function Home({
                                 transition={{ duration: 0.7, delay: 0.4 }}
                                 className="text-slate-200 text-xs sm:text-base leading-relaxed max-w-xl font-normal drop-shadow-sm"
                             >
-                                {t('hero_desc', activeSlide.subtitle)}
+                                {(lang === 'id' && activeSlide.subtitle) ? activeSlide.subtitle : t('hero_desc', 'Sebagai seorang ahli penempaan dan manufaktur presisi, kami merevolusi kualitas industri global melalui keterampilan teknis kelas dunia.')}
                             </motion.p>
 
                             <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2 sm:pt-3">

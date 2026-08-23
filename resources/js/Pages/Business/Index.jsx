@@ -27,13 +27,13 @@ export default function BusinessIndex({ businesses = [] }) {
                             className={siteSettings.biz_hero_video ? 'lg:col-span-6 space-y-2' : ''}
                         >
                             <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                {siteSettings.biz_hero_badge || t('biz_badge', 'Unit Bisnis / 事業紹介')}
+                                {(lang === 'id' && siteSettings.biz_hero_badge) ? siteSettings.biz_hero_badge : t('biz_badge', 'UNIT BISNIS / 事業紹介')}
                             </span>
                             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                                {siteSettings.biz_hero_title || t('biz_title', 'Bidang Usaha & Keahlian Manufaktur')}
+                                {(lang === 'id' && siteSettings.biz_hero_title) ? siteSettings.biz_hero_title : t('biz_title', 'Bidang Usaha & Keahlian Manufaktur')}
                             </h1>
                             <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                                {siteSettings.biz_hero_lead || t('biz_desc', 'Solusi manufaktur presisi komprehensif mulai dari penempaan dingin net-shape, turning CNC, hingga rekayasa aditif 3D.')}
+                                {(lang === 'id' && siteSettings.biz_hero_lead) ? siteSettings.biz_hero_lead : t('biz_desc', 'Solusi manufaktur presisi komprehensif mulai dari penempaan dingin net-shape, turning CNC, hingga rekayasa aditif 3D.')}
                             </p>
                         </motion.div>
 

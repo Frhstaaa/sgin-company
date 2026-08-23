@@ -33,13 +33,13 @@ export default function AboutIndex({ profile = {} }) {
                             className={siteSettings.about_hero_video ? 'lg:col-span-6 space-y-2' : ''}
                         >
                             <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                {siteSettings.about_hero_badge || t('about_badge', 'Tentang Kami / 会社概要')}
+                                {(lang === 'id' && siteSettings.about_hero_badge) ? siteSettings.about_hero_badge : t('about_badge', 'TENTANG KAMI / 会社概要')}
                             </span>
                             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                                {siteSettings.about_hero_title || t('about_title', 'Keahlian Presisi Jepang Berstandar Global')}
+                                {(lang === 'id' && siteSettings.about_hero_title) ? siteSettings.about_hero_title : t('about_title', 'Keahlian Presisi Jepang Berstandar Global')}
                             </h1>
                             <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                                {siteSettings.about_hero_lead || t('about_lead', 'Sejak didirikan pada tahun 1952 di Aichi, Jepang, PT. Sugiyama Indonesia (Sugiyama Group) terus menempa batas inovasi teknik penempaan dingin.')}
+                                {(lang === 'id' && siteSettings.about_hero_lead) ? siteSettings.about_hero_lead : t('about_lead', 'Sejak didirikan pada tahun 1952 di Aichi, Jepang, PT. Sugiyama Indonesia (Sugiyama Group) terus menempa batas inovasi teknik penempaan dingin.')}
                             </p>
                         </motion.div>
 

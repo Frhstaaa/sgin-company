@@ -39,13 +39,13 @@ export default function ProductIndex({ products, categories = [], filters = {} }
                             className={siteSettings.product_hero_video ? 'lg:col-span-6 space-y-2' : ''}
                         >
                             <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                {siteSettings.product_hero_badge || t('split_prd_sub', 'KATALOG PRODUK / 製品紹介')}
+                                {(lang === 'id' && siteSettings.product_hero_badge) ? siteSettings.product_hero_badge : t('split_prd_sub', 'KATALOG PRODUK / 製品紹介')}
                             </span>
                             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                                {siteSettings.product_hero_title || t('prd_header_title', 'Katalog Komponen & Suku Cadang Presisi')}
+                                {(lang === 'id' && siteSettings.product_hero_title) ? siteSettings.product_hero_title : t('prd_header_title', 'Katalog Komponen & Suku Cadang Presisi')}
                             </h1>
                             <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                                {siteSettings.product_hero_lead || t('prd_header_desc', 'Portofolio lengkap komponen otomotif cold forging berkekuatan mekanik tinggi, suku cadang presisi EV, dan fastener kustom.')}
+                                {(lang === 'id' && siteSettings.product_hero_lead) ? siteSettings.product_hero_lead : t('prd_header_desc', 'Portofolio lengkap komponen otomotif cold forging berkekuatan mekanik tinggi, suku cadang presisi EV, dan fastener kustom.')}
                             </p>
                         </motion.div>
 

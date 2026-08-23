@@ -48,13 +48,13 @@ export default function ContactIndex({ selectedProduct, products = [], defaultTy
                             className={siteSettings.contact_hero_video ? 'lg:col-span-6 space-y-2' : ''}
                         >
                             <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                {siteSettings.contact_hero_badge || t('cta_badge', 'HUBUNGI KAMI / お問い合わせ')}
+                                {(lang === 'id' && siteSettings.contact_hero_badge) ? siteSettings.contact_hero_badge : t('cta_badge', 'HUBUNGI KAMI / お問い合わせ')}
                             </span>
                             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                                {siteSettings.contact_hero_title || t('contact_page_title', 'Konsultasi Teknik & Permintaan Penawaran')}
+                                {(lang === 'id' && siteSettings.contact_hero_title) ? siteSettings.contact_hero_title : t('contact_page_title', 'Konsultasi Teknik & Permintaan Penawaran')}
                             </h1>
                             <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                                {siteSettings.contact_hero_lead || t('contact_page_desc', 'Tim teknis dan penjualan PT. Sugiyama Indonesia siap membantu estimasi biaya produksi penempaan dingin, evaluasi gambar teknik CAD, serta konsultasi spesifikasi material.')}
+                                {(lang === 'id' && siteSettings.contact_hero_lead) ? siteSettings.contact_hero_lead : t('contact_page_desc', 'Tim teknis dan penjualan PT. Sugiyama Indonesia siap membantu estimasi biaya produksi penempaan dingin, evaluasi gambar teknik CAD, serta konsultasi spesifikasi material.')}
                             </p>
                         </motion.div>
 

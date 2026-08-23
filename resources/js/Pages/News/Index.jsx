@@ -32,13 +32,13 @@ export default function NewsIndex({ news, filters = {} }) {
                             className={siteSettings.news_hero_video ? 'lg:col-span-6 space-y-2' : ''}
                         >
                             <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                {siteSettings.news_hero_badge || t('news_badge', 'BERITA & PENGUMUMAN / ニュース')}
+                                {(lang === 'id' && siteSettings.news_hero_badge) ? siteSettings.news_hero_badge : t('news_badge', 'BERITA & PENGUMUMAN / ニュース')}
                             </span>
                             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                                {siteSettings.news_hero_title || t('news_title', 'Update Berita Terkini & Informasi Perusahaan')}
+                                {(lang === 'id' && siteSettings.news_hero_title) ? siteSettings.news_hero_title : t('news_title', 'Update Berita Terkini & Informasi Perusahaan')}
                             </h1>
                             <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                                {siteSettings.news_hero_lead || 'Kabar korporasi, pencapaian sertifikasi mutu, agenda kegiatan, dan teknologi terkini.'}
+                                {(lang === 'id' && siteSettings.news_hero_lead) ? siteSettings.news_hero_lead : t('news_lead', 'Kabar korporasi, pencapaian sertifikasi mutu, agenda kegiatan, dan teknologi terkini.')}
                             </p>
                         </motion.div>
 

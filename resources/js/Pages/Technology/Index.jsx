@@ -30,13 +30,13 @@ export default function TechnologyIndex({ technologies = [] }) {
                             className={siteSettings.tech_hero_video ? 'lg:col-span-6 space-y-2' : ''}
                         >
                             <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                {siteSettings.tech_hero_badge || t('tech_badge', 'Teknologi Kami / 技術紹介')}
+                                {(lang === 'id' && siteSettings.tech_hero_badge) ? siteSettings.tech_hero_badge : t('tech_badge', 'TEKNOLOGI KAMI / 技術紹介')}
                             </span>
                             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                                {siteSettings.tech_hero_title || t('tech_title', 'Teknologi & Keunggulan Rekayasa Presisi')}
+                                {(lang === 'id' && siteSettings.tech_hero_title) ? siteSettings.tech_hero_title : t('tech_title', 'Teknologi & Keunggulan Rekayasa Presisi')}
                             </h1>
                             <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                                {siteSettings.tech_hero_lead || t('tech_desc', 'Menggabungkan keahlian cetakan penempaan dingin dengan pemesinan CNC multi-sumbu untuk efisiensi material dan kekuatan mekanis tertinggi.')}
+                                {(lang === 'id' && siteSettings.tech_hero_lead) ? siteSettings.tech_hero_lead : t('tech_desc', 'Menggabungkan keahlian cetakan penempaan dingin dengan pemesinan CNC multi-sumbu untuk efisiensi material dan kekuatan mekanis tertinggi.')}
                             </p>
                         </motion.div>
 

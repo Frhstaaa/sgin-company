@@ -48,13 +48,18 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
             if (typeof window !== 'undefined') {
                 localStorage.setItem('sugiyama_lang', newLang);
                 document.cookie = `app_locale=${newLang};path=/;max-age=${60 * 60 * 24 * 365}`;
+                
+                // Sync with Laravel server session via Inertia & auto-refresh page
+                router.post(`/locale/${newLang}`, {}, {
+                    preserveScroll: true,
+                    onFinish: () => {
+                        window.location.reload();
+                    },
+                    onError: () => {
+                        window.location.reload();
+                    }
+                });
             }
-
-            // Sync with Laravel server session via Inertia
-            router.post(`/locale/${newLang}`, {}, {
-                preserveScroll: true,
-                preserveState: false, // refresh props from server with translated data
-            });
         }
     };
 

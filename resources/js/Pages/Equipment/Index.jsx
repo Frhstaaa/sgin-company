@@ -31,13 +31,13 @@ export default function EquipmentIndex({ equipments = [], categories = [] }) {
                             className={siteSettings.machine_hero_video ? 'lg:col-span-6 space-y-2' : ''}
                         >
                             <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                {siteSettings.machine_hero_badge || t('split_eq_sub', 'FASILITAS & PERALATAN / 設備一覧')}
+                                {(lang === 'id' && siteSettings.machine_hero_badge) ? siteSettings.machine_hero_badge : t('split_eq_sub', 'FASILITAS & PERALATAN / 設備一覧')}
                             </span>
                             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                                {siteSettings.machine_hero_title || t('eq_header_title', 'Fasilitas & Mesin Manufaktur Presisi')}
+                                {(lang === 'id' && siteSettings.machine_hero_title) ? siteSettings.machine_hero_title : t('eq_header_title', 'Fasilitas & Mesin Manufaktur Presisi')}
                             </h1>
                             <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                                {siteSettings.machine_hero_lead || t('eq_header_desc', 'Lini mesin modern berstandar industri Jepang untuk menjamin kapasitas produksi massal dan toleransi mikro konsisten.')}
+                                {(lang === 'id' && siteSettings.machine_hero_lead) ? siteSettings.machine_hero_lead : t('eq_header_desc', 'Lini mesin modern berstandar industri Jepang untuk menjamin kapasitas produksi massal dan toleransi mikro konsisten.')}
                             </p>
                         </motion.div>
 

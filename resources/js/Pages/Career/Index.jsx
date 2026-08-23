@@ -26,13 +26,13 @@ export default function CareerIndex({ careers = [] }) {
                             className={siteSettings.career_hero_video ? 'lg:col-span-6 space-y-2' : ''}
                         >
                             <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                {siteSettings.career_hero_badge || t('career_badge', 'KARIR & REKRUTMEN / 採用情報')}
+                                {(lang === 'id' && siteSettings.career_hero_badge) ? siteSettings.career_hero_badge : t('career_badge', 'KARIR & REKRUTMEN / 採用情報')}
                             </span>
                             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                                {siteSettings.career_hero_title || t('career_title', 'Mari Menempa Masa Depan Bersama Insinyur Sugiyama')}
+                                {(lang === 'id' && siteSettings.career_hero_title) ? siteSettings.career_hero_title : t('career_title', 'Mari Menempa Masa Depan Bersama Insinyur Sugiyama')}
                             </h1>
                             <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                                {siteSettings.career_hero_lead || t('career_desc', 'Kami mencari talenta berbakat yang memiliki semangat Kaizen dan dedikasi dalam menciptakan teknologi manufaktur presisi tinggi.')}
+                                {(lang === 'id' && siteSettings.career_hero_lead) ? siteSettings.career_hero_lead : t('career_desc', 'Kami mencari talenta berbakat yang memiliki semangat Kaizen dan dedikasi dalam menciptakan teknologi manufaktur presisi tinggi.')}
                             </p>
                         </motion.div>
 

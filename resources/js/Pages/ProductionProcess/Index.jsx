@@ -48,16 +48,16 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-900/80 border border-emerald-700/60 backdrop-blur-xs mb-4">
                                 <Workflow className="w-3.5 h-3.5 text-emerald-400" />
                                 <span className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-widest">
-                                    {siteSettings.prod_hero_badge || t('prod_badge', 'ALUR PRODUKSI / 製造工程')}
+                                    {(lang === 'id' && siteSettings.prod_hero_badge) ? siteSettings.prod_hero_badge : t('prod_badge', 'ALUR PRODUKSI / 製造工程')}
                                 </span>
                             </div>
 
                             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight max-w-3xl">
-                                {siteSettings.prod_hero_title || t('prod_header_title', 'Alur Proses Manufaktur & Kontrol Kualitas Presisi')}
+                                {(lang === 'id' && siteSettings.prod_hero_title) ? siteSettings.prod_hero_title : t('prod_header_title', 'Alur Proses Manufaktur & Kontrol Kualitas Presisi')}
                             </h1>
 
                             <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-4 leading-relaxed font-normal">
-                                {siteSettings.prod_hero_lead || t('prod_header_desc', 'Integrasi menyeluruh rantai pasok: mulai dari penempaan bahan baku presisi di Jepang, logistik laut berkala, pemesinan CNC multi-sumbu di Indonesia, hingga 100% inspeksi mutu berstandar global.')}
+                                {(lang === 'id' && siteSettings.prod_hero_lead) ? siteSettings.prod_hero_lead : t('prod_header_desc', 'Integrasi menyeluruh rantai pasok: mulai dari penempaan bahan baku presisi di Jepang, logistik laut berkala, pemesinan CNC multi-sumbu di Indonesia, hingga 100% inspeksi mutu berstandar global.')}
                             </p>
                         </motion.div>
 
