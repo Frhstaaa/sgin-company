@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#005944">
 
-    <!-- Favicon & Brand Icons -->
-    <link rel="icon" type="image/webp" href="{{ asset('favicon.webp') }}">
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+    @php
+        $siteFavicon = \App\Models\SiteSetting::getByKey('site_favicon') ?: \App\Models\SiteSetting::getByKey('site_logo');
+        $faviconUrl = $siteFavicon ? (str_starts_with($siteFavicon, 'http') ? $siteFavicon : asset(ltrim($siteFavicon, '/'))) : asset('favicon.ico');
+    @endphp
+    <!-- Favicon & Brand Icons (Dynamic from Site Settings) -->
+    <link rel="icon" id="dynamic-favicon" href="{{ $faviconUrl }}">
+    <link rel="shortcut icon" href="{{ $faviconUrl }}">
+    <link rel="apple-touch-icon" href="{{ $faviconUrl }}">
 
     <!-- Primary SEO Meta Tags -->
     <title inertia>PT. Sugiyama Indonesia | 株式会社スギヤマ - Presisi Penempaan Dingin & Manufaktur Otomotif</title>

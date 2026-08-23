@@ -41,6 +41,9 @@ class SettingService
             if ($file) {
                 $url = $this->fileUploadService->uploadImage($file, 'settings');
                 $this->repo->set($key, $url, 'branding', 'image');
+                if ($key === 'site_logo' && empty($files['site_favicon'])) {
+                    $this->repo->set('site_favicon', $url, 'branding', 'image');
+                }
             }
         }
 

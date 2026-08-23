@@ -22,6 +22,14 @@ export default function AppLayout({ children }) {
         }
     }, [flash]);
 
+    useEffect(() => {
+        const faviconUrl = props?.siteSettings?.site_favicon || props?.siteSettings?.site_logo;
+        if (faviconUrl) {
+            const links = document.querySelectorAll("link[rel*='icon'], link[rel='apple-touch-icon']");
+            links.forEach(el => { el.href = faviconUrl; });
+        }
+    }, [props?.siteSettings]);
+
     return (
         <div className="min-h-screen flex flex-col bg-white selection:bg-emerald-700 selection:text-white w-full max-w-full overflow-x-hidden relative">
             {/* Top Navbar */}

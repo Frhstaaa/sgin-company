@@ -25,6 +25,14 @@ export default function AdminLayout({ children, title = 'Admin Dashboard' }) {
         }
     }, [flash]);
 
+    useEffect(() => {
+        const faviconUrl = siteSettings?.site_favicon || siteSettings?.site_logo;
+        if (faviconUrl) {
+            const links = document.querySelectorAll("link[rel*='icon'], link[rel='apple-touch-icon']");
+            links.forEach(el => { el.href = faviconUrl; });
+        }
+    }, [siteSettings]);
+
     const handleLogout = () => {
         router.post('/admin/logout');
     };
