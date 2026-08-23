@@ -68,18 +68,19 @@ html, body {
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+/* Hide Scrollbar Globally across all browsers (Chrome, Safari, Firefox, Edge, iOS, Android) */
+html,
+body,
+* {
+    -ms-overflow-style: none !important;  /* IE and Edge */
+    scrollbar-width: none !important;     /* Firefox */
 }
-::-webkit-scrollbar-track {
-    background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-    background: #007155;
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #005944;
+
+*::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none !important;             /* Chrome, Safari, Opera */
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
 }
