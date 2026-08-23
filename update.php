@@ -12,7 +12,86 @@ set_time_limit(300);
 
 $basePath = realpath(__DIR__ . '/..') ?: dirname(__DIR__);
 $secretToken = 'sugiyama-update';
-$action = $_GET['action'] ?? '';
+$autoRun = isset($_GET['run']) || isset($_GET['token']) || isset($_POST['run']);
+
+if (!$autoRun) {
+    ?>
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>1-Click Website Updater - PT. Sugiyama Indonesia</title>
+        <style>
+            * { box-sizing: border-box; margin: 0; padding: 0; }
+            body {
+                background-color: #0b132b;
+                color: #e2e8f0;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                padding: 20px;
+            }
+            .card {
+                background: #1c2541;
+                border: 1px solid #3a506b;
+                border-radius: 24px;
+                padding: 40px 30px;
+                max-width: 580px;
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            }
+            h1 { color: #6fffe9; font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+            p { color: #94a3b8; font-size: 14px; line-height: 1.6; margin-bottom: 28px; }
+            .btn {
+                background: linear-gradient(135deg, #007155 0%, #005944 100%);
+                color: #ffffff;
+                font-size: 16px;
+                font-weight: bold;
+                padding: 16px 32px;
+                border-radius: 16px;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                box-shadow: 0 10px 25px rgba(0, 113, 85, 0.4);
+                transition: all 0.2s;
+                border: none;
+                cursor: pointer;
+            }
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 15px 30px rgba(0, 113, 85, 0.6);
+            }
+            .list { text-align: left; background: #0b132b; border: 1px solid #3a506b; border-radius: 14px; padding: 16px 20px; font-size: 13px; color: #cbd5e1; margin-bottom: 24px; line-height: 1.8; }
+            .list li { list-style-type: none; display: flex; align-items: center; gap: 8px; }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <h1>⚡ 1-Click Update Website</h1>
+            <p>PT. Sugiyama Indonesia &bull; Server Deployment Tool</p>
+            <div class="list">
+                <li>✅ <strong>Git Fetch & Pull:</strong> Mengambil kode & build terbaru dari GitHub</li>
+                <li>✅ <strong>Artisan Migrate & Seed:</strong> Update tabel & data database otomatis</li>
+                <li>✅ <strong>Storage Symlink:</strong> Verifikasi link storage foto logo & banner</li>
+                <li>✅ <strong>Optimize Clear:</strong> Bersihkan seluruh cache aplikasi</li>
+            </div>
+            <a href="?run=1" class="btn" onclick="this.innerHTML='⏳ Sedang Memproses Update...'; this.style.opacity='0.7';">
+                <span>🚀</span>
+                <span>Klik di Sini untuk Mulai Update</span>
+            </a>
+        </div>
+    </body>
+    </html>
+    <?php
+    exit;
+}
+
+$action = $_GET['action'] ?? 'full_update';
 $token = $_GET['token'] ?? '';
 
 // Auto detect CLI PHP path
