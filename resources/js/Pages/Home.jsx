@@ -877,46 +877,49 @@ export default function Home({
 
                             {/* RIGHT: Visual Showcase & Floating Badges */}
                             <div className="lg:col-span-5 relative">
-                                {/* Main Facility Showcase Image */}
+                                {/* Main Facility Showcase Image Card */}
                                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-700/70 group aspect-4/3 bg-slate-950">
                                     <img 
                                         src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop" 
                                         alt="Fasilitas Manufaktur PT. Sugiyama Indonesia" 
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-slate-950/40" />
+
+                                    {/* Top Overlay Badges inside the card (Never clipped) */}
+                                    <div className="absolute top-3.5 left-3.5 right-3.5 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 z-10">
+                                        {/* Quality Badge */}
+                                        <div className="py-1.5 px-3 rounded-xl bg-slate-950/85 border border-emerald-500/40 text-white shadow-lg backdrop-blur-md flex items-center gap-2">
+                                            <div className="w-6 h-6 rounded-lg bg-emerald-600/30 text-emerald-300 flex items-center justify-center border border-emerald-400/30 shrink-0">
+                                                <ShieldCheck className="w-3.5 h-3.5" />
+                                            </div>
+                                            <div className="text-left">
+                                                <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider leading-none">Standar Mutu</p>
+                                                <p className="text-[11px] font-black text-white font-mono leading-tight mt-0.5">IATF 16949 & ISO 9001</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Heritage Badge */}
+                                        <div className="py-1.5 px-3 rounded-xl bg-slate-950/85 border border-amber-500/40 text-white shadow-lg backdrop-blur-md flex items-center gap-2">
+                                            <div className="w-6 h-6 rounded-lg bg-amber-600/30 text-amber-300 flex items-center justify-center border border-amber-400/30 shrink-0">
+                                                <Award className="w-3.5 h-3.5" />
+                                            </div>
+                                            <div className="text-left">
+                                                <p className="text-[9px] font-bold text-amber-400/80 uppercase tracking-wider leading-none">Sejak 1952</p>
+                                                <p className="text-[11px] font-black text-white leading-tight mt-0.5">Aichi, Jepang</p>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     {/* Plant Label on Bottom */}
-                                    <div className="absolute bottom-4 left-4 right-4 p-3.5 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs">
+                                    <div className="absolute bottom-3.5 left-3.5 right-3.5 p-3 sm:p-3.5 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs z-10 shadow-lg">
                                         <div>
-                                            <p className="font-extrabold text-white">Pabrik & Kantor GIIC Cikarang</p>
+                                            <p className="font-extrabold text-white text-xs sm:text-sm">Pabrik & Kantor GIIC Cikarang</p>
                                             <p className="text-[10px] text-slate-400">Greenland International Industrial Center (GIIC)</p>
                                         </div>
-                                        <span className="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 font-mono font-bold text-[10px] border border-emerald-500/30">
+                                        <span className="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 font-mono font-bold text-[10px] border border-emerald-500/30 shrink-0">
                                             ASEAN Hub
                                         </span>
-                                    </div>
-                                </div>
-
-                                {/* Floating Quality Badge (Top Right) */}
-                                <div className="absolute -top-4 -right-2 sm:-right-4 p-3 rounded-2xl bg-slate-900/95 border border-emerald-500/40 text-white shadow-xl backdrop-blur-md flex items-center gap-2.5 z-20">
-                                    <div className="w-8 h-8 rounded-xl bg-emerald-600/30 text-emerald-300 flex items-center justify-center border border-emerald-400/30">
-                                        <ShieldCheck className="w-4 h-4" />
-                                    </div>
-                                    <div>
-                                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Standar Mutu Otomotif</p>
-                                        <p className="text-xs font-black text-white font-mono">IATF 16949 & ISO 9001</p>
-                                    </div>
-                                </div>
-
-                                {/* Floating Heritage Badge (Bottom Left) */}
-                                <div className="absolute -bottom-4 -left-2 sm:-left-4 p-3 rounded-2xl bg-slate-900/95 border border-amber-500/40 text-white shadow-xl backdrop-blur-md flex items-center gap-2.5 z-20">
-                                    <div className="w-8 h-8 rounded-xl bg-amber-600/30 text-amber-300 flex items-center justify-center border border-amber-400/30">
-                                        <Award className="w-4 h-4" />
-                                    </div>
-                                    <div>
-                                        <p className="text-[10px] font-bold text-amber-400/80 uppercase tracking-wider">Warisan Keahlian</p>
-                                        <p className="text-xs font-black text-white">Sejak 1952 (Aichi, Jepang)</p>
                                     </div>
                                 </div>
                             </div>
