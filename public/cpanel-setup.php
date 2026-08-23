@@ -253,7 +253,7 @@ $logFile = $basePath . '/storage/logs/laravel.log';
 $latestLog = '';
 if (file_exists($logFile) && filesize($logFile) > 0) {
     $lines = file($logFile);
-    $latestLog = implode('', array_slice($lines, -50));
+    $latestLog = implode('', array_slice($lines, -150));
 }
 ?>
 <!DOCTYPE html>
