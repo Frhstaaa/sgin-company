@@ -8,8 +8,11 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
+import { usePage } from '@inertiajs/react';
 
 export default function AboutIndex({ profile = {} }) {
+    const { props = {} } = usePage();
+    const siteSettings = props.siteSettings || {};
     const { t, lang, translateModel } = useLanguage();
     const p = translateModel(profile, 'company_profile');
 
@@ -17,7 +20,7 @@ export default function AboutIndex({ profile = {} }) {
 
     return (
         <AppLayout>
-            <Head title={`${t('about_title', 'Tentang Kami / 会社概要')} | PT. Sugiyama Indonesia`} />
+            <Head title={`${siteSettings.about_hero_title || t('about_title', 'Tentang Kami / 会社概要')} | ${siteSettings.site_name || 'PT. Sugiyama Indonesia'}`} />
 
             {/* Header */}
             <div className="bg-emerald-950 text-white pt-28 pb-12 sm:pt-32 sm:pb-16 relative overflow-hidden">
@@ -28,13 +31,13 @@ export default function AboutIndex({ profile = {} }) {
                         transition={{ duration: 0.6 }}
                     >
                         <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                            {t('about_badge', 'Tentang Kami / 会社概要')}
+                            {siteSettings.about_hero_badge || t('about_badge', 'Tentang Kami / 会社概要')}
                         </span>
                         <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                            {t('about_title', 'Keahlian Presisi Jepang Berstandar Global')}
+                            {siteSettings.about_hero_title || t('about_title', 'Keahlian Presisi Jepang Berstandar Global')}
                         </h1>
                         <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                            {t('about_lead', 'Sejak didirikan pada tahun 1952 di Aichi, Jepang, PT. Sugiyama Indonesia (Sugiyama Group) terus menempa batas inovasi teknik penempaan dingin.')}
+                            {siteSettings.about_hero_lead || t('about_lead', 'Sejak didirikan pada tahun 1952 di Aichi, Jepang, PT. Sugiyama Indonesia (Sugiyama Group) terus menempa batas inovasi teknik penempaan dingin.')}
                         </p>
                     </motion.div>
                 </div>
