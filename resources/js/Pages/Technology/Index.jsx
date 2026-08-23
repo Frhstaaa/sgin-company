@@ -1,5 +1,5 @@
 import React from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import AppLayout from '../../Layouts/AppLayout';
 import { useLanguage } from '../../Context/LanguageContext';
 import { motion } from 'framer-motion';
@@ -10,26 +10,28 @@ import {
 } from 'lucide-react';
 
 export default function TechnologyIndex({ technologies = [] }) {
+    const { props = {} } = usePage();
+    const siteSettings = props.siteSettings || {};
     const { t, lang, translateModel } = useLanguage();
 
     return (
         <AppLayout>
-            <Head title={`${t('tech_title', 'Teknologi & Keunggulan Rekayasa Presisi')} | PT. Sugiyama Indonesia`} />
+            <Head title={`${siteSettings.tech_hero_title || t('tech_title', 'Teknologi & Keunggulan Rekayasa Presisi')} | ${siteSettings.site_name || 'PT. Sugiyama Indonesia'}`} />
 
             {/* Page Header */}
             <div className="bg-emerald-950 text-white pt-28 pb-12 sm:pt-32 sm:pb-16 relative overflow-hidden">
-<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{duration:0.6}}>
-<span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                        {t('tech_badge', 'Teknologi Kami / 技術紹介')}
-                    </span>
-<h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                        {t('tech_title', 'Teknologi & Keunggulan Rekayasa Presisi')}
-                    </h1>
-<p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                        {t('tech_desc', 'Menggabungkan keahlian cetakan penempaan dingin dengan pemesinan CNC multi-sumbu untuk efisiensi material dan kekuatan mekanis tertinggi.')}
-                    </p>
-</motion.div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{duration:0.6}}>
+                        <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
+                            {siteSettings.tech_hero_badge || t('tech_badge', 'Teknologi Kami / 技術紹介')}
+                        </span>
+                        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
+                            {siteSettings.tech_hero_title || t('tech_title', 'Teknologi & Keunggulan Rekayasa Presisi')}
+                        </h1>
+                        <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
+                            {siteSettings.tech_hero_lead || t('tech_desc', 'Menggabungkan keahlian cetakan penempaan dingin dengan pemesinan CNC multi-sumbu untuk efisiensi material dan kekuatan mekanis tertinggi.')}
+                        </p>
+                    </motion.div>
                 </div>
             </div>
 

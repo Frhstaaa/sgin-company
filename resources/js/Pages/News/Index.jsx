@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Head, Link, router } from '@inertiajs/react';
+import { Head, Link, router, usePage } from '@inertiajs/react';
 import AppLayout from '../../Layouts/AppLayout';
 import { useLanguage } from '../../Context/LanguageContext';
 import { Newspaper, Calendar, Search, ArrowRight, ChevronRight, Tag } from 'lucide-react';
@@ -7,6 +7,8 @@ import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
 
 export default function NewsIndex({ news, filters = {} }) {
+    const { props = {} } = usePage();
+    const siteSettings = props.siteSettings || {};
     const { t, lang, translateModel } = useLanguage();
     const [search, setSearch] = useState(filters.search || '');
 
@@ -17,16 +19,21 @@ export default function NewsIndex({ news, filters = {} }) {
 
     return (
         <AppLayout>
-            <Head title={`${t('news_title', 'Update Berita Terkini & Informasi Perusahaan')} | PT. Sugiyama Indonesia`} />
+            <Head title={`${siteSettings.news_hero_title || t('news_title', 'Update Berita Terkini & Informasi Perusahaan')} | ${siteSettings.site_name || 'PT. Sugiyama Indonesia'}`} />
 
-            <div className="bg-emerald-950 text-white pt-32 pb-16 relative overflow-hidden">
+            <div className="bg-emerald-950 text-white pt-28 pb-12 sm:pt-32 sm:pb-16 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <span className="text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                        {t('news_badge', 'Berita & Informasi / お知らせ')}
-                    </span>
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-2">
-                        {t('news_title', 'Update Berita Terkini & Informasi Perusahaan')}
-                    </h1>
+                    <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{duration:0.6}}>
+                        <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
+                            {siteSettings.news_hero_badge || t('news_badge', 'BERITA & PENGUMUMAN / ニュース')}
+                        </span>
+                        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
+                            {siteSettings.news_hero_title || t('news_title', 'Update Berita Terkini & Informasi Perusahaan')}
+                        </h1>
+                        <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
+                            {siteSettings.news_hero_lead || 'Kabar korporasi, pencapaian sertifikasi mutu, agenda kegiatan, dan teknologi terkini.'}
+                        </p>
+                    </motion.div>
                 </div>
             </div>
 

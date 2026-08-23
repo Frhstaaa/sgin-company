@@ -144,5 +144,9 @@ Route::prefix('admin')->group(function () {
         // Site Settings
         Route::get('/settings', [AdminSettingController::class, 'index'])->name('settings.index');
         Route::post('/settings', [AdminSettingController::class, 'update'])->name('settings.update');
+
+        // Page Banners Management
+        Route::get('/page-banners', [AdminPageBannerController::class, 'index'])->name('page-banners.index');
+        Route::post('/page-banners', [AdminPageBannerController::class, 'update'])->name('page-banners.update');
     });
 });

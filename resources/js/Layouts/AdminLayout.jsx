@@ -4,7 +4,7 @@ import {
     LayoutDashboard, Image, BarChart3, Cpu, Briefcase, 
     Cog, Package, FolderTree, Building2, Newspaper, 
     UserCheck, Inbox, Settings, LogOut, Menu, X, 
-    CheckCircle2, AlertCircle, ExternalLink, ChevronRight, User, ShieldCheck
+    CheckCircle2, AlertCircle, ExternalLink, ChevronRight, User, ShieldCheck, LayoutTemplate
 } from 'lucide-react';
 
 export default function AdminLayout({ children, title = 'Admin Dashboard' }) {
@@ -34,6 +34,7 @@ export default function AdminLayout({ children, title = 'Admin Dashboard' }) {
     const navigation = [
         { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard, active: currentUrl === '/admin/dashboard' },
         { name: 'Hero Sliders', href: '/admin/hero', icon: Image, active: currentUrl.startsWith('/admin/hero') },
+        { name: 'Banner Halaman', href: '/admin/page-banners', icon: LayoutTemplate, active: currentUrl.startsWith('/admin/page-banners') },
         { name: 'Statistik', href: '/admin/stats', icon: BarChart3, active: currentUrl.startsWith('/admin/stats') },
         { name: 'Pilar Teknologi', href: '/admin/technologies', icon: Cpu, active: currentUrl.startsWith('/admin/technologies') },
         { name: 'Unit Bisnis', href: '/admin/business-units', icon: Briefcase, active: currentUrl.startsWith('/admin/business-units') },

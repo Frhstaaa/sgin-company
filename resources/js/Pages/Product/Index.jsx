@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Head, Link, router } from '@inertiajs/react';
+import { Head, Link, router, usePage } from '@inertiajs/react';
 import AppLayout from '../../Layouts/AppLayout';
 import { useLanguage } from '../../Context/LanguageContext';
 import { Package, Search, ArrowRight, ShieldCheck, Filter, Send } from 'lucide-react';
@@ -7,6 +7,8 @@ import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
 
 export default function ProductIndex({ products, categories = [], filters = {} }) {
+    const { props = {} } = usePage();
+    const siteSettings = props.siteSettings || {};
     const { t, lang } = useLanguage();
     const [search, setSearch] = useState(filters.search || '');
     const [selectedCategory, setSelectedCategory] = useState(filters.category || '');
@@ -23,22 +25,22 @@ export default function ProductIndex({ products, categories = [], filters = {} }
 
     return (
         <AppLayout>
-            <Head title={`${t('prd_header_title', 'Katalog Komponen & Suku Cadang Presisi')} | PT. Sugiyama Indonesia`} />
+            <Head title={`${siteSettings.product_hero_title || t('prd_header_title', 'Katalog Komponen & Suku Cadang Presisi')} | ${siteSettings.site_name || 'PT. Sugiyama Indonesia'}`} />
 
             {/* Header */}
             <div className="bg-emerald-950 text-white pt-28 pb-12 sm:pt-32 sm:pb-16 relative overflow-hidden">
-<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{duration:0.6}}>
-<span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                        {t('split_prd_sub', 'Suku Cadang & Komponen Presisi')}
-                    </span>
-<h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                        {t('prd_header_title', 'Katalog Komponen & Suku Cadang Presisi')}
-                    </h1>
-<p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                        {t('prd_header_desc', 'Solusi penempaan dingin dan permesinan presisi untuk industri otomotif, kendaraan listrik (EV), robotik, dan permesinan industri.')}
-                    </p>
-</motion.div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{duration:0.6}}>
+                        <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
+                            {siteSettings.product_hero_badge || t('split_prd_sub', 'KATALOG PRODUK / 製品紹介')}
+                        </span>
+                        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
+                            {siteSettings.product_hero_title || t('prd_header_title', 'Katalog Komponen & Suku Cadang Presisi')}
+                        </h1>
+                        <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
+                            {siteSettings.product_hero_lead || t('prd_header_desc', 'Solusi penempaan dingin dan permesinan presisi untuk industri otomotif, kendaraan listrik (EV), robotik, dan permesinan industri.')}
+                        </p>
+                    </motion.div>
                 </div>
             </div>
 
