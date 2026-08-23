@@ -14,7 +14,7 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
         root.render(
-            <LanguageProvider>
+            <LanguageProvider initialPageProps={props.initialPage?.props}>
                 <App {...props} />
             </LanguageProvider>
         );

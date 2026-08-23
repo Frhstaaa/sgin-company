@@ -1,12 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { usePage, router } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 import { translations, modelTranslations } from '../translations';
 
 const LanguageContext = createContext();
 
-export function LanguageProvider({ children }) {
-    const pageProps = usePage()?.props || {};
-    const serverLocale = pageProps.locale || 'id';
+export function LanguageProvider({ children, initialPageProps = {} }) {
+    const [pageProps, setPageProps] = useState(initialPageProps || {});
+
+    const serverLocale = initialPageProps?.locale || 'id';
 
     const [lang, setLangState] = useState(() => {
         if (typeof window !== 'undefined') {
@@ -18,17 +19,28 @@ export function LanguageProvider({ children }) {
         return serverLocale;
     });
 
-    // Synchronize if server locale changes
+    // Listen to Inertia page navigations to keep shared translations in sync
     useEffect(() => {
-        if (pageProps.locale && ['id', 'en', 'ja'].includes(pageProps.locale)) {
-            if (pageProps.locale !== lang) {
-                setLangState(pageProps.locale);
-                if (typeof window !== 'undefined') {
-                    localStorage.setItem('sugiyama_lang', pageProps.locale);
+        const removeListener = router.on('navigate', (event) => {
+            if (event.detail?.page?.props) {
+                const nextProps = event.detail.page.props;
+                setPageProps(nextProps);
+                
+                if (nextProps.locale && ['id', 'en', 'ja'].includes(nextProps.locale)) {
+                    setLangState(nextProps.locale);
+                    if (typeof window !== 'undefined') {
+                        localStorage.setItem('sugiyama_lang', nextProps.locale);
+                    }
                 }
             }
-        }
-    }, [pageProps.locale]);
+        });
+
+        return () => {
+            if (typeof removeListener === 'function') {
+                removeListener();
+            }
+        };
+    }, []);
 
     const setLang = (newLang) => {
         if (['id', 'en', 'ja'].includes(newLang)) {
@@ -51,7 +63,7 @@ export function LanguageProvider({ children }) {
      */
     const t = (key, fallback = '') => {
         // 1. Check Laravel server shared translations for current locale
-        if (pageProps.translations && pageProps.translations[key] !== undefined) {
+        if (pageProps?.translations && pageProps.translations[key] !== undefined) {
             return pageProps.translations[key];
         }
 
