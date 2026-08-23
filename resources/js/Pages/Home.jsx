@@ -6,7 +6,7 @@ import YouTubeEmbed from '../Components/YouTubeEmbed';
 import { 
     Calendar, Globe, Cpu, ArrowRight, ChevronRight, ChevronLeft, Phone, 
     ShieldCheck, Sparkles, Building2, Layers, CheckCircle2,
-    Cog, ExternalLink, ArrowUpRight, Award, Flame, Zap
+    Cog, ExternalLink, ArrowUpRight, Award, Flame, Zap, Workflow, Package
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../Components/ScrollReveal';
@@ -35,6 +35,55 @@ export default function Home({
         if (businesses.length === 0) return;
         setActiveBizIndex((prev) => (prev - 1 + businesses.length) % businesses.length);
     };
+
+    const defaultFeaturedProducts = [
+        {
+            id: 1,
+            slug: 'precision-flange-shaft-pinion',
+            name: 'Precision Flange Shaft Pinion',
+            name_jp: '高強度フランジシャフト',
+            image_url: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=600&auto=format&fit=crop',
+            category: { name: 'Powertrain Transmission', name_jp: '駆動系部品' },
+            material: 'SCr420H / SCM435',
+            tolerance: '±0.005 mm',
+            application: 'Automatic Transmission & Powertrain',
+        },
+        {
+            id: 2,
+            slug: 'hollow-stepped-rivet-shaft',
+            name: 'Hollow Stepped Rivet Shaft',
+            name_jp: '中空段付きシャフト',
+            image_url: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=600&auto=format&fit=crop',
+            category: { name: 'Steering Column System', name_jp: 'ステアリング部品' },
+            material: 'SWCH10R / 1018 Steel',
+            tolerance: '±0.008 mm',
+            application: 'EPS Steering Column Assembly',
+        },
+        {
+            id: 3,
+            slug: 'ev-inverter-copper-busbar-terminal',
+            name: 'EV Inverter Copper Busbar Terminal',
+            name_jp: 'EVインバータ用高純度銅端子',
+            image_url: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop',
+            category: { name: 'EV & Electrical Components', name_jp: 'EV・電装部品' },
+            material: 'C1100 Oxygen-Free Copper',
+            tolerance: '±0.005 mm',
+            application: 'High-Voltage Battery Pack & Inverter',
+        },
+        {
+            id: 4,
+            slug: 'ultra-precision-micro-gear-blank',
+            name: 'Ultra-Precision Micro Gear Blank',
+            name_jp: '精密マイクロギヤブランク',
+            image_url: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=600&auto=format&fit=crop',
+            category: { name: 'Robotics & Actuators', name_jp: 'ロボティクス・駆動要素' },
+            material: 'SNCM220 / SUJ2',
+            tolerance: '±0.003 mm',
+            application: 'Industrial Servo Motors & Actuators',
+        },
+    ];
+
+    const displayProducts = (featuredProducts && featuredProducts.length > 0) ? featuredProducts : defaultFeaturedProducts;
 
     const rawActiveSlide = heroSlides[0] || {
         title_jp: '技術を鍛え 未来を造る',
@@ -499,76 +548,242 @@ export default function Home({
             </section>
 
             {/* ========================================================================= */}
-            {/* 5. SPLIT HIGHLIGHT BANNERS */}
+            {/* 5. FASILITAS MESIN & PROSES PRODUKSI TERPADU */}
             {/* ========================================================================= */}
-            <section className="py-8 md:py-12 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                        {/* Process & Equipment Card */}
-                        <div className="relative rounded-2xl overflow-hidden shadow-lg group min-h-[280px] sm:min-h-[360px] flex flex-col justify-end p-6 sm:p-10 text-white">
-                            <div className="absolute inset-0 z-0 bg-slate-950">
-                                <img 
-                                    src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop" 
-                                    alt="Proses & Peralatan Sugiyama" 
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-slate-950/60 to-transparent" />
-                            </div>
+            <section className="py-16 md:py-24 bg-gradient-to-b from-white to-slate-50 border-t border-slate-200/70">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                    <div className="text-center max-w-3xl mx-auto space-y-3">
+                        <span className="text-[10px] sm:text-xs font-bold text-emerald-700 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/60 inline-block">
+                            {t('home_eq_badge', 'Fasilitas & Proses / 設備・製造工程')}
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+                            {t('home_eq_title', 'Fasilitas Mesin & Alur Proses Produksi Presisi')}
+                        </h2>
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
+                            {t('home_eq_desc', 'Didukung armada multi-station cold former 6-Die berkecepatan tinggi, pusat bubut CNC 5-sumbu, dan laboratorium inspeksi mutu CMM 3D.')}
+                        </p>
+                    </div>
 
-                            <div className="relative z-10 space-y-2 sm:space-y-3">
-                                <span className="px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-emerald-500/30 border border-emerald-400/40 text-emerald-300 text-[10px] sm:text-[11px] font-bold">
-                                    {t('split_eq_sub', 'Fasilitas & Mesin Manufaktur')}
-                                </span>
-                                <h3 className="text-xl sm:text-3xl font-extrabold text-white">
-                                    {t('split_eq_title', 'Proses & Peralatan')}
-                                </h3>
-                                <p className="text-[11px] sm:text-sm text-slate-200 leading-relaxed max-w-md">
-                                    {t('split_eq_desc', 'Dilengkapi mesin multi-station cold former 6-Die, pusat bubut CNC 5-sumbu, dan laboratorium metrologi CMM 3D.')}
-                                </p>
-                                <div className="pt-2 sm:pt-3">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                        {/* Card A: Mesin & Peralatan */}
+                        <ScrollReveal delay={0.1}>
+                            <div className="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-slate-200 group flex flex-col justify-between h-full transition-all duration-300 bg-slate-950 text-white min-h-[420px]">
+                                <div className="absolute inset-0 z-0">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop" 
+                                        alt="Fasilitas Mesin Sugiyama" 
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-40"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-emerald-950/40" />
+                                </div>
+
+                                <div className="relative z-10 p-6 sm:p-8 space-y-4">
+                                    <div className="flex items-center justify-between">
+                                        <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold flex items-center gap-1.5 backdrop-blur-xs">
+                                            <Cog className="w-3.5 h-3.5" />
+                                            <span>{t('eq_header_title', 'Fasilitas Peralatan & Mesin')}</span>
+                                        </span>
+                                        <span className="text-xs font-jp text-slate-400">設備紹介</span>
+                                    </div>
+
+                                    <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">
+                                        {t('home_eq_title', 'Armada Mesin Penempaan & CNC Multi-Axis')}
+                                    </h3>
+                                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                        Kombinasi mesin penempa dingin 6-Die berkecepatan 180 pcs/menit dan mesin CNC bubut 5-axis untuk menghasilkan komponen net-shape tanpa pemborosan material.
+                                    </p>
+
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                                        <div className="p-3 rounded-xl bg-white/10 backdrop-blur-xs border border-white/10 space-y-1">
+                                            <p className="text-[10px] text-emerald-300 font-bold uppercase">Cold Former 6-Die</p>
+                                            <p className="text-xs font-semibold text-white">Kecepatan Max 180 ppm</p>
+                                        </div>
+                                        <div className="p-3 rounded-xl bg-white/10 backdrop-blur-xs border border-white/10 space-y-1">
+                                            <p className="text-[10px] text-emerald-300 font-bold uppercase">5-Axis CNC Turning</p>
+                                            <p className="text-xs font-semibold text-white">Toleransi Presisi ±0.005mm</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="relative z-10 p-6 sm:p-8 pt-0">
                                     <Link
                                         href="/peralatan"
-                                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-slate-950 hover:bg-emerald-50 font-bold text-[10px] sm:text-xs uppercase tracking-wider transition-colors shadow-md"
+                                        className="inline-flex items-center justify-between w-full px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md hover:shadow-emerald-600/40"
                                     >
-                                        <span>{t('split_eq_btn', 'Lihat Fasilitas')}</span>
-                                        <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                                        <span>{t('home_eq_btn', 'Lihat Semua Fasilitas Mesin')}</span>
+                                        <ArrowRight className="w-4 h-4" />
                                     </Link>
                                 </div>
                             </div>
-                        </div>
+                        </ScrollReveal>
 
-                        {/* Products Catalog Card */}
-                        <div className="relative rounded-2xl overflow-hidden shadow-lg group min-h-[280px] sm:min-h-[360px] flex flex-col justify-end p-6 sm:p-10 text-white">
-                            <div className="absolute inset-0 z-0 bg-slate-950">
-                                <img 
-                                    src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop" 
-                                    alt="Katalog Produk Sugiyama" 
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-60"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-slate-950/60 to-transparent" />
-                            </div>
+                        {/* Card B: Alur Proses Produksi */}
+                        <ScrollReveal delay={0.2}>
+                            <div className="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-slate-200 group flex flex-col justify-between h-full transition-all duration-300 bg-slate-950 text-white min-h-[420px]">
+                                <div className="absolute inset-0 z-0">
+                                    <img 
+                                        src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=1200&auto=format&fit=crop" 
+                                        alt="Alur Proses Produksi Sugiyama" 
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-40"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-emerald-950/40" />
+                                </div>
 
-                            <div className="relative z-10 space-y-2 sm:space-y-3">
-                                <span className="px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-emerald-500/30 border border-emerald-400/40 text-emerald-300 text-[10px] sm:text-[11px] font-bold">
-                                    {t('split_prd_sub', 'Suku Cadang & Komponen Presisi')}
-                                </span>
-                                <h3 className="text-xl sm:text-3xl font-extrabold text-white">
-                                    {t('split_prd_title', 'Katalog Produk')}
-                                </h3>
-                                <p className="text-[11px] sm:text-sm text-slate-200 leading-relaxed max-w-md">
-                                    {t('split_prd_desc', 'Suku cadang powertrain otomotif, shaft pinion, terminal tembaga inverter EV, dan fastener khusus industri.')}
-                                </p>
-                                <div className="pt-2 sm:pt-3">
+                                <div className="relative z-10 p-6 sm:p-8 space-y-4">
+                                    <div className="flex items-center justify-between">
+                                        <span className="px-3 py-1 rounded-full bg-teal-500/20 border border-teal-400/40 text-teal-300 text-xs font-bold flex items-center gap-1.5 backdrop-blur-xs">
+                                            <Workflow className="w-3.5 h-3.5" />
+                                            <span>{t('home_proc_badge', 'Proses Produksi / 製造工程')}</span>
+                                        </span>
+                                        <span className="text-xs font-jp text-slate-400">製造工程</span>
+                                    </div>
+
+                                    <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">
+                                        {t('home_proc_title', 'Alur Rekayasa & Standar Mutu IATF 16949')}
+                                    </h3>
+                                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                        Pengawasan kualitas ketat dari material kawat baja bersertifikat, penempaan dingin terkontrol, hingga inspeksi koordinat 3D CMM sub-mikron.
+                                    </p>
+
+                                    <div className="space-y-2 pt-2">
+                                        <div className="flex items-center gap-2 text-xs text-slate-200">
+                                            <span className="w-5 h-5 rounded-full bg-emerald-500/30 text-emerald-300 font-mono font-bold text-[10px] flex items-center justify-center shrink-0">1</span>
+                                            <span>Persiapan & Uji Metalurgi Kawat Baja</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-xs text-slate-200">
+                                            <span className="w-5 h-5 rounded-full bg-emerald-500/30 text-emerald-300 font-mono font-bold text-[10px] flex items-center justify-center shrink-0">2</span>
+                                            <span>Net-Shape Cold Forging Tanpa Pemanasan</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-xs text-slate-200">
+                                            <span className="w-5 h-5 rounded-full bg-emerald-500/30 text-emerald-300 font-mono font-bold text-[10px] flex items-center justify-center shrink-0">3</span>
+                                            <span>Quality Control 100% Berstandar Jepang</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="relative z-10 p-6 sm:p-8 pt-0">
                                     <Link
-                                        href="/produk"
-                                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-[10px] sm:text-xs uppercase tracking-wider transition-colors shadow-md"
+                                        href="/proses-produksi"
+                                        className="inline-flex items-center justify-between w-full px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md"
                                     >
-                                        <span>{t('split_prd_btn', 'Katalog Produk')}</span>
-                                        <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                                        <span>{t('home_proc_btn', 'Pelajari 5 Tahap Proses Produksi')}</span>
+                                        <ArrowRight className="w-4 h-4" />
                                     </Link>
                                 </div>
                             </div>
+                        </ScrollReveal>
+                    </div>
+                </div>
+            </section>
+
+            {/* ========================================================================= */}
+            {/* 6. KATALOG PRODUK UNGGULAN SECTION */}
+            {/* ========================================================================= */}
+            <section className="py-16 md:py-24 bg-slate-950 text-white relative overflow-hidden">
+                {/* Subtle Ambient Background Gradients */}
+                <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-teal-600/10 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                        <div className="space-y-3 max-w-2xl">
+                            <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 inline-block">
+                                {t('home_prd_badge', 'Katalog Produk / 製品情報')}
+                            </span>
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight">
+                                {t('home_prd_title', 'Komponen Presisi Otomotif & Elektrifikasi EV')}
+                            </h2>
+                            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                                {t('home_prd_desc', 'Suku cadang powertrain otomotif, stepped rivet shaft, terminal tembaga inverter EV, dan micro gear berstandar mutu tinggi Jepang.')}
+                            </p>
                         </div>
+
+                        <div className="shrink-0 flex items-center gap-3">
+                            <Link
+                                href="/produk"
+                                className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-emerald-600/30"
+                            >
+                                <span>{t('home_prd_view_all', 'Lihat Semua Produk')}</span>
+                                <ArrowRight className="w-4 h-4" />
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Featured Products Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {displayProducts.slice(0, 4).map((rawPrd, idx) => {
+                            const prd = translateModel(rawPrd, 'product');
+                            const categoryName = prd.category?.name || 'Precision Component';
+
+                            return (
+                                <ScrollReveal key={prd.id || idx} delay={idx * 0.1}>
+                                    <Link
+                                        href={`/produk/${prd.slug}`}
+                                        className="group bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-emerald-400/50 p-4 transition-all duration-300 flex flex-col justify-between h-full hover:shadow-2xl hover:shadow-emerald-950/50 block"
+                                    >
+                                        <div className="space-y-4">
+                                            <div className="relative aspect-square rounded-xl overflow-hidden bg-slate-900">
+                                                <img 
+                                                    src={prd.image_url} 
+                                                    alt={prd.name} 
+                                                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
+                                                />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
+                                                <div className="absolute top-2.5 left-2.5">
+                                                    <span className="px-2 py-0.5 rounded-md bg-emerald-900/90 text-emerald-200 text-[10px] font-bold border border-emerald-500/30 backdrop-blur-xs">
+                                                        {categoryName}
+                                                    </span>
+                                                </div>
+                                                {prd.tolerance && (
+                                                    <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[10px] text-slate-300 font-mono">
+                                                        <span className="bg-black/60 px-2 py-0.5 rounded backdrop-blur-xs">Toleransi: {prd.tolerance}</span>
+                                                    </div>
+                                                )}
+                                            </div>
+
+                                            <div className="space-y-1.5">
+                                                <h3 className="font-bold text-sm sm:text-base text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
+                                                    {prd.name}
+                                                </h3>
+                                                {prd.name_jp && lang !== 'ja' && (
+                                                    <p className="text-[11px] text-slate-400 font-jp line-clamp-1">{prd.name_jp}</p>
+                                                )}
+                                                {prd.application && (
+                                                    <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                                                        {prd.application}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </div>
+
+                                        <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-emerald-400 group-hover:text-emerald-300">
+                                            <span>{t('prd_btn_detail', 'Lihat Detail Komponen')}</span>
+                                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                                        </div>
+                                    </Link>
+                                </ScrollReveal>
+                            );
+                        })}
+                    </div>
+
+                    {/* RFQ Callout Strip */}
+                    <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-900/80 via-emerald-950 to-slate-900 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xl">
+                        <div className="space-y-1.5">
+                            <h4 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                                <Sparkles className="w-5 h-5 text-emerald-400" />
+                                <span>Butuh Komponen Kustom dengan Gambar Teknik 2D/3D CAD?</span>
+                            </h4>
+                            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                                Tim rekayasa kami siap menganalisis efisiensi biaya penempaan dingin dan kelayakan manufaktur komponen Anda.
+                            </p>
+                        </div>
+                        <Link
+                            href="/kontak?type=rfq"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-emerald-950 hover:bg-emerald-50 font-bold text-xs uppercase tracking-wider transition-all shadow-md shrink-0"
+                        >
+                            <span>{t('home_prd_rfq_btn', 'Minta Penawaran Harga (RFQ)')}</span>
+                            <ArrowRight className="w-4 h-4" />
+                        </Link>
                     </div>
                 </div>
             </section>

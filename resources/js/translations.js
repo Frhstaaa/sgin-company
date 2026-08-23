@@ -112,6 +112,21 @@ export const translations = {
         prd_rfq_title: 'Butuh Penawaran untuk Part Ini?',
         prd_rfq_desc: 'Kirimkan estimasi kebutuhan volume tahunan dan gambar teknis untuk penawaran harga terbaik.',
 
+        // Home Redesign Highlights
+        home_eq_badge: 'Fasilitas & Mesin / 設備紹介',
+        home_eq_title: 'Fasilitas Mesin & Peralatan Presisi',
+        home_eq_desc: 'Didukung armada multi-station cold former 6-Die berkecepatan tinggi, pusat bubut CNC 5-sumbu, dan laboratorium inspeksi mutu CMM 3D.',
+        home_eq_btn: 'Lihat Semua Fasilitas Mesin',
+        home_proc_badge: 'Proses Produksi / 製造工程',
+        home_proc_title: 'Alur Rekayasa & Proses Produksi',
+        home_proc_desc: 'Alur manufaktur terintegrasi mulai dari penempaan dingin presisi, permesinan CNC, perlakuan panas, hingga audit mutu bersertifikat IATF 16949.',
+        home_proc_btn: 'Pelajari 5 Tahap Proses Produksi',
+        home_prd_badge: 'Katalog Produk / 製品情報',
+        home_prd_title: 'Komponen Presisi Otomotif & Elektrifikasi EV',
+        home_prd_desc: 'Suku cadang powertrain otomotif, stepped rivet shaft, terminal tembaga inverter EV, dan micro gear berstandar mutu tinggi Jepang.',
+        home_prd_view_all: 'Lihat Semua Katalog Produk',
+        home_prd_rfq_btn: 'Minta Penawaran Harga (RFQ)',
+
         // About / President
         about_badge: 'Tentang Kami / 会社概要',
         about_title: 'Keahlian Presisi Jepang Berstandar Global',
@@ -349,6 +364,21 @@ export const translations = {
         prd_rfq_title: 'Need a Quote for This Part?',
         prd_rfq_desc: 'Submit your estimated annual volume and technical drawings for the best price estimation.',
 
+        // Home Redesign Highlights
+        home_eq_badge: 'Machinery & Equipment / 設備紹介',
+        home_eq_title: 'Advanced Machinery & Precision Facilities',
+        home_eq_desc: 'Powered by high-speed 6-die multi-station cold formers, 5-axis CNC turning centers, and 3D CMM metrology inspection labs.',
+        home_eq_btn: 'View All Production Machinery',
+        home_proc_badge: 'Manufacturing Process / 製造工程',
+        home_proc_title: 'Integrated Engineering & Production Flow',
+        home_proc_desc: 'End-to-end manufacturing workflow from precision cold forging, CNC finishing, heat treatment, to IATF 16949 quality audits.',
+        home_proc_btn: 'Explore 5-Stage Production Flow',
+        home_prd_badge: 'Product Catalog / 製品情報',
+        home_prd_title: 'Precision Automotive & EV Components',
+        home_prd_desc: 'Automotive transmission powertrain parts, stepped rivet shafts, EV inverter copper busbars, and precision micro gears.',
+        home_prd_view_all: 'View Full Product Catalog',
+        home_prd_rfq_btn: 'Request for Quotation (RFQ)',
+
         // About / President
         about_badge: 'About Us / 会社概要',
         about_title: 'Japanese Precision Craftsmanship on a Global Scale',
@@ -585,6 +615,21 @@ export const translations = {
         prd_back_all: '製品カタログ一覧に戻る',
         prd_rfq_title: '本製品のお見積り・仕様相談',
         prd_rfq_desc: '年間想定ロット数や図面データを添えてお問い合わせいただければ、迅速にお見積りいたします。',
+
+        // Home Redesign Highlights
+        home_eq_badge: '設備紹介 / EQUIPMENT',
+        home_eq_title: '最新鋭の加工設備・検査機器',
+        home_eq_desc: '6段多段式高速フォーマー、5軸複合CNC旋盤、3次元座標測定機（CMM）など最新鋭の設備群を配備。',
+        home_eq_btn: '設備・機器一覧を見る',
+        home_proc_badge: '製造工程 / PROCESS',
+        home_proc_title: '一貫した精密製造プロセス',
+        home_proc_desc: '冷間鍛造から二次CNC切削、熱処理、表面処理、IATF 16949認証全数検査までの一貫した品質管理体制。',
+        home_proc_btn: '製造工程の5段階を見る',
+        home_prd_badge: '製品情報 / PRODUCTS',
+        home_prd_title: '高精度自動車・EV向け精密鍛造部品',
+        home_prd_desc: '駆動系トランスミッションシャフト、ステアリング部品、EVインバータ銅端子、精密マイクロギヤ。',
+        home_prd_view_all: '製品カタログ一覧へ',
+        home_prd_rfq_btn: 'お見積り・図面相談（RFQ）',
 
         // About / President
         about_badge: '会社概要 / ABOUT US',
