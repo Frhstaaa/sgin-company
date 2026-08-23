@@ -142,106 +142,99 @@ export default function Home({
             </section>
 
             {/* ========================================================================= */}
-            {/* 2. STATS SECTION */}
+            {/* 2. STATS SECTION (Dynamic from /admin/stats) */}
             {/* ========================================================================= */}
             <section className="bg-slate-50 pt-24 sm:pt-28 pb-20 border-b border-slate-200/60 relative z-10">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                        {/* Stat 1: Established Year */}
-                        <ScrollReveal delay={0.1}>
-                            <div className="group bg-white p-5 sm:p-8 rounded-2xl shadow-xs hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200 flex flex-col justify-between h-full">
-                            <div className="space-y-3 sm:space-y-4">
-                                <div className="flex items-center justify-between">
-                                    <span className="text-[10px] sm:text-xs font-bold font-jp text-slate-400 uppercase tracking-wider">
-                                        創業年 / ESTABLISHED
-                                    </span>
-                                    <div className="p-1.5 sm:p-2 rounded-xl bg-emerald-50 text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors">
-                                        <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5 sm:mb-1">
-                                        {t('stat_est_title', 'Tahun Berdiri')}
-                                    </h3>
-                                    <div className="flex items-baseline gap-1 text-slate-900 font-extrabold tracking-tight">
-                                        <span className="text-2xl sm:text-3xl lg:text-4xl text-emerald-800 font-display font-black leading-tight">
-                                            {t('stat_est_val', '1952')}
-                                        </span>
-                                        <span className="text-lg text-emerald-700 font-jp font-bold">
-                                            {t('stat_est_unit', '年')}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="pt-3 mt-3 sm:pt-4 sm:mt-4 border-t border-slate-100 flex items-center justify-between text-[10px] sm:text-xs text-slate-500 font-medium">
-                                <span>{t('stat_est_sub', 'Lebih dari 70 tahun dedikasi presisi')}</span>
-                                <ChevronRight className="w-4 h-4 text-emerald-600 group-hover:translate-x-1 transition-transform" />
-                            </div>
-                        </div>
-                        </ScrollReveal>
+                        {stats && stats.length > 0 ? (
+                            stats.map((st, idx) => {
+                                const statTitle = lang === 'ja' && st.title_jp ? st.title_jp : (st.title_id || st.title || '');
+                                const badgeTitle = st.title_jp ? `${st.title_jp} / ${(st.title_id || '').toUpperCase()}` : (st.title_id || 'STATISTIK');
+                                
+                                const renderStatIcon = (iconName) => {
+                                    switch (iconName) {
+                                        case 'calendar': return <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />;
+                                        case 'globe': return <Globe className="w-5 h-5 sm:w-6 sm:h-6" />;
+                                        case 'cpu': return <Cpu className="w-5 h-5 sm:w-6 sm:h-6" />;
+                                        case 'award': return <Award className="w-5 h-5 sm:w-6 sm:h-6" />;
+                                        default: return <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />;
+                                    }
+                                };
 
-                        {/* Stat 2: Operational Bases */}
-                        <ScrollReveal delay={0.2}>
-                            <div className="group bg-white p-5 sm:p-8 rounded-2xl shadow-xs hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200 flex flex-col justify-between h-full">
-                            <div className="space-y-3 sm:space-y-4">
-                                <div className="flex items-center justify-between">
-                                    <span className="text-[10px] sm:text-xs font-bold font-jp text-slate-400 uppercase tracking-wider">
-                                        拠点数 / GLOBAL BASES
-                                    </span>
-                                    <div className="p-1.5 sm:p-2 rounded-xl bg-emerald-50 text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors">
-                                        <Globe className="w-5 h-5 sm:w-6 sm:h-6" />
+                                return (
+                                    <ScrollReveal key={st.id || idx} delay={0.1 * (idx + 1)}>
+                                        <div className="group bg-white p-5 sm:p-8 rounded-2xl shadow-xs hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200 flex flex-col justify-between h-full">
+                                            <div className="space-y-3 sm:space-y-4">
+                                                <div className="flex items-center justify-between">
+                                                    <span className="text-[10px] sm:text-xs font-bold font-jp text-slate-400 uppercase tracking-wider">
+                                                        {badgeTitle}
+                                                    </span>
+                                                    <div className="p-1.5 sm:p-2 rounded-xl bg-emerald-50 text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors">
+                                                        {renderStatIcon(st.icon)}
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h3 className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5 sm:mb-1">
+                                                        {statTitle}
+                                                    </h3>
+                                                    <div className="flex items-baseline gap-1 text-slate-900 font-extrabold tracking-tight">
+                                                        <span className="text-2xl sm:text-3xl lg:text-4xl text-emerald-800 font-display font-black leading-tight">
+                                                            {st.value}
+                                                        </span>
+                                                        {st.unit && (
+                                                            <span className="text-lg text-emerald-700 font-jp font-bold">
+                                                                {st.unit}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {st.subtext && (
+                                                <div className="pt-3 mt-3 sm:pt-4 sm:mt-4 border-t border-slate-100 flex items-center justify-between text-[10px] sm:text-xs text-slate-500 font-medium line-clamp-1">
+                                                    <span>{st.subtext}</span>
+                                                    <ChevronRight className="w-4 h-4 text-emerald-600 group-hover:translate-x-1 transition-transform shrink-0" />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </ScrollReveal>
+                                );
+                            })
+                        ) : (
+                            <>
+                                <ScrollReveal delay={0.1}>
+                                    <div className="group bg-white p-5 sm:p-8 rounded-2xl shadow-xs hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200 flex flex-col justify-between h-full">
+                                        <div className="space-y-3 sm:space-y-4">
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-[10px] sm:text-xs font-bold font-jp text-slate-400 uppercase tracking-wider">
+                                                    創業年 / ESTABLISHED
+                                                </span>
+                                                <div className="p-1.5 sm:p-2 rounded-xl bg-emerald-50 text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors">
+                                                    <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h3 className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5 sm:mb-1">
+                                                    {t('stat_est_title', 'Tahun Berdiri')}
+                                                </h3>
+                                                <div className="flex items-baseline gap-1 text-slate-900 font-extrabold tracking-tight">
+                                                    <span className="text-2xl sm:text-3xl lg:text-4xl text-emerald-800 font-display font-black leading-tight">
+                                                        {t('stat_est_val', '1952')}
+                                                    </span>
+                                                    <span className="text-lg text-emerald-700 font-jp font-bold">
+                                                        {t('stat_est_unit', '年')}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="pt-3 mt-3 sm:pt-4 sm:mt-4 border-t border-slate-100 flex items-center justify-between text-[10px] sm:text-xs text-slate-500 font-medium">
+                                            <span>{t('stat_est_sub', 'Lebih dari 70 tahun dedikasi presisi')}</span>
+                                            <ChevronRight className="w-4 h-4 text-emerald-600 group-hover:translate-x-1 transition-transform" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <h3 className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5 sm:mb-1">
-                                        {t('stat_bases_title', 'Basis Operasional')}
-                                    </h3>
-                                    <div className="flex items-baseline gap-1 text-slate-900 font-extrabold tracking-tight">
-                                        <span className="text-xl sm:text-3xl lg:text-4xl text-emerald-800 font-display font-black leading-tight">
-                                            {t('stat_bases_val', '日本 3 海外 1')}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="pt-3 mt-3 sm:pt-4 sm:mt-4 border-t border-slate-100 flex items-center justify-between text-[10px] sm:text-xs text-slate-500 font-medium">
-                                <span>{t('stat_bases_sub', '3 Pabrik di Jepang & 1 di Indonesia')}</span>
-                                <ChevronRight className="w-4 h-4 text-emerald-600 group-hover:translate-x-1 transition-transform" />
-                            </div>
-                        </div>
-                        </ScrollReveal>
-
-                        {/* Stat 3: Annual Production */}
-                        <ScrollReveal delay={0.3}>
-                            <div className="group bg-white p-5 sm:p-8 rounded-2xl shadow-xs hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200 flex flex-col justify-between h-full">
-                            <div className="space-y-3 sm:space-y-4">
-                                <div className="flex items-center justify-between">
-                                    <span className="text-[10px] sm:text-xs font-bold font-jp text-slate-400 uppercase tracking-wider">
-                                        年間生産数 / ANNUAL OUTPUT
-                                    </span>
-                                    <div className="p-1.5 sm:p-2 rounded-xl bg-emerald-50 text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors">
-                                        <Cpu className="w-5 h-5 sm:w-6 sm:h-6" />
-                                    </div>
-                                </div>
-                                <div>
-                                    <h3 className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5 sm:mb-1">
-                                        {t('stat_prod_title', 'Produksi Tahunan')}
-                                    </h3>
-                                    <div className="flex items-baseline gap-1 text-slate-900 font-extrabold tracking-tight">
-                                        <span className="text-2xl sm:text-3xl lg:text-4xl text-emerald-800 font-display font-black leading-tight">
-                                            {t('stat_prod_val', '約 5,000')}
-                                        </span>
-                                        <span className="text-lg text-emerald-700 font-jp font-bold">
-                                            {t('stat_prod_unit', '万個')}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="pt-3 mt-3 sm:pt-4 sm:mt-4 border-t border-slate-100 flex items-center justify-between text-[10px] sm:text-xs text-slate-500 font-medium line-clamp-1">
-                                <span>{t('stat_prod_sub', 'Hingga 50 juta pcs komponen presisi/tahun')}</span>
-                                <ChevronRight className="w-4 h-4 text-emerald-600 group-hover:translate-x-1 transition-transform" />
-                            </div>
-                        </div>
-                        </ScrollReveal>
+                                </ScrollReveal>
+                            </>
+                        )}
                     </div>
                 </div>
             </section>
