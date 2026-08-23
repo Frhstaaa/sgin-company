@@ -12,7 +12,7 @@ class CaptchaService
      */
     public static function generate(string $sessionKey = 'career_captcha'): array
     {
-        // Characters excluding confusing ones like 0/O, 1/I/l
+        // Characters excluding easily confused ones (0/O, 1/I/l)
         $characters = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
         $length = 5;
         $code = '';
@@ -20,7 +20,7 @@ class CaptchaService
             $code .= $characters[random_int(0, strlen($characters) - 1)];
         }
 
-        // Store lowercase in session with timestamp (valid for 15 minutes)
+        // Store in session with timestamp (valid for 15 minutes)
         Session::put($sessionKey, [
             'code' => strtoupper($code),
             'expires_at' => now()->addMinutes(15)->timestamp,
@@ -60,57 +60,58 @@ class CaptchaService
     }
 
     /**
-     * Render SVG with noise lines, dots, and randomized character angles.
+     * Render a sleek, professional Japanese High-Tech Precision Security Token SVG.
      */
     private static function renderSvg(string $code): string
     {
-        $width = 170;
-        $height = 54;
+        $width = 160;
+        $height = 48;
 
-        // Background color
-        $bgColors = ['#0f172a', '#064e3b', '#1e293b', '#022c22'];
-        $bg = $bgColors[array_rand($bgColors)];
+        $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="'.$width.'" height="'.$height.'" viewBox="0 0 '.$width.' '.$height.'" style="display:block;border-radius:10px;user-select:none;-webkit-user-select:none;">';
+        
+        // Definitions for gradients & glow filters
+        $svg .= '<defs>';
+        $svg .= '<linearGradient id="tokenBg" x1="0%" y1="0%" x2="100%" y2="100%">';
+        $svg .= '<stop offset="0%" stop-color="#091e17"/>';
+        $svg .= '<stop offset="50%" stop-color="#042f24"/>';
+        $svg .= '<stop offset="100%" stop-color="#021f18"/>';
+        $svg .= '</linearGradient>';
+        $svg .= '<pattern id="blueprintGrid" width="12" height="12" patternUnits="userSpaceOnUse">';
+        $svg .= '<path d="M 12 0 L 0 0 0 12" fill="none" stroke="#10b981" stroke-width="0.5" stroke-opacity="0.15"/>';
+        $svg .= '</pattern>';
+        $svg .= '</defs>';
 
-        $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="'.$width.'" height="'.$height.'" viewBox="0 0 '.$width.' '.$height.'" style="border-radius:12px;user-select:none;-webkit-user-select:none;">';
-        $svg .= '<rect width="100%" height="100%" fill="'.$bg.'"/>';
+        // Background
+        $svg .= '<rect width="100%" height="100%" fill="url(#tokenBg)" rx="10"/>';
+        $svg .= '<rect width="100%" height="100%" fill="url(#blueprintGrid)" rx="10"/>';
 
-        // Background decorative grid / dots
-        for ($i = 0; $i < 15; $i++) {
-            $cx = random_int(5, $width - 5);
-            $cy = random_int(5, $height - 5);
-            $r = random_int(1, 2);
-            $svg .= '<circle cx="'.$cx.'" cy="'.$cy.'" r="'.$r.'" fill="#34d399" opacity="0.25"/>';
+        // Precision Tick Marks (Top & Bottom edge measurement ticks)
+        for ($x = 10; $x < $width; $x += 15) {
+            $svg .= '<line x1="'.$x.'" y1="0" x2="'.$x.'" y2="3" stroke="#34d399" stroke-width="0.8" opacity="0.3"/>';
+            $svg .= '<line x1="'.$x.'" y1="'.($height - 3).'" x2="'.$x.'" y2="'.$height.'" stroke="#34d399" stroke-width="0.8" opacity="0.3"/>';
         }
 
-        // Noise lines
-        for ($i = 0; $i < 4; $i++) {
-            $x1 = random_int(0, $width);
-            $y1 = random_int(0, $height);
-            $x2 = random_int(0, $width);
-            $y2 = random_int(0, $height);
-            $svg .= '<line x1="'.$x1.'" y1="'.$y1.'" x2="'.$x2.'" y2="'.$y2.'" stroke="#10b981" stroke-width="1.5" opacity="0.35"/>';
-        }
+        // Geometric security arcs / curve
+        $svg .= '<path d="M 0 24 Q 40 8, 80 24 T 160 24" fill="none" stroke="#059669" stroke-width="1.2" opacity="0.3"/>';
+        $svg .= '<path d="M 0 32 Q 50 44, 100 28 T 160 16" fill="none" stroke="#34d399" stroke-width="0.8" opacity="0.25"/>';
 
-        // Render characters with slight offset and rotation
+        // Characters with distinct modern font & vibrant color palette
         $charCount = strlen($code);
-        $spacing = ($width - 30) / $charCount;
-        $textColors = ['#ffffff', '#a7f3d0', '#6ee7b7', '#fef08a', '#e2e8f0'];
+        $spacing = ($width - 24) / $charCount;
+        $palette = ['#ffffff', '#6ee7b7', '#fef08a', '#93c5fd', '#a7f3d0'];
 
         for ($i = 0; $i < $charCount; $i++) {
             $char = $code[$i];
-            $x = 20 + ($i * $spacing) + random_int(-3, 3);
-            $y = 35 + random_int(-3, 3);
-            $angle = random_int(-18, 18);
-            $color = $textColors[$i % count($textColors)];
-            $fontSize = random_int(22, 26);
+            $x = 16 + ($i * $spacing) + random_int(-2, 2);
+            $y = 31 + random_int(-2, 2);
+            $angle = random_int(-12, 12);
+            $color = $palette[$i % count($palette)];
 
-            $svg .= '<text x="'.$x.'" y="'.$y.'" font-family="monospace, Courier, sans-serif" font-size="'.$fontSize.'" font-weight="900" fill="'.$color.'" transform="rotate('.$angle.' '.$x.','.$y.')" letter-spacing="2">'.$char.'</text>';
+            $svg .= '<text x="'.$x.'" y="'.$y.'" font-family="-apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, sans-serif" font-size="21" font-weight="900" fill="'.$color.'" transform="rotate('.$angle.' '.$x.','.$y.')" style="letter-spacing:1px;text-shadow:0 1px 2px rgba(0,0,0,0.5);">'.$char.'</text>';
         }
 
-        // Foreground wave line
-        $ctrlX = random_int(40, $width - 40);
-        $ctrlY = random_int(5, $height - 5);
-        $svg .= '<path d="M 0 '.random_int(15, 35).' Q '.$ctrlX.' '.$ctrlY.' '.$width.' '.random_int(15, 35).'" stroke="#6ee7b7" stroke-width="1.2" fill="none" opacity="0.4"/>';
+        // Precision Corner Badge / Border
+        $svg .= '<rect x="0.5" y="0.5" width="'.($width - 1).'" height="'.($height - 1).'" rx="9.5" fill="none" stroke="#10b981" stroke-width="1" stroke-opacity="0.3"/>';
 
         $svg .= '</svg>';
 
