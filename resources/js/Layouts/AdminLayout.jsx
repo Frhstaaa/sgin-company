@@ -4,7 +4,8 @@ import {
     LayoutDashboard, Image, BarChart3, Cpu, Briefcase, 
     Cog, Package, FolderTree, Building2, Newspaper, 
     UserCheck, Inbox, Settings, LogOut, Menu, X, 
-    CheckCircle2, AlertCircle, ExternalLink, ChevronRight, User, ShieldCheck, LayoutTemplate, Workflow
+    CheckCircle2, AlertCircle, ExternalLink, ChevronRight, User, ShieldCheck, LayoutTemplate, Workflow,
+    Users, KeyRound, Crown, Feather
 } from 'lucide-react';
 
 export default function AdminLayout({ children, title = 'Admin Dashboard' }) {
@@ -12,6 +13,10 @@ export default function AdminLayout({ children, title = 'Admin Dashboard' }) {
     const { auth, flash, siteSettings } = props;
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [toast, setToast] = useState(null);
+
+    const userRoles = auth?.user?.roles || [];
+    const isSuperAdmin = userRoles.includes('Super Admin') || userRoles.length === 0;
+    const isEditor = userRoles.includes('Editor') && !isSuperAdmin && !userRoles.includes('Admin');
 
     useEffect(() => {
         if (flash?.success) {
@@ -39,23 +44,32 @@ export default function AdminLayout({ children, title = 'Admin Dashboard' }) {
 
     const currentUrl = url || '';
 
-    const navigation = [
-        { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard, active: currentUrl === '/admin/dashboard' },
-        { name: 'Hero Sliders', href: '/admin/hero', icon: Image, active: currentUrl.startsWith('/admin/hero') },
-        { name: 'Banner Halaman', href: '/admin/page-banners', icon: LayoutTemplate, active: currentUrl.startsWith('/admin/page-banners') },
-        { name: 'Statistik', href: '/admin/stats', icon: BarChart3, active: currentUrl.startsWith('/admin/stats') },
-        { name: 'Pilar Teknologi', href: '/admin/technologies', icon: Cpu, active: currentUrl.startsWith('/admin/technologies') },
-        { name: 'Unit Bisnis', href: '/admin/business-units', icon: Briefcase, active: currentUrl.startsWith('/admin/business-units') },
-        { name: 'Mesin & Peralatan', href: '/admin/equipment', icon: Cog, active: currentUrl.startsWith('/admin/equipment') },
-        { name: 'Proses Produksi', href: '/admin/production-processes', icon: Workflow, active: currentUrl.startsWith('/admin/production-processes') },
-        { name: 'Kategori Produk', href: '/admin/product-categories', icon: FolderTree, active: currentUrl.startsWith('/admin/product-categories') },
-        { name: 'Katalog Produk', href: '/admin/products', icon: Package, active: currentUrl.startsWith('/admin/products') },
-        { name: 'Profil Perusahaan', href: '/admin/company-profile', icon: Building2, active: currentUrl.startsWith('/admin/company-profile') },
-        { name: 'Berita & Update', href: '/admin/news', icon: Newspaper, active: currentUrl.startsWith('/admin/news') },
-        { name: 'Lowongan Karir', href: '/admin/careers', icon: UserCheck, active: currentUrl.startsWith('/admin/careers') },
-        { name: 'Kotak Masuk / RFQ', href: '/admin/inquiries', icon: Inbox, active: currentUrl.startsWith('/admin/inquiries') },
-        { name: 'Pengaturan Situs', href: '/admin/settings', icon: Settings, active: currentUrl.startsWith('/admin/settings') },
+    const allNavigation = [
+        { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard, active: currentUrl === '/admin/dashboard', minRole: 'Editor' },
+        { name: 'Hero Sliders', href: '/admin/hero', icon: Image, active: currentUrl.startsWith('/admin/hero'), minRole: 'Admin' },
+        { name: 'Banner Halaman & Video', href: '/admin/page-banners', icon: LayoutTemplate, active: currentUrl.startsWith('/admin/page-banners'), minRole: 'Admin' },
+        { name: 'Statistik', href: '/admin/stats', icon: BarChart3, active: currentUrl.startsWith('/admin/stats'), minRole: 'Admin' },
+        { name: 'Pilar Teknologi', href: '/admin/technologies', icon: Cpu, active: currentUrl.startsWith('/admin/technologies'), minRole: 'Admin' },
+        { name: 'Unit Bisnis', href: '/admin/business-units', icon: Briefcase, active: currentUrl.startsWith('/admin/business-units'), minRole: 'Admin' },
+        { name: 'Mesin & Peralatan', href: '/admin/equipment', icon: Cog, active: currentUrl.startsWith('/admin/equipment'), minRole: 'Admin' },
+        { name: 'Proses Produksi', href: '/admin/production-processes', icon: Workflow, active: currentUrl.startsWith('/admin/production-processes'), minRole: 'Admin' },
+        { name: 'Kategori Produk', href: '/admin/product-categories', icon: FolderTree, active: currentUrl.startsWith('/admin/product-categories'), minRole: 'Editor' },
+        { name: 'Katalog Produk', href: '/admin/products', icon: Package, active: currentUrl.startsWith('/admin/products'), minRole: 'Editor' },
+        { name: 'Profil Perusahaan', href: '/admin/company-profile', icon: Building2, active: currentUrl.startsWith('/admin/company-profile'), minRole: 'Admin' },
+        { name: 'Berita & Update', href: '/admin/news', icon: Newspaper, active: currentUrl.startsWith('/admin/news'), minRole: 'Editor' },
+        { name: 'Lowongan Karir', href: '/admin/careers', icon: UserCheck, active: currentUrl.startsWith('/admin/careers'), minRole: 'Editor' },
+        { name: 'Kotak Masuk / RFQ', href: '/admin/inquiries', icon: Inbox, active: currentUrl.startsWith('/admin/inquiries'), minRole: 'Admin' },
+        { name: 'Kelola Pengguna', href: '/admin/users', icon: Users, active: currentUrl.startsWith('/admin/users'), minRole: 'Super Admin' },
+        { name: 'Pengaturan Situs', href: '/admin/settings', icon: Settings, active: currentUrl.startsWith('/admin/settings'), minRole: 'Super Admin' },
+        { name: 'Profil & Password', href: '/admin/profile', icon: KeyRound, active: currentUrl.startsWith('/admin/profile'), minRole: 'Editor' },
     ];
+
+    const navigation = allNavigation.filter(item => {
+        if (isSuperAdmin) return true;
+        if (item.minRole === 'Super Admin') return false;
+        if (isEditor && item.minRole === 'Admin') return false;
+        return true;
+    });
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-800 antialiased font-sans flex flex-col">
@@ -183,7 +197,11 @@ export default function AdminLayout({ children, title = 'Admin Dashboard' }) {
                     </a>
 
                     <div className="pt-2 flex items-center justify-between px-1">
-                        <div className="flex items-center gap-2.5 min-w-0">
+                        <Link 
+                            href="/admin/profile" 
+                            className="flex items-center gap-2.5 min-w-0 hover:opacity-80 transition-opacity"
+                            title="Buka Pengaturan Profil & Kata Sandi"
+                        >
                             <div className="w-8 h-8 rounded-full bg-emerald-950/80 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 font-bold text-xs">
                                 <User className="w-4 h-4" />
                             </div>
@@ -195,7 +213,7 @@ export default function AdminLayout({ children, title = 'Admin Dashboard' }) {
                                     {auth?.user?.email || 'admin@sugiyama.co.id'}
                                 </p>
                             </div>
-                        </div>
+                        </Link>
 
                         <button
                             onClick={handleLogout}

@@ -543,5 +543,8 @@ class DatabaseSeeder extends Seeder
 
         // 12. Production Processes
         $this->call(ProductionProcessSeeder::class);
+
+        // 13. Roles & Permissions (Spatie)
+        $this->call(RolePermissionSeeder::class);
     }
 }

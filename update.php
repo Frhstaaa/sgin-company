@@ -207,8 +207,10 @@ if ($action) {
         $outputLog .= "\n[2/5] 🗄️ Menjalankan migrasi tabel database & seeder terbaru...\n";
         $migrateOut = runCmd("{$phpCli} artisan migrate --force");
         $outputLog .= trim($migrateOut) . "\n";
-        $seedOut = runCmd("{$phpCli} artisan db:seed --class=ProductionProcessSeeder --force");
-        $outputLog .= "Seeder: " . trim($seedOut) . "\n";
+        $seedOut = runCmd("{$phpCli} artisan db:seed --class=RolePermissionSeeder --force");
+        $outputLog .= "Role & User Seeder: " . trim($seedOut) . "\n";
+        $seedProdOut = runCmd("{$phpCli} artisan db:seed --class=ProductionProcessSeeder --force");
+        $outputLog .= "Production Process Seeder: " . trim($seedProdOut) . "\n";
 
         // STEP 3: Pastikan Storage Symlink Terhubung
         $outputLog .= "\n[3/5] 🔗 Memverifikasi storage symlink untuk upload foto...\n";

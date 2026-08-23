@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import AppLayout from '../Layouts/AppLayout';
 import { useLanguage } from '../Context/LanguageContext';
+import YouTubeEmbed from '../Components/YouTubeEmbed';
 import { 
     Calendar, Globe, Cpu, ArrowRight, ChevronRight, Phone, 
     ShieldCheck, Sparkles, Building2, Layers, CheckCircle2,
@@ -58,55 +59,71 @@ export default function Home({
 
                 {/* Hero Main Content */}
                 <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-24 pb-16 flex-1 flex flex-col justify-start sm:justify-center w-full">
-                    <div className="max-w-3xl space-y-4 sm:space-y-6">
-                        {/* Japanese Kanji Badge */}
-                        <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-[10px] sm:text-xs font-bold backdrop-blur-md shadow-lg max-w-full">
-                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0" />
-                            <span className="font-jp tracking-wider truncate">PT. SUGIYAMA INDONESIA / 株式会社スギヤマ</span>
+                    <div className={`grid grid-cols-1 ${settings?.home_hero_video ? 'lg:grid-cols-12 gap-8 lg:gap-12 items-center' : ''}`}>
+                        <div className={`${settings?.home_hero_video ? 'lg:col-span-7' : 'max-w-3xl'} space-y-4 sm:space-y-6`}>
+                            {/* Japanese Kanji Badge */}
+                            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-[10px] sm:text-xs font-bold backdrop-blur-md shadow-lg max-w-full">
+                                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0" />
+                                <span className="font-jp tracking-wider truncate">PT. SUGIYAMA INDONESIA / 株式会社スギヤマ</span>
+                            </div>
+
+                            {/* Main Title */}
+                            <motion.div 
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.7, delay: 0.2 }}
+                                className="space-y-2 max-w-full"
+                            >
+                                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2] drop-shadow-md break-words">
+                                    <span className="font-jp inline-block bg-emerald-700 text-white px-3 sm:px-4 py-1 sm:py-1.5 mb-1 sm:mb-2 tracking-wider text-lg sm:text-2xl lg:text-3xl">
+                                        SUGIYAMA INDONESIA
+                                    </span>
+                                    <span className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-slate-100 block mt-1 font-display">
+                                        {activeSlide.title_id || t('tagline_sub', 'Menempa Teknologi, Membangun Masa Depan')}
+                                    </span>
+                                </h1>
+                            </motion.div>
+
+                            <motion.p 
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.7, delay: 0.4 }}
+                                className="text-slate-200 text-xs sm:text-base leading-relaxed max-w-xl font-normal drop-shadow-sm"
+                            >
+                                {t('hero_desc', activeSlide.subtitle)}
+                            </motion.p>
+
+                            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2 sm:pt-3">
+                                <Link
+                                    href={activeSlide.button_link || "/kontak"}
+                                    className="px-5 sm:px-7 py-3 sm:py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-emerald-950/60 hover:shadow-emerald-700/50 transition-all flex items-center justify-center gap-2 group"
+                                >
+                                    <span>{(lang !== 'id' && !rawActiveSlide[`button_text_${lang === 'ja' ? 'jp' : 'en'}`]) ? t('hero_btn_contact', 'Hubungi Kami') : (activeSlide.button_text || t('hero_btn_contact', 'Hubungi Kami'))}</span>
+                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Link>
+
+                                <Link
+                                    href="/teknologi"
+                                    className="px-5 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm uppercase tracking-wider backdrop-blur-md border border-white/20 hover:border-white/40 transition-all text-center"
+                                >
+                                    {t('hero_btn_tech', 'Pelajari Teknologi')}
+                                </Link>
+                            </div>
                         </div>
 
-                        {/* Main Title */}
-                        <motion.div 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, delay: 0.2 }}
-                            className="space-y-2 max-w-full"
-                        >
-                            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.2] drop-shadow-md break-words">
-                                <span className="font-jp inline-block bg-emerald-700 text-white px-3 sm:px-4 py-1 sm:py-1.5 mb-1 sm:mb-2 tracking-wider text-lg sm:text-2xl lg:text-3xl">
-                                    SUGIYAMA INDONESIA
-                                </span>
-                                <span className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-slate-100 block mt-1 font-display">
-                                    {activeSlide.title_id || t('tagline_sub', 'Menempa Teknologi, Membangun Masa Depan')}
-                                </span>
-                            </h1>
-                        </motion.div>
-
-                        <motion.p 
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 0.7, delay: 0.4 }}
-                            className="text-slate-200 text-xs sm:text-base leading-relaxed max-w-xl font-normal drop-shadow-sm"
-                        >
-                            {t('hero_desc', activeSlide.subtitle)}
-                        </motion.p>
-
-                        <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2 sm:pt-3">
-                            <Link
-                                href={activeSlide.button_link || "/kontak"}
-                                className="px-5 sm:px-7 py-3 sm:py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-emerald-950/60 hover:shadow-emerald-700/50 transition-all flex items-center justify-center gap-2 group"
+                        {/* Dedicated Video Showcase on Hero Right */}
+                        {settings?.home_hero_video && (
+                            <motion.div 
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.7, delay: 0.3 }}
+                                className="lg:col-span-5 relative"
                             >
-                                <span>{(lang !== 'id' && !rawActiveSlide[`button_text_${lang === 'ja' ? 'jp' : 'en'}`]) ? t('hero_btn_contact', 'Hubungi Kami') : (activeSlide.button_text || t('hero_btn_contact', 'Hubungi Kami'))}</span>
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </Link>
-
-                            <Link
-                                href="/teknologi"
-                                className="px-5 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm uppercase tracking-wider backdrop-blur-md border border-white/20 hover:border-white/40 transition-all text-center"
-                            >
-                                {t('hero_btn_tech', 'Pelajari Teknologi')}
-                            </Link>
-                        </div>
+                                <div className="p-2 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl shadow-emerald-950/60">
+                                    <YouTubeEmbed url={settings.home_hero_video} title="Video Dokumentasi PT. Sugiyama Indonesia" />
+                                </div>
+                            </motion.div>
+                        )}
                     </div>
                 </div>
 

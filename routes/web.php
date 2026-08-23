@@ -32,6 +32,8 @@ use App\Http\Controllers\Admin\AdminCareerController;
 use App\Http\Controllers\Admin\AdminInquiryController;
 use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\Admin\AdminPageBannerController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,5 +161,13 @@ Route::prefix('admin')->group(function () {
         // Page Banners Management
         Route::get('/page-banners', [AdminPageBannerController::class, 'index'])->name('page-banners.index');
         Route::post('/page-banners', [AdminPageBannerController::class, 'update'])->name('page-banners.update');
+
+        // User Management (Spatie Roles)
+        Route::resource('users', AdminUserController::class)->except(['create', 'show', 'edit']);
+
+        // Profile & Change Password
+        Route::get('/profile', [AdminProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('/profile', [AdminProfileController::class, 'updateProfile'])->name('profile.update');
+        Route::put('/profile/password', [AdminProfileController::class, 'updatePassword'])->name('profile.password');
     });
 });

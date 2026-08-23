@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Head, Link, usePage } from '@inertiajs/react';
 import AppLayout from '../../Layouts/AppLayout';
 import { useLanguage } from '../../Context/LanguageContext';
+import YouTubeEmbed from '../../Components/YouTubeEmbed';
 import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
 import { 
@@ -23,18 +24,6 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
             ? mainFlow
             : qcFlow;
 
-    // Helper for process icons
-    const getStepIcon = (iconName, stepNum) => {
-        switch (iconName) {
-            case 'factory': return <Factory className="w-5 h-5" />;
-            case 'ship': return <Ship className="w-5 h-5" />;
-            case 'cog': return <Cog className="w-5 h-5" />;
-            case 'shield-check': return <ShieldCheck className="w-5 h-5" />;
-            case 'package-check': return <PackageCheck className="w-5 h-5" />;
-            default: return <Workflow className="w-5 h-5" />;
-        }
-    };
-
     return (
         <AppLayout>
             <Head 
@@ -49,22 +38,40 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                 <div className="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-teal-500/10 blur-3xl" />
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-900/80 border border-emerald-700/60 backdrop-blur-xs mb-4">
-                            <Workflow className="w-3.5 h-3.5 text-emerald-400" />
-                            <span className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-widest">
-                                {siteSettings.prod_hero_badge || t('prod_badge', 'ALUR PRODUKSI / 製造工程')}
-                            </span>
-                        </div>
+                    <div className={`grid grid-cols-1 ${siteSettings.prod_hero_video ? 'lg:grid-cols-12 gap-8 items-center' : ''}`}>
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }} 
+                            animate={{ opacity: 1, y: 0 }} 
+                            transition={{ duration: 0.6 }}
+                            className={siteSettings.prod_hero_video ? 'lg:col-span-6 space-y-2' : ''}
+                        >
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-900/80 border border-emerald-700/60 backdrop-blur-xs mb-4">
+                                <Workflow className="w-3.5 h-3.5 text-emerald-400" />
+                                <span className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-widest">
+                                    {siteSettings.prod_hero_badge || t('prod_badge', 'ALUR PRODUKSI / 製造工程')}
+                                </span>
+                            </div>
 
-                        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight max-w-3xl">
-                            {siteSettings.prod_hero_title || t('prod_header_title', 'Alur Proses Manufaktur & Kontrol Kualitas Presisi')}
-                        </h1>
+                            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight max-w-3xl">
+                                {siteSettings.prod_hero_title || t('prod_header_title', 'Alur Proses Manufaktur & Kontrol Kualitas Presisi')}
+                            </h1>
 
-                        <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-4 leading-relaxed font-normal">
-                            {siteSettings.prod_hero_lead || t('prod_header_desc', 'Integrasi menyeluruh rantai pasok: mulai dari penempaan bahan baku presisi di Jepang, logistik laut berkala, pemesinan CNC multi-sumbu di Indonesia, hingga 100% inspeksi mutu berstandar global.')}
-                        </p>
-                    </motion.div>
+                            <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-4 leading-relaxed font-normal">
+                                {siteSettings.prod_hero_lead || t('prod_header_desc', 'Integrasi menyeluruh rantai pasok: mulai dari penempaan bahan baku presisi di Jepang, logistik laut berkala, pemesinan CNC multi-sumbu di Indonesia, hingga 100% inspeksi mutu berstandar global.')}
+                            </p>
+                        </motion.div>
+
+                        {siteSettings.prod_hero_video && (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.6, delay: 0.2 }}
+                                className="lg:col-span-6"
+                            >
+                                <YouTubeEmbed url={siteSettings.prod_hero_video} title="Video Proses Produksi & Kontrol Kualitas" />
+                            </motion.div>
+                        )}
+                    </div>
                 </div>
             </div>
 

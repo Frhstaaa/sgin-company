@@ -2,6 +2,7 @@ import React from 'react';
 import { Head, Link, usePage } from '@inertiajs/react';
 import AppLayout from '../../Layouts/AppLayout';
 import { useLanguage } from '../../Context/LanguageContext';
+import YouTubeEmbed from '../../Components/YouTubeEmbed';
 import { motion } from 'framer-motion';
 import ScrollReveal from '../../Components/ScrollReveal';
 import { 
@@ -21,17 +22,35 @@ export default function TechnologyIndex({ technologies = [] }) {
             {/* Page Header */}
             <div className="bg-emerald-950 text-white pt-28 pb-12 sm:pt-32 sm:pb-16 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <motion.div initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{duration:0.6}}>
-                        <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                            {siteSettings.tech_hero_badge || t('tech_badge', 'Teknologi Kami / 技術紹介')}
-                        </span>
-                        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
-                            {siteSettings.tech_hero_title || t('tech_title', 'Teknologi & Keunggulan Rekayasa Presisi')}
-                        </h1>
-                        <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
-                            {siteSettings.tech_hero_lead || t('tech_desc', 'Menggabungkan keahlian cetakan penempaan dingin dengan pemesinan CNC multi-sumbu untuk efisiensi material dan kekuatan mekanis tertinggi.')}
-                        </p>
-                    </motion.div>
+                    <div className={`grid grid-cols-1 ${siteSettings.tech_hero_video ? 'lg:grid-cols-12 gap-8 items-center' : ''}`}>
+                        <motion.div 
+                            initial={{opacity:0, y:20}} 
+                            animate={{opacity:1, y:0}} 
+                            transition={{duration:0.6}}
+                            className={siteSettings.tech_hero_video ? 'lg:col-span-6 space-y-2' : ''}
+                        >
+                            <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
+                                {siteSettings.tech_hero_badge || t('tech_badge', 'Teknologi Kami / 技術紹介')}
+                            </span>
+                            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
+                                {siteSettings.tech_hero_title || t('tech_title', 'Teknologi & Keunggulan Rekayasa Presisi')}
+                            </h1>
+                            <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
+                                {siteSettings.tech_hero_lead || t('tech_desc', 'Menggabungkan keahlian cetakan penempaan dingin dengan pemesinan CNC multi-sumbu untuk efisiensi material dan kekuatan mekanis tertinggi.')}
+                            </p>
+                        </motion.div>
+
+                        {siteSettings.tech_hero_video && (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.6, delay: 0.2 }}
+                                className="lg:col-span-6"
+                            >
+                                <YouTubeEmbed url={siteSettings.tech_hero_video} title="Video Teknologi Presisi" />
+                            </motion.div>
+                        )}
+                    </div>
                 </div>
             </div>
 

@@ -28,24 +28,26 @@ class AdminPageBannerController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $bannerKeys = [
+            // Beranda
+            'home_hero_video',
             // Tentang Kami
-            'about_hero_badge', 'about_hero_title', 'about_hero_lead',
+            'about_hero_badge', 'about_hero_title', 'about_hero_lead', 'about_hero_video',
             // Teknologi
-            'tech_hero_badge', 'tech_hero_title', 'tech_hero_lead',
+            'tech_hero_badge', 'tech_hero_title', 'tech_hero_lead', 'tech_hero_video',
             // Bisnis
-            'biz_hero_badge', 'biz_hero_title', 'biz_hero_lead',
+            'biz_hero_badge', 'biz_hero_title', 'biz_hero_lead', 'biz_hero_video',
             // Peralatan
-            'machine_hero_badge', 'machine_hero_title', 'machine_hero_lead',
+            'machine_hero_badge', 'machine_hero_title', 'machine_hero_lead', 'machine_hero_video',
             // Proses Produksi
-            'prod_hero_badge', 'prod_hero_title', 'prod_hero_lead',
+            'prod_hero_badge', 'prod_hero_title', 'prod_hero_lead', 'prod_hero_video',
             // Produk
-            'product_hero_badge', 'product_hero_title', 'product_hero_lead',
+            'product_hero_badge', 'product_hero_title', 'product_hero_lead', 'product_hero_video',
             // Berita
-            'news_hero_badge', 'news_hero_title', 'news_hero_lead',
+            'news_hero_badge', 'news_hero_title', 'news_hero_lead', 'news_hero_video',
             // Karir
-            'career_hero_badge', 'career_hero_title', 'career_hero_lead',
+            'career_hero_badge', 'career_hero_title', 'career_hero_lead', 'career_hero_video',
             // Kontak
-            'contact_hero_badge', 'contact_hero_title', 'contact_hero_lead',
+            'contact_hero_badge', 'contact_hero_title', 'contact_hero_lead', 'contact_hero_video',
         ];
 
         foreach ($bannerKeys as $key) {
