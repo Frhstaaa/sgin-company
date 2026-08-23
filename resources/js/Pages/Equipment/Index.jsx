@@ -86,60 +86,63 @@ export default function EquipmentIndex({ equipments = [], categories = [] }) {
 
                     {/* Machinery Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {filtered.map((eq) => (
-                            <div
-                                key={eq.id}
-                                className="bg-white rounded-3xl overflow-hidden shadow-xs hover:shadow-xl border border-slate-200 hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group"
-                            >
-                                <div>
-                                    <div className="relative h-56 overflow-hidden bg-slate-900">
-                                        <img
-                                            src={eq.image_url}
-                                            alt={eq.name}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                        <div className="absolute top-4 left-4">
-                                            <span className="px-3 py-1 rounded-full bg-emerald-800/90 text-white font-bold text-[11px] backdrop-blur-xs">
-                                                {eq.category}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div className="p-6 space-y-3">
-                                        <div>
-                                            <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                                                {eq.name}
-                                            </h3>
-                                            <p className="text-xs font-mono text-emerald-700 font-bold mt-0.5">
-                                                {eq.model_number}
-                                            </p>
-                                        </div>
-
-                                        <p className="text-xs text-slate-500">
-                                            {t('eq_mfg_label', 'Pabrikan')}: <strong className="text-slate-800">{eq.manufacturer || 'Japan Machinery'}</strong>
-                                        </p>
-
-                                        {eq.specs && Array.isArray(eq.specs) && (
-                                            <div className="space-y-1.5 pt-2 border-t border-slate-100">
-                                                {eq.specs.map((spec, idx) => (
-                                                    <div key={idx} className="flex items-center gap-2 text-[11px] text-slate-600">
-                                                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                                                        <span>{spec}</span>
-                                                    </div>
-                                                ))}
+                        {filtered.map((rawEq) => {
+                            const eq = translateModel(rawEq, 'equipment');
+                            return (
+                                <div
+                                    key={eq.id}
+                                    className="bg-white rounded-3xl overflow-hidden shadow-xs hover:shadow-xl border border-slate-200 hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group"
+                                >
+                                    <div>
+                                        <div className="relative h-56 overflow-hidden bg-slate-900">
+                                            <img
+                                                src={eq.image_url}
+                                                alt={eq.name}
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            />
+                                            <div className="absolute top-4 left-4">
+                                                <span className="px-3 py-1 rounded-full bg-emerald-800/90 text-white font-bold text-[11px] backdrop-blur-xs">
+                                                    {eq.category}
+                                                </span>
                                             </div>
-                                        )}
+                                        </div>
+
+                                        <div className="p-6 space-y-3">
+                                            <div>
+                                                <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-800 transition-colors">
+                                                    {eq.name}
+                                                </h3>
+                                                <p className="text-xs font-mono text-emerald-700 font-bold mt-0.5">
+                                                    {eq.model_number}
+                                                </p>
+                                            </div>
+
+                                            <p className="text-xs text-slate-500">
+                                                {t('eq_mfg_label', 'Pabrikan')}: <strong className="text-slate-800">{eq.manufacturer || 'Japan Machinery'}</strong>
+                                            </p>
+
+                                            {eq.specs && Array.isArray(eq.specs) && (
+                                                <div className="space-y-1.5 pt-2 border-t border-slate-100">
+                                                    {eq.specs.map((spec, idx) => (
+                                                        <div key={idx} className="flex items-center gap-2 text-[11px] text-slate-600">
+                                                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                                                            <span>{spec}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <div className="p-6 pt-0 flex items-center justify-between text-xs text-slate-500 font-bold border-t border-slate-100 mt-4">
+                                        <span>{t('eq_qty_label', 'Jumlah Unit')}</span>
+                                        <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 font-mono">
+                                            {eq.quantity} {t('eq_unit_suffix', 'Unit')}
+                                        </span>
                                     </div>
                                 </div>
-
-                                <div className="p-6 pt-0 flex items-center justify-between text-xs text-slate-500 font-bold border-t border-slate-100 mt-4">
-                                    <span>{t('eq_qty_label', 'Jumlah Unit')}</span>
-                                    <span className="px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 font-mono">
-                                        {eq.quantity} Unit
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>

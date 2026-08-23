@@ -114,13 +114,41 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
         }
 
         // 3. Fallback to modelTranslations dictionary for hardcoded seed models if translation columns are empty
-        if (modelTranslations && modelTranslations[lang]) {
-            const dict = modelTranslations[lang];
-            
-            // Check by ID or Slug or Title
-            const identifier = item.slug || item.id || item.title || item.name;
-            if (identifier && dict[identifier]) {
-                return { ...result, ...dict[identifier] };
+        if (modelTranslations) {
+            const candidates = [
+                item.slug,
+                item.step_number,
+                item.name,
+                item.title,
+                item.model_number,
+                item.id ? String(item.id) : null
+            ].filter(Boolean);
+
+            // A. Type-specific lookup (e.g. type='company_profile', type='technology', type='equipment', type='process')
+            if (type && modelTranslations[type]) {
+                // Check if type is singleton with direct locale object (e.g. company_profile.ja)
+                if (modelTranslations[type][lang]) {
+                    Object.assign(result, modelTranslations[type][lang]);
+                    return result;
+                }
+
+                // Check candidate keys under type
+                for (const id of candidates) {
+                    if (modelTranslations[type][id] && modelTranslations[type][id][lang]) {
+                        Object.assign(result, modelTranslations[type][id][lang]);
+                        return result;
+                    }
+                }
+            }
+
+            // B. Global search across all categories in modelTranslations
+            for (const cat in modelTranslations) {
+                for (const id of candidates) {
+                    if (modelTranslations[cat] && modelTranslations[cat][id] && modelTranslations[cat][id][lang]) {
+                        Object.assign(result, modelTranslations[cat][id][lang]);
+                        return result;
+                    }
+                }
             }
         }
 

@@ -85,6 +85,16 @@ export const translations = {
         eq_qty_label: 'Jumlah Unit',
         eq_specs_label: 'Spesifikasi Mesin',
         eq_mfg_label: 'Pabrikan / Manufacturer',
+        eq_unit_suffix: 'Unit',
+        tech_pillar: 'PILAR',
+        step_label: 'Langkah',
+        qc_assurance_badge: 'Quality Assurance',
+        qc_100_inspect: '100% Inspeksi Mikro',
+        prod_qc_points: 'Poin Keunggulan & Kontrol Mutu:',
+        'Cold Forging': 'Cold Forging',
+        'CNC Cutting': 'CNC Cutting',
+        'Inspection & Quality': 'Inspection & Quality',
+        '3D Printing & Tooling': '3D Printing & Tooling',
 
         // Products Page
         prd_header_title: 'Katalog Komponen & Suku Cadang Presisi',
@@ -301,6 +311,16 @@ export const translations = {
         eq_qty_label: 'Units Available',
         eq_specs_label: 'Machine Specifications',
         eq_mfg_label: 'Manufacturer',
+        eq_unit_suffix: 'Units',
+        tech_pillar: 'PILLAR',
+        step_label: 'Step',
+        qc_assurance_badge: 'Quality Assurance',
+        qc_100_inspect: '100% Micro Inspection',
+        prod_qc_points: 'Key Advantages & Quality Assurance:',
+        'Cold Forging': 'Cold Forging',
+        'CNC Cutting': 'CNC Cutting',
+        'Inspection & Quality': 'Inspection & Quality',
+        '3D Printing & Tooling': '3D Printing & Tooling',
 
         // Products Page
         prd_header_title: 'Precision Components & Parts Catalog',
@@ -517,6 +537,16 @@ export const translations = {
         eq_qty_label: '保有台数',
         eq_specs_label: '機械仕様',
         eq_mfg_label: 'メーカー',
+        eq_unit_suffix: '台',
+        tech_pillar: '技術の柱',
+        step_label: '工程',
+        qc_assurance_badge: '品質保証 (QA)',
+        qc_100_inspect: '100% 精密検査',
+        prod_qc_points: '品質管理ポイント＆製造上の強み:',
+        'Cold Forging': '冷間鍛造設備',
+        'CNC Cutting': 'CNC切削設備',
+        'Inspection & Quality': '検査・品質測定',
+        '3D Printing & Tooling': '3D造形・金型加工',
 
         // Products Page
         prd_header_title: '精密部品・製品カタログ',
@@ -864,6 +894,191 @@ export const modelTranslations = {
                 employment_type: '正社員 (Full-time)',
                 location: 'GIIC チカラン工場',
                 salary_range: '月給制・年次賞与あり',
+            }
+        }
+    },
+    equipment: {
+        'Multi-Station Cold Former 6-Die': {
+            en: {
+                name: 'Multi-Station Cold Former 6-Die',
+                category: 'Cold Forging',
+                description: 'High-speed 6-station cold forging former for mass-production automotive components.',
+                specs: ['Forging Capacity: 250 Ton', 'Production Speed: 180 pcs/min', 'Max Wire Dia: 22 mm', 'Max Cut Length: 150 mm'],
+            },
+            ja: {
+                name: '多段式高速コールドフォーマー 6段 (BP-660SS)',
+                category: '冷間鍛造設備',
+                description: '自動車重要保安部品を高速連続成形する最新鋭6段フォーマー。',
+                specs: ['鍛造加圧力: 250トン', '生産速度: 180個/分', '最大線径: φ22 mm', '最大切断長: 150 mm'],
+            }
+        },
+        'Part Former 5-Die Precision': {
+            en: {
+                name: 'Part Former 5-Die Precision',
+                category: 'Cold Forging',
+                description: 'High-precision part former for pinion gears and spline shafts.',
+                specs: ['Forging Capacity: 160 Ton', 'Production Speed: 220 pcs/min', 'Dimensional Tolerance: ±0.01 mm'],
+            },
+            ja: {
+                name: '高精度パートフォーマー 5段 (PF-520)',
+                category: '冷間鍛造設備',
+                description: 'ピニオンギヤおよびスプラインシャフト用の超高精度フォーマー。',
+                specs: ['鍛造加圧力: 160トン', '生産速度: 220個/分', '寸法公差: ±0.01 mm'],
+            }
+        },
+        '5-Axis CNC Turning Center': {
+            en: {
+                name: '5-Axis CNC Turning Center',
+                category: 'CNC Cutting',
+                description: 'High-precision turning center with synchronized milling capabilities for complex geometries.',
+                specs: ['Spindle Speed: 4,000 RPM', 'Turret: 12-station BMT', 'Cutting Tolerance: ±0.003 mm'],
+            },
+            ja: {
+                name: '5軸CNCターニングセンタ (NLX 2500 | 700)',
+                category: 'CNC切削設備',
+                description: '複合ミーリング同期機能を備えた高剛性・高精度旋削センタ。',
+                specs: ['主軸最高回転数: 4,000 RPM', 'タレット刃物台: 12角 BMT', '切削加工精度: ±0.003 mm'],
+            }
+        },
+        'CNC Coordinate Measuring Machine (CMM)': {
+            en: {
+                name: 'CNC Coordinate Measuring Machine (CMM)',
+                category: 'Inspection & Quality',
+                description: 'Automated 3D coordinate measuring machine in temperature-controlled room (20°C ±0.5°C).',
+                specs: ['Measuring Range: 700 x 1000 x 600 mm', 'Accuracy: (1.7+3L/1000) µm', 'Probe: Renishaw SP25M Scanning'],
+            },
+            ja: {
+                name: 'CNC 3次元測定機 (CRYSTA-Apex V7106)',
+                category: '検査・品質測定',
+                description: '20℃±0.5℃の恒温室内に設置された自動3次元座標測定機。',
+                specs: ['測定範囲: 700 x 1000 x 600 mm', '指示精度: (1.7+3L/1000) µm', 'プローブ: レニショー SP25M スキャニング'],
+            }
+        },
+        'Industrial Metal 3D Printer & Wire EDM': {
+            en: {
+                name: 'Industrial Metal 3D Printer & Wire EDM',
+                category: '3D Printing & Tooling',
+                description: 'In-house additive manufacturing & die tooling facility for ultra-wear-resistant dies.',
+                specs: ['Laser Power: Dual 700W Fiber Laser', 'Precision EDM: Sub-micron finish', 'Material: Maraging Steel, Inconel, Ti6Al4V'],
+            },
+            ja: {
+                name: '金属3Dプリンタ & ワイヤー放電加工機 (SLM 280 / MV2400-S)',
+                category: '3D造形・金型加工',
+                description: '自社製高耐久金型製作および新製品ラピッドプロトタイピング設備。',
+                specs: ['レーザー出力: デュアル 700W ファイバー', '放電加工精度: サブミクロン仕上げ', '対応材料: マルエージング鋼, インコネル, チタン'],
+            }
+        }
+    },
+
+    process: {
+        '01': {
+            en: {
+                title: 'Production of Forged Blank at Japan Factory',
+                description: 'High-precision cold forged blanks are produced directly at our Japan headquarters in Aichi using multi-station former machines under strict JIS metal standards.',
+                location_badge: '🇯🇵 Aichi, Japan HQ',
+                specs: [
+                    'Cold forging raw material under Japanese JIS standards',
+                    'Metallurgical microstructure inspection prior to export',
+                    'Initial blank dimension consistency targeting Zero Defects'
+                ]
+            },
+            ja: {
+                title: '日本本社工場での鍛造ブランク材の生産',
+                description: '高精度の冷間鍛造ブランク材は、愛知県の日本本社工場において最新鋭のフォーマーマシンと最適な金属配合で一貫生産されます。',
+                location_badge: '🇯🇵 愛知県本社工場',
+                specs: [
+                    '日本JIS規格に準拠した高品質冷間鍛造用素材',
+                    '輸出前の金属組織および内部応力の厳密な検査',
+                    '初期ブランク寸法の一貫性とゼロディフェクト品質'
+                ]
+            }
+        },
+        '02': {
+            en: {
+                title: 'Shipping of Forged Blanks by Sea Freight',
+                description: 'Anti-corrosion protected forged blanks are shipped via scheduled ocean container freight to our Karawang plant in Indonesia, ensuring supply continuity and cost optimization.',
+                location_badge: '🚢 Maritime Supply Chain',
+                specs: [
+                    'Proven VCI anti-oxidation protective packaging',
+                    'Scheduled and managed container shipment logistics',
+                    'Optimized production cost efficiency for industry partners'
+                ]
+            },
+            ja: {
+                title: '海上輸送による原材料の輸送',
+                description: '防錆処理を施したブランク材は定期コンテナ船でインドネシア（カラワン工場）へ海上輸送され、安定したサプライチェーンとコスト削減を実現します。',
+                location_badge: '🚢 定期海上輸送ルート',
+                specs: [
+                    '気化性防錆（VCI）包装による確実な酸化防止',
+                    '定期コンテナ船による安定した原材料供給スケジュール',
+                    'パートナー企業の調達コスト最適化と安定供給'
+                ]
+            }
+        },
+        '03': {
+            en: {
+                title: 'Precision CNC Machining & Secondary Processing in Indonesia',
+                description: 'At our Karawang facility, blanks undergo high-precision CNC turning, multi-axis milling, thread rolling, and ultrasonic cleaning to produce finished components.',
+                location_badge: '🇮🇩 Karawang Plant, Indonesia',
+                specs: [
+                    'CNC turning & milling machines with micro-tolerance precision',
+                    'High-precision thread rolling for automotive components',
+                    'Automated ultrasonic washing process free of particle contamination'
+                ]
+            },
+            ja: {
+                title: 'インドネシア工場での精密切削・転造・二次加工',
+                description: 'カラワン工場にて、高精度CNC旋盤加工、多軸フライス削り、転造加工、超音波洗浄などの二次加工を実施し、お客様のご要望に応じた高精度部品を仕上げます。',
+                location_badge: '🇮🇩 インドネシア・カラワン工場',
+                specs: [
+                    'ミクロン単位の寸法公差に対応するCNC旋削・マシニング',
+                    '自動車部品向けの精密転造ねじ・スプライン加工',
+                    'パーティクル混入を防ぐ全自動超音波洗浄ライン'
+                ]
+            }
+        },
+        '04': {
+            en: {
+                title: 'Comprehensive Quality Inspection & Visual Selection (Japan Standard)',
+                description: 'We perform 100% optical magnifier visual inspection, sub-micron digital micrometer measurements, and rigorous metrology testing matching Japanese standards.',
+                location_badge: '🔍 Clean Room & QC Lab',
+                specs: [
+                    '100% manual visual inspection under specialized optical lighting',
+                    'Precision digital micrometer and dial gauge measurements',
+                    'ISO 9001 and IATF 16949 international quality certified standards'
+                ]
+            },
+            ja: {
+                title: '日本本社と同等の徹底した品質検査・外観選別',
+                description: '拡大鏡を用いた全数外観目視検査、デジタルマイクロメーターによる寸法測定など、日本本社と同一水準の厳格な品質保証体制を徹底しています。',
+                location_badge: '🔍 恒温検査室・クリーンルーム',
+                specs: [
+                    '専用照明・拡大鏡による全数外観目視検査（100%選別）',
+                    '高精度デジタルマイクロメーターおよびダイヤルゲージ測定',
+                    'ISO 9001 / IATF 16949 国際品質基準の厳格な遵守'
+                ]
+            }
+        },
+        '05': {
+            en: {
+                title: 'Export Packaging & Delivery Across Indonesia and Asian Countries',
+                description: 'Inspected components are packed into automotive-grade pallets and delivered on time (JIT) to clients throughout Indonesia and exported across Asia.',
+                location_badge: '🌏 Domestic & Export Logistics',
+                specs: [
+                    'Sturdy pallet packaging with shock protection',
+                    'Barcode labeling and lot traceability tracking system',
+                    'Guaranteed Just-In-Time (JIT) delivery commitment'
+                ]
+            },
+            ja: {
+                title: '確実な梱包とインドネシア国内およびアジア各国への出荷',
+                description: '検査合格品は自動車基準のパレット梱包を施し、インドネシア国内の主要自動車メーカーおよびアジア各国へジャストインタイムで出荷されます。',
+                location_badge: '🌏 インドネシア国内・アジア全域出荷',
+                specs: [
+                    '緩衝構造を備えた高強度パレット・専用通い箱梱包',
+                    'QRコード・バーコードによる生産ロット追跡システム',
+                    'ジャストインタイム（JIT）納入の徹底'
+                ]
             }
         }
     },

@@ -74,7 +74,7 @@ export default function TechnologyIndex({ technologies = [] }) {
                                     />
                                     <div className="absolute top-4 left-4">
                                         <span className="px-3.5 py-1.5 rounded-full bg-emerald-800/90 text-white font-black text-xs backdrop-blur-xs">
-                                            PILAR {tech.step_number}
+                                            {lang === 'ja' ? `第${parseInt(tech.step_number, 10)}の柱` : `${t('tech_pillar', 'PILAR')} ${tech.step_number}`}
                                         </span>
                                     </div>
                                 </div>
