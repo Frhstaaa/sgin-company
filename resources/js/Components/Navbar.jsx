@@ -130,14 +130,20 @@ export default function Navbar() {
                                 ))}
                             </div>
 
-                            {/* Contact Hotline / RFQ Button */}
-                            <Link
-                                href="/kontak?type=rfq"
-                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white text-[11px] font-bold shadow-md hover:shadow-lg transition-all whitespace-nowrap"
+                            {/* Sugiyama Japan Official Web Link Logo Badge */}
+                            <a
+                                href="https://forging-sugiyama.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="Kunjungi Website Resmi Sugiyama Japan (forging-sugiyama.com)"
+                                className="inline-flex items-center justify-center h-8 px-2 py-0.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-200 group shrink-0"
                             >
-                                <Send className="w-3.5 h-3.5" />
-                                <span>{t('nav_rfq', 'Minta RFQ')}</span>
-                            </Link>
+                                <img 
+                                    src="/images/sugiyama-japan-logo.png" 
+                                    alt="Cold Forging Sugiyama Japan" 
+                                    className="h-6 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+                                />
+                            </a>
                         </div>
 
                         {/* 4. Mobile Menu Button & Quick Switcher */}
@@ -261,13 +267,20 @@ export default function Navbar() {
                                 <p className="font-mono text-emerald-400 font-bold">{siteSettings.contact_phone || '0567-68-7077'}</p>
                             </div>
 
-                            <Link
-                                href="/kontak?type=rfq"
+                            {/* Official Japan Website Badge */}
+                            <a
+                                href="https://forging-sugiyama.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 onClick={() => setMobileOpen(false)}
-                                className="w-full py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider text-center block shadow-md"
+                                className="w-full py-2.5 px-3 rounded-xl bg-white hover:bg-slate-100 flex items-center justify-center shadow-md transition-all group"
                             >
-                                {t('nav_rfq', 'Minta Penawaran (RFQ)')}
-                            </Link>
+                                <img 
+                                    src="/images/sugiyama-japan-logo.png" 
+                                    alt="Cold Forging Sugiyama Japan" 
+                                    className="h-8 w-auto object-contain group-hover:scale-105 transition-transform"
+                                />
+                            </a>
                         </div>
                     </div>
                 </div>
