@@ -320,11 +320,16 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
 
                     {/* Section 2: Sambutan Presiden Direktur */}
                     <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-                        <div className="px-6 py-4 bg-slate-50/80 border-b border-slate-200 flex items-center gap-2.5">
-                            <User className="w-5 h-5 text-emerald-600" />
-                            <h2 className="font-bold text-sm text-slate-900 uppercase tracking-wide">
-                                3. Sambutan & Profil Presiden Direktur
-                            </h2>
+                        <div className="px-6 py-4 bg-emerald-50/80 border-b border-emerald-100 flex items-center gap-2.5">
+                            <User className="w-5 h-5 text-emerald-700" />
+                            <div>
+                                <h2 className="font-bold text-sm text-emerald-950 uppercase tracking-wide">
+                                    3. Sambutan & Profil Presiden Direktur (Kutipan di Beranda & Profil)
+                                </h2>
+                                <p className="text-xs text-emerald-700 font-normal">
+                                    Ubah teks kutipan kata sambutan yang tampil di dalam kartu Beranda & halaman Tentang Kami, nama lengkap, serta foto Presiden Direktur.
+                                </p>
+                            </div>
                         </div>
 
                         <div className="p-6 sm:p-8 space-y-6">
@@ -345,13 +350,13 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
 
                                     <div>
                                         <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                                            Teks Sambutan Presiden Direktur <span className="text-rose-500">*</span>
+                                            Teks Sambutan / Kutipan Presiden Direktur (Tampil di Kartu Beranda) <span className="text-rose-500">*</span>
                                         </label>
                                         <textarea
                                             rows="5"
                                             value={data.president_message}
                                             onChange={(e) => setData('president_message', e.target.value)}
-                                            placeholder="Tuliskan pesan sambutan kepemimpinan..."
+                                            placeholder="Tuliskan pesan kutipan atau sambutan kepemimpinan..."
                                             className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium leading-relaxed"
                                         />
                                     </div>
