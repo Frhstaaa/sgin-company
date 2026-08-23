@@ -39,14 +39,13 @@
     <meta name="twitter:image" content="{{ asset('images/og-image.jpg') }}">
 
     <!-- Schema.org JSON-LD Structured Data -->
-    @verbatim
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
           "@type": "Corporation",
-          "@id": "https://sgin.frahesta.com/#organization",
+          "@id": "https://sgin.co.id/#organization",
           "name": "PT. Sugiyama Indonesia",
           "alternateName": [
             "PT Sugiyama",
@@ -57,21 +56,21 @@
             "Sugiyama Group"
           ],
           "legalName": "PT. Sugiyama Indonesia",
-          "url": "https://sgin.frahesta.com",
-          "logo": "https://sgin.frahesta.com/favicon.ico",
+          "url": "https://sgin.co.id",
+          "logo": "https://sgin.co.id/favicon.ico",
           "foundingDate": "1952-03",
           "description": "PT. Sugiyama Indonesia adalah produsen presisi cold forging dan CNC machining otomotif berstandar internasional IATF 16949 & ISO 9001.",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Kawasan Industri GIIC Blok AA-12, Kota Deltamas, Cikarang Pusat",
-            "addressLocality": "Bekasi",
+            "streetAddress": "Kawasan Greenland International Industrial Center (GIIC) Blok CF No. 10, Pasirranji, Cikarang Pusat",
+            "addressLocality": "Kabupaten Bekasi",
             "addressRegion": "Jawa Barat",
             "postalCode": "17530",
             "addressCountry": "ID"
           },
           "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+62-21-000000",
+            "telephone": "+62-21-30032962",
             "contactType": "customer service",
             "availableLanguage": ["Indonesian", "Japanese", "English"]
           },
@@ -86,16 +85,16 @@
         },
         {
           "@type": "LocalBusiness",
-          "@id": "https://sgin.frahesta.com/#localbusiness",
+          "@id": "https://sgin.co.id/#localbusiness",
           "name": "PT. Sugiyama Indonesia",
-          "image": "https://sgin.frahesta.com/favicon.ico",
-          "url": "https://sgin.frahesta.com",
-          "telephone": "+62-21-000000",
+          "image": "https://sgin.co.id/favicon.ico",
+          "url": "https://sgin.co.id",
+          "telephone": "+62-21-30032962",
           "priceRange": "$$$$",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Kawasan Industri GIIC Blok AA-12, Kota Deltamas, Cikarang Pusat",
-            "addressLocality": "Bekasi",
+            "streetAddress": "Kawasan Greenland International Industrial Center (GIIC) Blok CF No. 10, Pasirranji, Cikarang Pusat",
+            "addressLocality": "Kabupaten Bekasi",
             "addressRegion": "Jawa Barat",
             "postalCode": "17530",
             "addressCountry": "ID"
@@ -120,23 +119,22 @@
         },
         {
           "@type": "WebSite",
-          "@id": "https://sgin.frahesta.com/#website",
-          "url": "https://sgin.frahesta.com",
+          "@id": "https://sgin.co.id/#website",
+          "url": "https://sgin.co.id",
           "name": "PT. Sugiyama Indonesia",
           "alternateName": "Sugiyama",
           "publisher": {
-            "@id": "https://sgin.frahesta.com/#organization"
+            "@id": "https://sgin.co.id/#organization"
           },
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://sgin.frahesta.com/produk?q={search_term_string}",
+            "target": "https://sgin.co.id/produk?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
         }
       ]
     }
     </script>
-    @endverbatim
 
     <!-- Google Fonts: Noto Sans JP + Plus Jakarta Sans + Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

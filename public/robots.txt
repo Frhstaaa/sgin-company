@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
-Disallow: /update.php
 Disallow: /cpanel-setup.php
 
-Sitemap: https://sgin.frahesta.com/sitemap.xml
+Sitemap: https://sgin.co.id/sitemap.xml
+

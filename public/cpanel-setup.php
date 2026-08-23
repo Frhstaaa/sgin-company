@@ -50,16 +50,84 @@ $outputLog = '';
 
 function runCmd($cmd) {
     global $basePath;
-    $fullCmd = "cd " . escapeshellarg($basePath) . " && {$cmd} 2>&1";
+    $fullCmd = "export HOME=/tmp 2>/dev/null; cd " . escapeshellarg($basePath) . " && {$cmd} 2>&1";
     return shell_exec($fullCmd) ?: '(Tidak ada output atau fungsi shell_exec dibatasi)';
 }
 
 if ($action === 'git_pull') {
-    $outputLog .= "=== GIT PULL REPOSITORY ===\n";
+    $outputLog .= "=== UPDATE DARI GITHUB REPOSITORY ===\n";
+    $repoUrl = 'https://github.com/Frhstaaa/sgin-company.git';
+    
+    // Inisialisasi repo jika belum ada .git
+    if (!is_dir($basePath . '/.git')) {
+        $outputLog .= "ℹ️ Menginisialisasi repositori Git di folder proyek...\n";
+        $outputLog .= runCmd("git init") . "\n";
+        $outputLog .= runCmd("git remote add origin " . escapeshellarg($repoUrl)) . "\n";
+    } else {
+        runCmd("git remote set-url origin " . escapeshellarg($repoUrl));
+    }
+    
     $outputLog .= runCmd("git config --global --add safe.directory " . escapeshellarg($basePath)) . "\n";
-    $outputLog .= runCmd("git fetch origin main") . "\n";
-    $outputLog .= runCmd("git reset --hard origin/main") . "\n";
+    $outputLog .= runCmd("git config user.email 'deploy@sgin.co.id'") . "\n";
+    $outputLog .= runCmd("git config user.name 'SGIN Deployer'") . "\n";
+    $outputLog .= "Mengambil data commit terbaru dari GitHub...\n";
+    $fetchOut = runCmd("git fetch origin main");
+    $outputLog .= $fetchOut . "\n";
+    $resetOut = runCmd("git reset --hard origin/main");
+    $outputLog .= $resetOut . "\n";
+    
+    // Jika git CLI gagal atau terkendala permission, fallback download zip
+    if (strpos($resetOut, 'HEAD is now at') === false && strpos($resetOut, 'HEAD sekarang di') === false) {
+        $outputLog .= "\nℹ️ Mencoba metode cadangan: Unduh langsung ZIP arsip dari GitHub...\n";
+        $zipUrl = 'https://github.com/Frhstaaa/sgin-company/archive/refs/heads/main.zip';
+        $tmpZip = sys_get_temp_dir() . '/sgin_github_latest.zip';
+        
+        $opts = [
+            'http' => [
+                'method' => 'GET',
+                'header' => "User-Agent: SGIN-Deployer\r\n"
+            ]
+        ];
+        $context = stream_context_create($opts);
+        $zipContent = @file_get_contents($zipUrl, false, $context);
+        
+        if ($zipContent) {
+            @file_put_contents($tmpZip, $zipContent);
+            if (class_exists('ZipArchive')) {
+                $zip = new ZipArchive;
+                if ($zip->open($tmpZip) === TRUE) {
+                    $tempExtract = sys_get_temp_dir() . '/sgin_extract_' . time();
+                    $zip->extractTo($tempExtract);
+                    $zip->close();
+                    
+                    $innerDirs = glob($tempExtract . '/*', GLOB_ONLYDIR);
+                    $src = !empty($innerDirs) ? $innerDirs[0] : $tempExtract;
+                    
+                    $iterator = new RecursiveIteratorIterator(
+                        new RecursiveDirectoryIterator($src, RecursiveDirectoryIterator::SKIP_DOTS),
+                        RecursiveIteratorIterator::SELF_FIRST
+                    );
+                    $copiedCount = 0;
+                    foreach ($iterator as $item) {
+                        $targetPath = $basePath . DIRECTORY_SEPARATOR . $iterator->getSubPathName();
+                        if ($item->isDir()) {
+                            if (!is_dir($targetPath)) @mkdir($targetPath, 0755, true);
+                        } else {
+                            if ($iterator->getSubPathName() === '.env') continue;
+                            @copy($item, $targetPath);
+                            $copiedCount++;
+                        }
+                    }
+                    @unlink($tmpZip);
+                    $outputLog .= "✅ Berhasil memperbarui $copiedCount file langsung dari GitHub main branch!\n";
+                }
+            }
+        }
+    }
+    
+    $outputLog .= "Membersihkan cache aplikasi...\n";
     $outputLog .= runCmd("{$phpCli} artisan optimize:clear") . "\n";
+    $outputLog .= "✅ Proses update dari GitHub selesai!\n";
 } elseif ($action === 'storage_link') {
     $outputLog .= "=== MEMBUAT STORAGE SYMLINK ===\n";
     $target = $basePath . '/storage/app/public';
@@ -80,6 +148,26 @@ if ($action === 'git_pull') {
     $outputLog .= runCmd("{$phpCli} artisan migrate:fresh --seed --force") . "\n";
 } elseif ($action === 'key_generate') {
     $outputLog .= "=== GENERATE APP_KEY ===\n";
+    $envFile = $basePath . '/.env';
+    $envExample = $basePath . '/.env.example';
+    
+    if (!file_exists($envFile)) {
+        if (file_exists($envExample)) {
+            @copy($envExample, $envFile);
+            $outputLog .= "ℹ️ File .env otomatis dibuat dari .env.example\n";
+        } else {
+            @file_put_contents($envFile, "APP_NAME=\"PT. Sugiyama Indonesia\"\nAPP_ENV=production\nAPP_KEY=\nAPP_DEBUG=false\nAPP_URL=https://sgin.co.id\n");
+            $outputLog .= "ℹ️ File .env baru dibuat\n";
+        }
+    }
+    
+    $envContent = @file_get_contents($envFile) ?: '';
+    if (strpos($envContent, 'APP_KEY=') === false) {
+        $envContent = "APP_KEY=\n" . $envContent;
+        @file_put_contents($envFile, $envContent);
+        $outputLog .= "ℹ️ Baris APP_KEY= ditambahkan ke .env\n";
+    }
+    
     $outputLog .= runCmd("{$phpCli} artisan key:generate --force") . "\n";
 } elseif ($action === 'clear_cache') {
     $outputLog .= "=== BERSIHKAN SEMUA CACHE ===\n";
@@ -87,6 +175,33 @@ if ($action === 'git_pull') {
     $outputLog .= runCmd("{$phpCli} artisan config:clear") . "\n";
     $outputLog .= runCmd("{$phpCli} artisan route:clear") . "\n";
     $outputLog .= runCmd("{$phpCli} artisan view:clear") . "\n";
+} elseif ($action === 'remove_maintenance_html') {
+    $outputLog .= "=== HAPUS FILE MAINTENANCE (index.html) ===\n";
+    $candidates = ['index.html', 'index.htm', 'default.html', 'maintenance.html'];
+    $found = false;
+    foreach ($candidates as $candidate) {
+        $p = $basePath . '/' . $candidate;
+        if (file_exists($p)) {
+            if (@unlink($p)) {
+                $outputLog .= "✅ Berhasil menghapus file lama: $candidate\n";
+            } else {
+                $outputLog .= "⚠️ Gagal menghapus $candidate via PHP unlink\n";
+            }
+            $found = true;
+        }
+    }
+    if (!$found) {
+        $outputLog .= "ℹ️ Tidak ditemukan file index.html atau maintenance lama di folder root.\n";
+    }
+} elseif ($action === 'fix_htaccess') {
+    $outputLog .= "=== PASANG / PERBAIKI .HTACCESS ROOT ===\n";
+    $htaccessPath = $basePath . '/.htaccess';
+    $htaccessContent = "<IfModule mod_rewrite.c>\n    RewriteEngine On\n\n    # Prioritize Laravel public index.php\n    DirectoryIndex public/index.php index.php\n\n    # 1. Block access to sensitive files and directories\n    RewriteRule ^\\.(env|git|editorconfig|gitignore|gitattributes) - [F,L,NC]\n    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)/(.*) - [F,L,NC]\n    RewriteRule ^(composer\\.(json|lock)|package(-lock)?\\.json|phpunit\\.xml|vite\\.config\\.js) - [F,L,NC]\n\n    # 2. Redirect all traffic to the public directory\n    RewriteCond %{REQUEST_URI} !^/public/\n    RewriteRule ^(.*)$ public/$1 [L]\n</IfModule>\n";
+    if (@file_put_contents($htaccessPath, $htaccessContent)) {
+        $outputLog .= "✅ File .htaccess di root berhasil diperbarui!\n";
+    } else {
+        $outputLog .= "❌ Gagal menulis .htaccess (periksa permission folder)\n";
+    }
 }
 
 // Cek status environment
@@ -94,6 +209,8 @@ $hasEnv = file_exists($basePath . '/.env');
 $hasStorageLink = is_link($basePath . '/public/storage') || is_dir($basePath . '/public/storage');
 $hasBuild = is_dir($basePath . '/public/build');
 $hasVendor = is_dir($basePath . '/vendor');
+$hasIndexHtml = file_exists($basePath . '/index.html') || file_exists($basePath . '/index.htm');
+$hasRootHtaccess = file_exists($basePath . '/.htaccess');
 $phpVersion = PHP_VERSION;
 $requiredExtensions = ['openssl', 'pdo', 'pdo_mysql', 'mbstring', 'tokenizer', 'xml', 'ctype', 'json', 'fileinfo', 'gd'];
 $missingExtensions = [];
@@ -217,6 +334,18 @@ foreach ($requiredExtensions as $ext) {
             </div>
         </div>
 
+        <?php if ($hasIndexHtml): ?>
+            <div style="background:rgba(245,158,11,0.15);border:1px solid #f59e0b;padding:14px;border-radius:10px;margin-bottom:15px;color:#fde68a;font-size:13px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+                <div>
+                    ⚠️ <strong>Ditemukan file index.html lama di root folder (Halaman Maintenance)!</strong><br>
+                    File ini membuat web menampilkan tulisan "Under Maintenance" dan menghalangi Laravel.
+                </div>
+                <a href="?token=<?= $secretToken ?>&action=remove_maintenance_html" class="btn btn-amber" style="margin:0;">
+                    🗑️ Hapus index.html Maintenance
+                </a>
+            </div>
+        <?php endif; ?>
+
         <?php if (!empty($missingExtensions)): ?>
             <div style="background:rgba(239,68,68,0.15);border:1px solid #ef4444;padding:12px;border-radius:10px;margin-bottom:15px;color:#fca5a5;font-size:13px;">
                 ⚠️ <strong>Ekstensi PHP yang belum aktif di cPanel:</strong> <?= implode(', ', $missingExtensions) ?>. Aktifkan di menu cPanel &gt; <em>Select PHP Version</em>.
@@ -233,6 +362,12 @@ foreach ($requiredExtensions as $ext) {
             </a>
             <a href="?token=<?= $secretToken ?>&action=migrate" class="btn">
                 🗄️ Jalankan Migrasi Database
+            </a>
+            <a href="?token=<?= $secretToken ?>&action=fix_htaccess" class="btn btn-slate">
+                🛠️ Perbaiki .htaccess Root
+            </a>
+            <a href="?token=<?= $secretToken ?>&action=remove_maintenance_html" class="btn btn-slate">
+                🗑️ Hapus index.html Lama
             </a>
             <a href="?token=<?= $secretToken ?>&action=clear_cache" class="btn btn-slate">
                 🧹 Bersihkan Cache Laravel

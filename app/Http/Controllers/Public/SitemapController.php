@@ -17,8 +17,7 @@ class SitemapController extends Controller
      */
     public function index(): Response
     {
-        $baseUrl = config('app.url', 'https://sgin.frahesta.com');
-        $baseUrl = rtrim($baseUrl, '/');
+        $baseUrl = rtrim(url('/'), '/');
 
         // Static routes with priorities and changefreq
         $routes = [
@@ -113,8 +112,7 @@ class SitemapController extends Controller
         $xml .= '</urlset>';
 
         return response($xml, 200, [
-            'Content-Type' => 'application/xml',
-            'X-Robots-Tag' => 'noindex, follow'
+            'Content-Type' => 'text/xml; charset=UTF-8',
         ]);
     }
 }
