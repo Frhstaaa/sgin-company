@@ -5,10 +5,15 @@ import { Save, CheckCircle2, Building2, User, Target, Quote, Sparkles, Calendar,
 
 export default function AdminCompanyProfileEdit({ profile = {}, settings = {} }) {
     const { data, setData, processing, recentlySuccessful, errors } = useForm({
-        // Header Banner Section
+        // Header Banner & Home About Section
         about_hero_badge: settings.about_hero_badge || 'TENTANG KAMI / 会社概要',
         about_hero_title: settings.about_hero_title || 'Keahlian Presisi Jepang Berstandar Global',
         about_hero_lead: settings.about_hero_lead || 'Sejak didirikan pada tahun 1952 di Aichi, Jepang, PT. Sugiyama Indonesia (Sugiyama Group) terus menempa batas inovasi teknik penempaan dingin.',
+        home_about_badge_quality: settings.home_about_badge_quality || 'IATF 16949 & ISO 9001',
+        home_about_badge_heritage: settings.home_about_badge_heritage || 'Aichi, Jepang',
+        home_about_plant_title: settings.home_about_plant_title || 'Pabrik & Kantor GIIC Cikarang',
+        home_about_plant_subtitle: settings.home_about_plant_subtitle || 'Greenland International Industrial Center (GIIC)',
+        home_about_image: null,
         
         // Company Details
         company_name: profile.company_name || 'PT. Sugiyama Indonesia',
@@ -86,16 +91,16 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-8">
-                    {/* Section 0: Header Banner Halaman Tentang Kami */}
+                    {/* Section 0: Header Banner & Tampilan Beranda */}
                     <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
                         <div className="px-6 py-4 bg-emerald-50/80 border-b border-emerald-100 flex items-center gap-2.5">
                             <LayoutTemplate className="w-5 h-5 text-emerald-700" />
                             <div>
                                 <h2 className="font-bold text-sm text-emerald-950 uppercase tracking-wide">
-                                    1. Header Banner Halaman Tentang Kami (/tentang-kami)
+                                    1. Banner Header & Bagian Tentang Kami di Beranda
                                 </h2>
                                 <p className="text-xs text-emerald-700 font-normal">
-                                    Ubah teks badge hijau, judul utama, dan pengantar di bagian paling atas halaman.
+                                    Ubah teks judul, deskripsi pengantar, foto fasilitas pabrik, dan lencana mutu yang tampil di Beranda & Halaman Tentang Kami.
                                 </p>
                             </div>
                         </div>
@@ -117,7 +122,7 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
 
                                 <div className="md:col-span-2">
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                                        Judul Utama Banner <span className="text-rose-500">*</span>
+                                        Judul Utama <span className="text-rose-500">*</span>
                                     </label>
                                     <input
                                         type="text"
@@ -132,7 +137,7 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
 
                             <div>
                                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                                    Teks Pengantar / Deskripsi Banner
+                                    Teks Pengantar / Deskripsi
                                 </label>
                                 <textarea
                                     rows="3"
@@ -141,6 +146,88 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
                                     placeholder="Sejak didirikan pada tahun 1952 di Aichi, Jepang..."
                                     className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium leading-relaxed"
                                 />
+                            </div>
+
+                            {/* Foto Showcase Fasilitas & Lencana Mutu */}
+                            <div className="pt-4 border-t border-slate-200/80 space-y-4">
+                                <h3 className="text-xs font-extrabold uppercase tracking-wider text-emerald-900 flex items-center gap-2">
+                                    <ImageIcon className="w-4 h-4 text-emerald-700" />
+                                    <span>Foto Showcase Fasilitas Pabrik & Lencana Mutu (Beranda)</span>
+                                </h3>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                            Lencana Mutu Kiri
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={data.home_about_badge_quality || ''}
+                                            onChange={(e) => setData('home_about_badge_quality', e.target.value)}
+                                            placeholder="IATF 16949 & ISO 9001"
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                            Lencana Warisan Kanan
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={data.home_about_badge_heritage || ''}
+                                            onChange={(e) => setData('home_about_badge_heritage', e.target.value)}
+                                            placeholder="Aichi, Jepang"
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                            Label Pabrik Bawah
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={data.home_about_plant_title || ''}
+                                            onChange={(e) => setData('home_about_plant_title', e.target.value)}
+                                            placeholder="Pabrik & Kantor GIIC Cikarang"
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                            Sub-Label Pabrik (Kawasan Industri)
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={data.home_about_plant_subtitle || ''}
+                                            onChange={(e) => setData('home_about_plant_subtitle', e.target.value)}
+                                            placeholder="Greenland International Industrial Center (GIIC)"
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2 pt-2">
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                                        Unggah Foto Fasilitas Pabrik Baru (Opsional, Max 5MB)
+                                    </label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => {
+                                            const file = e.target.files[0];
+                                            if (file) {
+                                                setData('home_about_image', file);
+                                            }
+                                        }}
+                                        className="w-full px-4 py-2.5 rounded-xl border border-slate-300 text-sm bg-white file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-emerald-100 file:text-emerald-800 hover:file:bg-emerald-200 cursor-pointer"
+                                    />
+                                    <p className="text-[11px] text-slate-500">
+                                        Format JPG, PNG, atau WEBP. Jika dikosongkan, sistem akan menggunakan foto default fasilitas beresolusi tinggi.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

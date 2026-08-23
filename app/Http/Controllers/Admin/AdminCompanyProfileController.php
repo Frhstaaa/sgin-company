@@ -50,6 +50,12 @@ class AdminCompanyProfileController extends Controller
             'about_hero_badge' => 'nullable|string|max:255',
             'about_hero_title' => 'nullable|string|max:255',
             'about_hero_lead' => 'nullable|string',
+            'home_about_image' => 'nullable|image|max:5120',
+            'home_about_badge_quality' => 'nullable|string|max:255',
+            'home_about_badge_heritage' => 'nullable|string|max:255',
+            'home_about_plant_title' => 'nullable|string|max:255',
+            'home_about_plant_subtitle' => 'nullable|string|max:255',
+            'home_about_plant_tag' => 'nullable|string|max:100',
         ]);
 
         // Save Header Banner Settings
@@ -63,11 +69,43 @@ class AdminCompanyProfileController extends Controller
             $this->settingService->set('about_hero_lead', $request->input('about_hero_lead'), 'header');
         }
 
+        // Save Home About Showcase Settings
+        if ($request->has('home_about_badge_quality')) {
+            $this->settingService->set('home_about_badge_quality', $request->input('home_about_badge_quality'), 'about');
+        }
+        if ($request->has('home_about_badge_heritage')) {
+            $this->settingService->set('home_about_badge_heritage', $request->input('home_about_badge_heritage'), 'about');
+        }
+        if ($request->has('home_about_plant_title')) {
+            $this->settingService->set('home_about_plant_title', $request->input('home_about_plant_title'), 'about');
+        }
+        if ($request->has('home_about_plant_subtitle')) {
+            $this->settingService->set('home_about_plant_subtitle', $request->input('home_about_plant_subtitle'), 'about');
+        }
+        if ($request->has('home_about_plant_tag')) {
+            $this->settingService->set('home_about_plant_tag', $request->input('home_about_plant_tag'), 'about');
+        }
+        if ($request->hasFile('home_about_image')) {
+            $path = $request->file('home_about_image')->store('company', 'public');
+            $this->settingService->set('home_about_image', '/storage/' . $path, 'about');
+        }
+
         $presidentPhoto = $request->file('president_photo');
-        unset($validated['president_photo'], $validated['about_hero_badge'], $validated['about_hero_title'], $validated['about_hero_lead']);
+        unset(
+            $validated['president_photo'], 
+            $validated['about_hero_badge'], 
+            $validated['about_hero_title'], 
+            $validated['about_hero_lead'],
+            $validated['home_about_image'],
+            $validated['home_about_badge_quality'],
+            $validated['home_about_badge_heritage'],
+            $validated['home_about_plant_title'],
+            $validated['home_about_plant_subtitle'],
+            $validated['home_about_plant_tag']
+        );
 
         $this->profileService->updateProfile($validated, $presidentPhoto);
-        return back()->with('success', 'Profil perusahaan & header banner berhasil diperbarui.');
+        return back()->with('success', 'Profil perusahaan & pengaturan tampilan Tentang Kami berhasil diperbarui.');
     }
 }
 

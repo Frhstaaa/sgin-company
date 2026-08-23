@@ -826,13 +826,13 @@ export default function Home({
                                 <div className="space-y-3">
                                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-300 text-xs font-bold shadow-lg backdrop-blur-md">
                                         <Building2 className="w-3.5 h-3.5 text-emerald-400" />
-                                        <span>{t('about_badge', 'Tentang Kami / 会社概要')}</span>
+                                        <span>{(lang === 'id' && settings.about_hero_badge) ? settings.about_hero_badge : t('about_badge', 'Tentang Kami / 会社概要')}</span>
                                     </div>
                                     <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
-                                        {t('about_title', 'Keahlian Presisi Jepang Berstandar Global')}
+                                        {(lang === 'id' && settings.about_hero_title) ? settings.about_hero_title : t('about_title', 'Keahlian Presisi Jepang Berstandar Global')}
                                     </h2>
                                     <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
-                                        {t('about_lead', 'Sejak didirikan pada tahun 1952 di Aichi, Jepang, PT. Sugiyama Indonesia (Sugiyama Group) terus menempa batas inovasi teknik penempaan dingin dan komponen presisi berstandar mutu otomotif global.')}
+                                        {(lang === 'id' && settings.about_hero_lead) ? settings.about_hero_lead : t('about_lead', 'Sejak didirikan pada tahun 1952 di Aichi, Jepang, PT. Sugiyama Indonesia (Sugiyama Group) terus menempa batas inovasi teknik penempaan dingin dan komponen presisi berstandar mutu otomotif global.')}
                                     </p>
                                 </div>
 
@@ -880,7 +880,7 @@ export default function Home({
                                 {/* Main Facility Showcase Image Card */}
                                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-700/70 group aspect-4/3 bg-slate-950">
                                     <img 
-                                        src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop" 
+                                        src={settings.home_about_image || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop'} 
                                         alt="Fasilitas Manufaktur PT. Sugiyama Indonesia" 
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
                                     />
@@ -895,7 +895,7 @@ export default function Home({
                                             </div>
                                             <div className="text-left">
                                                 <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider leading-none">Standar Mutu</p>
-                                                <p className="text-[11px] font-black text-white font-mono leading-tight mt-0.5">IATF 16949 & ISO 9001</p>
+                                                <p className="text-[11px] font-black text-white font-mono leading-tight mt-0.5">{settings.home_about_badge_quality || 'IATF 16949 & ISO 9001'}</p>
                                             </div>
                                         </div>
 
@@ -906,7 +906,7 @@ export default function Home({
                                             </div>
                                             <div className="text-left">
                                                 <p className="text-[9px] font-bold text-amber-400/80 uppercase tracking-wider leading-none">Sejak 1952</p>
-                                                <p className="text-[11px] font-black text-white leading-tight mt-0.5">Aichi, Jepang</p>
+                                                <p className="text-[11px] font-black text-white leading-tight mt-0.5">{settings.home_about_badge_heritage || 'Aichi, Jepang'}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -914,11 +914,11 @@ export default function Home({
                                     {/* Plant Label on Bottom */}
                                     <div className="absolute bottom-3.5 left-3.5 right-3.5 p-3 sm:p-3.5 rounded-2xl bg-slate-950/85 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs z-10 shadow-lg">
                                         <div>
-                                            <p className="font-extrabold text-white text-xs sm:text-sm">Pabrik & Kantor GIIC Cikarang</p>
-                                            <p className="text-[10px] text-slate-400">Greenland International Industrial Center (GIIC)</p>
+                                            <p className="font-extrabold text-white text-xs sm:text-sm">{settings.home_about_plant_title || 'Pabrik & Kantor GIIC Cikarang'}</p>
+                                            <p className="text-[10px] text-slate-400">{settings.home_about_plant_subtitle || 'Greenland International Industrial Center (GIIC)'}</p>
                                         </div>
                                         <span className="px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 font-mono font-bold text-[10px] border border-emerald-500/30 shrink-0">
-                                            ASEAN Hub
+                                            {settings.home_about_plant_tag || 'ASEAN Hub'}
                                         </span>
                                     </div>
                                 </div>
