@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Public\StoreJobApplicationRequest;
 use App\Models\Career;
 use App\Models\JobApplication;
+use App\Services\CaptchaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
@@ -21,10 +22,13 @@ class CareerApplicationController extends Controller
             $selectedCareer = Career::where('slug', $request->query('position'))->first();
         }
 
+        $captcha = CaptchaService::generate('career_captcha');
+
         return Inertia::render('Career/Apply', [
             'careers' => $careers,
             'selectedCareer' => $selectedCareer,
             'preselectedPosition' => $request->query('position'),
+            'captchaSvg' => $captcha['svg'],
         ]);
     }
 
@@ -32,11 +36,21 @@ class CareerApplicationController extends Controller
     {
         $selectedCareer = Career::where('slug', $slug)->firstOrFail();
         $careers = Career::active()->get(['id', 'slug', 'title', 'department', 'location']);
+        $captcha = CaptchaService::generate('career_captcha');
 
         return Inertia::render('Career/Apply', [
             'careers' => $careers,
             'selectedCareer' => $selectedCareer,
             'preselectedPosition' => $slug,
+            'captchaSvg' => $captcha['svg'],
+        ]);
+    }
+
+    public function refreshCaptcha()
+    {
+        $captcha = CaptchaService::generate('career_captcha');
+        return response()->json([
+            'captcha_svg' => $captcha['svg'],
         ]);
     }
 
@@ -60,9 +74,9 @@ class CareerApplicationController extends Controller
             }
         }
 
-        unset($validated['cv_file']);
+        unset($validated['cv_file'], $validated['captcha_code'], $validated['honeypot_trap']);
 
-        $application = JobApplication::create($validated);
+        JobApplication::create($validated);
 
         return redirect()->back()->with('success', 'Lamaran Anda berhasil dikirim! Tim HRD PT. Sugiyama Indonesia akan meninjau CV Anda dan menghubungi melalui email atau WhatsApp.');
     }

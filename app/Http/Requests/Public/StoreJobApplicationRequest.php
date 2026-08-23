@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Public;
 
+use App\Services\CaptchaService;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreJobApplicationRequest extends FormRequest
@@ -29,6 +30,16 @@ class StoreJobApplicationRequest extends FormRequest
             'portfolio_url' => 'nullable|url|max:255',
             'cover_letter' => 'nullable|string|max:5000',
             'cv_file' => 'required|file|mimes:pdf,doc,docx|max:2048', // Strictly Max 2 MB
+            'captcha_code' => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) {
+                    if (!CaptchaService::validate($value, 'career_captcha')) {
+                        $fail('Kode keamanan Captcha tidak valid atau telah kadaluarsa. Silakan masukkan kode Captcha yang baru.');
+                    }
+                },
+            ],
+            'honeypot_trap' => 'nullable|max:0', // Must remain empty
         ];
     }
 
@@ -43,6 +54,8 @@ class StoreJobApplicationRequest extends FormRequest
             'email.email' => 'Format alamat email tidak valid.',
             'phone.required' => 'Nomor WhatsApp / telepon wajib diisi.',
             'position_title.required' => 'Posisi pekerjaan yang dilamar wajib dipilih.',
+            'captcha_code.required' => 'Kode keamanan Captcha wajib diisi untuk verifikasi.',
+            'honeypot_trap.max' => 'Spam terdeteksi.',
         ];
     }
 }

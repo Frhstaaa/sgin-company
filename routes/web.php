@@ -67,6 +67,7 @@ Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show')
 
 Route::get('/karir', [CareerController::class, 'index'])->name('career.index');
 Route::get('/karir/lamar', [CareerApplicationController::class, 'create'])->name('career.apply');
+Route::get('/karir/captcha/refresh', [CareerApplicationController::class, 'refreshCaptcha'])->name('career.captcha.refresh');
 Route::get('/karir/{slug}/lamar', [CareerApplicationController::class, 'createForCareer'])->name('career.apply.position');
 Route::post('/karir/lamar', [CareerApplicationController::class, 'store'])->name('career.apply.store');
 Route::get('/karir/{slug}', [CareerController::class, 'show'])->name('career.show');
