@@ -90,6 +90,9 @@ Route::get('/storage/{path}', function (string $path) {
 | Admin Authentication Routes
 |--------------------------------------------------------------------------
 */
+// Fallback login route for standard auth middleware
+Route::get('/login', fn () => redirect()->route('admin.login'))->name('login');
+
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
     Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.post');
