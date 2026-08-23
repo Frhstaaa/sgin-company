@@ -88,20 +88,20 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                             {/* Quick Highlights Bar */}
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-4">
                                 <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">Berdiri</p>
-                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">1952 (70+ Thn)</p>
+                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{siteSettings.about_stat1_label || 'Berdiri'}</p>
+                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{siteSettings.about_stat1_value || '1952 (70+ Thn)'}</p>
                                 </div>
                                 <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">Sertifikasi</p>
-                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">IATF 16949</p>
+                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{siteSettings.about_stat2_label || 'Sertifikasi'}</p>
+                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{siteSettings.about_stat2_value || 'IATF 16949'}</p>
                                 </div>
                                 <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">Karyawan</p>
-                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{p.employees_count || '280 Grup'}</p>
+                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{siteSettings.about_stat3_label || 'Karyawan'}</p>
+                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{siteSettings.about_stat3_value || p.employees_count || '280 Grup'}</p>
                                 </div>
                                 <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">Lokasi Hub</p>
-                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">GIIC Cikarang</p>
+                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{siteSettings.about_stat4_label || 'Lokasi Hub'}</p>
+                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{siteSettings.about_stat4_value || 'GIIC Cikarang'}</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -135,10 +135,10 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                 <div className="space-y-2">
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[10px] sm:text-xs font-bold">
                                         <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
-                                        <span>PESAN KEPEMIMPINAN / 代表挨拶</span>
+                                        <span>{(lang === 'id' && siteSettings.about_president_badge) ? siteSettings.about_president_badge : 'PESAN KEPEMIMPINAN / 代表挨拶'}</span>
                                     </div>
                                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-                                        {t('about_president_title', 'Komitmen Presisi Tanpa Kompromi & Semangat Kaizen')}
+                                        {(lang === 'id' && siteSettings.about_president_title) ? siteSettings.about_president_title : t('about_president_title', 'Komitmen Presisi Tanpa Kompromi & Semangat Kaizen')}
                                     </h2>
                                 </div>
 
@@ -165,14 +165,14 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                                         {p.president_name || 'Takeshi Sugiyama'}
                                                     </p>
                                                     <p className="text-xs text-emerald-800 font-bold">
-                                                        {t('about_president_role', 'Presiden Direktur PT. Sugiyama Indonesia')}
+                                                        {siteSettings.about_president_role || t('about_president_role', 'Presiden Direktur PT. Sugiyama Indonesia')}
                                                     </p>
                                                 </div>
                                             </div>
 
                                             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100/80 text-emerald-800 text-[11px] font-bold border border-emerald-200 shrink-0">
                                                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
-                                                <span>Sugiyama Group Executive</span>
+                                                <span>{siteSettings.about_president_tag || 'Sugiyama Group Executive'}</span>
                                             </span>
                                         </div>
                                     </div>
@@ -237,13 +237,13 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
                     <div className="text-center max-w-3xl mx-auto space-y-3">
                         <span className="text-[10px] sm:text-xs font-bold text-emerald-800 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 inline-block">
-                            FILOSOFI & NILAI KORPORAT / 企業理念
+                            {(lang === 'id' && siteSettings.about_pillar_badge) ? siteSettings.about_pillar_badge : 'FILOSOFI & NILAI KORPORAT / 企業理念'}
                         </span>
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-                            Fondasi Integritas, Penguasaan Teknologi & Masa Depan
+                            {(lang === 'id' && siteSettings.about_pillar_title) ? siteSettings.about_pillar_title : 'Fondasi Integritas, Penguasaan Teknologi & Masa Depan'}
                         </h2>
                         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
-                            Tiga pilar filosofis yang memandu setiap langkah rekayasa presisi, manufaktur zero-defect, dan kepuasan pelanggan global.
+                            {(lang === 'id' && siteSettings.about_pillar_subtitle) ? siteSettings.about_pillar_subtitle : 'Tiga pilar filosofis yang memandu setiap langkah rekayasa presisi, manufaktur zero-defect, dan kepuasan pelanggan global.'}
                         </p>
                     </div>
 
@@ -417,7 +417,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                 </div>
                                 <div className="space-y-1">
                                     <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Standar Sertifikasi Mutu</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">IATF 16949:2016 & ISO 9001:2015</p>
+                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{siteSettings.factsheet_certifications || 'IATF 16949:2016 & ISO 9001:2015'}</p>
                                     <p className="text-xs text-slate-500">ISO 14001:2015 Environmental System</p>
                                 </div>
                             </div>
@@ -429,7 +429,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                 </div>
                                 <div className="space-y-1">
                                     <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Bidang Usaha Inti</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">Cold Forging & CNC Precision Machining</p>
+                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{siteSettings.factsheet_business_scope || 'Cold Forging & CNC Precision Machining'}</p>
                                     <p className="text-xs text-slate-500">Komponen Powertrain Otomotif & Elektrifikasi EV</p>
                                 </div>
                             </div>
@@ -572,29 +572,29 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                             
                             <div className="space-y-2 relative z-10 max-w-2xl">
                                 <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                    KOLABORASI & KONSULTASI / お問い合わせ
+                                    {(lang === 'id' && siteSettings.about_cta_badge) ? siteSettings.about_cta_badge : 'KOLABORASI & KONSULTASI / お問い合わせ'}
                                 </span>
                                 <h3 className="text-xl sm:text-3xl font-extrabold text-white leading-tight">
-                                    Siap Memulai Proyek Manufaktur Presisi Anda?
+                                    {(lang === 'id' && siteSettings.about_cta_title) ? siteSettings.about_cta_title : 'Siap Memulai Proyek Manufaktur Presisi Anda?'}
                                 </h3>
                                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                    Diskusikan kebutuhan penempaan dingin, evaluasi gambar teknik 3D CAD, atau jadwalkan kunjungan ke fasilitas pabrik kami di GIIC Cikarang.
+                                    {(lang === 'id' && siteSettings.about_cta_lead) ? siteSettings.about_cta_lead : 'Diskusikan kebutuhan penempaan dingin, evaluasi gambar teknik 3D CAD, atau jadwalkan kunjungan ke fasilitas pabrik kami di GIIC Cikarang.'}
                                 </p>
                             </div>
 
                             <div className="relative z-10 flex flex-wrap items-center gap-3 shrink-0">
                                 <Link
-                                    href="/kontak?type=rfq"
+                                    href={siteSettings.about_cta_btn1_link || '/kontak?type=rfq'}
                                     className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-emerald-500/30"
                                 >
-                                    <span>Minta Penawaran (RFQ)</span>
+                                    <span>{siteSettings.about_cta_btn1_text || 'Minta Penawaran (RFQ)'}</span>
                                     <ArrowRight className="w-4 h-4" />
                                 </Link>
                                 <Link
-                                    href="/kontak"
+                                    href={siteSettings.about_cta_btn2_link || '/kontak'}
                                     className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider backdrop-blur-md border border-white/20 transition-all"
                                 >
-                                    <span>Hubungi Kami</span>
+                                    <span>{siteSettings.about_cta_btn2_text || 'Hubungi Kami'}</span>
                                 </Link>
                             </div>
                         </div>

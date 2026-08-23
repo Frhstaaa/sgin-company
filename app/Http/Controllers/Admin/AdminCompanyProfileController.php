@@ -47,65 +47,90 @@ class AdminCompanyProfileController extends Controller
             'capital' => 'nullable|string|max:100',
             'established_date' => 'nullable|string|max:100',
             'employees_count' => 'nullable|string|max:100',
+
+            // Hero Header & Quick Stats
             'about_hero_badge' => 'nullable|string|max:255',
             'about_hero_title' => 'nullable|string|max:255',
             'about_hero_lead' => 'nullable|string',
+            'about_hero_video' => 'nullable|string|max:500',
+            'about_stat1_label' => 'nullable|string|max:100',
+            'about_stat1_value' => 'nullable|string|max:100',
+            'about_stat2_label' => 'nullable|string|max:100',
+            'about_stat2_value' => 'nullable|string|max:100',
+            'about_stat3_label' => 'nullable|string|max:100',
+            'about_stat3_value' => 'nullable|string|max:100',
+            'about_stat4_label' => 'nullable|string|max:100',
+            'about_stat4_value' => 'nullable|string|max:100',
+
+            // President & Leadership Section
+            'about_president_badge' => 'nullable|string|max:255',
+            'about_president_title' => 'nullable|string|max:255',
+            'about_president_role' => 'nullable|string|max:255',
+            'about_president_tag' => 'nullable|string|max:255',
             'home_about_image' => 'nullable|image|max:5120',
             'home_about_badge_quality' => 'nullable|string|max:255',
             'home_about_badge_heritage' => 'nullable|string|max:255',
             'home_about_plant_title' => 'nullable|string|max:255',
             'home_about_plant_subtitle' => 'nullable|string|max:255',
             'home_about_plant_tag' => 'nullable|string|max:100',
+
+            // 3 Pillar Section
+            'about_pillar_badge' => 'nullable|string|max:255',
+            'about_pillar_title' => 'nullable|string|max:255',
+            'about_pillar_subtitle' => 'nullable|string',
+
+            // Factsheet Section Additional Fields
+            'factsheet_certifications' => 'nullable|string|max:255',
+            'factsheet_business_scope' => 'nullable|string|max:255',
+
+            // CTA Banner Section
+            'about_cta_badge' => 'nullable|string|max:255',
+            'about_cta_title' => 'nullable|string|max:255',
+            'about_cta_lead' => 'nullable|string',
+            'about_cta_btn1_text' => 'nullable|string|max:100',
+            'about_cta_btn1_link' => 'nullable|string|max:255',
+            'about_cta_btn2_text' => 'nullable|string|max:100',
+            'about_cta_btn2_link' => 'nullable|string|max:255',
         ]);
 
-        // Save Header Banner Settings
-        if ($request->has('about_hero_badge')) {
-            $this->settingService->set('about_hero_badge', $request->input('about_hero_badge'), 'header');
-        }
-        if ($request->has('about_hero_title')) {
-            $this->settingService->set('about_hero_title', $request->input('about_hero_title'), 'header');
-        }
-        if ($request->has('about_hero_lead')) {
-            $this->settingService->set('about_hero_lead', $request->input('about_hero_lead'), 'header');
+        // Setting keys to save into SiteSettings table
+        $settingKeys = [
+            'about_hero_badge', 'about_hero_title', 'about_hero_lead', 'about_hero_video',
+            'about_stat1_label', 'about_stat1_value',
+            'about_stat2_label', 'about_stat2_value',
+            'about_stat3_label', 'about_stat3_value',
+            'about_stat4_label', 'about_stat4_value',
+            'about_president_badge', 'about_president_title', 'about_president_role', 'about_president_tag',
+            'home_about_badge_quality', 'home_about_badge_heritage',
+            'home_about_plant_title', 'home_about_plant_subtitle', 'home_about_plant_tag',
+            'about_pillar_badge', 'about_pillar_title', 'about_pillar_subtitle',
+            'factsheet_certifications', 'factsheet_business_scope',
+            'about_cta_badge', 'about_cta_title', 'about_cta_lead',
+            'about_cta_btn1_text', 'about_cta_btn1_link',
+            'about_cta_btn2_text', 'about_cta_btn2_link',
+        ];
+
+        foreach ($settingKeys as $key) {
+            if ($request->has($key)) {
+                $this->settingService->set($key, $request->input($key), 'about');
+            }
         }
 
-        // Save Home About Showcase Settings
-        if ($request->has('home_about_badge_quality')) {
-            $this->settingService->set('home_about_badge_quality', $request->input('home_about_badge_quality'), 'about');
-        }
-        if ($request->has('home_about_badge_heritage')) {
-            $this->settingService->set('home_about_badge_heritage', $request->input('home_about_badge_heritage'), 'about');
-        }
-        if ($request->has('home_about_plant_title')) {
-            $this->settingService->set('home_about_plant_title', $request->input('home_about_plant_title'), 'about');
-        }
-        if ($request->has('home_about_plant_subtitle')) {
-            $this->settingService->set('home_about_plant_subtitle', $request->input('home_about_plant_subtitle'), 'about');
-        }
-        if ($request->has('home_about_plant_tag')) {
-            $this->settingService->set('home_about_plant_tag', $request->input('home_about_plant_tag'), 'about');
-        }
         if ($request->hasFile('home_about_image')) {
             $path = $request->file('home_about_image')->store('company', 'public');
             $this->settingService->set('home_about_image', '/storage/' . $path, 'about');
         }
 
         $presidentPhoto = $request->file('president_photo');
-        unset(
-            $validated['president_photo'], 
-            $validated['about_hero_badge'], 
-            $validated['about_hero_title'], 
-            $validated['about_hero_lead'],
-            $validated['home_about_image'],
-            $validated['home_about_badge_quality'],
-            $validated['home_about_badge_heritage'],
-            $validated['home_about_plant_title'],
-            $validated['home_about_plant_subtitle'],
-            $validated['home_about_plant_tag']
-        );
+        
+        // Remove site setting keys from validated array before updating company_profiles model
+        foreach ($settingKeys as $key) {
+            unset($validated[$key]);
+        }
+        unset($validated['president_photo'], $validated['home_about_image']);
 
         $this->profileService->updateProfile($validated, $presidentPhoto);
-        return back()->with('success', 'Profil perusahaan & pengaturan tampilan Tentang Kami berhasil diperbarui.');
+        return back()->with('success', 'Seluruh konten halaman Tentang Kami & Profil Perusahaan berhasil diperbarui.');
     }
 }
 
