@@ -32,45 +32,31 @@ export function LanguageProvider({ children }) {
      * Translates a dynamic database model object into the active language
      */
     const translateModel = (item, type = 'generic') => {
-        if (!item) return item;
+        if (!item || typeof item !== 'object') return item;
 
-        // Custom slug override or singleton type override
-        if (type && modelTranslations[type]) {
-            if (item.slug && modelTranslations[type][item.slug]) {
-                const overrides = modelTranslations[type][item.slug][lang];
-                if (overrides) {
-                    return { ...item, ...overrides };
-                }
-            } else if (modelTranslations[type][lang]) {
-                const overrides = modelTranslations[type][lang];
-                if (overrides) {
-                    return { ...item, ...overrides };
-                }
+        // Clone item to avoid mutating original props
+        const result = { ...item };
+
+        // 1. If language is Indonesian ('id'), return the database object directly!
+        if (lang === 'id') {
+            return result;
+        }
+
+        // 2. Dynamic column translation for en / ja from database columns (e.g. title_en, title_jp, etc.)
+        const suffix = lang === 'ja' ? '_jp' : '_en';
+        for (const key in item) {
+            const translatedKey = `${key}${suffix}`;
+            const baseKey = key.endsWith('_id') ? key.replace('_id', '') : key;
+            const alternativeKey = `${baseKey}${suffix}`;
+
+            if (item[translatedKey] !== undefined && item[translatedKey] !== null && item[translatedKey] !== '') {
+                result[key] = item[translatedKey];
+            } else if (item[alternativeKey] !== undefined && item[alternativeKey] !== null && item[alternativeKey] !== '') {
+                result[key] = item[alternativeKey];
             }
         }
 
-        // Dynamic translation mapping
-        if (lang !== 'id' && typeof item === 'object') {
-            const translatedItem = { ...item };
-            for (const key in item) {
-                // Determine suffix based on language (ja -> _jp, en -> _en)
-                const suffix = lang === 'ja' ? '_jp' : '_en';
-                const translatedKey = `${key}${suffix}`;
-                
-                // If key is like title_id, translatedKey should be title_jp
-                const baseKey = key.endsWith('_id') ? key.replace('_id', '') : key;
-                const translatedKeyAlternative = `${baseKey}${suffix}`;
-
-                if (item[translatedKey] !== undefined && item[translatedKey] !== null && item[translatedKey] !== '') {
-                    translatedItem[key] = item[translatedKey];
-                } else if (item[translatedKeyAlternative] !== undefined && item[translatedKeyAlternative] !== null && item[translatedKeyAlternative] !== '') {
-                    translatedItem[key] = item[translatedKeyAlternative];
-                }
-            }
-            return translatedItem;
-        }
-
-        return item;
+        return result;
     };
 
     return (

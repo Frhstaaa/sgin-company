@@ -477,7 +477,7 @@ export default function Home({
                                 <div className="pt-2 flex items-center gap-4">
                                     <div>
                                         <p className="font-bold text-slate-900 text-sm">
-                                            {t('about_president_name', translatedAbout.president_name || 'Takeshi Sugiyama')}
+                                            {translatedAbout.president_name || 'Takeshi Sugiyama'}
                                         </p>
                                         <p className="text-xs text-slate-500">
                                             {t('about_president_role', 'Presiden Direktur PT. Sugiyama Indonesia')}

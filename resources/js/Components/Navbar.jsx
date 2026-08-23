@@ -70,12 +70,12 @@ export default function Navbar() {
                                 <span className={`font-black tracking-tight text-xs sm:text-base transition-colors leading-tight truncate ${
                                     scrolled ? 'text-slate-900' : 'text-white'
                                 }`}>
-                                    PT. Sugiyama Indonesia
+                                    {siteSettings.site_name || 'PT. Sugiyama Indonesia'}
                                 </span>
                                 <span className={`text-[8px] sm:text-[10px] font-semibold tracking-wider font-jp transition-colors leading-none mt-0.5 truncate ${
                                     scrolled ? 'text-emerald-700' : 'text-emerald-300'
                                 }`}>
-                                    株式会社スギヤマ / SUGIYAMA
+                                    {siteSettings.site_name_jp || '株式会社スギヤマ / SUGIYAMA'}
                                 </span>
                             </div>
                         </Link>

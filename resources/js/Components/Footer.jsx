@@ -162,7 +162,7 @@ export default function Footer() {
                                 {t('footer_id_title', 'Pabrik Indonesia')}
                             </h4>
                             <p className="text-xs text-emerald-200/80 leading-relaxed">
-                                {t('footer_id_addr', 'Kawasan Industri GIIC Blok AA-12, Kota Deltamas, Cikarang Pusat, Bekasi 17530, Jawa Barat, Indonesia')}
+                                {siteSettings.contact_address_id || t('footer_id_addr', 'Kawasan Greenland International Industrial Center (GIIC) Blok CF No. 10, Pasirranji, Cikarang Pusat, Bekasi 17530, Jawa Barat, Indonesia')}
                             </p>
                             <div className="pt-2">
                                 <Link
@@ -180,7 +180,7 @@ export default function Footer() {
                 {/* Bottom Row */}
                 <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-emerald-300/70">
                     <p>
-                        © 2026 PT. Sugiyama Indonesia (株式会社スギヤマ). {t('footer_rights', 'All Rights Reserved.')}
+                        {siteSettings.copyright_text || `© 2026 ${siteSettings.site_name || 'PT. Sugiyama Indonesia'}. All Rights Reserved.`}
                     </p>
 
                     <button
