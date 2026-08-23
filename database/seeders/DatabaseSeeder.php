@@ -540,5 +540,8 @@ class DatabaseSeeder extends Seeder
                 $c
             );
         }
+
+        // 12. Production Processes
+        $this->call(ProductionProcessSeeder::class);
     }
 }

@@ -4,7 +4,7 @@ import {
     LayoutDashboard, Image, BarChart3, Cpu, Briefcase, 
     Cog, Package, FolderTree, Building2, Newspaper, 
     UserCheck, Inbox, Settings, LogOut, Menu, X, 
-    CheckCircle2, AlertCircle, ExternalLink, ChevronRight, User, ShieldCheck, LayoutTemplate
+    CheckCircle2, AlertCircle, ExternalLink, ChevronRight, User, ShieldCheck, LayoutTemplate, Workflow
 } from 'lucide-react';
 
 export default function AdminLayout({ children, title = 'Admin Dashboard' }) {
@@ -39,6 +39,7 @@ export default function AdminLayout({ children, title = 'Admin Dashboard' }) {
         { name: 'Pilar Teknologi', href: '/admin/technologies', icon: Cpu, active: currentUrl.startsWith('/admin/technologies') },
         { name: 'Unit Bisnis', href: '/admin/business-units', icon: Briefcase, active: currentUrl.startsWith('/admin/business-units') },
         { name: 'Mesin & Peralatan', href: '/admin/equipment', icon: Cog, active: currentUrl.startsWith('/admin/equipment') },
+        { name: 'Proses Produksi', href: '/admin/production-processes', icon: Workflow, active: currentUrl.startsWith('/admin/production-processes') },
         { name: 'Kategori Produk', href: '/admin/product-categories', icon: FolderTree, active: currentUrl.startsWith('/admin/product-categories') },
         { name: 'Katalog Produk', href: '/admin/products', icon: Package, active: currentUrl.startsWith('/admin/products') },
         { name: 'Profil Perusahaan', href: '/admin/company-profile', icon: Building2, active: currentUrl.startsWith('/admin/company-profile') },

@@ -8,6 +8,7 @@ use App\Http\Controllers\Public\TechnologyController;
 use App\Http\Controllers\Public\BusinessController;
 use App\Http\Controllers\Public\EquipmentController;
 use App\Http\Controllers\Public\ProductController;
+use App\Http\Controllers\Public\ProductionProcessController;
 use App\Http\Controllers\Public\AboutController;
 use App\Http\Controllers\Public\NewsController;
 use App\Http\Controllers\Public\CareerController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\Admin\AdminStatController;
 use App\Http\Controllers\Admin\AdminTechnologyController;
 use App\Http\Controllers\Admin\AdminBusinessController;
 use App\Http\Controllers\Admin\AdminEquipmentController;
+use App\Http\Controllers\Admin\AdminProductionProcessController;
 use App\Http\Controllers\Admin\AdminProductCategoryController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminCompanyProfileController;
@@ -45,6 +47,8 @@ Route::get('/bisnis', [BusinessController::class, 'index'])->name('business.inde
 Route::get('/bisnis/{slug}', [BusinessController::class, 'show'])->name('business.show');
 
 Route::get('/peralatan', [EquipmentController::class, 'index'])->name('equipment.index');
+
+Route::get('/proses-produksi', [ProductionProcessController::class, 'index'])->name('production-process.index');
 
 Route::get('/produk', [ProductController::class, 'index'])->name('product.index');
 Route::get('/produk/{slug}', [ProductController::class, 'show'])->name('product.show');
@@ -122,6 +126,9 @@ Route::prefix('admin')->group(function () {
 
         // Equipment
         Route::resource('equipment', AdminEquipmentController::class)->except(['create', 'show', 'edit']);
+
+        // Production Processes
+        Route::resource('production-processes', AdminProductionProcessController::class)->except(['create', 'show', 'edit']);
 
         // Product Categories
         Route::resource('product-categories', AdminProductCategoryController::class)->except(['create', 'show', 'edit']);

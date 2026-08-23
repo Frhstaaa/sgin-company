@@ -36,6 +36,8 @@ class AdminPageBannerController extends Controller
             'biz_hero_badge', 'biz_hero_title', 'biz_hero_lead',
             // Peralatan
             'machine_hero_badge', 'machine_hero_title', 'machine_hero_lead',
+            // Proses Produksi
+            'prod_hero_badge', 'prod_hero_title', 'prod_hero_lead',
             // Produk
             'product_hero_badge', 'product_hero_title', 'product_hero_lead',
             // Berita

@@ -125,7 +125,12 @@ export default function Footer() {
                             <ul className="space-y-2 text-xs text-emerald-200/80">
                                 <li>
                                     <Link href="/peralatan" className="hover:text-white transition-colors">
-                                        {t('nav_equipment', 'Proses & Peralatan')}
+                                        {t('nav_equipment', 'Peralatan & Fasilitas')}
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/proses-produksi" className="hover:text-white transition-colors">
+                                        {t('nav_production_process', 'Proses Produksi & QC')}
                                     </Link>
                                 </li>
                                 <li>

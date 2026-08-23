@@ -4,7 +4,7 @@ import AdminLayout from '../../../Layouts/AdminLayout';
 import { 
     LayoutTemplate, Save, CheckCircle2, Building2, Cpu, 
     Briefcase, Cog, Package, Newspaper, UserCheck, Phone, 
-    Sparkles, ArrowRight, ExternalLink 
+    Sparkles, ArrowRight, ExternalLink, Workflow 
 } from 'lucide-react';
 
 export default function AdminBannersIndex({ settings = {} }) {
@@ -29,22 +29,27 @@ export default function AdminBannersIndex({ settings = {} }) {
         machine_hero_title: settings.machine_hero_title || 'Kapasitas Mesin & Peralatan Presisi Tinggi',
         machine_hero_lead: settings.machine_hero_lead || 'Dukungan mesin cold former multi-station, CNC machining center, dan instrumen metrologi standar Jepang.',
 
-        // 5. Produk
+        // 5. Proses Produksi
+        prod_hero_badge: settings.prod_hero_badge || 'ALUR PRODUKSI / 製造工程',
+        prod_hero_title: settings.prod_hero_title || 'Alur Proses Manufaktur & Kontrol Kualitas Presisi',
+        prod_hero_lead: settings.prod_hero_lead || 'Integrasi rantai pasok dari penempaan bahan baku di Jepang, pengapalan laut, permesinan CNC di Indonesia, hingga 100% inspeksi mutu standar Jepang.',
+
+        // 6. Produk
         product_hero_badge: settings.product_hero_badge || 'KATALOG PRODUK / 製品紹介',
         product_hero_title: settings.product_hero_title || 'Portofolio Komponen Presisi Otomotif & Industri',
         product_hero_lead: settings.product_hero_lead || 'Komponen penempaan dingin berkualitas tinggi untuk sistem transmisi, kemudi, suspensi, dan suku cadang presisi.',
 
-        // 6. Berita
+        // 7. Berita
         news_hero_badge: settings.news_hero_badge || 'BERITA & PENGUMUMAN / ニュース',
         news_hero_title: settings.news_hero_title || 'Informasi Terbaru & Perkembangan Perusahaan',
         news_hero_lead: settings.news_hero_lead || 'Kabar korporasi, pencapaian sertifikasi mutu, agenda kegiatan, dan teknologi terkini.',
 
-        // 7. Karir
+        // 8. Karir
         career_hero_badge: settings.career_hero_badge || 'KARIR & REKRUTMEN / 採用情報',
         career_hero_title: settings.career_hero_title || 'Bergabung Bersama Membangun Masa Depan Manufaktur',
         career_hero_lead: settings.career_hero_lead || 'Kembangkan potensi terbaik Anda bersama PT. Sugiyama Indonesia dalam lingkungan kerja profesional berstandar Jepang.',
 
-        // 8. Kontak
+        // 9. Kontak
         contact_hero_badge: settings.contact_hero_badge || 'HUBUNGI KAMI / お問い合わせ',
         contact_hero_title: settings.contact_hero_title || 'Konsultasi Teknik & Permintaan Penawaran',
         contact_hero_lead: settings.contact_hero_lead || 'Tim teknis dan penjualan PT. Sugiyama Indonesia siap membantu estimasi biaya produksi penempaan dingin, evaluasi gambar teknik CAD, serta konsultasi spesifikasi material.',
@@ -64,6 +69,7 @@ export default function AdminBannersIndex({ settings = {} }) {
         { id: 'tech', name: 'Teknologi', path: '/teknologi', icon: Cpu, color: 'sky' },
         { id: 'biz', name: 'Unit Bisnis', path: '/bisnis', icon: Briefcase, color: 'indigo' },
         { id: 'machine', name: 'Peralatan & Mesin', path: '/peralatan', icon: Cog, color: 'amber' },
+        { id: 'prod', name: 'Proses Produksi', path: '/proses-produksi', icon: Workflow, color: 'blue' },
         { id: 'product', name: 'Katalog Produk', path: '/produk', icon: Package, color: 'teal' },
         { id: 'news', name: 'Berita & Update', path: '/berita', icon: Newspaper, color: 'rose' },
         { id: 'career', name: 'Lowongan Karir', path: '/karir', icon: UserCheck, color: 'purple' },

@@ -32,6 +32,7 @@ export default function Navbar() {
         { name: t('nav_technology', 'Teknologi'), href: '/teknologi', active: currentUrl.startsWith('/teknologi') },
         { name: t('nav_business', 'Bisnis'), href: '/bisnis', active: currentUrl.startsWith('/bisnis') },
         { name: t('nav_equipment', 'Peralatan'), href: '/peralatan', active: currentUrl.startsWith('/peralatan') },
+        { name: t('nav_production_process', 'Proses Produksi'), href: '/proses-produksi', active: currentUrl.startsWith('/proses-produksi') },
         { name: t('nav_products', 'Produk'), href: '/produk', active: currentUrl.startsWith('/produk') },
         { name: t('nav_about', 'Tentang Kami'), href: '/tentang-kami', active: currentUrl.startsWith('/tentang-kami') },
         { name: t('nav_news', 'Berita'), href: '/berita', active: currentUrl.startsWith('/berita') },
