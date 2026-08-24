@@ -359,8 +359,8 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                         </div>
 
                         {/* Factsheet Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-4">
-                            {/* Card 1: Nama Resmi */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pt-4">
+                            {/* Card 1: Nama Resmi & Group */}
                             <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
                                     <Building2 className="w-5 h-5" />
@@ -368,69 +368,103 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                 <div className="space-y-1">
                                     <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_company_name_label', 'Nama Perusahaan')}</p>
                                     <p className="text-sm sm:text-base font-extrabold text-slate-900">{companyName}</p>
-                                    {p.company_name_jp && lang !== 'ja' && (
-                                        <p className="text-xs text-slate-500 font-jp">{p.company_name_jp}</p>
-                                    )}
+                                    <p className="text-xs text-emerald-800 font-bold">Group: Sugiyama Co., Ltd. (Japan)</p>
                                 </div>
                             </div>
 
-                            {/* Card 2: Tahun Berdiri */}
+                            {/* Card 2: Tahun Berdiri & Mulai Produksi */}
                             <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
                                     <Calendar className="w-5 h-5" />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_est_label', 'Tahun Berdiri')}</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{p.established_date || 'Maret 1952'}</p>
-                                    <p className="text-xs text-slate-500">70+ Tahun Warisan Presisi Jepang</p>
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_est_label', 'Pendirian & Produksi')}</p>
+                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{p.established_date || '9 April 2012'}</p>
+                                    <p className="text-xs text-slate-500">Mulai Produksi: November 2012</p>
                                 </div>
                             </div>
 
-                            {/* Card 3: Modal Dasar */}
+                            {/* Card 3: Presiden Direktur */}
+                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
+                                    <Users className="w-5 h-5" />
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Presiden Direktur</p>
+                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{p.president_name || 'Yuichi Sugiyama'}</p>
+                                    <p className="text-xs text-emerald-800 font-bold">President Director</p>
+                                </div>
+                            </div>
+
+                            {/* Card 4: Modal & Pemegang Saham */}
                             <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
                                     <Award className="w-5 h-5" />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_capital_label', 'Modal Dasar (Capital)')}</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900 font-mono">{p.capital || '50,000,000 JPY'}</p>
-                                    <p className="text-xs text-slate-500">Sugiyama Group Investment</p>
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_capital_label', 'Modal Dasar & Pemegang Saham')}</p>
+                                    <p className="text-sm sm:text-base font-extrabold text-slate-900 font-mono">{p.capital || 'USD 3.750.000'}</p>
+                                    <p className="text-[11px] text-slate-500">{siteSettings.factsheet_shareholders || 'Sugiyama Co., Ltd. 98.33%, Takahide Sugiyama 1.67%'}</p>
                                 </div>
                             </div>
 
-                            {/* Card 4: Jumlah Tenaga Kerja */}
+                            {/* Card 5: Jumlah Tenaga Kerja */}
                             <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
                                     <Users className="w-5 h-5" />
                                 </div>
                                 <div className="space-y-1">
                                     <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_emp_label', 'Jumlah Karyawan')}</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{p.employees_count || '280 Karyawan (Total Grup)'}</p>
-                                    <p className="text-xs text-slate-500">Teknisi & Operator Berstandar Kaizen</p>
+                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{p.employees_count || '93 Orang'}</p>
+                                    <p className="text-xs text-slate-500">90 Tenaga Kerja Lokal & 3 Expatriate</p>
                                 </div>
                             </div>
 
-                            {/* Card 5: Standar Sertifikasi Mutu */}
+                            {/* Card 6: Luas Lahan & Bangunan Pabrik */}
+                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
+                                    <Factory className="w-5 h-5" />
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Luas Lahan & Bangunan</p>
+                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">Lahan: {siteSettings.factsheet_site_area || '7.582 m²'}</p>
+                                    <p className="text-xs text-slate-500">Luas Bangunan Pabrik: {siteSettings.factsheet_building_area || '3.913 m²'}</p>
+                                </div>
+                            </div>
+
+                            {/* Card 7: Bidang Usaha Inti */}
+                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
+                                    <Cpu className="w-5 h-5" />
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Bidang Usaha (Business Scope)</p>
+                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{siteSettings.factsheet_business_scope || 'Manufacturing & Sales for Automotive Parts'}</p>
+                                    <p className="text-xs text-slate-500">[ Forging, Precision Machining ]</p>
+                                </div>
+                            </div>
+
+                            {/* Card 8: Pelanggan Utama (Major Customers) */}
+                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
+                                    <Globe className="w-5 h-5" />
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Pelanggan Utama (Major Customers)</p>
+                                    <p className="text-xs font-bold text-slate-900">Domestik: PT Denso Indonesia</p>
+                                    <p className="text-[11px] text-slate-500">Overseas: Niterra Japan & India, Daido Kogyo Thailand</p>
+                                </div>
+                            </div>
+
+                            {/* Card 9: Standar Sertifikasi Mutu */}
                             <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
                                 <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
                                     <ShieldCheck className="w-5 h-5" />
                                 </div>
                                 <div className="space-y-1">
                                     <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Standar Sertifikasi Mutu</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{siteSettings.factsheet_certifications || 'IATF 16949:2016 & ISO 9001:2015'}</p>
-                                    <p className="text-xs text-slate-500">ISO 14001:2015 Environmental System</p>
-                                </div>
-                            </div>
-
-                            {/* Card 6: Bidang Bisnis & Fasilitas */}
-                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
-                                    <Cpu className="w-5 h-5" />
-                                </div>
-                                <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Bidang Usaha Inti</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{siteSettings.factsheet_business_scope || 'Cold Forging & CNC Precision Machining'}</p>
-                                    <p className="text-xs text-slate-500">Komponen Powertrain Otomotif & Elektrifikasi EV</p>
+                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{siteSettings.factsheet_certifications || 'ISO 9001:2015 & IATF 16949:2016'}</p>
+                                    <p className="text-xs text-slate-500">Certified by SGS (ID15/03091)</p>
                                 </div>
                             </div>
                         </div>
