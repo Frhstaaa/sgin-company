@@ -584,8 +584,8 @@ export default function Home({
                             <div className="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-slate-200 group flex flex-col justify-between h-full transition-all duration-300 bg-slate-950 text-white min-h-[420px]">
                                 <div className="absolute inset-0 z-0">
                                     <img 
-                                        src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop" 
-                                        alt="Fasilitas Mesin Sugiyama" 
+                                        src={settings.home_facility_image || 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop'} 
+                                        alt={settings.home_facility_title || 'Fasilitas Mesin Sugiyama'} 
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-40"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-emerald-950/40" />
@@ -595,36 +595,36 @@ export default function Home({
                                     <div className="flex items-center justify-between">
                                         <span className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold flex items-center gap-1.5 backdrop-blur-xs">
                                             <Cog className="w-3.5 h-3.5" />
-                                            <span>{t('eq_header_title', 'Fasilitas Peralatan & Mesin')}</span>
+                                            <span>{(lang === 'id' && settings.home_facility_badge) ? settings.home_facility_badge : t('eq_header_title', 'Fasilitas & Mesin Manufaktur Presisi')}</span>
                                         </span>
-                                        <span className="text-xs font-jp text-slate-400">設備紹介</span>
+                                        <span className="text-xs font-jp text-slate-400">{settings.home_facility_tag_jp || '設備紹介'}</span>
                                     </div>
 
                                     <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">
-                                        {t('home_eq_title', 'Armada Mesin Penempaan & CNC Multi-Axis')}
+                                        {(lang === 'id' && settings.home_facility_title) ? settings.home_facility_title : t('home_eq_title', 'Fasilitas Mesin & Peralatan Presisi')}
                                     </h3>
                                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                        Kombinasi mesin penempa dingin 6-Die berkecepatan 180 pcs/menit dan mesin CNC bubut 5-axis untuk menghasilkan komponen net-shape tanpa pemborosan material.
+                                        {(lang === 'id' && settings.home_facility_desc) ? settings.home_facility_desc : 'Kombinasi mesin penempa dingin 6-Die berkecepatan 180 pcs/menit dan mesin CNC bubut 5-axis untuk menghasilkan komponen net-shape tanpa pemborosan material.'}
                                     </p>
 
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
                                         <div className="p-3 rounded-xl bg-white/10 backdrop-blur-xs border border-white/10 space-y-1">
-                                            <p className="text-[10px] text-emerald-300 font-bold uppercase">Cold Former 6-Die</p>
-                                            <p className="text-xs font-semibold text-white">Kecepatan Max 180 ppm</p>
+                                            <p className="text-[10px] text-emerald-300 font-bold uppercase">{settings.home_facility_feat1_title || 'Cold Former 6-Die'}</p>
+                                            <p className="text-xs font-semibold text-white">{settings.home_facility_feat1_desc || 'Kecepatan Max 180 ppm'}</p>
                                         </div>
                                         <div className="p-3 rounded-xl bg-white/10 backdrop-blur-xs border border-white/10 space-y-1">
-                                            <p className="text-[10px] text-emerald-300 font-bold uppercase">5-Axis CNC Turning</p>
-                                            <p className="text-xs font-semibold text-white">Toleransi Presisi ±0.005mm</p>
+                                            <p className="text-[10px] text-emerald-300 font-bold uppercase">{settings.home_facility_feat2_title || '5-Axis CNC Turning'}</p>
+                                            <p className="text-xs font-semibold text-white">{settings.home_facility_feat2_desc || 'Toleransi Presisi ±0.005mm'}</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="relative z-10 p-6 sm:p-8 pt-0">
                                     <Link
-                                        href="/peralatan"
+                                        href={settings.home_facility_btn_link || '/peralatan'}
                                         className="inline-flex items-center justify-between w-full px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md hover:shadow-emerald-600/40"
                                     >
-                                        <span>{t('home_eq_btn', 'Lihat Semua Fasilitas Mesin')}</span>
+                                        <span>{(lang === 'id' && settings.home_facility_btn_text) ? settings.home_facility_btn_text : t('home_eq_btn', 'Lihat Semua Fasilitas Mesin')}</span>
                                         <ArrowRight className="w-4 h-4" />
                                     </Link>
                                 </div>
@@ -636,8 +636,8 @@ export default function Home({
                             <div className="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-slate-200 group flex flex-col justify-between h-full transition-all duration-300 bg-slate-950 text-white min-h-[420px]">
                                 <div className="absolute inset-0 z-0">
                                     <img 
-                                        src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=1200&auto=format&fit=crop" 
-                                        alt="Alur Proses Produksi Sugiyama" 
+                                        src={settings.home_process_image || 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=1200&auto=format&fit=crop'} 
+                                        alt={settings.home_process_title || 'Alur Proses Produksi Sugiyama'} 
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-40"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-emerald-950/40" />
@@ -647,40 +647,40 @@ export default function Home({
                                     <div className="flex items-center justify-between">
                                         <span className="px-3 py-1 rounded-full bg-teal-500/20 border border-teal-400/40 text-teal-300 text-xs font-bold flex items-center gap-1.5 backdrop-blur-xs">
                                             <Workflow className="w-3.5 h-3.5" />
-                                            <span>{t('home_proc_badge', 'Proses Produksi / 製造工程')}</span>
+                                            <span>{(lang === 'id' && settings.home_process_badge) ? settings.home_process_badge : t('home_proc_badge', 'Proses Produksi / 製造工程')}</span>
                                         </span>
-                                        <span className="text-xs font-jp text-slate-400">製造工程</span>
+                                        <span className="text-xs font-jp text-slate-400">{settings.home_process_tag_jp || '製造工程'}</span>
                                     </div>
 
                                     <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">
-                                        {t('home_proc_title', 'Alur Rekayasa & Standar Mutu IATF 16949')}
+                                        {(lang === 'id' && settings.home_process_title) ? settings.home_process_title : t('home_proc_title', 'Alur Rekayasa & Proses Produksi')}
                                     </h3>
                                     <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                        Pengawasan kualitas ketat dari material kawat baja bersertifikat, penempaan dingin terkontrol, hingga inspeksi koordinat 3D CMM sub-mikron.
+                                        {(lang === 'id' && settings.home_process_desc) ? settings.home_process_desc : 'Pengawasan kualitas ketat dari material kawat baja bersertifikat, penempaan dingin terkontrol, hingga inspeksi koordinat 3D CMM sub-mikron.'}
                                     </p>
 
                                     <div className="space-y-2 pt-2">
                                         <div className="flex items-center gap-2 text-xs text-slate-200">
                                             <span className="w-5 h-5 rounded-full bg-emerald-500/30 text-emerald-300 font-mono font-bold text-[10px] flex items-center justify-center shrink-0">1</span>
-                                            <span>Persiapan & Uji Metalurgi Kawat Baja</span>
+                                            <span>{(lang === 'id' && settings.home_process_step1) ? settings.home_process_step1 : 'Persiapan & Uji Metalurgi Kawat Baja'}</span>
                                         </div>
                                         <div className="flex items-center gap-2 text-xs text-slate-200">
                                             <span className="w-5 h-5 rounded-full bg-emerald-500/30 text-emerald-300 font-mono font-bold text-[10px] flex items-center justify-center shrink-0">2</span>
-                                            <span>Net-Shape Cold Forging Tanpa Pemanasan</span>
+                                            <span>{(lang === 'id' && settings.home_process_step2) ? settings.home_process_step2 : 'Net-Shape Cold Forging Tanpa Pemanasan'}</span>
                                         </div>
                                         <div className="flex items-center gap-2 text-xs text-slate-200">
                                             <span className="w-5 h-5 rounded-full bg-emerald-500/30 text-emerald-300 font-mono font-bold text-[10px] flex items-center justify-center shrink-0">3</span>
-                                            <span>Quality Control 100% Berstandar Jepang</span>
+                                            <span>{(lang === 'id' && settings.home_process_step3) ? settings.home_process_step3 : 'Quality Control 100% Berstandar Jepang'}</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="relative z-10 p-6 sm:p-8 pt-0">
                                     <Link
-                                        href="/proses-produksi"
+                                        href={settings.home_process_btn_link || '/proses-produksi'}
                                         className="inline-flex items-center justify-between w-full px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md"
                                     >
-                                        <span>{t('home_proc_btn', 'Pelajari 5 Tahap Proses Produksi')}</span>
+                                        <span>{(lang === 'id' && settings.home_process_btn_text) ? settings.home_process_btn_text : t('home_proc_btn', 'Pelajari 5 Tahap Proses Produksi')}</span>
                                         <ArrowRight className="w-4 h-4" />
                                     </Link>
                                 </div>

@@ -28,8 +28,16 @@ class AdminPageBannerController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $bannerKeys = [
-            // Beranda
+            // Beranda Hero & Cards
             'home_hero_video',
+            'home_facility_badge', 'home_facility_tag_jp', 'home_facility_title', 'home_facility_desc',
+            'home_facility_feat1_title', 'home_facility_feat1_desc',
+            'home_facility_feat2_title', 'home_facility_feat2_desc',
+            'home_facility_btn_text', 'home_facility_btn_link',
+            'home_process_badge', 'home_process_tag_jp', 'home_process_title', 'home_process_desc',
+            'home_process_step1', 'home_process_step2', 'home_process_step3',
+            'home_process_btn_text', 'home_process_btn_link',
+
             // Tentang Kami
             'about_hero_badge', 'about_hero_title', 'about_hero_lead', 'about_hero_video',
             // Teknologi
@@ -56,6 +64,16 @@ class AdminPageBannerController extends Controller
             }
         }
 
-        return back()->with('success', 'Seluruh Banner Header Halaman berhasil diperbarui.');
+        if ($request->hasFile('home_facility_image')) {
+            $path = $request->file('home_facility_image')->store('banners', 'public');
+            $this->settingService->set('home_facility_image', '/storage/' . $path, 'banners');
+        }
+
+        if ($request->hasFile('home_process_image')) {
+            $path = $request->file('home_process_image')->store('banners', 'public');
+            $this->settingService->set('home_process_image', '/storage/' . $path, 'banners');
+        }
+
+        return back()->with('success', 'Seluruh Banner Halaman & Konten Beranda berhasil diperbarui.');
     }
 }
