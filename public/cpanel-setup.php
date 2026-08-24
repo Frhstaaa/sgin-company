@@ -160,8 +160,10 @@ if ($action === 'git_pull') {
 } elseif ($action === 'migrate') {
     $outputLog .= "=== MIGRASI DATABASE ===\n";
     $outputLog .= runCmd("{$phpCli} artisan migrate --force") . "\n";
-    $outputLog .= runCmd("{$phpCli} artisan db:seed --class=RolePermissionSeeder --force") . "\n";
-    $outputLog .= runCmd("{$phpCli} artisan db:seed --class=ProductionProcessSeeder --force") . "\n";
+    $outputLog .= runCmd("{$phpCli} artisan db:seed --class=DatabaseSeeder --force") . "\n";
+} elseif ($action === 'db_seed') {
+    $outputLog .= "=== SEED DATABASE (UPDATE OFFICIAL DATA) ===\n";
+    $outputLog .= runCmd("{$phpCli} artisan db:seed --force") . "\n";
 } elseif ($action === 'migrate_seed') {
     $outputLog .= "=== MIGRATE FRESH & SEED (RESET DATABASE) ===\n";
     $outputLog .= runCmd("{$phpCli} artisan migrate:fresh --seed --force") . "\n";
