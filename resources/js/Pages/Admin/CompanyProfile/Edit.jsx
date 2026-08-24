@@ -77,11 +77,15 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
         // Section 4: Data Legalitas Perusahaan (Factsheet)
         company_name: profile.company_name || 'PT. Sugiyama Indonesia',
         company_name_jp: profile.company_name_jp || '株式会社スギヤマ',
-        capital: profile.capital || '50,000,000 JPY',
-        established_date: profile.established_date || 'Maret 1952',
-        employees_count: profile.employees_count || '280 Karyawan (Total Grup)',
-        factsheet_certifications: settings.factsheet_certifications || 'IATF 16949:2016 & ISO 9001:2015',
-        factsheet_business_scope: settings.factsheet_business_scope || 'Cold Forging & CNC Precision Machining',
+        capital: profile.capital || 'USD 3.750.000',
+        established_date: profile.established_date || '9 April 2012',
+        employees_count: profile.employees_count || '93 Orang',
+        factsheet_certifications: settings.factsheet_certifications || 'ISO 9001:2015 & IATF 16949:2016 (On Progress)',
+        factsheet_business_scope: settings.factsheet_business_scope || 'Manufacturing and Sales for Automotive Parts [Forging, Machining]',
+        factsheet_shareholders: settings.factsheet_shareholders || 'Sugiyama Co., Ltd. (98.33%), Takahide Sugiyama (1.67%)',
+        factsheet_site_area: settings.factsheet_site_area || '7.582 m²',
+        factsheet_building_area: settings.factsheet_building_area || '3.913 m²',
+        factsheet_customers: settings.factsheet_customers || 'PT Denso Indonesia, Niterra Japan, Niterra India, Daido Kogyo Thailand',
 
         // Section 5 & 6: Dynamic Repeaters
         history_timeline: initialTimeline,
@@ -750,20 +754,72 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
                                         type="text"
                                         value={data.factsheet_certifications}
                                         onChange={(e) => setData('factsheet_certifications', e.target.value)}
-                                        placeholder="IATF 16949:2016 & ISO 9001:2015"
+                                        placeholder="ISO 9001:2015 & IATF 16949:2016"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                        Komposisi Pemegang Saham (Shareholders)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={data.factsheet_shareholders}
+                                        onChange={(e) => setData('factsheet_shareholders', e.target.value)}
+                                        placeholder="Sugiyama Co., Ltd. 98.33%, Takahide Sugiyama 1.67%"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                        Luas Lahan (Site Area)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={data.factsheet_site_area}
+                                        onChange={(e) => setData('factsheet_site_area', e.target.value)}
+                                        placeholder="7.582 m²"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                        Luas Bangunan Pabrik (Building Area)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={data.factsheet_building_area}
+                                        onChange={(e) => setData('factsheet_building_area', e.target.value)}
+                                        placeholder="3.913 m²"
                                         className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
                                     />
                                 </div>
 
                                 <div className="md:col-span-2">
                                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                                        Bidang Usaha & Manufaktur Inti
+                                        Bidang Usaha (Description of Business)
                                     </label>
                                     <input
                                         type="text"
                                         value={data.factsheet_business_scope}
                                         onChange={(e) => setData('factsheet_business_scope', e.target.value)}
-                                        placeholder="Cold Forging & CNC Precision Machining"
+                                        placeholder="Manufacturing and Sales for Automotive Parts [Forging, Machining]"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                    />
+                                </div>
+
+                                <div className="md:col-span-2">
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                        Pelanggan Utama (Major Customers - Domestik & Overseas)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={data.factsheet_customers}
+                                        onChange={(e) => setData('factsheet_customers', e.target.value)}
+                                        placeholder="PT Denso Indonesia, Niterra Co., Ltd. (Japan), Niterra India, Daido Kogyo Thailand"
                                         className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
                                     />
                                 </div>
