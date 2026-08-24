@@ -166,7 +166,7 @@ export default function CareerApply({ careers = [], selectedCareer = null, prese
             <div className="bg-slate-950 text-white pt-28 pb-14 sm:pt-32 sm:pb-20 relative overflow-hidden">
                 <div className="absolute inset-0 z-0 bg-slate-950">
                     <img 
-                        src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=1920&auto=format&fit=crop" 
+                        src="/images/sgin-placeholder.png" 
                         alt="Sugiyama Careers" 
                         className="w-full h-full object-cover opacity-20"
                     />

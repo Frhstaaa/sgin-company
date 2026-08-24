@@ -265,7 +265,7 @@ export default function AdminBannersIndex({ settings = {} }) {
                                                         </label>
                                                         <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900 border border-slate-300 shadow-inner group">
                                                             <img 
-                                                                src={facilityPreview || 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop'} 
+                                                                src={facilityPreview || '/images/sgin-placeholder.png'} 
                                                                 alt="Preview Fasilitas" 
                                                                 className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform"
                                                             />
@@ -441,7 +441,7 @@ export default function AdminBannersIndex({ settings = {} }) {
                                                         </label>
                                                         <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900 border border-slate-300 shadow-inner group">
                                                             <img 
-                                                                src={processPreview || 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=1200&auto=format&fit=crop'} 
+                                                                src={processPreview || '/images/sgin-placeholder.png'} 
                                                                 alt="Preview Proses" 
                                                                 className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform"
                                                             />

@@ -155,14 +155,14 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                             <div className="flex items-center gap-3.5">
                                                 <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-emerald-600 shadow-xs shrink-0 bg-slate-100">
                                                     <img
-                                                        src={p.president_photo_url || profile.president_photo_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'}
-                                                        alt={p.president_name || 'Takeshi Sugiyama'}
+                                                        src={p.president_photo_url || profile.president_photo_url || '/images/sgin-placeholder.png'}
+                                                        alt={p.president_name || 'Yuichi Sugiyama'}
                                                         className="w-full h-full object-cover"
                                                     />
                                                 </div>
                                                 <div>
                                                     <p className="font-extrabold text-slate-900 text-base">
-                                                        {p.president_name || 'Takeshi Sugiyama'}
+                                                        {p.president_name || 'Yuichi Sugiyama'}
                                                     </p>
                                                     <p className="text-xs text-emerald-800 font-bold">
                                                         {siteSettings.about_president_role || t('about_president_role', 'Presiden Direktur PT. Sugiyama Indonesia')}
@@ -183,7 +183,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                             <div className="lg:col-span-5 relative">
                                 <div className="relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 group aspect-4/3 bg-slate-100">
                                     <img
-                                        src={siteSettings.home_about_image || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop'}
+                                        src={siteSettings.home_about_image || '/images/sgin-placeholder.png'}
                                         alt="Fasilitas Manufaktur PT. Sugiyama Indonesia"
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                     />

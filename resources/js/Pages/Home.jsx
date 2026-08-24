@@ -56,7 +56,7 @@ export default function Home({
             slug: 'precision-flange-shaft-pinion',
             name: 'Precision Flange Shaft Pinion',
             name_jp: '高強度フランジシャフト',
-            image_url: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=600&auto=format&fit=crop',
+            image_url: '/images/sgin-placeholder.png',
             category: { name: 'Powertrain Transmission', name_jp: '駆動系部品' },
             material: 'SCr420H / SCM435',
             tolerance: '±0.005 mm',
@@ -67,7 +67,7 @@ export default function Home({
             slug: 'hollow-stepped-rivet-shaft',
             name: 'Hollow Stepped Rivet Shaft',
             name_jp: '中空段付きシャフト',
-            image_url: 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=600&auto=format&fit=crop',
+            image_url: '/images/sgin-placeholder.png',
             category: { name: 'Steering Column System', name_jp: 'ステアリング部品' },
             material: 'SWCH10R / 1018 Steel',
             tolerance: '±0.008 mm',
@@ -78,7 +78,7 @@ export default function Home({
             slug: 'ev-inverter-copper-busbar-terminal',
             name: 'EV Inverter Copper Busbar Terminal',
             name_jp: 'EVインバータ用高純度銅端子',
-            image_url: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop',
+            image_url: '/images/sgin-placeholder.png',
             category: { name: 'EV & Electrical Components', name_jp: 'EV・電装部品' },
             material: 'C1100 Oxygen-Free Copper',
             tolerance: '±0.005 mm',
@@ -89,7 +89,7 @@ export default function Home({
             slug: 'ultra-precision-micro-gear-blank',
             name: 'Ultra-Precision Micro Gear Blank',
             name_jp: '精密マイクロギヤブランク',
-            image_url: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?q=80&w=600&auto=format&fit=crop',
+            image_url: '/images/sgin-placeholder.png',
             category: { name: 'Robotics & Actuators', name_jp: 'ロボティクス・駆動要素' },
             material: 'SNCM220 / SUJ2',
             tolerance: '±0.003 mm',
@@ -103,7 +103,7 @@ export default function Home({
         title_jp: '技術を鍛え 未来を造る',
         title_id: 'Menempa Teknologi, Membangun Masa Depan',
         subtitle: 'Sebagai seorang ahli penempaan dan manufaktur presisi, kami merevolusi kualitas industri global melalui keterampilan teknis kelas dunia.',
-        image_url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1920&auto=format&fit=crop',
+        image_url: '/images/sgin-placeholder.png',
     };
     const activeSlide = translateModel(rawActiveSlide, 'hero');
     const translatedAbout = translateModel(about, 'company_profile');
@@ -584,7 +584,7 @@ export default function Home({
                             <div className="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-slate-200 group flex flex-col justify-between h-full transition-all duration-300 bg-slate-950 text-white min-h-[420px]">
                                 <div className="absolute inset-0 z-0">
                                     <img 
-                                        src={settings.home_facility_image || 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200&auto=format&fit=crop'} 
+                                        src={settings.home_facility_image || '/images/sgin-placeholder.png'} 
                                         alt={settings.home_facility_title || 'Fasilitas Mesin Sugiyama'} 
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-40"
                                     />
@@ -636,7 +636,7 @@ export default function Home({
                             <div className="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-slate-200 group flex flex-col justify-between h-full transition-all duration-300 bg-slate-950 text-white min-h-[420px]">
                                 <div className="absolute inset-0 z-0">
                                     <img 
-                                        src={settings.home_process_image || 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=1200&auto=format&fit=crop'} 
+                                        src={settings.home_process_image || '/images/sgin-placeholder.png'} 
                                         alt={settings.home_process_title || 'Alur Proses Produksi Sugiyama'} 
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-40"
                                     />
@@ -844,14 +844,14 @@ export default function Home({
                                             <div className="flex items-center gap-3">
                                                 <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-emerald-600 shadow-xs shrink-0 bg-slate-100">
                                                     <img 
-                                                        src={about.president_photo_url || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'} 
-                                                        alt={translatedAbout.president_name || 'Takeshi Sugiyama'} 
+                                                        src={about.president_photo_url || '/images/sgin-placeholder.png'} 
+                                                        alt={translatedAbout.president_name || 'Yuichi Sugiyama'} 
                                                         className="w-full h-full object-cover"
                                                     />
                                                 </div>
                                                 <div>
                                                     <p className="font-extrabold text-slate-900 text-sm">
-                                                        {translatedAbout.president_name || 'Takeshi Sugiyama'}
+                                                        {translatedAbout.president_name || 'Yuichi Sugiyama'}
                                                     </p>
                                                     <p className="text-[11px] text-emerald-800 font-bold">
                                                         {t('about_president_role', 'Presiden Direktur PT. Sugiyama Indonesia')}
@@ -876,7 +876,7 @@ export default function Home({
                                 {/* Main Facility Showcase Image Card */}
                                 <div className="relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 group aspect-4/3 bg-slate-100">
                                     <img 
-                                        src={settings.home_about_image || 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop'} 
+                                        src={settings.home_about_image || '/images/sgin-placeholder.png'} 
                                         alt="Fasilitas Manufaktur PT. Sugiyama Indonesia" 
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                     />
@@ -991,9 +991,9 @@ export default function Home({
                             const rawItem = latestNews[activeNewsIndex] || latestNews[0];
                             const item = translateModel(rawItem, 'news');
                             const fallbacks = [
-                                'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop',
-                                'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop',
-                                'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop',
+                                '/images/sgin-placeholder.png',
+                                '/images/sgin-placeholder.png',
+                                '/images/sgin-placeholder.png',
                             ];
                             const coverImg = item.cover_image || fallbacks[activeNewsIndex % fallbacks.length];
 
@@ -1097,9 +1097,9 @@ export default function Home({
                         {latestNews.slice(0, 3).map((rawItem, idx) => {
                             const item = translateModel(rawItem, 'news');
                             const fallbacks = [
-                                'https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop',
-                                'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop',
-                                'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop',
+                                '/images/sgin-placeholder.png',
+                                '/images/sgin-placeholder.png',
+                                '/images/sgin-placeholder.png',
                             ];
                             const coverImg = item.cover_image || fallbacks[idx % fallbacks.length];
 
@@ -1163,7 +1163,7 @@ export default function Home({
                         <div className="relative rounded-2xl overflow-hidden bg-emerald-900 text-white p-6 sm:p-12 shadow-xl">
                             <div className="absolute inset-0 z-0">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=1200&auto=format&fit=crop" 
+                                    src="/images/sgin-placeholder.png" 
                                     alt="Sugiyama Precision Recruitment" 
                                     className="w-full h-full object-cover opacity-20"
                                 />

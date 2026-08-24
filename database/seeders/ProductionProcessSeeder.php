@@ -21,7 +21,7 @@ class ProductionProcessSeeder extends Seeder
                 'description_en' => 'High-precision cold forging wire and raw materials are supplied by Sugiyama Co., Ltd. (Japan) and Daido Kogyo (Thailand) Co., Ltd. under strict metallurgical standards.',
                 'location_badge' => '🇯🇵 Sugiyama Co., Ltd. (Japan) & 🇹🇭 Daido Kogyo (Thailand)',
                 'icon' => 'factory',
-                'image_url' => 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop',
+                'image_url' => '/images/sgin-placeholder.png',
                 'specs' => [
                     'Suplai dari Sugiyama Co., Ltd. (Jepang) & Daido Kogyo (Thailand)',
                     'Bahan baku penempaan dingin bersertifikasi standar mutu JIS',
@@ -41,7 +41,7 @@ class ProductionProcessSeeder extends Seeder
                 'description_en' => 'Raw materials with VCI anti-corrosion protection are shipped via scheduled ocean container freight to PT. Sugiyama Indonesia.',
                 'location_badge' => '🚢 Rute Jalur Laut Asia Pasifik',
                 'icon' => 'ship',
-                'image_url' => 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1000&auto=format&fit=crop',
+                'image_url' => '/images/sgin-placeholder.png',
                 'specs' => [
                     'Pengemasan pelindung anti-oksidasi VCI standar ekspor',
                     'Jadwal pengiriman kontainer laut berkala dan terkelola rapi',
@@ -61,7 +61,7 @@ class ProductionProcessSeeder extends Seeder
                 'description_en' => 'At SGIN GIIC Cikarang plant, raw materials undergo Cold Forging, CNC Turning (20-unit Shimada & 8-unit Murata), Tsugami Thread Rolling, Cleanvy Ultrasonic Washing, and rigorous QC.',
                 'location_badge' => '🇮🇩 PT. Sugiyama Indonesia (GIIC Cikarang)',
                 'icon' => 'cog',
-                'image_url' => 'https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=1000&auto=format&fit=crop',
+                'image_url' => '/images/sgin-placeholder.png',
                 'specs' => [
                     'Cold Forging Machine & Part Former',
                     'CNC Shimada (20 unit) & CNC Murata Twin Spindle (8 unit)',
@@ -81,7 +81,7 @@ class ProductionProcessSeeder extends Seeder
                 'description_en' => 'Finished parts certified under ISO 9001:2015 are delivered JIT to domestic customers (PT Denso Indonesia) and overseas partners (Japan, India, Thailand).',
                 'location_badge' => '🚛 Domestic & Global Supply Chain',
                 'icon' => 'truck',
-                'image_url' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop',
+                'image_url' => '/images/sgin-placeholder.png',
                 'specs' => [
                     'Pelanggan Domestik: PT Denso Indonesia',
                     'Pelanggan Overseas: Niterra (Jepang), Niterra (India), Daido Kogyo (Thailand)',
