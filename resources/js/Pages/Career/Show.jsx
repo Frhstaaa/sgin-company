@@ -14,36 +14,53 @@ export default function CareerShow({ career: rawCareer }) {
         <AppLayout>
             <Head title={`${career.title} | PT. Sugiyama Indonesia`} />
 
-            <div className="bg-emerald-950 text-white pt-32 pb-16 relative overflow-hidden">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
-                    <Link
-                        href="/karir"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-white transition-colors"
-                    >
-                        <ArrowLeft className="w-3.5 h-3.5" />
-                        <span>{t('career_back_all', 'Kembali ke Semua Lowongan')}</span>
-                    </Link>
+            {/* Page Header Banner */}
+            <div className="bg-gradient-to-b from-emerald-950 via-slate-900 to-slate-950 text-white pt-28 pb-14 sm:pt-36 sm:pb-20 relative overflow-hidden">
+                {/* Background Japanese Watermark & Blueprint Ambient Effects */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl" />
+                    <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-900/25 rounded-full blur-3xl" />
+                    <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-15" />
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-800/25 font-black text-8xl sm:text-9xl select-none font-jp hidden lg:block">
+                        募集要項
+                    </div>
+                </div>
 
-                    <div className="flex flex-wrap items-center gap-2 text-xs">
-                        <span className="px-3 py-1 rounded-full bg-emerald-800 text-emerald-200 font-bold">
-                            {career.department}
-                        </span>
-                        <span className="px-3 py-1 rounded-full bg-emerald-900 text-emerald-300">
-                            {career.employment_type}
-                        </span>
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
+                    {/* Breadcrumb Pill */}
+                    <div className="flex flex-wrap items-center gap-2">
+                        <Link
+                            href="/karir"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 text-xs font-bold hover:bg-emerald-900 transition-all backdrop-blur-md"
+                        >
+                            <ArrowLeft className="w-3.5 h-3.5" />
+                            <span>{t('career_back_all', 'Semua Lowongan')}</span>
+                        </Link>
+                        {career.department && (
+                            <>
+                                <span className="text-slate-500 text-xs">/</span>
+                                <span className="text-emerald-400 text-xs font-bold uppercase tracking-wider">{career.department}</span>
+                            </>
+                        )}
+                        {career.employment_type && (
+                            <>
+                                <span className="text-slate-500 text-xs">/</span>
+                                <span className="text-slate-300 text-xs">{career.employment_type}</span>
+                            </>
+                        )}
                     </div>
 
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight">
+                    <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
                         {career.title}
                     </h1>
 
-                    <div className="flex items-center gap-4 text-xs text-emerald-300/90 pt-2">
-                        <div className="flex items-center gap-1.5">
-                            <MapPin className="w-4 h-4 text-emerald-400" />
+                    <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-300 pt-1">
+                        <div className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                            <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
                             <span>{career.location}</span>
                         </div>
                         {career.salary_range && (
-                            <span>| {career.salary_range}</span>
+                            <span className="text-slate-400">| {career.salary_range}</span>
                         )}
                     </div>
                 </div>

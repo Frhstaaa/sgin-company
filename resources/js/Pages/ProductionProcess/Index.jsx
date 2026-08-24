@@ -31,32 +31,36 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
             />
 
             {/* 1. Page Header Banner */}
-            <div className="bg-emerald-950 text-white pt-28 pb-14 sm:pt-36 sm:pb-20 relative overflow-hidden">
-                {/* Subtle Background Pattern */}
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#6ee7b7_1px,transparent_1px)] [background-size:24px_24px]" />
-                <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl" />
-                <div className="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-teal-500/10 blur-3xl" />
+            <div className="bg-gradient-to-b from-emerald-950 via-slate-900 to-slate-950 text-white pt-28 pb-14 sm:pt-36 sm:pb-20 relative overflow-hidden">
+                {/* Background Japanese Watermark & Blueprint Ambient Effects */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl" />
+                    <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-900/25 rounded-full blur-3xl" />
+                    <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-15" />
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-800/25 font-black text-8xl sm:text-9xl select-none font-jp hidden lg:block">
+                        製造工程
+                    </div>
+                </div>
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className={`grid grid-cols-1 ${siteSettings.prod_hero_video ? 'lg:grid-cols-12 gap-8 items-center' : ''}`}>
+                    <div className={`grid grid-cols-1 ${siteSettings.prod_hero_video ? 'lg:grid-cols-12 gap-10 items-center' : ''}`}>
                         <motion.div 
                             initial={{ opacity: 0, y: 20 }} 
                             animate={{ opacity: 1, y: 0 }} 
                             transition={{ duration: 0.6 }}
-                            className={siteSettings.prod_hero_video ? 'lg:col-span-6 space-y-2' : ''}
+                            className={siteSettings.prod_hero_video ? 'lg:col-span-7 space-y-4' : 'max-w-3xl space-y-4'}
                         >
-                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-900/80 border border-emerald-700/60 backdrop-blur-xs mb-4">
-                                <Workflow className="w-3.5 h-3.5 text-emerald-400" />
-                                <span className="text-[10px] sm:text-xs font-bold text-emerald-300 uppercase tracking-widest">
-                                    {(lang === 'id' && siteSettings.prod_hero_badge) ? siteSettings.prod_hero_badge : t('prod_badge', 'ALUR PRODUKSI / 製造工程')}
-                                </span>
+                            {/* Breadcrumb Pill */}
+                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 text-[10px] sm:text-xs font-bold shadow-lg backdrop-blur-md">
+                                <Workflow className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                                <span>{(lang === 'id' && siteSettings.prod_hero_badge) ? siteSettings.prod_hero_badge : t('prod_badge', 'ALUR PRODUKSI / 製造工程')}</span>
                             </div>
 
-                            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight max-w-3xl">
+                            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
                                 {(lang === 'id' && siteSettings.prod_hero_title) ? siteSettings.prod_hero_title : t('prod_header_title', 'Alur Proses Manufaktur & Kontrol Kualitas Presisi')}
                             </h1>
 
-                            <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-4 leading-relaxed font-normal">
+                            <p className="text-slate-300 text-xs sm:text-base leading-relaxed font-normal">
                                 {(lang === 'id' && siteSettings.prod_hero_lead) ? siteSettings.prod_hero_lead : t('prod_header_desc', 'Integrasi menyeluruh rantai pasok: mulai dari penempaan bahan baku presisi di Jepang, logistik laut berkala, pemesinan CNC multi-sumbu di Indonesia, hingga 100% inspeksi mutu berstandar global.')}
                             </p>
                         </motion.div>
@@ -66,7 +70,7 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
-                                className="lg:col-span-6"
+                                className="lg:col-span-5"
                             >
                                 <YouTubeEmbed url={siteSettings.prod_hero_video} title="Video Proses Produksi & Kontrol Kualitas" />
                             </motion.div>

@@ -40,22 +40,37 @@ export default function ContactIndex({ selectedProduct, products = [], defaultTy
         <AppLayout>
             <Head title={`${siteSettings.contact_hero_title || t('contact_page_title', 'Konsultasi Teknik & Permintaan Penawaran')} | ${siteSettings.site_name || 'PT. Sugiyama Indonesia'}`} />
 
-            <div className="bg-emerald-950 text-white pt-28 pb-12 sm:pt-32 sm:pb-16 relative overflow-hidden">
+            {/* Page Header Banner */}
+            <div className="bg-gradient-to-b from-emerald-950 via-slate-900 to-slate-950 text-white pt-28 pb-14 sm:pt-36 sm:pb-20 relative overflow-hidden">
+                {/* Background Japanese Watermark & Blueprint Ambient Effects */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl" />
+                    <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-900/25 rounded-full blur-3xl" />
+                    <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-15" />
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-800/25 font-black text-8xl sm:text-9xl select-none font-jp hidden lg:block">
+                        お問い合わせ
+                    </div>
+                </div>
+
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className={`grid grid-cols-1 ${siteSettings.contact_hero_video ? 'lg:grid-cols-12 gap-8 items-center' : ''}`}>
+                    <div className={`grid grid-cols-1 ${siteSettings.contact_hero_video ? 'lg:grid-cols-12 gap-10 items-center' : ''}`}>
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
-                            className={siteSettings.contact_hero_video ? 'lg:col-span-6 space-y-2' : ''}
+                            className={siteSettings.contact_hero_video ? 'lg:col-span-7 space-y-4' : 'max-w-3xl space-y-4'}
                         >
-                            <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                {(lang === 'id' && siteSettings.contact_hero_badge) ? siteSettings.contact_hero_badge : t('cta_badge', 'HUBUNGI KAMI / お問い合わせ')}
-                            </span>
-                            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white mt-1 sm:mt-2 leading-tight">
+                            {/* Breadcrumb Pill */}
+                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 text-[10px] sm:text-xs font-bold shadow-lg backdrop-blur-md">
+                                <Mail className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                                <span>{(lang === 'id' && siteSettings.contact_hero_badge) ? siteSettings.contact_hero_badge : t('cta_badge', 'HUBUNGI KAMI / お問い合わせ')}</span>
+                            </div>
+
+                            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
                                 {(lang === 'id' && siteSettings.contact_hero_title) ? siteSettings.contact_hero_title : t('contact_page_title', 'Konsultasi Teknik & Permintaan Penawaran')}
                             </h1>
-                            <p className="text-emerald-200/90 text-xs sm:text-sm md:text-base max-w-2xl mt-3 sm:mt-4 leading-relaxed">
+
+                            <p className="text-slate-300 text-xs sm:text-base leading-relaxed font-normal">
                                 {(lang === 'id' && siteSettings.contact_hero_lead) ? siteSettings.contact_hero_lead : t('contact_page_desc', 'Tim teknis dan penjualan PT. Sugiyama Indonesia siap membantu estimasi biaya produksi penempaan dingin, evaluasi gambar teknik CAD, serta konsultasi spesifikasi material.')}
                             </p>
                         </motion.div>
@@ -65,7 +80,7 @@ export default function ContactIndex({ selectedProduct, products = [], defaultTy
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.6, delay: 0.2 }}
-                                className="lg:col-span-6"
+                                className="lg:col-span-5"
                             >
                                 <YouTubeEmbed url={siteSettings.contact_hero_video} title="Video Kontak & Lokasi Fasilitas" />
                             </motion.div>

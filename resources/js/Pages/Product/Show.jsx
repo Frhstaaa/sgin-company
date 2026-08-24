@@ -15,28 +15,42 @@ export default function ProductShow({ product: rawProduct, relatedProducts = [] 
         <AppLayout>
             <Head title={`${product.name} | PT. Sugiyama Indonesia`} />
 
-            <div className="bg-emerald-950 text-white pt-32 pb-16 relative overflow-hidden">
+            {/* Page Header Banner */}
+            <div className="bg-gradient-to-b from-emerald-950 via-slate-900 to-slate-950 text-white pt-28 pb-14 sm:pt-36 sm:pb-20 relative overflow-hidden">
+                {/* Background Japanese Watermark & Blueprint Ambient Effects */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    <div className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-600/15 rounded-full blur-3xl" />
+                    <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-emerald-900/25 rounded-full blur-3xl" />
+                    <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-15" />
+                    <div className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-800/25 font-black text-8xl sm:text-9xl select-none font-jp hidden lg:block">
+                        製品詳細
+                    </div>
+                </div>
+
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-4">
-                    <Link
-                        href="/produk"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-white transition-colors"
-                    >
-                        <ArrowLeft className="w-3.5 h-3.5" />
-                        <span>{t('prd_back_all', 'Kembali ke Katalog Produk')}</span>
-                    </Link>
+                    {/* Breadcrumb Pill */}
+                    <div className="flex flex-wrap items-center gap-2">
+                        <Link
+                            href="/produk"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 text-xs font-bold hover:bg-emerald-900 transition-all backdrop-blur-md"
+                        >
+                            <ArrowLeft className="w-3.5 h-3.5" />
+                            <span>{t('prd_back_all', 'Katalog Produk')}</span>
+                        </Link>
+                        {category && (
+                            <>
+                                <span className="text-slate-500 text-xs">/</span>
+                                <span className="text-emerald-400 text-xs font-bold uppercase tracking-wider">{category.name}</span>
+                            </>
+                        )}
+                    </div>
 
-                    {category && (
-                        <span className="px-3.5 py-1 rounded-full bg-emerald-800 text-emerald-200 text-xs font-bold block w-fit">
-                            {category.name}
-                        </span>
-                    )}
-
-                    <h1 className="text-2xl sm:text-4xl font-extrabold text-white">
+                    <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
                         {product.name}
                     </h1>
 
                     {product.sku && (
-                        <p className="text-xs text-emerald-300 font-mono">
+                        <p className="text-xs sm:text-sm text-emerald-400 font-mono font-bold">
                             {t('prd_sku_label', 'SKU / Kode Part')}: {product.sku}
                         </p>
                     )}
