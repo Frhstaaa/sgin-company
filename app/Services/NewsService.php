@@ -52,6 +52,8 @@ class NewsService
         if ($coverImage) {
             $this->fileUploadService->deleteImage($existing->cover_image);
             $data['cover_image'] = $this->fileUploadService->uploadImage($coverImage, 'news');
+        } elseif (empty($data['cover_image'])) {
+            unset($data['cover_image']);
         }
         if (empty($data['slug']) && !empty($data['title'])) {
             $data['slug'] = Str::slug($data['title']);

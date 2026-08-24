@@ -44,6 +44,8 @@ class TechnologyService
         if ($imageFile) {
             $this->fileUploadService->deleteImage($existing->image_url);
             $data['image_url'] = $this->fileUploadService->uploadImage($imageFile, 'technologies');
+        } elseif (empty($data['image_url'])) {
+            unset($data['image_url']);
         }
         if (empty($data['slug']) && !empty($data['title'])) {
             $data['slug'] = Str::slug($data['title']);

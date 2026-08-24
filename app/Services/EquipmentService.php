@@ -45,6 +45,8 @@ class EquipmentService
         if ($imageFile) {
             $this->fileUploadService->deleteImage($existing->image_url);
             $data['image_url'] = $this->fileUploadService->uploadImage($imageFile, 'equipment');
+        } elseif (empty($data['image_url'])) {
+            unset($data['image_url']);
         }
         return $this->repo->update($id, $data);
     }

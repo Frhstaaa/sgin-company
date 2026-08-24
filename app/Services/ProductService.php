@@ -56,6 +56,8 @@ class ProductService
         if ($imageFile) {
             $this->fileUploadService->deleteImage($existing->image_url);
             $data['image_url'] = $this->fileUploadService->uploadImage($imageFile, 'products');
+        } elseif (empty($data['image_url'])) {
+            unset($data['image_url']);
         }
         if (!empty($galleryFiles)) {
             $galleryUrls = $existing->gallery ?? [];
