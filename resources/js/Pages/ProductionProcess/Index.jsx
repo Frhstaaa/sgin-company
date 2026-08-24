@@ -313,9 +313,9 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                             <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
                                 <Eye className="w-6 h-6" />
                             </div>
-                            <h3 className="font-bold text-slate-900 text-base">100% Inspeksi Visual Optik</h3>
+                            <h3 className="font-bold text-slate-900 text-base">{t('prod_qc_01_title', '100% Inspeksi Visual Optik')}</h3>
                             <p className="text-xs text-slate-600 leading-relaxed">
-                                Pemeriksaan teliti setiap butir komponen menggunakan lampu pembesar khusus dan loop optik oleh operator terlatih berstandar Jepang.
+                                {t('prod_qc_01_desc', 'Pemeriksaan teliti setiap butir komponen menggunakan lampu pembesar khusus dan loop optik oleh operator terlatih berstandar Jepang.')}
                             </p>
                         </div>
 
@@ -323,9 +323,9 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                             <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
                                 <Microscope className="w-6 h-6" />
                             </div>
-                            <h3 className="font-bold text-slate-900 text-base">Mikrometer Digital Presisi</h3>
+                            <h3 className="font-bold text-slate-900 text-base">{t('prod_qc_02_title', 'Mikrometer Digital Presisi')}</h3>
                             <p className="text-xs text-slate-600 leading-relaxed">
-                                Pengukuran dimensi sub-mikron (akurasi hingga ±0.001 mm) dengan mikrometer digital dan dial indicator Mitutoyo terkalibrasi berkala.
+                                {t('prod_qc_02_desc', 'Pengukuran dimensi sub-mikron (akurasi hingga ±0.001 mm) dengan mikrometer digital dan dial indicator Mitutoyo terkalibrasi berkala.')}
                             </p>
                         </div>
 
@@ -333,9 +333,9 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                             <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
                                 <Cpu className="w-6 h-6" />
                             </div>
-                            <h3 className="font-bold text-slate-900 text-base">Mesin Ukur 3D Otomatis (CMM)</h3>
+                            <h3 className="font-bold text-slate-900 text-base">{t('prod_qc_03_title', 'Mesin Ukur 3D Otomatis (CMM)')}</h3>
                             <p className="text-xs text-slate-600 leading-relaxed">
-                                Verifikasi geometri kompleks dan kontur 3D di dalam ruang metrologi ber-AC (20°C ±0.5°C) untuk keakuratan absolut.
+                                {t('prod_qc_03_desc', 'Verifikasi geometri kompleks dan kontur 3D di dalam ruang metrologi ber-AC (20°C ±0.5°C) untuk keakuratan absolut.')}
                             </p>
                         </div>
 
@@ -343,9 +343,9 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
                             <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
                                 <FileCheck2 className="w-6 h-6" />
                             </div>
-                            <h3 className="font-bold text-slate-900 text-base">Ketertelusuran Lot & IATF</h3>
+                            <h3 className="font-bold text-slate-900 text-base">{t('prod_qc_04_title', 'Ketertelusuran Lot & IATF')}</h3>
                             <p className="text-xs text-slate-600 leading-relaxed">
-                                Setiap batch produksi tercatat lengkap dalam sistem traceability barcode, memastikan rekam jejak material 100% transparan.
+                                {t('prod_qc_04_desc', 'Setiap batch produksi tercatat lengkap dalam sistem traceability barcode, memastikan rekam jejak material 100% transparan.')}
                             </p>
                         </div>
                     </div>

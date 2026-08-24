@@ -64,18 +64,23 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
     };
 
     /**
-     * Translate string using Laravel backend dictionary with client fallback
+     * Translate string using client-side dictionaries first, then server fallback
      */
     const t = (key, fallback = '') => {
-        // 1. Check Laravel server shared translations for current locale
-        if (pageProps?.translations && pageProps.translations[key] !== undefined) {
+        // 1. Primary: Check bundled client-side translations dictionary for active language
+        const dict = translations[lang];
+        if (dict && dict[key] !== undefined && dict[key] !== null && dict[key] !== '') {
+            return dict[key];
+        }
+
+        // 2. Secondary: Check Laravel server shared translations if locale matches
+        if (pageProps?.locale === lang && pageProps?.translations && pageProps.translations[key] !== undefined) {
             return pageProps.translations[key];
         }
 
-        // 2. Check bundled client-side translations dictionary
-        const dict = translations[lang] || translations.id;
-        if (dict && dict[key] !== undefined) {
-            return dict[key];
+        // 3. Fallback to default Indonesian dictionary
+        if (translations.id && translations.id[key] !== undefined) {
+            return translations.id[key];
         }
 
         return fallback || key;
@@ -150,8 +155,8 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
                         }
                     }
 
-                    // 4. Substring inclusion match (if >= 6 chars)
-                    if (normCand.length >= 6) {
+                    // 4. Substring inclusion match (if >= 5 chars)
+                    if (normCand.length >= 5) {
                         for (const k in dict) {
                             const normK = k.toLowerCase().replace(/[^a-z0-9]/g, '');
                             if (normK && normCand && (normK.includes(normCand) || normCand.includes(normK)) && dict[k] && dict[k][lang]) {
@@ -169,9 +174,8 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
                     const typeDict = modelTranslations[type][lang];
                     for (const k in typeDict) {
                         if (k === 'president_name') {
-                            // Preserve exact database value if present
                             if (!result[k]) result[k] = typeDict[k];
-                        } else if (!result[k] || (typeof result[k] === 'string' && result[k].trim() === '')) {
+                        } else if (typeDict[k] !== undefined && typeDict[k] !== null && typeDict[k] !== '') {
                             result[k] = typeDict[k];
                         }
                     }
@@ -182,7 +186,7 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
                     for (const k in match) {
                         if (k === 'president_name') {
                             if (!result[k]) result[k] = match[k];
-                        } else if (!result[k] || (typeof result[k] === 'string' && result[k].trim() === '')) {
+                        } else if (match[k] !== undefined && match[k] !== null && match[k] !== '') {
                             result[k] = match[k];
                         }
                     }
@@ -197,7 +201,7 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
                     for (const k in match) {
                         if (k === 'president_name') {
                             if (!result[k]) result[k] = match[k];
-                        } else if (!result[k] || (typeof result[k] === 'string' && result[k].trim() === '')) {
+                        } else if (match[k] !== undefined && match[k] !== null && match[k] !== '') {
                             result[k] = match[k];
                         }
                     }

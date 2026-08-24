@@ -134,13 +134,13 @@ export default function ContactIndex({ selectedProduct, products = [], defaultTy
                                     <div className="mt-3 p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80 text-xs text-emerald-950 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                                         <div className="flex items-center gap-2">
                                             <Briefcase className="w-4 h-4 text-emerald-700 shrink-0" />
-                                            <span>Mencari lowongan pekerjaan atau ingin melamar karir?</span>
+                                            <span>{t('contact_career_hint', 'Mencari lowongan pekerjaan atau ingin melamar karir?')}</span>
                                         </div>
                                         <Link 
                                             href="/karir/lamar" 
                                             className="font-bold text-emerald-800 hover:text-emerald-600 underline shrink-0 inline-flex items-center gap-1"
                                         >
-                                            <span>Formulir Lamaran Kerja &rarr;</span>
+                                            <span>{t('contact_career_link', 'Formulir Lamaran Kerja →')}</span>
                                         </Link>
                                     </div>
                                     {errors.type && <p className="text-rose-500 text-xs mt-1">{errors.type}</p>}

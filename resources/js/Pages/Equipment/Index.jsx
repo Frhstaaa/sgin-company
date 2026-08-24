@@ -94,7 +94,7 @@ export default function EquipmentIndex({ equipments = [], categories = [] }) {
                                         : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-100'
                                 }`}
                             >
-                                {cat}
+                                {t(cat, cat)}
                             </button>
                         ))}
                     </div>
@@ -117,7 +117,7 @@ export default function EquipmentIndex({ equipments = [], categories = [] }) {
                                             />
                                             <div className="absolute top-4 left-4">
                                                 <span className="px-3 py-1 rounded-full bg-emerald-800/90 text-white font-bold text-[11px] backdrop-blur-xs">
-                                                    {eq.category}
+                                                    {t(eq.category, eq.category)}
                                                 </span>
                                             </div>
                                         </div>

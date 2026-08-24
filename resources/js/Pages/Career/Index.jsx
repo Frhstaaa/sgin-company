@@ -124,7 +124,7 @@ export default function CareerIndex({ careers = [] }) {
                             href="/karir/lamar"
                             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-emerald-900/30 shrink-0"
                         >
-                            <span>Formulir Lamaran / Kirim CV</span>
+                            <span>{t('career_btn_apply', 'Formulir Lamaran / Kirim CV')}</span>
                             <ArrowRight className="w-3.5 h-3.5" />
                         </Link>
                     </div>
@@ -194,7 +194,7 @@ export default function CareerIndex({ careers = [] }) {
                                     href="/karir/lamar"
                                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-800 text-white font-bold text-xs uppercase tracking-wider"
                                 >
-                                    <span>Isi Formulir Lamaran Umum</span>
+                                    <span>{t('career_btn_apply_general', 'Isi Formulir Lamaran Umum')}</span>
                                     <ArrowRight className="w-3.5 h-3.5" />
                                 </Link>
                             </div>

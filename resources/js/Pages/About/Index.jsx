@@ -2,7 +2,7 @@ import React from 'react';
 import { Head, Link, usePage } from '@inertiajs/react';
 import AppLayout from '../../Layouts/AppLayout';
 import { useLanguage } from '../../Context/LanguageContext';
-import { translations } from '../../translations';
+import { translations, modelTranslations } from '../../translations';
 import YouTubeEmbed from '../../Components/YouTubeEmbed';
 import { 
     Building2, Calendar, Award, MapPin, Users, 
@@ -24,22 +24,22 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
         : (p.company_name || 'PT. Sugiyama Indonesia');
 
     // Robust timeline data parsing
-    const defaultTimeline = translations.company_profile?.[lang]?.history_timeline 
-        || translations.company_profile?.id?.history_timeline 
+    const defaultTimeline = modelTranslations?.company_profile?.[lang]?.history_timeline 
+        || modelTranslations?.company_profile?.id?.history_timeline 
         || [];
 
-    const timelineData = (p.history_timeline && Array.isArray(p.history_timeline) && p.history_timeline.length > 0 && typeof p.history_timeline[0] === 'object')
+    const timelineData = (lang === 'id' && p.history_timeline && Array.isArray(p.history_timeline) && p.history_timeline.length > 0 && typeof p.history_timeline[0] === 'object')
         ? p.history_timeline
-        : defaultTimeline;
+        : (modelTranslations?.company_profile?.[lang]?.history_timeline || p.history_timeline || defaultTimeline);
 
     // Robust branches data parsing
-    const defaultBranches = translations.company_profile?.[lang]?.branches 
-        || translations.company_profile?.id?.branches 
+    const defaultBranches = modelTranslations?.company_profile?.[lang]?.branches 
+        || modelTranslations?.company_profile?.id?.branches 
         || [];
 
-    const branchesData = (p.branches && Array.isArray(p.branches) && p.branches.length > 0 && typeof p.branches[0] === 'object')
+    const branchesData = (lang === 'id' && p.branches && Array.isArray(p.branches) && p.branches.length > 0 && typeof p.branches[0] === 'object')
         ? p.branches
-        : defaultBranches;
+        : (modelTranslations?.company_profile?.[lang]?.branches || p.branches || defaultBranches);
 
     return (
         <AppLayout>
@@ -237,13 +237,13 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
                     <div className="text-center max-w-3xl mx-auto space-y-3">
                         <span className="text-[10px] sm:text-xs font-bold text-emerald-800 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 inline-block">
-                            {(lang === 'id' && siteSettings.about_pillar_badge) ? siteSettings.about_pillar_badge : 'FILOSOFI & NILAI KORPORAT / 企業理念'}
+                            {(lang === 'id' && siteSettings.about_pillar_badge) ? siteSettings.about_pillar_badge : t('about_pillar_badge', 'FILOSOFI & NILAI KORPORAT / 企業理念')}
                         </span>
                         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-                            {(lang === 'id' && siteSettings.about_pillar_title) ? siteSettings.about_pillar_title : 'Fondasi Integritas, Penguasaan Teknologi & Masa Depan'}
+                            {(lang === 'id' && siteSettings.about_pillar_title) ? siteSettings.about_pillar_title : t('about_pillar_title', 'Fondasi Integritas, Penguasaan Teknologi & Masa Depan')}
                         </h2>
                         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
-                            {(lang === 'id' && siteSettings.about_pillar_subtitle) ? siteSettings.about_pillar_subtitle : 'Tiga pilar filosofis yang memandu setiap langkah rekayasa presisi, manufaktur zero-defect, dan kepuasan pelanggan global.'}
+                            {(lang === 'id' && siteSettings.about_pillar_subtitle) ? siteSettings.about_pillar_subtitle : t('about_pillar_subtitle', 'Tiga pilar filosofis yang memandu setiap langkah rekayasa presisi, manufaktur zero-defect, dan kepuasan pelanggan global.')}
                         </p>
                     </div>
 
@@ -347,7 +347,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-100 pb-6">
                             <div className="space-y-2">
                                 <span className="text-[10px] sm:text-xs font-bold text-emerald-800 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 inline-block">
-                                    DATA LEGALITAS / 会社概要
+                                    {t('about_factsheet_badge', 'DATA LEGALITAS / 会社概要')}
                                 </span>
                                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
                                     {t('about_data_title', 'Ringkasan Data & Legalitas Perusahaan')}
@@ -390,7 +390,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                     <Users className="w-5 h-5" />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Presiden Direktur</p>
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_president_name_label', 'Presiden Direktur')}</p>
                                     <p className="text-sm sm:text-base font-extrabold text-slate-900">{p.president_name || 'Yuichi Sugiyama'}</p>
                                     <p className="text-xs text-emerald-800 font-bold">President Director</p>
                                 </div>
@@ -426,9 +426,9 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                     <Factory className="w-5 h-5" />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Luas Lahan & Bangunan</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">Lahan: {siteSettings.factsheet_site_area || '7.582 m²'}</p>
-                                    <p className="text-xs text-slate-500">Luas Bangunan Pabrik: {siteSettings.factsheet_building_area || '3.913 m²'}</p>
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_area_label', 'Luas Lahan & Bangunan')}</p>
+                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{t('about_site_area', 'Lahan:')} {siteSettings.factsheet_site_area || '7.582 m²'}</p>
+                                    <p className="text-xs text-slate-500">{t('about_building_area', 'Luas Bangunan Pabrik:')} {siteSettings.factsheet_building_area || '3.913 m²'}</p>
                                 </div>
                             </div>
 
@@ -438,7 +438,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                     <Cpu className="w-5 h-5" />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Bidang Usaha (Business Scope)</p>
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_scope_label', 'Bidang Usaha (Business Scope)')}</p>
                                     <p className="text-sm sm:text-base font-extrabold text-slate-900">{siteSettings.factsheet_business_scope || 'Manufacturing & Sales for Automotive Parts'}</p>
                                     <p className="text-xs text-slate-500">[ Forging, Precision Machining ]</p>
                                 </div>
@@ -450,7 +450,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                     <Globe className="w-5 h-5" />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Pelanggan Utama (Major Customers)</p>
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_cust_label', 'Pelanggan Utama (Major Customers)')}</p>
                                     <p className="text-xs font-bold text-slate-900">Domestik: PT Denso Indonesia</p>
                                     <p className="text-[11px] text-slate-500">Overseas: Niterra Japan & India, Daido Kogyo Thailand</p>
                                 </div>
@@ -462,7 +462,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                     <ShieldCheck className="w-5 h-5" />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Standar Sertifikasi Mutu</p>
+                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_certs_label', 'Standar Sertifikasi Mutu')}</p>
                                     <p className="text-sm sm:text-base font-extrabold text-slate-900">{siteSettings.factsheet_certifications || 'ISO 9001:2015 & IATF 16949:2016'}</p>
                                     <p className="text-xs text-slate-500">Certified by SGS (ID15/03091)</p>
                                 </div>
@@ -481,13 +481,13 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                         <ScrollReveal>
                             <div className="text-center max-w-3xl mx-auto space-y-3">
                                 <span className="text-[10px] sm:text-xs font-bold text-emerald-800 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 inline-block">
-                                    SEJARAH & MILESTONE / 沿革
+                                    {(lang === 'id' && siteSettings.about_history_badge) ? siteSettings.about_history_badge : t('about_history_badge', 'SEJARAH & MILESTONE / 沿革')}
                                 </span>
                                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
                                     {t('about_history_title', 'Perjalanan & Milestone Sejarah Perkembangan')}
                                 </h2>
                                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
-                                    Lebih dari 7 dekade dedikasi tanpa henti dalam menempa keahlian manufaktur presisi kelas dunia dari Aichi hingga Indonesia.
+                                    {(lang === 'id' && siteSettings.about_history_lead) ? siteSettings.about_history_lead : t('about_history_lead', 'Lebih dari 7 dekade dedikasi tanpa henti dalam menempa keahlian manufaktur presisi kelas dunia dari Aichi hingga Indonesia.')}
                                 </p>
                             </div>
                         </ScrollReveal>
@@ -518,7 +518,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
 
                                             <div className="pt-4 mt-4 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-bold text-emerald-700">
                                                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                                                <span>Milestone Pencapaian</span>
+                                                <span>Milestone</span>
                                             </div>
                                         </div>
                                     </ScrollReveal>
@@ -539,14 +539,14 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-100 pb-6">
                                 <div className="space-y-2">
                                     <span className="text-[10px] sm:text-xs font-bold text-emerald-800 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 inline-block">
-                                        JARINGAN GLOBAL / グローバル拠点
+                                        {(lang === 'id' && siteSettings.about_branches_badge) ? siteSettings.about_branches_badge : t('about_branches_badge', 'JARINGAN GLOBAL / グローバル拠点')}
                                     </span>
                                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
                                         {t('about_branches_title', 'Jaringan Pabrik & Fasilitas Global')}
                                     </h2>
                                 </div>
                                 <span className="text-xs text-slate-500 font-medium">
-                                    Sinergi Manufaktur Jepang & Indonesia
+                                    {t('about_branches_sub', 'Sinergi Manufaktur Jepang & Indonesia')}
                                 </span>
                             </div>
                         </ScrollReveal>
@@ -580,7 +580,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                                 href="/kontak"
                                                 className="inline-flex items-center gap-2 text-xs font-bold text-emerald-800 hover:text-emerald-600 transition-colors"
                                             >
-                                                <span>Hubungi Fasilitas Ini</span>
+                                                <span>{t('about_contact_facility', 'Hubungi Fasilitas Ini')}</span>
                                                 <ArrowRight className="w-3.5 h-3.5" />
                                             </Link>
                                             <span className="text-[10px] text-slate-400 font-mono font-bold">
@@ -606,13 +606,13 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                             
                             <div className="space-y-2 relative z-10 max-w-2xl">
                                 <span className="text-[10px] sm:text-xs font-bold text-emerald-400 uppercase tracking-widest">
-                                    {(lang === 'id' && siteSettings.about_cta_badge) ? siteSettings.about_cta_badge : 'KOLABORASI & KONSULTASI / お問い合わせ'}
+                                    {(lang === 'id' && siteSettings.about_cta_badge) ? siteSettings.about_cta_badge : t('about_cta_badge', 'KOLABORASI & KONSULTASI / お問い合わせ')}
                                 </span>
                                 <h3 className="text-xl sm:text-3xl font-extrabold text-white leading-tight">
-                                    {(lang === 'id' && siteSettings.about_cta_title) ? siteSettings.about_cta_title : 'Siap Memulai Proyek Manufaktur Presisi Anda?'}
+                                    {(lang === 'id' && siteSettings.about_cta_title) ? siteSettings.about_cta_title : t('about_cta_title', 'Siap Memulai Proyek Manufaktur Presisi Anda?')}
                                 </h3>
                                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                                    {(lang === 'id' && siteSettings.about_cta_lead) ? siteSettings.about_cta_lead : 'Diskusikan kebutuhan penempaan dingin, evaluasi gambar teknik 3D CAD, atau jadwalkan kunjungan ke fasilitas pabrik kami di GIIC Cikarang.'}
+                                    {(lang === 'id' && siteSettings.about_cta_lead) ? siteSettings.about_cta_lead : t('about_cta_lead', 'Diskusikan kebutuhan penempaan dingin, evaluasi gambar teknik 3D CAD, atau jadwalkan kunjungan ke fasilitas pabrik kami di GIIC Cikarang.')}
                                 </p>
                             </div>
 
@@ -621,14 +621,14 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                     href={siteSettings.about_cta_btn1_link || '/kontak?type=rfq'}
                                     className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-emerald-500/30"
                                 >
-                                    <span>{siteSettings.about_cta_btn1_text || 'Minta Penawaran (RFQ)'}</span>
+                                    <span>{(lang === 'id' && siteSettings.about_cta_btn1_text) ? siteSettings.about_cta_btn1_text : t('about_cta_btn1', 'Minta Penawaran (RFQ)')}</span>
                                     <ArrowRight className="w-4 h-4" />
                                 </Link>
                                 <Link
                                     href={siteSettings.about_cta_btn2_link || '/kontak'}
                                     className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider backdrop-blur-md border border-white/20 transition-all"
                                 >
-                                    <span>{siteSettings.about_cta_btn2_text || 'Hubungi Kami'}</span>
+                                    <span>{(lang === 'id' && siteSettings.about_cta_btn2_text) ? siteSettings.about_cta_btn2_text : t('about_cta_btn2', 'Hubungi Kami')}</span>
                                 </Link>
                             </div>
                         </div>
