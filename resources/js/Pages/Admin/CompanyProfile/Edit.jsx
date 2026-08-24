@@ -53,7 +53,7 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
         about_president_title: settings.about_president_title || 'Komitmen Presisi Tanpa Kompromi & Semangat Kaizen',
         about_president_role: settings.about_president_role || 'Presiden Direktur PT. Sugiyama Indonesia',
         about_president_tag: settings.about_president_tag || 'Sugiyama Group Executive',
-        president_name: profile.president_name || 'Takeshi Sugiyama',
+        president_name: profile.president_name || 'Yuichi Sugiyama',
         president_message: profile.president_message || 'Sejak didirikan pada tahun 1952, Sugiyama Precision terus berkomitmen menempa batas kemampuan teknik manufaktur. Di era elektrifikasi kendaraan dan otomasi cerdas saat ini, dedikasi kami terhadap toleransi mikron, integritas metalurgi, dan inovasi ramah lingkungan tetap menjadi fondasi kepercayaan mitra global kami di Jepang, Asia Tenggara, dan seluruh dunia.',
         president_photo: null,
         president_photo_url: profile.president_photo_url || '',
@@ -424,7 +424,7 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
                                                 type="text"
                                                 value={data.president_name}
                                                 onChange={(e) => setData('president_name', e.target.value)}
-                                                placeholder="Takeshi Sugiyama"
+                                                placeholder="Yuichi Sugiyama"
                                                 className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-bold text-slate-900"
                                             />
                                         </div>

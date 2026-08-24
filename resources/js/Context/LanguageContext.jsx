@@ -168,7 +168,10 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
                 if (modelTranslations[type][lang]) {
                     const typeDict = modelTranslations[type][lang];
                     for (const k in typeDict) {
-                        if (!result[k] || result[k] === item[k]) {
+                        if (k === 'president_name') {
+                            // Preserve exact database value if present
+                            if (!result[k]) result[k] = typeDict[k];
+                        } else if (!result[k] || (typeof result[k] === 'string' && result[k].trim() === '')) {
                             result[k] = typeDict[k];
                         }
                     }
@@ -177,7 +180,9 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
                 const match = findEntryInDict(modelTranslations[type]);
                 if (match) {
                     for (const k in match) {
-                        if (!result[k] || result[k] === item[k]) {
+                        if (k === 'president_name') {
+                            if (!result[k]) result[k] = match[k];
+                        } else if (!result[k] || (typeof result[k] === 'string' && result[k].trim() === '')) {
                             result[k] = match[k];
                         }
                     }
@@ -190,7 +195,9 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
                 const match = findEntryInDict(modelTranslations[cat]);
                 if (match) {
                     for (const k in match) {
-                        if (!result[k] || result[k] === item[k]) {
+                        if (k === 'president_name') {
+                            if (!result[k]) result[k] = match[k];
+                        } else if (!result[k] || (typeof result[k] === 'string' && result[k].trim() === '')) {
                             result[k] = match[k];
                         }
                     }
