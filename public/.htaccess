@@ -23,3 +23,23 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+# Browser Caching Policy
+<IfModule mod_headers.c>
+    # 1. Strictly NO-CACHE on dynamic PHP/HTML/JSON to ensure real-time updates for visitors
+    <FilesMatch "\.(php|html|htm)$">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0, post-check=0, pre-check=0"
+        Header set Pragma "no-cache"
+        Header set Expires "Sat, 01 Jan 2000 00:00:00 GMT"
+    </FilesMatch>
+
+    # 2. Immutable Long-Term Caching for Version-Hashed Build Assets
+    <FilesMatch "\.(css|js|woff2|woff|ttf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    # 3. Moderate Caching with revalidation for static images
+    <FilesMatch "\.(ico|jpg|jpeg|png|gif|svg|webp)$">
+        Header set Cache-Control "public, max-age=86400, must-revalidate"
+    </FilesMatch>
+</IfModule>

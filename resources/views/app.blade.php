@@ -2,8 +2,12 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="theme-color" content="#005944">
+
+    <!-- Anti-Cache Directives for Dynamic Content Realtime Sync -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
     @php
         $siteFavicon = \App\Models\SiteSetting::getByKey('site_favicon') ?: \App\Models\SiteSetting::getByKey('site_logo');
@@ -149,8 +153,17 @@
     @viteReactRefresh
     @vite(['resources/js/app.jsx'])
     @inertiaHead
-</head>
-<body class="font-sans antialiased text-slate-900 bg-white selection:bg-emerald-600 selection:text-white min-h-screen flex flex-col overflow-x-hidden w-full max-w-full relative">
     @inertia
+
+    <script>
+        // Automatic cleanup of any stale legacy ServiceWorkers or CacheStorage
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for (var i = 0; i < registrations.length; i++) {
+                    registrations[i].unregister();
+                }
+            });
+        }
+    </script>
 </body>
 </html>

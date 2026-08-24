@@ -196,6 +196,11 @@ if ($action === 'git_pull') {
     $outputLog .= runCmd("{$phpCli} artisan config:clear") . "\n";
     $outputLog .= runCmd("{$phpCli} artisan route:clear") . "\n";
     $outputLog .= runCmd("{$phpCli} artisan view:clear") . "\n";
+    $outputLog .= runCmd("{$phpCli} artisan cache:clear") . "\n";
+    if (function_exists('opcache_reset')) {
+        @opcache_reset();
+        $outputLog .= "✅ OPcache PHP berhasil di-reset!\n";
+    }
 } elseif ($action === 'remove_maintenance_html') {
     $outputLog .= "=== HAPUS FILE MAINTENANCE (index.html) ===\n";
     $candidates = ['index.html', 'index.htm', 'default.html', 'maintenance.html'];
