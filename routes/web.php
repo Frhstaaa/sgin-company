@@ -103,15 +103,20 @@ Route::get('/storage/{path}', function (string $path) {
 
 /*
 |--------------------------------------------------------------------------
-| Admin Authentication Routes
+| Admin Authentication Routes (Custom Private Route: /sginco-manage)
 |--------------------------------------------------------------------------
 */
-// Fallback login route for standard auth middleware
-Route::get('/login', fn () => redirect()->route('admin.login'))->name('login');
+// Secure Private Access Route for CMS Admin
+Route::get('/sginco-manage', [AdminAuthController::class, 'showLogin'])->name('admin.login');
+Route::post('/sginco-manage', [AdminAuthController::class, 'login'])->name('admin.login.post');
+Route::post('/sginco-manage/logout', [AdminAuthController::class, 'logout'])->name('sginco.logout');
+
+// Block legacy and common public admin probing paths with 404
+Route::get('/admin/login', fn () => abort(404));
+Route::post('/admin/login', fn () => abort(404));
+Route::get('/login', fn () => abort(404));
 
 Route::prefix('admin')->group(function () {
-    Route::get('/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
-    Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login.post');
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
     /*

@@ -169,15 +169,6 @@ export default function Footer() {
                             <p className="text-xs text-emerald-200/80 leading-relaxed">
                                 {siteSettings.contact_address_id || t('footer_id_addr', 'Kawasan Greenland International Industrial Center (GIIC) Blok CF No. 10, Pasirranji, Cikarang Pusat, Bekasi 17530, Jawa Barat, Indonesia')}
                             </p>
-                            <div className="pt-2">
-                                <Link
-                                    href="/admin/login"
-                                    className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-400 hover:text-emerald-300"
-                                >
-                                    <span>{t('nav_admin', 'Portal CMS Admin')}</span>
-                                    <ExternalLink className="w-3 h-3" />
-                                </Link>
-                            </div>
                         </div>
                     </div>
                 </div>

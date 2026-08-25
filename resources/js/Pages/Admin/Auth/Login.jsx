@@ -11,7 +11,7 @@ export default function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/admin/login');
+        post('/sginco-manage');
     };
 
     return (

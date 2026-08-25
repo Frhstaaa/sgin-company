@@ -59,9 +59,13 @@ class CompanyProfileTest extends TestCase
 
     public function test_admin_authentication_and_dashboard(): void
     {
-        $this->get('/admin/login')->assertStatus(200);
+        // Public probing to legacy admin/login should return 404
+        $this->get('/admin/login')->assertStatus(404);
 
-        $loginResponse = $this->post('/admin/login', [
+        // Private /sginco-manage route should return 200
+        $this->get('/sginco-manage')->assertStatus(200);
+
+        $loginResponse = $this->post('/sginco-manage', [
             'email' => 'admin@sugiyama.co.id',
             'password' => 'password123',
         ]);

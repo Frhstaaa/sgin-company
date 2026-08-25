@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /sginco-manage
 Disallow: /cpanel-setup.php
 
 Sitemap: https://sgin.co.id/sitemap.xml
-
