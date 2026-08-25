@@ -127,8 +127,8 @@ export default function Home({
                         alt="PT. Sugiyama Indonesia Precision Facility" 
                         className="w-full h-full object-cover object-center scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/65 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/40" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/75 to-slate-950/40" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-slate-950/60" />
                 </div>
 
                 {/* Hero Main Content */}
@@ -201,11 +201,11 @@ export default function Home({
                     </div>
                 </div>
 
-                {/* Smooth progressive scrim gradient fade to blend with the next section without visible cutoff lines */}
+                {/* Ultra-smooth progressive scrim gradient fade behind the floating quote card */}
                 <div 
-                    className="absolute bottom-0 left-0 w-full h-48 sm:h-72 z-20 pointer-events-none"
+                    className="absolute bottom-0 left-0 w-full h-28 sm:h-44 z-20 pointer-events-none"
                     style={{
-                        background: 'linear-gradient(to top, rgba(248, 250, 252, 1) 0%, rgba(248, 250, 252, 0.85) 15%, rgba(248, 250, 252, 0.55) 30%, rgba(248, 250, 252, 0.30) 45%, rgba(248, 250, 252, 0.14) 60%, rgba(248, 250, 252, 0.05) 75%, rgba(248, 250, 252, 0.01) 88%, rgba(248, 250, 252, 0) 100%)'
+                        background: 'linear-gradient(to top, rgba(248, 250, 252, 1) 0%, rgba(248, 250, 252, 0.92) 15%, rgba(248, 250, 252, 0.65) 32%, rgba(248, 250, 252, 0.35) 50%, rgba(248, 250, 252, 0.12) 70%, rgba(248, 250, 252, 0.03) 85%, rgba(248, 250, 252, 0) 100%)'
                     }}
                 />
 
