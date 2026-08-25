@@ -201,8 +201,13 @@ export default function Home({
                     </div>
                 </div>
 
-                {/* Gradient fade to blend with the next section smoothly */}
-                <div className="absolute bottom-0 left-0 w-full h-48 sm:h-64 bg-gradient-to-t from-slate-50 via-slate-50/60 to-transparent z-20 pointer-events-none" />
+                {/* Smooth progressive scrim gradient fade to blend with the next section without visible cutoff lines */}
+                <div 
+                    className="absolute bottom-0 left-0 w-full h-48 sm:h-72 z-20 pointer-events-none"
+                    style={{
+                        background: 'linear-gradient(to top, rgba(248, 250, 252, 1) 0%, rgba(248, 250, 252, 0.85) 15%, rgba(248, 250, 252, 0.55) 30%, rgba(248, 250, 252, 0.30) 45%, rgba(248, 250, 252, 0.14) 60%, rgba(248, 250, 252, 0.05) 75%, rgba(248, 250, 252, 0.01) 88%, rgba(248, 250, 252, 0) 100%)'
+                    }}
+                />
 
                 {/* Floating Mission Quote Box precisely centered on the border (50% on hero, 50% on content below) */}
                 <div className="relative z-30 w-full max-w-4xl mx-auto px-4 -mb-16 sm:-mb-20">
