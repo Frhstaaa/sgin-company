@@ -43,25 +43,24 @@ class DatabaseSeeder extends Seeder
             'banner_news', 'banner_careers', 'banner_contact', 'site_logo', 'site_favicon'
         ])->update(['value' => $placeholder]);
 
-        // 1. Create Default Admin User
-        User::updateOrCreate(
-            ['email' => 'admin@sugiyama.co.id'],
-            [
-                'name' => 'Administrator Sugiyama',
-                'password' => Hash::make('password123'),
-                'email_verified_at' => now(),
-            ]
-        );
+        // 1. Create Default Admin Users
+        $defaultAdmins = [
+            'admin@sugiyama.co.id',
+            'admin@sugiyama.jp',
+            'admin@sugiyama.co.jp',
+            'admin@sagayama.co.jp',
+        ];
 
-        // Also keep fallback admin login for compatibility
-        User::updateOrCreate(
-            ['email' => 'admin@sagayama.co.jp'],
-            [
-                'name' => 'Administrator Sugiyama',
-                'password' => Hash::make('password123'),
-                'email_verified_at' => now(),
-            ]
-        );
+        foreach ($defaultAdmins as $admEmail) {
+            User::updateOrCreate(
+                ['email' => $admEmail],
+                [
+                    'name' => 'Administrator Sugiyama',
+                    'password' => Hash::make('password123'),
+                    'email_verified_at' => now(),
+                ]
+            );
+        }
 
         // 2. Site Settings
         $settings = [
