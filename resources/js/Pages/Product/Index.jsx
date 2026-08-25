@@ -16,12 +16,12 @@ export default function ProductIndex({ products, categories = [], filters = {} }
 
     const handleSearch = (e) => {
         e.preventDefault();
-        router.get('/produk', { ...filters, search, category: selectedCategory }, { preserveState: true });
+        router.get('/products', { ...filters, search, category: selectedCategory }, { preserveState: true });
     };
 
     const handleCategoryClick = (catSlug) => {
         setSelectedCategory(catSlug);
-        router.get('/produk', { ...filters, search, category: catSlug || undefined }, { preserveState: true });
+        router.get('/products', { ...filters, search, category: catSlug || undefined }, { preserveState: true });
     };
 
     return (
@@ -167,7 +167,7 @@ export default function ProductIndex({ products, categories = [], filters = {} }
 
                                 <div className="p-5 pt-0 flex items-center justify-between gap-2 border-t border-slate-100 mt-2">
                                     <Link
-                                        href={`/produk/${p.slug}`}
+                                        href={`/products/${p.slug}`}
                                         className="text-xs font-bold text-emerald-800 hover:text-emerald-600 transition-colors flex items-center gap-1"
                                     >
                                         <span>{t('prd_btn_detail', 'Detail')}</span>
@@ -175,7 +175,7 @@ export default function ProductIndex({ products, categories = [], filters = {} }
                                     </Link>
 
                                     <Link
-                                        href={`/kontak?product_id=${p.id}&type=rfq`}
+                                        href={`/contact?product_id=${p.id}&type=rfq`}
                                         className="px-3 py-1.5 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-[10px] uppercase tracking-wider transition-colors shadow-2xs"
                                     >
                                         {t('prd_btn_rfq', 'RFQ')}

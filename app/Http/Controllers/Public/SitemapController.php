@@ -22,14 +22,15 @@ class SitemapController extends Controller
         // Static routes with priorities and changefreq
         $routes = [
             ['loc' => $baseUrl . '/', 'priority' => '1.0', 'changefreq' => 'daily', 'lastmod' => now()->toDateString()],
-            ['loc' => $baseUrl . '/tentang-kami', 'priority' => '0.9', 'changefreq' => 'weekly', 'lastmod' => now()->toDateString()],
-            ['loc' => $baseUrl . '/teknologi', 'priority' => '0.9', 'changefreq' => 'weekly', 'lastmod' => now()->toDateString()],
-            ['loc' => $baseUrl . '/bisnis', 'priority' => '0.9', 'changefreq' => 'weekly', 'lastmod' => now()->toDateString()],
-            ['loc' => $baseUrl . '/peralatan', 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
-            ['loc' => $baseUrl . '/produk', 'priority' => '0.9', 'changefreq' => 'weekly', 'lastmod' => now()->toDateString()],
-            ['loc' => $baseUrl . '/berita', 'priority' => '0.8', 'changefreq' => 'daily', 'lastmod' => now()->toDateString()],
-            ['loc' => $baseUrl . '/karir', 'priority' => '0.8', 'changefreq' => 'weekly', 'lastmod' => now()->toDateString()],
-            ['loc' => $baseUrl . '/kontak', 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
+            ['loc' => $baseUrl . '/technology', 'priority' => '0.9', 'changefreq' => 'weekly', 'lastmod' => now()->toDateString()],
+            ['loc' => $baseUrl . '/business', 'priority' => '0.9', 'changefreq' => 'weekly', 'lastmod' => now()->toDateString()],
+            ['loc' => $baseUrl . '/equipment', 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
+            ['loc' => $baseUrl . '/production-process', 'priority' => '0.9', 'changefreq' => 'weekly', 'lastmod' => now()->toDateString()],
+            ['loc' => $baseUrl . '/products', 'priority' => '0.9', 'changefreq' => 'weekly', 'lastmod' => now()->toDateString()],
+            ['loc' => $baseUrl . '/about-us', 'priority' => '0.9', 'changefreq' => 'weekly', 'lastmod' => now()->toDateString()],
+            ['loc' => $baseUrl . '/news', 'priority' => '0.8', 'changefreq' => 'daily', 'lastmod' => now()->toDateString()],
+            ['loc' => $baseUrl . '/careers', 'priority' => '0.8', 'changefreq' => 'weekly', 'lastmod' => now()->toDateString()],
+            ['loc' => $baseUrl . '/contact', 'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => now()->toDateString()],
         ];
 
         // Dynamic Technology routes
@@ -37,7 +38,7 @@ class SitemapController extends Controller
             $technologies = Technology::all();
             foreach ($technologies as $tech) {
                 $routes[] = [
-                    'loc' => $baseUrl . '/teknologi/' . $tech->slug,
+                    'loc' => $baseUrl . '/technology/' . $tech->slug,
                     'priority' => '0.8',
                     'changefreq' => 'weekly',
                     'lastmod' => $tech->updated_at ? $tech->updated_at->toDateString() : now()->toDateString()
@@ -50,7 +51,7 @@ class SitemapController extends Controller
             $businesses = BusinessUnit::all();
             foreach ($businesses as $biz) {
                 $routes[] = [
-                    'loc' => $baseUrl . '/bisnis/' . $biz->slug,
+                    'loc' => $baseUrl . '/business/' . $biz->slug,
                     'priority' => '0.8',
                     'changefreq' => 'weekly',
                     'lastmod' => $biz->updated_at ? $biz->updated_at->toDateString() : now()->toDateString()
@@ -63,7 +64,7 @@ class SitemapController extends Controller
             $products = Product::where('is_active', true)->get();
             foreach ($products as $prod) {
                 $routes[] = [
-                    'loc' => $baseUrl . '/produk/' . $prod->slug,
+                    'loc' => $baseUrl . '/products/' . $prod->slug,
                     'priority' => '0.8',
                     'changefreq' => 'weekly',
                     'lastmod' => $prod->updated_at ? $prod->updated_at->toDateString() : now()->toDateString()
@@ -76,7 +77,7 @@ class SitemapController extends Controller
             $newsList = News::where('is_published', true)->get();
             foreach ($newsList as $item) {
                 $routes[] = [
-                    'loc' => $baseUrl . '/berita/' . $item->slug,
+                    'loc' => $baseUrl . '/news/' . $item->slug,
                     'priority' => '0.7',
                     'changefreq' => 'weekly',
                     'lastmod' => $item->updated_at ? $item->updated_at->toDateString() : now()->toDateString()
@@ -89,7 +90,7 @@ class SitemapController extends Controller
             $careers = Career::where('is_active', true)->get();
             foreach ($careers as $car) {
                 $routes[] = [
-                    'loc' => $baseUrl . '/karir/' . $car->slug,
+                    'loc' => $baseUrl . '/careers/' . $car->slug,
                     'priority' => '0.7',
                     'changefreq' => 'weekly',
                     'lastmod' => $car->updated_at ? $car->updated_at->toDateString() : now()->toDateString()

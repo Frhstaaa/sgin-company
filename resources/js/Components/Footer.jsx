@@ -91,32 +91,32 @@ export default function Footer() {
                             </h4>
                             <ul className="space-y-2 text-xs text-emerald-200/80">
                                 <li>
-                                    <Link href="/teknologi" className="hover:text-white transition-colors">
+                                    <Link href="/technology" className="hover:text-white transition-colors">
                                         {t('tech_step_01', 'Desain dan Pengembangan')}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/teknologi" className="hover:text-white transition-colors">
+                                    <Link href="/technology" className="hover:text-white transition-colors">
                                         {t('tech_step_02', 'Pemrosesan Presisi')}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/teknologi" className="hover:text-white transition-colors">
+                                    <Link href="/technology" className="hover:text-white transition-colors">
                                         {t('tech_step_03', 'Kontrol Kualitas')}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/bisnis" className="hover:text-white transition-colors">
+                                    <Link href="/business" className="hover:text-white transition-colors">
                                         {t('biz_unit_01', 'Penempaan Dingin')}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/bisnis" className="hover:text-white transition-colors">
+                                    <Link href="/business" className="hover:text-white transition-colors">
                                         {t('biz_unit_02', 'Pemrosesan Pemotongan')}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/bisnis" className="hover:text-white transition-colors">
+                                    <Link href="/business" className="hover:text-white transition-colors">
                                         {t('biz_unit_03', 'Bisnis AV / 3D Printing')}
                                     </Link>
                                 </li>
@@ -130,37 +130,37 @@ export default function Footer() {
                             </h4>
                             <ul className="space-y-2 text-xs text-emerald-200/80">
                                 <li>
-                                    <Link href="/peralatan" className="hover:text-white transition-colors">
+                                    <Link href="/equipment" className="hover:text-white transition-colors">
                                         {t('nav_equipment', 'Peralatan & Fasilitas')}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/proses-produksi" className="hover:text-white transition-colors">
+                                    <Link href="/production-process" className="hover:text-white transition-colors">
                                         {t('nav_production_process', 'Proses Produksi & QC')}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/produk" className="hover:text-white transition-colors">
+                                    <Link href="/products" className="hover:text-white transition-colors">
                                         {t('nav_products', 'Katalog Produk')}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/tentang-kami" className="hover:text-white transition-colors">
+                                    <Link href="/about-us" className="hover:text-white transition-colors">
                                         {t('nav_about', 'Tentang Kami')}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/berita" className="hover:text-white transition-colors">
+                                    <Link href="/news" className="hover:text-white transition-colors">
                                         {t('nav_news', 'Berita & Update')}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/karir" className="hover:text-white transition-colors">
+                                    <Link href="/careers" className="hover:text-white transition-colors">
                                         {t('nav_careers', 'Informasi Rekrutmen')}
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/kontak" className="hover:text-white transition-colors">
+                                    <Link href="/contact" className="hover:text-white transition-colors">
                                         {t('nav_contact', 'Hubungi Kami')}
                                     </Link>
                                 </li>

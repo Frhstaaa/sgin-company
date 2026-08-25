@@ -124,15 +124,15 @@ export default function AdminBannersIndex({ settings = {} }) {
 
     const bannerPages = [
         { id: 'home', name: 'Beranda (Home)', path: '/', icon: Home, color: 'emerald' },
-        { id: 'about', name: 'Tentang Kami', path: '/tentang-kami', icon: Building2, color: 'emerald' },
-        { id: 'tech', name: 'Teknologi', path: '/teknologi', icon: Cpu, color: 'sky' },
-        { id: 'biz', name: 'Unit Bisnis', path: '/bisnis', icon: Briefcase, color: 'indigo' },
-        { id: 'machine', name: 'Peralatan & Mesin', path: '/peralatan', icon: Cog, color: 'amber' },
-        { id: 'prod', name: 'Proses Produksi', path: '/proses-produksi', icon: Workflow, color: 'blue' },
-        { id: 'product', name: 'Katalog Produk', path: '/produk', icon: Package, color: 'teal' },
-        { id: 'news', name: 'Berita & Update', path: '/berita', icon: Newspaper, color: 'rose' },
-        { id: 'career', name: 'Lowongan Karir', path: '/karir', icon: UserCheck, color: 'purple' },
-        { id: 'contact', name: 'Kontak & Konsultasi', path: '/kontak', icon: Phone, color: 'emerald' },
+        { id: 'about', name: 'Tentang Kami', path: '/about-us', icon: Building2, color: 'emerald' },
+        { id: 'tech', name: 'Teknologi', path: '/technology', icon: Cpu, color: 'sky' },
+        { id: 'biz', name: 'Unit Bisnis', path: '/business', icon: Briefcase, color: 'indigo' },
+        { id: 'machine', name: 'Peralatan & Mesin', path: '/equipment', icon: Cog, color: 'amber' },
+        { id: 'prod', name: 'Proses Produksi', path: '/production-process', icon: Workflow, color: 'blue' },
+        { id: 'product', name: 'Katalog Produk', path: '/products', icon: Package, color: 'teal' },
+        { id: 'news', name: 'Berita & Update', path: '/news', icon: Newspaper, color: 'rose' },
+        { id: 'career', name: 'Lowongan Karir', path: '/careers', icon: UserCheck, color: 'purple' },
+        { id: 'contact', name: 'Kontak & Konsultasi', path: '/contact', icon: Phone, color: 'emerald' },
     ];
 
     return (

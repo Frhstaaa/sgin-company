@@ -369,7 +369,7 @@ export default function ProductionProcessIndex({ processes = [], mainFlow = [], 
 
                     <div className="shrink-0">
                         <Link
-                            href="/kontak"
+                            href="/contact"
                             className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm shadow-xl shadow-emerald-950/40 hover:shadow-2xl transition-all"
                         >
                             <span>{t('prod_cta_btn_contact', 'Konsultasi Teknik Sekarang')}</span>

@@ -15,7 +15,7 @@ export default function NewsIndex({ news, filters = {} }) {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        router.get('/berita', { ...filters, search }, { preserveState: true });
+        router.get('/news', { ...filters, search }, { preserveState: true });
     };
 
     return (
@@ -94,7 +94,7 @@ export default function NewsIndex({ news, filters = {} }) {
                             return (
                             <Link
                                 key={item.id}
-                                href={`/berita/${item.slug}`}
+                                href={`/news/${item.slug}`}
                                 className="bg-white rounded-3xl overflow-hidden shadow-xs hover:shadow-xl border border-slate-200 hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between group"
                             >
                                 <div>

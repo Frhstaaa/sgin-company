@@ -48,7 +48,7 @@ export default function CareerApply({ careers = [], selectedCareer = null, prese
     const refreshCaptcha = async () => {
         setIsRefreshingCaptcha(true);
         try {
-            const res = await fetch('/karir/captcha/refresh');
+            const res = await fetch('/careers/captcha/refresh');
             const json = await res.json();
             if (json.captcha_svg) {
                 setCurrentCaptchaSvg(json.captcha_svg);
@@ -143,7 +143,7 @@ export default function CareerApply({ careers = [], selectedCareer = null, prese
         if (!data.captcha_code) {
             return;
         }
-        post('/karir/lamar', {
+        post('/careers/apply', {
             forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
@@ -190,7 +190,7 @@ export default function CareerApply({ careers = [], selectedCareer = null, prese
 
                     <div className="pt-2">
                         <Link 
-                            href="/karir"
+                            href="/careers"
                             className="inline-flex items-center gap-2 text-xs text-emerald-300 hover:text-white font-bold transition-all px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10"
                         >
                             <ArrowLeft className="w-3.5 h-3.5" />

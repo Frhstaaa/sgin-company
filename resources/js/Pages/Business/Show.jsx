@@ -30,7 +30,7 @@ export default function BusinessShow({ business, relatedProducts = [] }) {
                     {/* Breadcrumb Pill */}
                     <div className="flex flex-wrap items-center gap-2">
                         <Link
-                            href="/bisnis"
+                            href="/business"
                             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 text-xs font-bold hover:bg-emerald-900 transition-all backdrop-blur-md"
                         >
                             <ArrowLeft className="w-3.5 h-3.5" />
@@ -84,7 +84,7 @@ export default function BusinessShow({ business, relatedProducts = [] }) {
                                 {relatedProducts.map((p) => (
                                     <Link
                                         key={p.id}
-                                        href={`/produk/${p.slug}`}
+                                        href={`/products/${p.slug}`}
                                         className="p-4 rounded-2xl bg-slate-50 hover:bg-white border border-slate-200 hover:shadow-md transition-all flex items-center gap-4 group"
                                     >
                                         <div className="w-16 h-16 rounded-xl bg-slate-200 overflow-hidden shrink-0">

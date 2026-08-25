@@ -30,7 +30,7 @@ export default function TechnologyShow({ technology, otherTechnologies = [] }) {
                     {/* Breadcrumb Pill */}
                     <div className="flex flex-wrap items-center gap-2">
                         <Link
-                            href="/teknologi"
+                            href="/technology"
                             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 text-xs font-bold hover:bg-emerald-900 transition-all backdrop-blur-md"
                         >
                             <ArrowLeft className="w-3.5 h-3.5" />
@@ -104,7 +104,7 @@ export default function TechnologyShow({ technology, otherTechnologies = [] }) {
                             </p>
                         </div>
                         <Link
-                            href="/kontak?type=consultation"
+                            href="/contact?type=consultation"
                             className="px-6 py-3.5 rounded-full bg-white text-emerald-950 hover:bg-emerald-50 text-xs font-bold shrink-0 shadow-md flex items-center gap-2"
                         >
                             <span>{t('tech_btn_consult', 'Konsultasi Sekarang')}</span>

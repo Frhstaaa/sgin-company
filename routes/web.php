@@ -47,33 +47,79 @@ Route::match(['get', 'post'], '/locale/{locale}', [LocaleController::class, 'swi
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/teknologi', [TechnologyController::class, 'index'])->name('technology.index');
-Route::get('/teknologi/{slug}', [TechnologyController::class, 'show'])->name('technology.show');
+// Technology
+Route::get('/technology', [TechnologyController::class, 'index'])->name('technology.index');
+Route::get('/technology/{slug}', [TechnologyController::class, 'show'])->name('technology.show');
 
-Route::get('/bisnis', [BusinessController::class, 'index'])->name('business.index');
-Route::get('/bisnis/{slug}', [BusinessController::class, 'show'])->name('business.show');
+// Business
+Route::get('/business', [BusinessController::class, 'index'])->name('business.index');
+Route::get('/business/{slug}', [BusinessController::class, 'show'])->name('business.show');
 
-Route::get('/peralatan', [EquipmentController::class, 'index'])->name('equipment.index');
+// Equipment
+Route::get('/equipment', [EquipmentController::class, 'index'])->name('equipment.index');
 
-Route::get('/proses-produksi', [ProductionProcessController::class, 'index'])->name('production-process.index');
+// Production Process
+Route::get('/production-process', [ProductionProcessController::class, 'index'])->name('production-process.index');
 
-Route::get('/produk', [ProductController::class, 'index'])->name('product.index');
-Route::get('/produk/{slug}', [ProductController::class, 'show'])->name('product.show');
+// Products
+Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+Route::get('/products/{slug}', [ProductController::class, 'show'])->name('product.show');
 
-Route::get('/tentang-kami', [AboutController::class, 'index'])->name('about.index');
+// About Us
+Route::get('/about-us', [AboutController::class, 'index'])->name('about.index');
 
-Route::get('/berita', [NewsController::class, 'index'])->name('news.index');
-Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
+// News & Articles
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
 
-Route::get('/karir', [CareerController::class, 'index'])->name('career.index');
-Route::get('/karir/lamar', [CareerApplicationController::class, 'create'])->name('career.apply');
-Route::get('/karir/captcha/refresh', [CareerApplicationController::class, 'refreshCaptcha'])->name('career.captcha.refresh');
-Route::get('/karir/{slug}/lamar', [CareerApplicationController::class, 'createForCareer'])->name('career.apply.position');
-Route::post('/karir/lamar', [CareerApplicationController::class, 'store'])->name('career.apply.store');
-Route::get('/karir/{slug}', [CareerController::class, 'show'])->name('career.show');
+// Careers
+Route::get('/careers', [CareerController::class, 'index'])->name('career.index');
+Route::get('/careers/apply', [CareerApplicationController::class, 'create'])->name('career.apply');
+Route::get('/careers/captcha/refresh', [CareerApplicationController::class, 'refreshCaptcha'])->name('career.captcha.refresh');
+Route::get('/careers/{slug}/apply', [CareerApplicationController::class, 'createForCareer'])->name('career.apply.position');
+Route::post('/careers/apply', [CareerApplicationController::class, 'store'])->name('career.apply.store');
+Route::get('/careers/{slug}', [CareerController::class, 'show'])->name('career.show');
 
-Route::get('/kontak', [ContactController::class, 'index'])->name('contact.index');
-Route::post('/kontak', [ContactController::class, 'store'])->name('contact.store');
+// Contact
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+/*
+|--------------------------------------------------------------------------
+| Legacy Indonesian & Alias URLs (301 Permanent Redirects to English URLs)
+|--------------------------------------------------------------------------
+*/
+Route::redirect('/teknologi', '/technology', 301);
+Route::get('/teknologi/{slug}', fn ($slug) => redirect("/technology/{$slug}", 301));
+
+Route::redirect('/bisnis', '/business', 301);
+Route::get('/bisnis/{slug}', fn ($slug) => redirect("/business/{$slug}", 301));
+
+Route::redirect('/peralatan', '/equipment', 301);
+
+Route::redirect('/proses-produksi', '/production-process', 301);
+
+Route::redirect('/produk', '/products', 301);
+Route::redirect('/product', '/products', 301);
+Route::get('/produk/{slug}', fn ($slug) => redirect("/products/{$slug}", 301));
+Route::get('/product/{slug}', fn ($slug) => redirect("/products/{$slug}", 301));
+
+Route::redirect('/tentang-kami', '/about-us', 301);
+Route::redirect('/about', '/about-us', 301);
+
+Route::redirect('/berita', '/news', 301);
+Route::get('/berita/{slug}', fn ($slug) => redirect("/news/{$slug}", 301));
+
+Route::redirect('/karir', '/careers', 301);
+Route::redirect('/career', '/careers', 301);
+Route::redirect('/karir/lamar', '/careers/apply', 301);
+Route::redirect('/career/apply', '/careers/apply', 301);
+Route::get('/karir/{slug}', fn ($slug) => redirect("/careers/{$slug}", 301));
+Route::get('/karir/{slug}/lamar', fn ($slug) => redirect("/careers/{$slug}/apply", 301));
+
+Route::redirect('/kontak', '/contact', 301);
+Route::post('/kontak', [ContactController::class, 'store']);
+Route::post('/karir/lamar', [CareerApplicationController::class, 'store']);
 
 // SEO Sitemap XML
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');

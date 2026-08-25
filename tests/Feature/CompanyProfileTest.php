@@ -28,19 +28,34 @@ class CompanyProfileTest extends TestCase
 
     public function test_all_public_pages_return_ok(): void
     {
-        $this->get('/teknologi')->assertStatus(200);
-        $this->get('/bisnis')->assertStatus(200);
-        $this->get('/peralatan')->assertStatus(200);
-        $this->get('/produk')->assertStatus(200);
-        $this->get('/tentang-kami')->assertStatus(200);
-        $this->get('/berita')->assertStatus(200);
-        $this->get('/karir')->assertStatus(200);
-        $this->get('/kontak')->assertStatus(200);
+        // 1. New Professional English Routes
+        $this->get('/technology')->assertStatus(200);
+        $this->get('/business')->assertStatus(200);
+        $this->get('/equipment')->assertStatus(200);
+        $this->get('/production-process')->assertStatus(200);
+        $this->get('/products')->assertStatus(200);
+        $this->get('/about-us')->assertStatus(200);
+        $this->get('/news')->assertStatus(200);
+        $this->get('/careers')->assertStatus(200);
+        $this->get('/careers/apply')->assertStatus(200);
+        $this->get('/contact')->assertStatus(200);
+
+        // 2. Legacy Indonesian URLs 301 Permanent Redirects
+        $this->get('/teknologi')->assertRedirect('/technology');
+        $this->get('/bisnis')->assertRedirect('/business');
+        $this->get('/peralatan')->assertRedirect('/equipment');
+        $this->get('/proses-produksi')->assertRedirect('/production-process');
+        $this->get('/produk')->assertRedirect('/products');
+        $this->get('/tentang-kami')->assertRedirect('/about-us');
+        $this->get('/berita')->assertRedirect('/news');
+        $this->get('/karir')->assertRedirect('/careers');
+        $this->get('/karir/lamar')->assertRedirect('/careers/apply');
+        $this->get('/kontak')->assertRedirect('/contact');
     }
 
     public function test_contact_form_submits_successfully(): void
     {
-        $response = $this->post('/kontak', [
+        $response = $this->post('/contact', [
             'type' => 'rfq',
             'name' => 'John Doe QA',
             'company_name' => 'Tech Corp',

@@ -29,15 +29,15 @@ export default function Navbar() {
 
     const navLinks = [
         { name: t('nav_home', 'Beranda'), href: '/', active: currentUrl === '/' },
-        { name: t('nav_technology', 'Teknologi'), href: '/teknologi', active: currentUrl.startsWith('/teknologi') },
-        { name: t('nav_business', 'Bisnis'), href: '/bisnis', active: currentUrl.startsWith('/bisnis') },
-        { name: t('nav_equipment', 'Peralatan'), href: '/peralatan', active: currentUrl.startsWith('/peralatan') },
-        { name: t('nav_production_process', 'Proses Produksi'), href: '/proses-produksi', active: currentUrl.startsWith('/proses-produksi') },
-        { name: t('nav_products', 'Produk'), href: '/produk', active: currentUrl.startsWith('/produk') },
-        { name: t('nav_about', 'Tentang Kami'), href: '/tentang-kami', active: currentUrl.startsWith('/tentang-kami') },
-        { name: t('nav_news', 'Berita'), href: '/berita', active: currentUrl.startsWith('/berita') },
-        { name: t('nav_careers', 'Karir'), href: '/karir', active: currentUrl.startsWith('/karir') },
-        { name: t('nav_contact', 'Kontak'), href: '/kontak', active: currentUrl.startsWith('/kontak') },
+        { name: t('nav_technology', 'Teknologi'), href: '/technology', active: currentUrl.startsWith('/technology') || currentUrl.startsWith('/teknologi') },
+        { name: t('nav_business', 'Bisnis'), href: '/business', active: currentUrl.startsWith('/business') || currentUrl.startsWith('/bisnis') },
+        { name: t('nav_equipment', 'Peralatan'), href: '/equipment', active: currentUrl.startsWith('/equipment') || currentUrl.startsWith('/peralatan') },
+        { name: t('nav_production_process', 'Proses Produksi'), href: '/production-process', active: currentUrl.startsWith('/production-process') || currentUrl.startsWith('/proses-produksi') },
+        { name: t('nav_products', 'Produk'), href: '/products', active: currentUrl.startsWith('/products') || currentUrl.startsWith('/product') || currentUrl.startsWith('/produk') },
+        { name: t('nav_about', 'Tentang Kami'), href: '/about-us', active: currentUrl.startsWith('/about') || currentUrl.startsWith('/tentang-kami') },
+        { name: t('nav_news', 'Berita'), href: '/news', active: currentUrl.startsWith('/news') || currentUrl.startsWith('/berita') },
+        { name: t('nav_careers', 'Karir'), href: '/careers', active: currentUrl.startsWith('/careers') || currentUrl.startsWith('/career') || currentUrl.startsWith('/karir') },
+        { name: t('nav_contact', 'Kontak'), href: '/contact', active: currentUrl.startsWith('/contact') || currentUrl.startsWith('/kontak') },
     ];
 
     return (

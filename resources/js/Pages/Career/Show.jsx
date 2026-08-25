@@ -30,7 +30,7 @@ export default function CareerShow({ career: rawCareer }) {
                     {/* Breadcrumb Pill */}
                     <div className="flex flex-wrap items-center gap-2">
                         <Link
-                            href="/karir"
+                            href="/careers"
                             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 text-xs font-bold hover:bg-emerald-900 transition-all backdrop-blur-md"
                         >
                             <ArrowLeft className="w-3.5 h-3.5" />
@@ -130,7 +130,7 @@ export default function CareerShow({ career: rawCareer }) {
                             </p>
                         </div>
                         <Link
-                            href={`/karir/${career.slug}/lamar`}
+                            href={`/careers/${career.slug}/apply`}
                             className="px-6 py-3.5 rounded-full bg-white text-emerald-950 hover:bg-emerald-50 text-xs font-bold shrink-0 shadow-md flex items-center gap-2"
                         >
                             <span>{t('career_apply_btn', 'Lamar Posisi Ini')}</span>

@@ -31,7 +31,7 @@ export default function ProductShow({ product: rawProduct, relatedProducts = [] 
                     {/* Breadcrumb Pill */}
                     <div className="flex flex-wrap items-center gap-2">
                         <Link
-                            href="/produk"
+                            href="/products"
                             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 text-xs font-bold hover:bg-emerald-900 transition-all backdrop-blur-md"
                         >
                             <ArrowLeft className="w-3.5 h-3.5" />
@@ -89,7 +89,7 @@ export default function ProductShow({ product: rawProduct, relatedProducts = [] 
 
                             <div className="pt-3">
                                 <Link
-                                    href={`/kontak?product_id=${product.id}&type=rfq`}
+                                    href={`/contact?product_id=${product.id}&type=rfq`}
                                     className="w-full py-3.5 px-6 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-2 transition-all"
                                 >
                                     <span>{t('prd_btn_rfq', 'Minta Penawaran (RFQ)')}</span>

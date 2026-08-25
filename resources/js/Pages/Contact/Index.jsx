@@ -30,7 +30,7 @@ export default function ContactIndex({ selectedProduct, products = [], defaultTy
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/kontak', {
+        post('/contact', {
             preserveScroll: true,
             onSuccess: () => reset('name', 'company_name', 'email', 'phone', 'subject', 'message'),
         });
@@ -137,7 +137,7 @@ export default function ContactIndex({ selectedProduct, products = [], defaultTy
                                             <span>{t('contact_career_hint', 'Mencari lowongan pekerjaan atau ingin melamar karir?')}</span>
                                         </div>
                                         <Link 
-                                            href="/karir/lamar" 
+                                            href="/careers/apply" 
                                             className="font-bold text-emerald-800 hover:text-emerald-600 underline shrink-0 inline-flex items-center gap-1"
                                         >
                                             <span>{t('contact_career_link', 'Formulir Lamaran Kerja →')}</span>

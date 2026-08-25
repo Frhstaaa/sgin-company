@@ -121,7 +121,7 @@ export default function CareerIndex({ careers = [] }) {
                             </h2>
                         </div>
                         <Link
-                            href="/karir/lamar"
+                            href="/careers/apply"
                             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-800 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-emerald-900/30 shrink-0"
                         >
                             <span>{t('career_btn_apply', 'Formulir Lamaran / Kirim CV')}</span>
@@ -170,14 +170,14 @@ export default function CareerIndex({ careers = [] }) {
 
                                 <div className="shrink-0 flex items-center gap-3">
                                     <Link
-                                        href={`/karir/${career.slug}`}
+                                        href={`/careers/${career.slug}`}
                                         className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition-all"
                                     >
                                         <span>{t('career_view_detail', 'Lihat Rincian Posisi')}</span>
                                         <ArrowRight className="w-3.5 h-3.5" />
                                     </Link>
                                     <Link
-                                        href={`/karir/${career.slug}/lamar`}
+                                        href={`/careers/${career.slug}/apply`}
                                         className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold shadow-md hover:shadow-lg transition-all"
                                     >
                                         <span>{t('career_apply_btn', 'Lamar Posisi Ini')}</span>
@@ -191,7 +191,7 @@ export default function CareerIndex({ careers = [] }) {
                             <div className="text-center py-16 bg-white rounded-3xl border border-slate-200 text-slate-500 text-sm space-y-4">
                                 <p>{t('career_no_positions', 'Belum ada lowongan posisi terbuka saat ini. Silakan kirimkan CV umum Anda melalui formulir lamaran.')}</p>
                                 <Link
-                                    href="/karir/lamar"
+                                    href="/careers/apply"
                                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-800 text-white font-bold text-xs uppercase tracking-wider"
                                 >
                                     <span>{t('career_btn_apply_general', 'Isi Formulir Lamaran Umum')}</span>

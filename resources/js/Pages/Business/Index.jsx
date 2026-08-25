@@ -104,7 +104,7 @@ export default function BusinessIndex({ businesses = [] }) {
 
                                     <div className="p-6 sm:p-8 pt-0">
                                         <Link
-                                            href={`/bisnis/${biz.slug}`}
+                                            href={`/business/${biz.slug}`}
                                             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-100 group-hover:bg-emerald-700 text-slate-800 group-hover:text-white font-bold text-xs uppercase tracking-wider transition-all"
                                         >
                                             <span>{t('tech_read_more', 'Pelajari')}</span>

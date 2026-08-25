@@ -15,7 +15,7 @@ export default function NewsShow({ article, news = article, latestNews = [], rec
             <AppLayout>
                 <div className="pt-32 pb-20 text-center">
                     <p className="text-slate-500">Berita tidak ditemukan.</p>
-                    <Link href="/berita" className="text-emerald-700 font-bold mt-4 inline-block">
+                    <Link href="/news" className="text-emerald-700 font-bold mt-4 inline-block">
                         &larr; Kembali ke Berita
                     </Link>
                 </div>
@@ -43,7 +43,7 @@ export default function NewsShow({ article, news = article, latestNews = [], rec
                     {/* Breadcrumb Pill */}
                     <div className="flex flex-wrap items-center gap-2">
                         <Link
-                            href="/berita"
+                            href="/news"
                             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 text-xs font-bold hover:bg-emerald-900 transition-all backdrop-blur-md"
                         >
                             <ArrowLeft className="w-3.5 h-3.5" />

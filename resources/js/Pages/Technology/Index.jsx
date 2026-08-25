@@ -120,7 +120,7 @@ export default function TechnologyIndex({ technologies = [] }) {
 
                                     <div className="pt-4">
                                         <Link
-                                            href={`/teknologi/${tech.slug}`}
+                                            href={`/technology/${tech.slug}`}
                                             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all"
                                         >
                                             <span>{t('tech_read_more', 'Pelajari')}</span>

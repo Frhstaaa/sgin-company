@@ -169,7 +169,7 @@ export default function Home({
 
                             <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2 sm:pt-3">
                                 <Link
-                                    href={activeSlide.button_link || "/kontak"}
+                                    href={activeSlide.button_link || "/contact"}
                                     className="px-5 sm:px-7 py-3 sm:py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-emerald-950/60 hover:shadow-emerald-700/50 transition-all flex items-center justify-center gap-2 group"
                                 >
                                     <span>{(lang !== 'id' && !rawActiveSlide[`button_text_${lang === 'ja' ? 'jp' : 'en'}`]) ? t('hero_btn_contact', 'Hubungi Kami') : (activeSlide.button_text || t('hero_btn_contact', 'Hubungi Kami'))}</span>
@@ -177,7 +177,7 @@ export default function Home({
                                 </Link>
 
                                 <Link
-                                    href="/teknologi"
+                                    href="/technology"
                                     className="px-5 sm:px-7 py-3 sm:py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm uppercase tracking-wider backdrop-blur-md border border-white/20 hover:border-white/40 transition-all text-center"
                                 >
                                     {t('hero_btn_tech', 'Pelajari Teknologi')}
@@ -342,7 +342,7 @@ export default function Home({
 
                             <div className="pt-2">
                                 <Link
-                                    href="/teknologi"
+                                    href="/technology"
                                     className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-900 hover:bg-emerald-800 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all"
                                 >
                                     <span>{t('tech_view_all', 'Lihat Seluruh Teknologi Kami')}</span>
@@ -358,7 +358,7 @@ export default function Home({
                                 return (
                                     <ScrollReveal key={tech.id || index} delay={index * 0.1} direction="left">
                                         <Link
-                                            href={`/teknologi/${tech.slug}`}
+                                            href={`/technology/${tech.slug}`}
                                             className="block p-5 sm:p-8 rounded-2xl bg-slate-50 hover:bg-white border border-slate-200/80 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 group"
                                         >
                                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
@@ -463,7 +463,7 @@ export default function Home({
 
                                             <div className="p-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-2">
                                                 <Link
-                                                    href={`/bisnis/${biz.slug}`}
+                                                    href={`/business/${biz.slug}`}
                                                     className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 hover:text-emerald-600 transition-colors py-2"
                                                 >
                                                     <span>{t('tech_read_more', 'Pelajari Selengkapnya')}</span>
@@ -551,7 +551,7 @@ export default function Home({
 
                                     <div className="p-6 pt-0">
                                         <Link
-                                            href={`/bisnis/${biz.slug}`}
+                                            href={`/business/${biz.slug}`}
                                             className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 hover:text-emerald-600 transition-colors"
                                         >
                                             <span>{t('tech_read_more', 'Pelajari')}</span>
@@ -626,7 +626,7 @@ export default function Home({
 
                                 <div className="relative z-10 p-6 sm:p-8 pt-0">
                                     <Link
-                                        href={settings.home_facility_btn_link || '/peralatan'}
+                                        href={settings.home_facility_btn_link || '/equipment'}
                                         className="inline-flex items-center justify-between w-full px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md hover:shadow-emerald-600/40"
                                     >
                                         <span>{(lang === 'id' && settings.home_facility_btn_text) ? settings.home_facility_btn_text : t('home_eq_btn', 'Lihat Semua Fasilitas Mesin')}</span>
@@ -682,7 +682,7 @@ export default function Home({
 
                                 <div className="relative z-10 p-6 sm:p-8 pt-0">
                                     <Link
-                                        href={settings.home_process_btn_link || '/proses-produksi'}
+                                        href={settings.home_process_btn_link || '/production-process'}
                                         className="inline-flex items-center justify-between w-full px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-100 text-slate-950 font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md"
                                     >
                                         <span>{(lang === 'id' && settings.home_process_btn_text) ? settings.home_process_btn_text : t('home_proc_btn', 'Pelajari 5 Tahap Proses Produksi')}</span>
@@ -715,7 +715,7 @@ export default function Home({
 
                         <div className="shrink-0 flex items-center gap-3">
                             <Link
-                                href="/produk"
+                                href="/products"
                                 className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-emerald-800 hover:bg-emerald-700 active:bg-emerald-900 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-emerald-900/20"
                             >
                                 <span>{t('home_prd_view_all', 'Lihat Semua Produk')}</span>
@@ -733,7 +733,7 @@ export default function Home({
                             return (
                                 <ScrollReveal key={prd.id || idx} delay={idx * 0.1}>
                                     <Link
-                                        href={`/produk/${prd.slug}`}
+                                        href={`/products/${prd.slug}`}
                                         className="group bg-white hover:bg-slate-50/50 rounded-2xl border border-slate-200/90 hover:border-emerald-300 p-4 transition-all duration-300 flex flex-col justify-between h-full shadow-xs hover:shadow-xl hover:shadow-emerald-950/10 block"
                                     >
                                         <div className="space-y-4">
@@ -793,7 +793,7 @@ export default function Home({
                             </p>
                         </div>
                         <Link
-                            href="/kontak?type=rfq"
+                            href="/contact?type=rfq"
                             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-emerald-950 hover:bg-emerald-50 font-bold text-xs uppercase tracking-wider transition-all shadow-md shrink-0"
                         >
                             <span>{t('home_prd_rfq_btn', 'Minta Penawaran Harga (RFQ)')}</span>
@@ -865,7 +865,7 @@ export default function Home({
                                             </div>
 
                                             <Link
-                                                href="/tentang-kami"
+                                                href="/about-us"
                                                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-800 hover:bg-emerald-700 active:bg-emerald-900 text-white font-bold text-xs shadow-md hover:shadow-emerald-950/20 transition-all shrink-0"
                                             >
                                                 <span>{t('about_btn_more', 'Profil Lengkap & Sejarah')}</span>
@@ -982,7 +982,7 @@ export default function Home({
                             </p>
                         </div>
                         <Link 
-                            href="/berita" 
+                            href="/news" 
                             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-100 hover:bg-emerald-50 text-slate-800 hover:text-emerald-800 font-bold text-xs uppercase tracking-wider transition-colors border border-slate-200/80 shrink-0 shadow-2xs"
                         >
                             <span>{t('news_view_all', 'Lihat Semua Berita')}</span>
@@ -1049,7 +1049,7 @@ export default function Home({
 
                                             <div className="p-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-2">
                                                 <Link
-                                                    href={`/berita/${item.slug}`}
+                                                    href={`/news/${item.slug}`}
                                                     className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 hover:text-emerald-600 transition-colors py-2"
                                                 >
                                                     <span>{t('tech_read_more', 'Baca Selengkapnya')}</span>
@@ -1111,7 +1111,7 @@ export default function Home({
                             return (
                                 <ScrollReveal key={item.id || idx} delay={idx * 0.1} direction="up" className="h-full">
                                     <Link 
-                                        href={`/berita/${item.slug}`}
+                                        href={`/news/${item.slug}`}
                                         className="group bg-white rounded-3xl overflow-hidden shadow-xs hover:shadow-xl border border-slate-200/90 hover:border-emerald-300 transition-all duration-500 flex flex-col justify-between h-full"
                                     >
                                         <div>
@@ -1187,7 +1187,7 @@ export default function Home({
                                 </p>
                                 <div className="pt-2">
                                     <Link
-                                        href="/karir"
+                                        href="/careers"
                                         className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-emerald-950 hover:bg-emerald-50 font-bold text-xs uppercase tracking-wider shadow-md transition-colors"
                                     >
                                         <span>{t('career_btn', 'Kunjungi Portal Karir & Lowongan')}</span>
@@ -1230,7 +1230,7 @@ export default function Home({
                                     </div>
 
                                     <Link
-                                        href="/kontak"
+                                        href="/contact"
                                         className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-emerald-800 hover:bg-emerald-700 active:bg-emerald-900 text-white font-bold text-xs uppercase tracking-wider shadow-md hover:shadow-emerald-950/20 transition-all shrink-0"
                                     >
                                         <span>{t('cta_btn', 'Formulir RFQ & Kontak')}</span>

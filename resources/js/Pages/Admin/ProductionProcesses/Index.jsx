@@ -156,13 +156,13 @@ export default function AdminProductionProcessesIndex({ processes = [] }) {
                             <span>Kelola Alur & Proses Produksi</span>
                         </h1>
                         <p className="text-sm text-slate-500 mt-1">
-                            Atur seluruh tahapan rantai pasok dan kontrol kualitas yang ditampilkan di halaman publik <code>/proses-produksi</code>.
+                            Atur seluruh tahapan rantai pasok dan kontrol kualitas yang ditampilkan di halaman publik <code>/production-process</code>.
                         </p>
                     </div>
 
                     <div className="flex items-center gap-3 shrink-0">
                         <a
-                            href="/proses-produksi"
+                            href="/production-process"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-bold transition-all"

@@ -577,7 +577,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
 
                                         <div className="pt-6 mt-6 border-t border-slate-200/80 flex items-center justify-between">
                                             <Link
-                                                href="/kontak"
+                                                href="/contact"
                                                 className="inline-flex items-center gap-2 text-xs font-bold text-emerald-800 hover:text-emerald-600 transition-colors"
                                             >
                                                 <span>{t('about_contact_facility', 'Hubungi Fasilitas Ini')}</span>
@@ -618,14 +618,14 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
 
                             <div className="relative z-10 flex flex-wrap items-center gap-3 shrink-0">
                                 <Link
-                                    href={siteSettings.about_cta_btn1_link || '/kontak?type=rfq'}
+                                    href={siteSettings.about_cta_btn1_link || '/contact?type=rfq'}
                                     className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg hover:shadow-emerald-500/30"
                                 >
                                     <span>{(lang === 'id' && siteSettings.about_cta_btn1_text) ? siteSettings.about_cta_btn1_text : t('about_cta_btn1', 'Minta Penawaran (RFQ)')}</span>
                                     <ArrowRight className="w-4 h-4" />
                                 </Link>
                                 <Link
-                                    href={siteSettings.about_cta_btn2_link || '/kontak'}
+                                    href={siteSettings.about_cta_btn2_link || '/contact'}
                                     className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider backdrop-blur-md border border-white/20 transition-all"
                                 >
                                     <span>{(lang === 'id' && siteSettings.about_cta_btn2_text) ? siteSettings.about_cta_btn2_text : t('about_cta_btn2', 'Hubungi Kami')}</span>
