@@ -17,6 +17,13 @@ class AdminUserController extends Controller
 {
     public function index(): Response
     {
+        // Ensure default roles exist if table was not yet seeded
+        if (Role::count() === 0) {
+            foreach (['Super Admin', 'Admin', 'Editor'] as $rName) {
+                Role::firstOrCreate(['name' => $rName, 'guard_name' => 'web']);
+            }
+        }
+
         $users = User::with('roles')->orderBy('id', 'asc')->get()->map(function ($u) {
             return [
                 'id' => $u->id,
@@ -29,6 +36,9 @@ class AdminUserController extends Controller
         });
 
         $roles = Role::all()->pluck('name');
+        if ($roles->isEmpty()) {
+            $roles = collect(['Super Admin', 'Admin', 'Editor']);
+        }
 
         return Inertia::render('Admin/Users/Index', [
             'users' => $users,
@@ -42,7 +52,7 @@ class AdminUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
             'password' => ['required', 'string', 'min:6'],
-            'role' => 'required|string|exists:roles,name',
+            'role' => 'required|string',
         ]);
 
         $user = User::create([
@@ -51,6 +61,7 @@ class AdminUserController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
+        Role::firstOrCreate(['name' => $validated['role'], 'guard_name' => 'web']);
         $user->assignRole($validated['role']);
 
         return back()->with('success', "Pengguna {$user->name} berhasil ditambahkan dengan peran {$validated['role']}.");
@@ -61,8 +72,8 @@ class AdminUserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'password' => ['nullable', 'string', 'min:6'],
-            'role' => 'required|string|exists:roles,name',
+            'password' => ['nullable', 'exclude_if:password,""', 'string', 'min:6'],
+            'role' => 'nullable|string',
         ]);
 
         $userData = [
@@ -75,20 +86,27 @@ class AdminUserController extends Controller
         }
 
         $user->update($userData);
-        $user->syncRoles([$validated['role']]);
+
+        if (!empty($validated['role'])) {
+            Role::firstOrCreate(['name' => $validated['role'], 'guard_name' => 'web']);
+            $user->syncRoles([$validated['role']]);
+        }
 
         return back()->with('success', "Data pengguna {$user->name} berhasil diperbarui.");
     }
 
     public function destroy(Request $request, User $user): RedirectResponse
     {
-        if ($request->user()->id === $user->id) {
+        if ($request->user() && $request->user()->id === $user->id) {
             return back()->with('error', 'Anda tidak dapat menghapus akun Anda sendiri yang sedang digunakan.');
         }
 
         // Prevent deleting the last Super Admin
-        if ($user->hasRole('Super Admin') && User::role('Super Admin')->count() <= 1) {
-            return back()->with('error', 'Tidak dapat menghapus Super Admin terakhir pada sistem.');
+        if ($user->hasRole('Super Admin')) {
+            $superAdminCount = User::whereHas('roles', fn ($q) => $q->where('name', 'Super Admin'))->count();
+            if ($superAdminCount <= 1) {
+                return back()->with('error', 'Tidak dapat menghapus Super Admin terakhir pada sistem.');
+            }
         }
 
         $userName = $user->name;

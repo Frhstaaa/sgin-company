@@ -78,4 +78,40 @@ class CompanyProfileTest extends TestCase
         $this->actingAs($user)->get('/admin/inquiries')->assertStatus(200);
         $this->actingAs($user)->get('/admin/settings')->assertStatus(200);
     }
+
+    public function test_admin_user_management_crud(): void
+    {
+        $admin = User::where('email', 'admin@sugiyama.co.id')->first();
+
+        // 1. View Users List
+        $response = $this->actingAs($admin)->get('/admin/users');
+        $response->assertStatus(200);
+
+        // 2. Create User
+        $createResponse = $this->actingAs($admin)->post('/admin/users', [
+            'name' => 'Editor Staff',
+            'email' => 'editor@sugiyama.co.id',
+            'password' => 'secret123',
+            'role' => 'Editor',
+        ]);
+        $createResponse->assertRedirect();
+        $this->assertDatabaseHas('users', ['email' => 'editor@sugiyama.co.id']);
+
+        $newUser = User::where('email', 'editor@sugiyama.co.id')->first();
+
+        // 3. Update User (without changing password)
+        $updateResponse = $this->actingAs($admin)->put("/admin/users/{$newUser->id}", [
+            'name' => 'Editor Staff Updated',
+            'email' => 'editor@sugiyama.co.id',
+            'password' => '',
+            'role' => 'Admin',
+        ]);
+        $updateResponse->assertRedirect();
+        $this->assertDatabaseHas('users', ['name' => 'Editor Staff Updated']);
+
+        // 4. Delete User
+        $deleteResponse = $this->actingAs($admin)->delete("/admin/users/{$newUser->id}");
+        $deleteResponse->assertRedirect();
+        $this->assertDatabaseMissing('users', ['email' => 'editor@sugiyama.co.id']);
+    }
 }

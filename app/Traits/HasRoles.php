@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait HasRoles
 {
+    public function scopeRole($query, $role)
+    {
+        return $query->whereHas('roles', function ($q) use ($role) {
+            if (is_array($role)) {
+                $q->whereIn('name', $role);
+            } else {
+                $q->where('name', $role);
+            }
+        });
+    }
+
     public function roles(): MorphToMany
     {
         return $this->morphToMany(
