@@ -78,6 +78,12 @@ class DatabaseSeeder extends Seeder
             'whatsapp_number' => '+6281234567890',
             'office_hours' => 'Senin - Jumat: 08:00 - 17:00 WIB / JST',
             'copyright_text' => '© 2026 PT. Sugiyama Indonesia. All Rights Reserved.',
+            'footer_tagline' => 'Menempa masa depan manufaktur presisi melalui teknologi penempaan dingin dan pemesinan CNC kelas dunia.',
+            'footer_certifications' => 'ISO 9001:2015, IATF 16949:2016, ISO 14001:2015',
+            'footer_col1_title' => 'Teknologi & Bisnis',
+            'footer_col2_title' => 'Tautan Cepat',
+            'footer_factory_title' => 'Pabrik Indonesia (ASEAN HUB)',
+            'footer_factory_phone' => '',
             'google_maps_embed' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.5!2d107.18!3d-6.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjEnMDAuMCJTIDEwN8KwMTAnNDguMCJF!5e0!3m2!1sen!2sid!4v1620000000000!5m2!1sen!2sid',
             
             // Factsheet Extras from Company Profile PDF

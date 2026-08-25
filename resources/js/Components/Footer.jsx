@@ -15,6 +15,10 @@ export default function Footer() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    // Parse certifications badges from settings
+    const rawCerts = siteSettings.footer_certifications || 'ISO 9001:2015, IATF 16949:2016, ISO 14001:2015';
+    const certsList = rawCerts.split(',').map(c => c.trim()).filter(Boolean);
+
     return (
         <footer className="bg-emerald-950 text-white border-t border-emerald-900/60 pt-16 pb-12 w-full max-w-full overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -32,29 +36,33 @@ export default function Footer() {
                             )}
                             <div>
                                 <h3 className="font-black text-xl tracking-tight text-white">
-                                    PT. Sugiyama Indonesia
+                                    {siteSettings.site_name || 'PT. Sugiyama Indonesia'}
                                 </h3>
                                 <p className="text-xs text-emerald-400 font-semibold tracking-wider font-jp">
-                                    株式会社スギヤマ / SUGIYAMA PRECISION
+                                    {siteSettings.site_name_jp || '株式会社スギヤマ / SUGIYAMA PRECISION'}
                                 </p>
                             </div>
                         </div>
 
                         <p className="text-xs text-emerald-200/80 leading-relaxed max-w-sm">
-                            {t('tagline_sub', 'Menempa masa depan manufaktur presisi melalui teknologi penempaan dingin dan pemesinan CNC kelas dunia.')}
+                            {siteSettings.footer_tagline || siteSettings.site_tagline || t('tagline_sub', 'Menempa masa depan manufaktur presisi melalui teknologi penempaan dingin dan pemesinan CNC kelas dunia.')}
                         </p>
 
                         {/* Contact details */}
                         <div className="space-y-2 pt-2 text-xs text-emerald-100/90">
                             <div className="flex items-start gap-2.5">
                                 <MapPin className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                                <span>{t('footer_hq_addr', '〒498-0000 123-4 Kajiya-cho, Yatomi City, Aichi Prefecture, Japan')}</span>
+                                <span>{siteSettings.contact_address || t('footer_hq_addr', '〒498-0000 123-4 Kajiya-cho, Yatomi City, Aichi Prefecture, Japan')}</span>
                             </div>
                             <div className="flex items-center gap-2.5">
                                 <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
                                 <span>Tel: <strong>{siteSettings.contact_phone || '0567-68-7077'}</strong></span>
-                                <span className="text-emerald-500">|</span>
-                                <span>Fax: {siteSettings.contact_fax || '0567-68-7080'}</span>
+                                {siteSettings.contact_fax && (
+                                    <>
+                                        <span className="text-emerald-500">|</span>
+                                        <span>Fax: {siteSettings.contact_fax}</span>
+                                    </>
+                                )}
                             </div>
                             <div className="flex items-center gap-2.5">
                                 <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -63,17 +71,15 @@ export default function Footer() {
                         </div>
 
                         {/* Badges */}
-                        <div className="flex flex-wrap gap-2 pt-2">
-                            <span className="px-2.5 py-1 rounded-md bg-emerald-900 border border-emerald-700/60 text-emerald-300 text-[10px] font-bold">
-                                ISO 9001:2015
-                            </span>
-                            <span className="px-2.5 py-1 rounded-md bg-emerald-900 border border-emerald-700/60 text-emerald-300 text-[10px] font-bold">
-                                IATF 16949:2016
-                            </span>
-                            <span className="px-2.5 py-1 rounded-md bg-emerald-900 border border-emerald-700/60 text-emerald-300 text-[10px] font-bold">
-                                ISO 14001:2015
-                            </span>
-                        </div>
+                        {certsList.length > 0 && (
+                            <div className="flex flex-wrap gap-2 pt-2">
+                                {certsList.map((cert, cIdx) => (
+                                    <span key={cIdx} className="px-2.5 py-1 rounded-md bg-emerald-900 border border-emerald-700/60 text-emerald-300 text-[10px] font-bold">
+                                        {cert}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
                     </div>
 
                     {/* Navigation Columns */}
@@ -81,7 +87,7 @@ export default function Footer() {
                         {/* Col 1 */}
                         <div className="space-y-3">
                             <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                                {t('nav_technology', 'Teknologi')} & {t('nav_business', 'Bisnis')}
+                                {siteSettings.footer_col1_title || `${t('nav_technology', 'Teknologi')} & ${t('nav_business', 'Bisnis')}`}
                             </h4>
                             <ul className="space-y-2 text-xs text-emerald-200/80">
                                 <li>
@@ -120,7 +126,7 @@ export default function Footer() {
                         {/* Col 2 */}
                         <div className="space-y-3">
                             <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                                {t('footer_quick_links', 'Tautan Cepat')}
+                                {siteSettings.footer_col2_title || t('footer_quick_links', 'Tautan Cepat')}
                             </h4>
                             <ul className="space-y-2 text-xs text-emerald-200/80">
                                 <li>
@@ -164,11 +170,16 @@ export default function Footer() {
                         {/* Col 3: Branches */}
                         <div className="space-y-3 col-span-2 sm:col-span-1">
                             <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                                {t('footer_id_title', 'Pabrik Indonesia')}
+                                {siteSettings.footer_factory_title || t('footer_id_title', 'Pabrik Indonesia (ASEAN HUB)')}
                             </h4>
                             <p className="text-xs text-emerald-200/80 leading-relaxed">
                                 {siteSettings.contact_address_id || t('footer_id_addr', 'Kawasan Greenland International Industrial Center (GIIC) Blok CF No. 10, Pasirranji, Cikarang Pusat, Bekasi 17530, Jawa Barat, Indonesia')}
                             </p>
+                            {siteSettings.footer_factory_phone && (
+                                <p className="text-xs text-emerald-300 font-bold pt-1">
+                                    Tel: {siteSettings.footer_factory_phone}
+                                </p>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -181,7 +192,7 @@ export default function Footer() {
 
                     <button
                         onClick={scrollToTop}
-                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-900/60 hover:bg-emerald-800 text-emerald-200 hover:text-white text-[11px] font-bold transition-colors"
+                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-900/60 hover:bg-emerald-800 text-emerald-200 hover:text-white text-[11px] font-bold transition-colors cursor-pointer"
                     >
                         <span>Back to Top</span>
                         <ArrowUp className="w-3.5 h-3.5" />

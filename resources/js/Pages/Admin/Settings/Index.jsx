@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Head, useForm } from '@inertiajs/react';
 import AdminLayout from '../../../Layouts/AdminLayout';
-import { Save, CheckCircle2, Settings, Phone, MapPin, Globe, Image as ImageIcon, Upload, Building2, Sparkles, Clock, Mail } from 'lucide-react';
+import { Save, CheckCircle2, Settings, Phone, MapPin, Globe, Image as ImageIcon, Upload, Building2, Sparkles, Clock, Mail, Award, Layers, FileText } from 'lucide-react';
 
 export default function AdminSettingsIndex({ settings = {} }) {
     const { data, setData, post, processing, recentlySuccessful, errors } = useForm({
@@ -16,6 +16,12 @@ export default function AdminSettingsIndex({ settings = {} }) {
         contact_address_id: settings.contact_address_id || 'Kawasan Greenland International Industrial Center (GIIC) Blok CF No. 10, Pasirranji, Cikarang Pusat, Bekasi 17530, Jawa Barat, Indonesia',
         office_hours: settings.office_hours || 'Senin - Jumat: 08:00 - 17:00 JST / WIB',
         copyright_text: settings.copyright_text || '© 2026 PT. Sugiyama Indonesia. All Rights Reserved.',
+        footer_tagline: settings.footer_tagline || settings.site_tagline || 'Menempa masa depan manufaktur presisi melalui teknologi penempaan dingin dan pemesinan CNC kelas dunia.',
+        footer_certifications: settings.footer_certifications || 'ISO 9001:2015, IATF 16949:2016, ISO 14001:2015',
+        footer_col1_title: settings.footer_col1_title || 'Teknologi & Bisnis',
+        footer_col2_title: settings.footer_col2_title || 'Tautan Cepat',
+        footer_factory_title: settings.footer_factory_title || 'Pabrik Indonesia (ASEAN HUB)',
+        footer_factory_phone: settings.footer_factory_phone || '',
         google_map_embed: settings.google_map_embed || '',
         logo: null,
     });
@@ -279,18 +285,117 @@ export default function AdminSettingsIndex({ settings = {} }) {
                                     className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium leading-relaxed font-jp"
                                 />
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Section 3: Pengaturan Khusus Footer Website */}
+                    <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+                        <div className="px-6 py-4 bg-slate-50/80 border-b border-slate-200 flex items-center gap-2.5">
+                            <Layers className="w-5 h-5 text-emerald-600" />
+                            <h2 className="font-bold text-sm text-slate-900 uppercase tracking-wide">
+                                3. Pengaturan Khusus Footer Website
+                            </h2>
+                        </div>
+
+                        <div className="p-6 sm:p-8 space-y-6">
+                            <div>
+                                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2 flex items-center gap-1.5">
+                                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                                    <span>Slogan / Deskripsi Singkat Footer (Kolom 1)</span>
+                                </label>
+                                <textarea
+                                    rows="2"
+                                    value={data.footer_tagline}
+                                    onChange={(e) => setData('footer_tagline', e.target.value)}
+                                    placeholder="Menempa masa depan manufaktur presisi melalui teknologi penempaan dingin dan pemesinan CNC kelas dunia."
+                                    className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium leading-relaxed"
+                                />
+                            </div>
 
                             <div>
-                                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                                    Teks Hak Cipta Footer (Copyright)
+                                <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2 flex items-center gap-1.5">
+                                    <Award className="w-3.5 h-3.5 text-emerald-600" />
+                                    <span>Badge Sertifikasi Footer (Pisahkan dengan koma)</span>
                                 </label>
                                 <input
                                     type="text"
-                                    value={data.copyright_text}
-                                    onChange={(e) => setData('copyright_text', e.target.value)}
-                                    placeholder="© 2026 PT. Sugiyama Indonesia. All Rights Reserved."
+                                    value={data.footer_certifications}
+                                    onChange={(e) => setData('footer_certifications', e.target.value)}
+                                    placeholder="ISO 9001:2015, IATF 16949:2016, ISO 14001:2015"
                                     className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
                                 />
+                                <p className="text-[11px] text-slate-500 mt-1">
+                                    Contoh: <code>ISO 9001:2015, IATF 16949:2016, ISO 14001:2015</code> (Otomatis muncul sebagai pill badge di footer).
+                                </p>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                        Judul Kolom Navigasi 1
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={data.footer_col1_title}
+                                        onChange={(e) => setData('footer_col1_title', e.target.value)}
+                                        placeholder="Teknologi & Bisnis"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                        Judul Kolom Navigasi 2
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={data.footer_col2_title}
+                                        onChange={(e) => setData('footer_col2_title', e.target.value)}
+                                        placeholder="Tautan Cepat"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                        Judul Kolom Pabrik Indonesia
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={data.footer_factory_title}
+                                        onChange={(e) => setData('footer_factory_title', e.target.value)}
+                                        placeholder="Pabrik Indonesia (ASEAN HUB)"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                        Telepon Tambahan Pabrik Indonesia (Opsional)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={data.footer_factory_phone}
+                                        onChange={(e) => setData('footer_factory_phone', e.target.value)}
+                                        placeholder="+62-21-30032962"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-mono"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                        Teks Hak Cipta Footer (Copyright)
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={data.copyright_text}
+                                        onChange={(e) => setData('copyright_text', e.target.value)}
+                                        placeholder="© 2026 PT. Sugiyama Indonesia. All Rights Reserved."
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>
