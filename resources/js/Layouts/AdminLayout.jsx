@@ -99,54 +99,54 @@ export default function AdminLayout({ children, title = 'Dashboard Overview' }) 
     const getRoleBadge = (roles) => {
         if (roles.includes('Super Admin')) {
             return (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-amber-400/15 text-amber-400 border border-amber-400/30">
-                    <Crown className="w-3 h-3 text-amber-400" />
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-amber-50 text-amber-800 border border-amber-200 shadow-2xs">
+                    <Crown className="w-3 h-3 text-amber-600" />
                     <span>SUPER ADMIN</span>
                 </span>
             );
         }
         if (roles.includes('Admin')) {
             return (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-emerald-400/15 text-emerald-400 border border-emerald-400/30">
-                    <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-2xs">
+                    <ShieldCheck className="w-3 h-3 text-emerald-600" />
                     <span>ADMIN</span>
                 </span>
             );
         }
         return (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-sky-400/15 text-sky-400 border border-sky-400/30">
-                <Feather className="w-3 h-3 text-sky-400" />
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-sky-50 text-sky-800 border border-sky-200 shadow-2xs">
+                <Feather className="w-3 h-3 text-sky-600" />
                 <span>EDITOR</span>
             </span>
         );
     };
 
     return (
-        <div className="min-h-screen bg-[#f4f6fa] text-slate-800 antialiased font-sans flex flex-col selection:bg-emerald-500 selection:text-white">
-            {/* Mobile Top Header (Metronic Dark Bar) */}
-            <div className="lg:hidden bg-[#1e1e2d] text-white px-4 py-3.5 flex items-center justify-between sticky top-0 z-50 border-b border-[#2b2b40] shadow-md">
+        <div className="min-h-screen bg-[#f8fafc] text-slate-800 antialiased font-sans flex flex-col selection:bg-emerald-600 selection:text-white">
+            {/* Mobile Top Header (Light Bar) */}
+            <div className="lg:hidden bg-white text-slate-800 px-4 py-3.5 flex items-center justify-between sticky top-0 z-50 border-b border-slate-200 shadow-xs">
                 <div className="flex items-center gap-3">
                     <button
                         onClick={() => setSidebarOpen(true)}
-                        className="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-[#2b2b40] transition-colors cursor-pointer"
+                        className="p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
                         aria-label="Open sidebar"
                     >
                         <Menu className="w-5 h-5" />
                     </button>
                     <div className="flex items-center gap-2.5">
                         {siteSettings?.site_logo ? (
-                            <img src={siteSettings.site_logo} alt="Logo" className="w-8 h-8 rounded-xl object-contain bg-white/10 p-1 border border-white/10" />
+                            <img src={siteSettings.site_logo} alt="Logo" className="w-8 h-8 rounded-xl object-contain bg-slate-50 p-1 border border-slate-200" />
                         ) : (
                             <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center font-black text-white text-xs shadow-md">
                                 <span>S</span>
                             </div>
                         )}
                         <div>
-                            <span className="font-extrabold text-sm text-white tracking-tight block leading-tight">
+                            <span className="font-extrabold text-sm text-slate-900 tracking-tight block leading-tight">
                                 {siteSettings?.site_name || 'Sugiyama CMS'}
                             </span>
-                            <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">
-                                METRONIC v8.2
+                            <span className="text-[10px] text-emerald-700 font-bold uppercase tracking-wider">
+                                ENTERPRISE PORTAL
                             </span>
                         </div>
                     </div>
@@ -155,7 +155,7 @@ export default function AdminLayout({ children, title = 'Dashboard Overview' }) 
                 <a
                     href="/"
                     target="_blank"
-                    className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#2b2b40] transition-colors"
+                    className="p-2 rounded-xl text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 transition-colors"
                     title="Buka Website Publik"
                 >
                     <ExternalLink className="w-4 h-4" />
@@ -166,33 +166,33 @@ export default function AdminLayout({ children, title = 'Dashboard Overview' }) 
             {sidebarOpen && (
                 <div 
                     onClick={() => setSidebarOpen(false)}
-                    className="fixed inset-0 bg-[#090a0f]/80 z-50 lg:hidden backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
+                    className="fixed inset-0 bg-slate-900/40 z-50 lg:hidden backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
                 />
             )}
 
-            {/* Metronic Enterprise Sidebar (Fixed on Desktop) */}
+            {/* Enterprise Light Mode Sidebar (Fixed on Desktop) */}
             <aside 
-                className={`fixed top-0 left-0 bottom-0 w-68 lg:w-72 bg-[#1e1e2d] text-slate-300 z-50 flex flex-col transition-transform duration-300 ease-in-out border-r border-[#2b2b40] shadow-2xl ${
+                className={`fixed top-0 left-0 bottom-0 w-68 lg:w-72 bg-white text-slate-700 z-50 flex flex-col transition-transform duration-300 ease-in-out border-r border-slate-200/90 shadow-sm ${
                     sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
                 }`}
             >
                 {/* Brand Header */}
-                <div className="h-18 px-5 border-b border-[#2b2b40] flex items-center justify-between shrink-0 bg-[#151521]">
+                <div className="h-18 px-5 border-b border-slate-100 flex items-center justify-between shrink-0 bg-white">
                     <Link href="/admin/dashboard" className="flex items-center gap-3 min-w-0 group">
                         {siteSettings?.site_logo ? (
-                            <img src={siteSettings.site_logo} alt="Logo" className="w-9 h-9 rounded-xl object-contain bg-white/10 p-1 border border-white/10 shadow-md shrink-0 group-hover:scale-105 transition-transform" />
+                            <img src={siteSettings.site_logo} alt="Logo" className="w-9 h-9 rounded-xl object-contain bg-slate-50 p-1 border border-slate-200 shadow-xs shrink-0 group-hover:scale-105 transition-transform" />
                         ) : (
-                            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center font-black text-white text-base shadow-lg shadow-emerald-500/20 shrink-0">
+                            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center font-black text-white text-base shadow-md shadow-emerald-600/20 shrink-0">
                                 <span>S</span>
                             </div>
                         )}
                         <div className="min-w-0">
-                            <h1 className="font-extrabold text-sm tracking-tight text-white truncate group-hover:text-emerald-400 transition-colors">
-                                {siteSettings?.site_name || 'PT Sugiyama'}
+                            <h1 className="font-black text-sm tracking-tight text-slate-900 truncate group-hover:text-emerald-700 transition-colors">
+                                {siteSettings?.site_name || 'PT. Sugiyama'}
                             </h1>
                             <div className="flex items-center gap-1.5 mt-0.5">
-                                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-xs shadow-emerald-400"></span>
-                                <p className="text-[10px] text-emerald-400 font-extrabold tracking-wider uppercase">
+                                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-xs shadow-emerald-500"></span>
+                                <p className="text-[10px] text-emerald-700 font-extrabold tracking-wider uppercase">
                                     Enterprise Portal
                                 </p>
                             </div>
@@ -200,14 +200,14 @@ export default function AdminLayout({ children, title = 'Dashboard Overview' }) 
                     </Link>
                     <button
                         onClick={() => setSidebarOpen(false)}
-                        className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#2b2b40] cursor-pointer"
+                        className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100 cursor-pointer"
                     >
                         <X className="w-5 h-5" />
                     </button>
                 </div>
 
-                {/* Metronic Scrollable Menu Navigation */}
-                <nav className="flex-1 overflow-y-auto py-5 px-3 space-y-6 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-[#2b2b40] [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#363654]">
+                {/* Light Mode Scrollable Menu Navigation */}
+                <nav className="flex-1 overflow-y-auto py-5 px-3 space-y-6 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-slate-200 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-slate-300">
                     {menuGroups.map((group, gIdx) => {
                         const filteredItems = group.items.filter(item => {
                             if (isSuperAdmin) return true;
@@ -220,7 +220,7 @@ export default function AdminLayout({ children, title = 'Dashboard Overview' }) 
 
                         return (
                             <div key={gIdx} className="space-y-1">
-                                <div className="px-3 pb-1.5 text-[10px] font-extrabold uppercase tracking-widest text-[#565674] flex items-center justify-between">
+                                <div className="px-3 pb-2 text-[10px] font-black uppercase tracking-widest text-slate-400 flex items-center justify-between">
                                     <span>{group.groupTitle}</span>
                                 </div>
 
@@ -233,15 +233,15 @@ export default function AdminLayout({ children, title = 'Dashboard Overview' }) 
                                             onClick={() => setSidebarOpen(false)}
                                             className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all group cursor-pointer ${
                                                 item.active
-                                                    ? 'bg-[#252538] text-white font-bold shadow-md shadow-black/20 border-l-[3px] border-emerald-500 pl-2.5'
-                                                    : 'text-[#92929f] hover:text-white hover:bg-[#252538]/60'
+                                                    ? 'bg-emerald-50/90 text-emerald-950 font-black shadow-2xs border-l-[3px] border-emerald-600 pl-2.5'
+                                                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                                             }`}
                                         >
                                             <div className="flex items-center gap-3 min-w-0">
                                                 <div className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
                                                     item.active 
-                                                        ? 'bg-emerald-500/15 text-emerald-400' 
-                                                        : 'bg-white/5 text-[#92929f] group-hover:bg-white/10 group-hover:text-slate-200'
+                                                        ? 'bg-emerald-600 text-white shadow-xs' 
+                                                        : 'bg-slate-100 text-slate-500 group-hover:bg-emerald-50 group-hover:text-emerald-700'
                                                 }`}>
                                                     <Icon className="w-4 h-4 shrink-0" />
                                                 </div>
@@ -249,9 +249,9 @@ export default function AdminLayout({ children, title = 'Dashboard Overview' }) 
                                             </div>
 
                                             {item.active ? (
-                                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400 shrink-0"></div>
+                                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-600 shadow-sm shadow-emerald-600 shrink-0"></div>
                                             ) : (
-                                                <ChevronRight className="w-3.5 h-3.5 text-[#4c4e6f] opacity-0 group-hover:opacity-100 transition-opacity shrink-0 -translate-x-1 group-hover:translate-x-0" />
+                                                <ChevronRight className="w-3.5 h-3.5 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 -translate-x-1 group-hover:translate-x-0" />
                                             )}
                                         </Link>
                                     );
@@ -261,18 +261,18 @@ export default function AdminLayout({ children, title = 'Dashboard Overview' }) 
                     })}
                 </nav>
 
-                {/* Metronic Sidebar Footer (User Card & Direct Link) */}
-                <div className="p-3.5 border-t border-[#2b2b40] bg-[#151521] shrink-0 space-y-2.5">
+                {/* Light Mode Sidebar Footer (User Card & Direct Link) */}
+                <div className="p-3.5 border-t border-slate-100 bg-slate-50/80 shrink-0 space-y-2.5">
                     <a
                         href="/"
                         target="_blank"
-                        className="flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold text-slate-300 hover:text-white bg-[#252538]/70 hover:bg-[#252538] transition-colors border border-white/5 group"
+                        className="flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold text-slate-700 hover:text-emerald-800 bg-white hover:bg-emerald-50/80 transition-colors border border-slate-200/80 shadow-2xs group"
                     >
                         <span className="flex items-center gap-2">
-                            <ExternalLink className="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110 transition-transform" />
+                            <ExternalLink className="w-3.5 h-3.5 text-emerald-600 group-hover:scale-110 transition-transform" />
                             <span>Kunjungi Website Publik</span>
                         </span>
-                        <ArrowUpRight className="w-3.5 h-3.5 text-[#727288] group-hover:text-white transition-colors" />
+                        <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-700 transition-colors" />
                     </a>
 
                     <div className="pt-2 flex items-center justify-between px-1">
@@ -282,13 +282,13 @@ export default function AdminLayout({ children, title = 'Dashboard Overview' }) 
                             title="Buka Pengaturan Profil & Kata Sandi"
                         >
                             <div className="relative shrink-0">
-                                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 text-white flex items-center justify-center font-black text-xs shadow-md border border-white/10">
+                                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white flex items-center justify-center font-black text-xs shadow-xs border border-emerald-500/20">
                                     {auth?.user?.name ? auth.user.name.charAt(0).toUpperCase() : 'A'}
                                 </div>
-                                <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-[#151521]" />
+                                <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white" />
                             </div>
                             <div className="min-w-0">
-                                <p className="text-xs font-bold text-slate-100 truncate">
+                                <p className="text-xs font-black text-slate-900 truncate">
                                     {auth?.user?.name || 'Administrator'}
                                 </p>
                                 <div className="mt-0.5">
@@ -300,7 +300,7 @@ export default function AdminLayout({ children, title = 'Dashboard Overview' }) 
                         <button
                             onClick={handleLogout}
                             title="Logout / Keluar"
-                            className="p-2 rounded-xl text-[#727288] hover:text-rose-400 hover:bg-[#252538] transition-colors shrink-0 cursor-pointer"
+                            className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors shrink-0 cursor-pointer"
                         >
                             <LogOut className="w-4 h-4" />
                         </button>

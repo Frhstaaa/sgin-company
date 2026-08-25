@@ -75,36 +75,39 @@ export default function Dashboard({ stats = {}, recentInquiries = [], recentNews
             <Head title="Admin Dashboard | PT. Sugiyama Indonesia" />
 
             <div className="space-y-8 pb-10">
-                {/* 1. Metronic Executive Welcome Hero Card */}
-                <div className="bg-gradient-to-r from-[#1e1e2d] via-[#232338] to-[#151521] text-white p-7 sm:p-9 rounded-3xl relative overflow-hidden border border-slate-700/60 shadow-xl">
-                    {/* Decorative Background Elements */}
-                    <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-emerald-500/10 via-transparent to-transparent pointer-events-none" />
-                    <div className="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-emerald-600/10 blur-3xl pointer-events-none" />
+                {/* 1. Executive Welcome Hero Card (Clean Light Mode Theme) */}
+                <div className="bg-gradient-to-br from-emerald-50/90 via-white to-teal-50/40 text-slate-900 p-7 sm:p-9 rounded-3xl relative overflow-hidden border border-emerald-200/80 shadow-xs">
+                    {/* Decorative Ambient Background Elements */}
+                    <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none" />
+                    <div className="absolute -right-16 -bottom-16 w-80 h-80 rounded-full bg-emerald-300/20 blur-3xl pointer-events-none" />
+                    <div className="absolute right-10 top-1/2 -translate-y-1/2 text-emerald-950/5 font-black text-9xl select-none font-jp hidden xl:block pointer-events-none">
+                        管理ポータル
+                    </div>
 
                     <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                         <div className="space-y-3 max-w-2xl">
                             <div className="flex items-center gap-2">
-                                <span className="px-3 py-1 rounded-full text-[11px] font-extrabold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5 shadow-xs">
-                                    <Sparkles className="w-3.5 h-3.5" />
+                                <span className="px-3 py-1 rounded-full text-[11px] font-black bg-emerald-100 text-emerald-800 border border-emerald-300/60 flex items-center gap-1.5 shadow-2xs">
+                                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                                     <span>SUGIYAMA ENTERPRISE CMS v2.5</span>
                                 </span>
-                                <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/10 text-slate-300 border border-white/10">
+                                <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white text-slate-600 border border-slate-200 shadow-2xs">
                                     IATF 16949 / ISO 9001
                                 </span>
                             </div>
 
-                            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-tight">
-                                Selamat Datang Kembali, <span className="text-emerald-400">{auth?.user?.name || 'Administrator'}</span>!
+                            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-slate-900 leading-tight">
+                                Selamat Datang Kembali, <span className="text-emerald-700">{auth?.user?.name || 'Administrator Sugiyama'}</span>!
                             </h1>
 
-                            <p className="text-xs sm:text-sm text-slate-300/90 leading-relaxed font-normal">
+                            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                                 Portal kontrol sentral PT. Sugiyama Indonesia. Seluruh katalog produk, alur proses manufaktur, banner tiap halaman, dan pesan penawaran terintegrasi secara real-time.
                             </p>
 
                             <div className="pt-2 flex flex-wrap items-center gap-3">
                                 <Link
                                     href="/admin/inquiries"
-                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg shadow-emerald-950/40 transition-all cursor-pointer"
+                                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold shadow-md hover:shadow-emerald-900/20 transition-all cursor-pointer"
                                 >
                                     <Inbox className="w-4 h-4" />
                                     <span>Cek Pesan / RFQ Masuk</span>
@@ -118,32 +121,32 @@ export default function Dashboard({ stats = {}, recentInquiries = [], recentNews
                                 <a
                                     href="/update.php"
                                     target="_blank"
-                                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold border border-white/15 transition-all"
+                                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold border border-slate-200 shadow-2xs transition-all"
                                 >
                                     <span>⚡ 1-Click Update Server</span>
-                                    <ExternalLink className="w-3.5 h-3.5" />
+                                    <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
                                 </a>
                             </div>
                         </div>
 
                         {/* Quick Server Status Pill Box */}
-                        <div className="p-4 rounded-2xl bg-[#151521]/90 border border-white/10 space-y-2.5 shrink-0 min-w-[220px]">
-                            <div className="flex items-center justify-between text-xs">
-                                <span className="text-slate-400 font-semibold">Server & Database:</span>
-                                <span className="text-emerald-400 font-bold flex items-center gap-1.5">
-                                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <div className="p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-emerald-200/80 shadow-xs space-y-3 shrink-0 min-w-[240px]">
+                            <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-100">
+                                <span className="text-slate-500 font-medium">Server & Database:</span>
+                                <span className="text-emerald-700 font-extrabold flex items-center gap-1.5">
+                                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                                     Online
                                 </span>
                             </div>
-                            <div className="flex items-center justify-between text-xs">
-                                <span className="text-slate-400 font-semibold">Hak Akses Login:</span>
-                                <span className="text-amber-300 font-bold uppercase text-[11px]">
+                            <div className="flex items-center justify-between text-xs pb-2 border-b border-slate-100">
+                                <span className="text-slate-500 font-medium">Hak Akses Login:</span>
+                                <span className="text-amber-800 font-black uppercase text-[11px] bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">
                                     {userRoles[0] || 'Super Admin'}
                                 </span>
                             </div>
                             <div className="flex items-center justify-between text-xs">
-                                <span className="text-slate-400 font-semibold">Bahasa Aktif:</span>
-                                <span className="text-white font-mono text-[11px] font-bold">ID / JP / EN</span>
+                                <span className="text-slate-500 font-medium">Bahasa Aktif:</span>
+                                <span className="text-slate-900 font-mono text-[11px] font-black">ID / JP / EN</span>
                             </div>
                         </div>
                     </div>
