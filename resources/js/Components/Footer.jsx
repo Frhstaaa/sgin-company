@@ -9,7 +9,7 @@ import {
 export default function Footer() {
     const { props = {} } = usePage();
     const siteSettings = props.siteSettings || {};
-    const { t } = useLanguage();
+    const { t, lang } = useLanguage();
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -45,7 +45,9 @@ export default function Footer() {
                         </div>
 
                         <p className="text-xs text-emerald-200/80 leading-relaxed max-w-sm">
-                            {siteSettings.footer_tagline || siteSettings.site_tagline || t('tagline_sub', 'Menempa masa depan manufaktur presisi melalui teknologi penempaan dingin dan pemesinan CNC kelas dunia.')}
+                            {(lang === 'id' && (siteSettings.footer_tagline || siteSettings.site_tagline)) 
+                                ? (siteSettings.footer_tagline || siteSettings.site_tagline) 
+                                : t('tagline_sub', 'Menempa masa depan manufaktur presisi melalui teknologi penempaan dingin dan pemesinan CNC kelas dunia.')}
                         </p>
 
                         {/* Contact details */}
@@ -87,7 +89,7 @@ export default function Footer() {
                         {/* Col 1 */}
                         <div className="space-y-3">
                             <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                                {siteSettings.footer_col1_title || `${t('nav_technology', 'Teknologi')} & ${t('nav_business', 'Bisnis')}`}
+                                {(lang === 'id' && siteSettings.footer_col1_title) ? siteSettings.footer_col1_title : t('footer_col1_title', 'Teknologi & Bisnis')}
                             </h4>
                             <ul className="space-y-2 text-xs text-emerald-200/80">
                                 <li>
@@ -126,7 +128,7 @@ export default function Footer() {
                         {/* Col 2 */}
                         <div className="space-y-3">
                             <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                                {siteSettings.footer_col2_title || t('footer_quick_links', 'Tautan Cepat')}
+                                {(lang === 'id' && siteSettings.footer_col2_title) ? siteSettings.footer_col2_title : t('footer_quick_links', 'Tautan Cepat')}
                             </h4>
                             <ul className="space-y-2 text-xs text-emerald-200/80">
                                 <li>
@@ -170,7 +172,7 @@ export default function Footer() {
                         {/* Col 3: Branches */}
                         <div className="space-y-3 col-span-2 sm:col-span-1">
                             <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                                {siteSettings.footer_factory_title || t('footer_id_title', 'Pabrik Indonesia (ASEAN HUB)')}
+                                {(lang === 'id' && siteSettings.footer_factory_title) ? siteSettings.footer_factory_title : t('footer_id_title', 'Pabrik Indonesia (ASEAN HUB)')}
                             </h4>
                             <p className="text-xs text-emerald-200/80 leading-relaxed">
                                 {siteSettings.contact_address_id || t('footer_id_addr', 'Kawasan Greenland International Industrial Center (GIIC) Blok CF No. 10, Pasirranji, Cikarang Pusat, Bekasi 17530, Jawa Barat, Indonesia')}
@@ -194,7 +196,7 @@ export default function Footer() {
                         onClick={scrollToTop}
                         className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-900/60 hover:bg-emerald-800 text-emerald-200 hover:text-white text-[11px] font-bold transition-colors cursor-pointer"
                     >
-                        <span>Back to Top</span>
+                        <span>{t('back_to_top', 'Back to Top')}</span>
                         <ArrowUp className="w-3.5 h-3.5" />
                     </button>
                 </div>

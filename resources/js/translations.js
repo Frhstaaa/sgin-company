@@ -233,6 +233,13 @@ export const translations = {
         about_pillar_title: 'Fondasi Integritas, Penguasaan Teknologi & Masa Depan',
         about_pillar_subtitle: 'Tiga pilar filosofis yang memandu setiap langkah rekayasa presisi, manufaktur zero-defect, dan kepuasan pelanggan global.',
         about_contact_facility: 'Hubungi Fasilitas Ini',
+        about_cta_badge: 'KOLABORASI & KONSULTASI / お問い合わせ',
+        about_cta_title: 'Siap Memulai Proyek Manufaktur Presisi Anda?',
+        about_cta_lead: 'Diskusikan kebutuhan penempaan dingin, evaluasi gambar teknik 3D CAD, atau jadwalkan kunjungan ke fasilitas pabrik kami di GIIC Cikarang.',
+        about_cta_btn1: 'Minta Penawaran (RFQ)',
+        about_cta_btn2: 'Hubungi Kami',
+        footer_col1_title: 'Teknologi & Bisnis',
+        back_to_top: 'Kembali ke Atas',
         contact_career_hint: 'Mencari lowongan pekerjaan atau ingin melamar karir?',
         contact_career_link: 'Formulir Lamaran Kerja →',
         career_btn_apply: 'Formulir Lamaran / Kirim CV',
@@ -617,6 +624,13 @@ export const translations = {
         about_pillar_title: 'Foundation of Integrity, Technology Mastery & Future',
         about_pillar_subtitle: 'Three philosophical pillars guiding every step of precision engineering, zero-defect manufacturing, and global customer satisfaction.',
         about_contact_facility: 'Contact This Facility',
+        about_cta_badge: 'COLLABORATION & CONSULTATION / お問い合わせ',
+        about_cta_title: 'Ready to Start Your Precision Manufacturing Project?',
+        about_cta_lead: 'Discuss your cold forging requirements, 3D CAD drawing evaluations, or schedule a facility tour at our GIIC Cikarang plant.',
+        about_cta_btn1: 'Request for Quotation (RFQ)',
+        about_cta_btn2: 'Contact Us',
+        footer_col1_title: 'Technology & Business',
+        back_to_top: 'Back to Top',
         contact_career_hint: 'Looking for job openings or looking to apply for a career?',
         contact_career_link: 'Job Application Form →',
         career_btn_apply: 'Application Form / Submit CV',
@@ -997,6 +1011,13 @@ export const translations = {
         about_pillar_title: '誠実さ、技術の研鑽、そして未来への礎',
         about_pillar_subtitle: '精密エンジニアリング、ゼロディフェクト製造、そして世界のお客様の信頼に応え続けるための3つの理念。',
         about_contact_facility: 'この拠点へ問い合わせる',
+        about_cta_badge: 'お問い合わせ / CONTACT',
+        about_cta_title: '高精度ものづくりプロジェクトのご相談・お見積り',
+        about_cta_lead: '冷間鍛造化の技術検討、3D CAD図面の評価、またはGIICチカラン工場へのご来社・ご見学など、お気軽にお問い合わせください。',
+        about_cta_btn1: 'お見積り依頼 (RFQ)',
+        about_cta_btn2: 'お問い合わせ',
+        footer_col1_title: '技術・事業案内',
+        back_to_top: 'ページ上部へ',
         contact_career_hint: '採用情報・求人へのご応募をお探しですか？',
         contact_career_link: '採用応募フォーム →',
         career_btn_apply: '応募フォーム / CV送信',
@@ -1543,74 +1564,292 @@ export const modelTranslations = {
         }
     },
     equipment: {
-        'Multi-Station Cold Former 6-Die': {
+        'Cold Forging Machine': {
             en: {
-                name: 'Multi-Station Cold Former 6-Die',
+                name: 'Cold Forging Machine',
+                model_number: 'Forging Header Former M/C',
+                manufacturer: 'Sugiyama Engineering',
                 category: 'Cold Forging',
-                description: 'High-speed 6-station cold forging former for mass-production automotive components.',
-                specs: ['Forging Capacity: 250 Ton', 'Production Speed: 180 pcs/min', 'Max Wire Dia: 22 mm', 'Max Cut Length: 150 mm'],
+                description: 'Main cold forging former for high-speed mass production of precision automotive components.',
+                specs: ['Capacity: Precision Cold Forging', 'Function: Net-shape cold forming without heating', 'Application: Oxygen Sensor Housing & Rotor Blank'],
             },
             ja: {
-                name: '多段式高速コールドフォーマー 6段 (BP-660SS)',
+                name: '冷間鍛造フォーマーマシン',
+                model_number: 'Forging Header Former M/C',
+                manufacturer: 'スギヤマエンジニアリング',
                 category: '冷間鍛造設備',
-                description: '自動車重要保安部品を高速連続成形する最新鋭6段フォーマー。',
-                specs: ['鍛造加圧力: 250トン', '生産速度: 180個/分', '最大線径: φ22 mm', '最大切断長: 150 mm'],
+                description: '自動車重要保安部品を高速連続成形する主力冷間鍛造フォーマー設備。',
+                specs: ['加工能力: 超精密冷間鍛造成形', '成形機能: 常温ネットシェイプ成形（無加熱）', '主要用途: O2センサーハウジング・ローターブランク'],
             }
         },
-        'Part Former 5-Die Precision': {
+        'CNC Lathe Shimada Turning Machine': {
             en: {
-                name: 'Part Former 5-Die Precision',
-                category: 'Cold Forging',
-                description: 'High-precision part former for pinion gears and spline shafts.',
-                specs: ['Forging Capacity: 160 Ton', 'Production Speed: 220 pcs/min', 'Dimensional Tolerance: ±0.01 mm'],
-            },
-            ja: {
-                name: '高精度パートフォーマー 5段 (PF-520)',
-                category: '冷間鍛造設備',
-                description: 'ピニオンギヤおよびスプラインシャフト用の超高精度フォーマー。',
-                specs: ['鍛造加圧力: 160トン', '生産速度: 220個/分', '寸法公差: ±0.01 mm'],
-            }
-        },
-        '5-Axis CNC Turning Center': {
-            en: {
-                name: '5-Axis CNC Turning Center',
+                name: 'CNC Lathe Shimada Turning Machine',
+                model_number: 'Shimada Precision CNC Lathe',
+                manufacturer: 'Shimada Machinery Co., Ltd.',
                 category: 'CNC Cutting',
-                description: 'High-precision turning center with synchronized milling capabilities for complex geometries.',
-                specs: ['Spindle Speed: 4,000 RPM', 'Turret: 12-station BMT', 'Cutting Tolerance: ±0.003 mm'],
+                description: 'Fleet of 20 high-rigidity CNC Shimada lathes for micro-precision turning operations.',
+                specs: ['Fleet: 20 Units', 'Machining Tolerance: ±0.005 mm', 'Application: High-Speed Precision Turning'],
             },
             ja: {
-                name: '5軸CNCターニングセンタ (NLX 2500 | 700)',
+                name: 'シマダ製 高精度CNC自動旋盤群',
+                model_number: 'Shimada Precision CNC Lathe',
+                manufacturer: '株式会社島田機械工業',
                 category: 'CNC切削設備',
-                description: '複合ミーリング同期機能を備えた高剛性・高精度旋削センタ。',
-                specs: ['主軸最高回転数: 4,000 RPM', 'タレット刃物台: 12角 BMT', '切削加工精度: ±0.003 mm'],
+                description: '高剛性シマダ製CNC旋盤20台体制によるミクロン精度の精密旋削加工ライン。',
+                specs: ['保有台数: 20台', '加工精度: ±0.005 mm (ミクロン公差)', '主要用途: 高速精密旋削加工'],
             }
         },
-        'CNC Coordinate Measuring Machine (CMM)': {
+        'CNC Murata Twin Spindle Lathe': {
             en: {
-                name: 'CNC Coordinate Measuring Machine (CMM)',
+                name: 'CNC Murata Twin Spindle Lathe',
+                model_number: 'Muratec MW Series Twin Spindle',
+                manufacturer: 'Murata Machinery, Ltd.',
+                category: 'CNC Cutting',
+                description: 'Automated twin spindle CNC turning machines for optimal cycle times and inverted turning.',
+                specs: ['Fleet: 8 Units', 'Feature: Twin Spindle Automated CNC Turning', 'Capacity: High-Speed Mass Production'],
+            },
+            ja: {
+                name: '村田機械製 2スピンドルCNC旋盤',
+                model_number: 'Muratec MW Series Twin Spindle',
+                manufacturer: '村田機械株式会社 (Muratec)',
+                category: 'CNC切削設備',
+                description: '2主軸自動搬送・反転CNC加工により極めて高効率なサイクルタイムを実現。',
+                specs: ['保有台数: 8台', '機能特徴: 2主軸自動搬送・反転CNC加工', '生産能力: 高速高効率の量産加工体制'],
+            }
+        },
+        'Rolling Machine Tsugami': {
+            en: {
+                name: 'Rolling Machine Tsugami',
+                model_number: 'Tsugami Precision Thread Rolling M/C',
+                manufacturer: 'Tsugami Corporation',
+                category: 'CNC Cutting',
+                description: 'Fleet of 6 Tsugami thread rolling machines for high-strength spline and thread profile forming.',
+                specs: ['Fleet: 6 Units', 'Process: Thread & Spline Rolling', 'Thread Accuracy: JIS/ISO Class Standard'],
+            },
+            ja: {
+                name: 'ツガミ製 精密転造盤',
+                model_number: 'Tsugami Precision Thread Rolling M/C',
+                manufacturer: '株式会社ツガミ (Tsugami)',
+                category: 'CNC切削設備',
+                description: '高強度ネジ・スプライン転造加工を行うツガミ製精密転造盤6台ライン。',
+                specs: ['保有台数: 6台', '加工工法: ネジ転造・スプライン転造', 'ネジ精度: JIS/ISO精密等級準拠'],
+            }
+        },
+        'Automated Inspection Sorting Machine': {
+            en: {
+                name: 'Automated Inspection Sorting Machine',
+                model_number: 'Inspection M/C High-Speed Sorter',
+                manufacturer: 'Sugiyama Optical / Automated Sorter',
                 category: 'Inspection & Quality',
-                description: 'Automated 3D coordinate measuring machine in temperature-controlled room (20°C ±0.5°C).',
-                specs: ['Measuring Range: 700 x 1000 x 600 mm', 'Accuracy: (1.7+3L/1000) µm', 'Probe: Renishaw SP25M Scanning'],
+                description: '6-unit fleet of automated optical sorting machines guaranteeing 100% zero-defect parts delivery.',
+                specs: ['Fleet: 6 Units', 'Function: 100% Automatic Dimensional & Defect Sorting', 'Speed: High-Speed Inline Sorting'],
             },
             ja: {
-                name: 'CNC 3次元測定機 (CRYSTA-Apex V7106)',
+                name: '全自動寸法検査・選別ソーター',
+                model_number: 'Inspection M/C High-Speed Sorter',
+                manufacturer: 'スギヤマ光学・自動選別システム',
                 category: '検査・品質測定',
-                description: '20℃±0.5℃の恒温室内に設置された自動3次元座標測定機。',
-                specs: ['測定範囲: 700 x 1000 x 600 mm', '指示精度: (1.7+3L/1000) µm', 'プローブ: レニショー SP25M スキャニング'],
+                description: '100%全数画像寸法・外観欠陥自動選別を行う高速インライン選別機6台体制。',
+                specs: ['保有台数: 6台', '検査機能: 100%全数画像寸法・欠陥自動選別', '選別速度: 高速インライン全数自動選別'],
             }
         },
-        'Industrial Metal 3D Printer & Wire EDM': {
+        'Brother CNC Machining / Tapping Center': {
             en: {
-                name: 'Industrial Metal 3D Printer & Wire EDM',
-                category: '3D Printing & Tooling',
-                description: 'In-house additive manufacturing & die tooling facility for ultra-wear-resistant dies.',
-                specs: ['Laser Power: Dual 700W Fiber Laser', 'Precision EDM: Sub-micron finish', 'Material: Maraging Steel, Inconel, Ti6Al4V'],
+                name: 'Brother CNC Machining / Tapping Center',
+                model_number: 'Brother SPEEDIO / Compact Center',
+                manufacturer: 'Brother Industries, Ltd.',
+                category: 'CNC Cutting',
+                description: 'High-speed compact machining center for drilling and multi-angle tapping operations.',
+                specs: ['Quantity: 2 Units', 'Spindle Speed: High-Speed Tapping & Milling', 'Application: Precision Drilling & Hole Making'],
             },
             ja: {
-                name: '金属3Dプリンタ & ワイヤー放電加工機 (SLM 280 / MV2400-S)',
-                category: '3D造形・金型加工',
-                description: '自社製高耐久金型製作および新製品ラピッドプロトタイピング設備。',
-                specs: ['レーザー出力: デュアル 700W ファイバー', '放電加工精度: サブミクロン仕上げ', '対応材料: マルエージング鋼, インコネル, チタン'],
+                name: 'ブラザー製 コンパクトマシニングセンタ',
+                model_number: 'Brother SPEEDIO / Compact Center',
+                manufacturer: 'ブラザー工業株式会社',
+                category: 'CNC切削設備',
+                description: '高速タッピング・ミーリング・穴あけ加工を高精度で行うコンパクトマシニングセンタ。',
+                specs: ['保有台数: 2台', '主軸速度: 超高速タッピング・ミーリング', '主要用途: 高精度穴あけ・ネジ立て加工'],
+            }
+        },
+        'Broaching Machine': {
+            en: {
+                name: 'Broaching Machine',
+                model_number: 'Precision Broaching M/C',
+                manufacturer: 'Precision Broach Maker',
+                category: 'CNC Cutting',
+                description: 'Precision broaching machine for internal keyways, serrations, and spline forming.',
+                specs: ['Quantity: 2 Units', 'Process: Keyway, Internal Spline & Serration', 'Accuracy: Sub-Micron Precision'],
+            },
+            ja: {
+                name: '精密ブローチ盤',
+                model_number: 'Precision Broaching M/C',
+                manufacturer: '精密ブローチ盤メーカー',
+                category: 'CNC切削設備',
+                description: 'キー溝・内径スプライン・セレーション形状を高精度に加工する精密ブローチ盤。',
+                specs: ['保有台数: 2台', '加工対象: キー溝・内径スプライン・セレーション', '加工精度: サブミクロン精度'],
+            }
+        },
+        'Cleanvy Ultrasonic Washing Machine': {
+            en: {
+                name: 'Cleanvy Ultrasonic Washing Machine',
+                model_number: 'Cleanvy Multi-Stage Ultrasonic Washer',
+                manufacturer: 'Cleanvy Co., Ltd.',
+                category: 'Cold Forging',
+                description: 'Multi-stage ultrasonic degreasing and vacuum drying system ensuring clean, chip-free components.',
+                specs: ['Quantity: 2 Units', 'Method: Multi-Stage Ultrasonic Degreasing & Drying', 'Result: Zero Oil Residue & Metal Chips'],
+            },
+            ja: {
+                name: 'クリンビー製 多槽式超音波洗浄機',
+                model_number: 'Cleanvy Multi-Stage Ultrasonic Washer',
+                manufacturer: '株式会社クリンビー (Cleanvy)',
+                category: '冷間鍛造設備',
+                description: '多槽式超音波脱脂・温風乾燥により油分残留ゼロ・切粉完全除去を徹底。',
+                specs: ['保有台数: 2台', '洗浄方式: 多槽式超音波脱脂・温風乾燥', '洗浄品質: 油分残留ゼロ・切粉完全除去'],
+            }
+        },
+        'Burrytorry Deburring & Chamfering Machine': {
+            en: {
+                name: 'Burrytorry Deburring & Chamfering Machine',
+                model_number: 'Burrytorry Automated Deburring M/C',
+                manufacturer: 'Burrytorry System',
+                category: 'Cold Forging',
+                description: 'Automated deburring machine providing uniform edge chamfering and burr-free finish.',
+                specs: ['Quantity: 2 Units', 'Function: Automated Edge Deburring & Chamfering', 'Quality: Eliminates Sharp Burrs'],
+            },
+            ja: {
+                name: 'バリトリ自動面取り・バリ取り機',
+                model_number: 'Burrytorry Automated Deburring M/C',
+                manufacturer: 'バリトリーシステム',
+                category: '冷間鍛造設備',
+                description: '端面自動バリ取り・C面取り加工により均一で安全なエッジ仕上げを実現。',
+                specs: ['保有台数: 2台', '加工機能: 端面自動バリ取り・C面取り加工', '品質水準: バリゼロ・均一なエッジ仕上げ'],
+            }
+        },
+        'CNC 3D CMM Mitutoyo Crysta Apex S574': {
+            en: {
+                name: 'CNC 3D CMM Mitutoyo Crysta Apex S574',
+                model_number: 'CRYSTA-Apex S574',
+                manufacturer: 'Mitutoyo Corporation (Japan)',
+                category: 'Inspection & Quality',
+                description: 'Automated 3D coordinate measuring machine in temperature-controlled metrology laboratory (20°C ±0.5°C).',
+                specs: ['Measuring Range: 500 x 700 x 400 mm', 'Accuracy: E0,MPE = (1.7+3L/1000) µm', 'Function: Automated 3D Coordinate Metrology'],
+            },
+            ja: {
+                name: 'ミツトヨ製 CNC 3次元測定機',
+                model_number: 'CRYSTA-Apex S574',
+                manufacturer: '株式会社ミツトヨ (Mitutoyo)',
+                category: '検査・品質測定',
+                description: '20℃±0.5℃の恒温測定室内に設置された自動3次元座標測定機。',
+                specs: ['測定範囲: 500 x 700 x 400 mm', '指示精度: E0,MPE = (1.7+3L/1000) µm', '主要機能: 自動3次元座標測定・幾何公差検証'],
+            }
+        },
+        'Keyence Digital Microscope 4K VHX-7000': {
+            en: {
+                name: 'Keyence Digital Microscope 4K VHX-7000',
+                model_number: 'VHX-7000 Ultra-High Resolution',
+                manufacturer: 'Keyence Corporation (Japan)',
+                category: 'Inspection & Quality',
+                description: 'Ultra-high resolution 4K digital microscope for metallurgical analysis and micro-surface inspections.',
+                specs: ['Resolution: 4K High Resolution Optical System', 'Magnification: Up to 6000x', 'Features: 3D Surface Analysis & Metallurgical Inspection'],
+            },
+            ja: {
+                name: 'キーエンス製 4K超高精細デジタルマイクロスコープ',
+                model_number: 'VHX-7000 Ultra-High Resolution',
+                manufacturer: '株式会社キーエンス (Keyence)',
+                category: '検査・品質測定',
+                description: '金属組織観察・微細断面観察・3D表面粗さ解析を行う4K超高精細マイクロスコープ。',
+                specs: ['光学解像度: 4K超高精細光学システム', '観察倍率: 最大 6000倍', '機能特徴: 3D表面形状解析・金属組織検査'],
+            }
+        },
+        'Mitutoyo Profile Projector PJ-H30': {
+            en: {
+                name: 'Mitutoyo Profile Projector PJ-H30',
+                model_number: 'PJ-H30 Optical Projector',
+                manufacturer: 'Mitutoyo Corporation (Japan)',
+                category: 'Inspection & Quality',
+                description: 'High-precision optical profile projector for 2D contour and angular geometric verification.',
+                specs: ['Screen Diameter: 300 mm Screen', 'Accuracy: ±0.05% Contour Accuracy', 'Function: Precision 2D Optical Profile Metrology'],
+            },
+            ja: {
+                name: 'ミツトヨ製 高精度投影機',
+                model_number: 'PJ-H30 Optical Projector',
+                manufacturer: '株式会社ミツトヨ (Mitutoyo)',
+                category: '検査・品質測定',
+                description: '2次元幾何形状・微小輪郭・角度公差を精密投影検査するミツトヨ製投影機。',
+                specs: ['スクリーン径: 直径 300 mm', '測定精度: 輪郭精度 ±0.05%', '主要機能: 2次元精密光学プロファイル測定'],
+            }
+        },
+        'Mitutoyo Contracer CV-3200': {
+            en: {
+                name: 'Mitutoyo Contracer CV-3200',
+                model_number: 'Contracer CV-3200 Form Measurement',
+                manufacturer: 'Mitutoyo Corporation (Japan)',
+                category: 'Inspection & Quality',
+                description: 'High-accuracy form and contour measuring instrument for continuous curved surface inspection.',
+                specs: ['Function: Contour & Surface Profile Measuring', 'Z-axis Resolution: 0.02 µm', 'Linear Accuracy: ±(0.8+2L/100) µm'],
+            },
+            ja: {
+                name: 'ミツトヨ製 輪郭形状測定機',
+                model_number: 'Contracer CV-3200 Form Measurement',
+                manufacturer: '株式会社ミツトヨ (Mitutoyo)',
+                category: '検査・品質測定',
+                description: '複雑な曲面・R形状・微小テーパーをサブミクロン単位で高精度トレース測定。',
+                specs: ['主要機能: 輪郭・微小表面形状精密測定', 'Z軸分解能: 0.02 µm (超高分解能)', '直線性精度: ±(0.8+2L/100) µm'],
+            }
+        },
+        'Keyence Image Measuring 6020': {
+            en: {
+                name: 'Keyence Image Measuring 6020',
+                model_number: 'IM-6020 Instant Dimension System',
+                manufacturer: 'Keyence Corporation (Japan)',
+                category: 'Inspection & Quality',
+                description: 'Place-and-press instant optical dimension measurement system verifying 99 points in under 3 seconds.',
+                specs: ['Method: Place-and-Press Instant Measurement', 'Speed: < 3 seconds for 99 inspection points', 'Accuracy: ±2 µm Precision'],
+            },
+            ja: {
+                name: 'キーエンス製 画像寸法測定器',
+                model_number: 'IM-6020 Instant Dimension System',
+                manufacturer: '株式会社キーエンス (Keyence)',
+                category: '検査・品質測定',
+                description: 'ワークを置いてボタンを押すだけで最大99箇所を一括3秒以内で瞬時高精度測定。',
+                specs: ['測定方式: 置くだけワンクリック瞬時測定', '測定速度: 99箇所を一括3秒以内で判定', '測定精度: ±2 µm 高精度公差'],
+            }
+        },
+        'Mitutoyo Hardness Testing Machine': {
+            en: {
+                name: 'Mitutoyo Hardness Testing Machine',
+                model_number: 'Mitutoyo Hardness Tester M/C',
+                manufacturer: 'Mitutoyo Corporation (Japan)',
+                category: 'Inspection & Quality',
+                description: 'Rockwell & Vickers hardness tester verifying metallurgical cold-work strength.',
+                specs: ['Scales: Rockwell (HRC/HRB) & Vickers Scale', 'Standard: JIS B 7726 Metrology Compliant', 'Application: Cold Forged Material Strength Validation'],
+            },
+            ja: {
+                name: 'ミツトヨ製 硬さ試験機',
+                model_number: 'Mitutoyo Hardness Tester M/C',
+                manufacturer: '株式会社ミツトヨ (Mitutoyo)',
+                category: '検査・品質測定',
+                description: '冷間鍛造加工硬化後の機械的強度と熱処理品質を精密硬度測定。',
+                specs: ['測定スケール: ロックウェル(HRC/HRB)・ビッカース', '規格準拠: JIS B 7726 試験規格適合', '主要用途: 冷間鍛造素材・硬化層の強度評価'],
+            }
+        },
+        'Nikon Measuring Microscope MM-40': {
+            en: {
+                name: 'Nikon Measuring Microscope MM-40',
+                model_number: 'MM-40 Toolmakers Microscope',
+                manufacturer: 'Nikon Corporation (Japan)',
+                category: 'Inspection & Quality',
+                description: 'Nikon precision toolmakers measuring microscope for microscopic geometric tolerances.',
+                specs: ['Optics: Nikon High-Resolution Optical System', 'Digital Readout: 0.1 µm Metrology Resolution', 'Application: Microscopic Geometric Tolerance Metrology'],
+            },
+            ja: {
+                name: 'ニコン製 工具測定顕微鏡',
+                model_number: 'MM-40 Toolmakers Microscope',
+                manufacturer: '株式会社ニコン (Nikon)',
+                category: '検査・品質測定',
+                description: 'ニコン製高分解能光学系による微細パーツおよび金型寸法の精密顕微鏡測定。',
+                specs: ['光学系: ニコン製高解像度メトロロジー光学系', '最小読取値: 0.1 µm デジタルカウンター', '主要用途: 微小幾何公差・エッジ測定'],
             }
         }
     },
