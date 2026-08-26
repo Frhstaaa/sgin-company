@@ -91,6 +91,8 @@ class AdminCompanyProfileController extends Controller
             'factsheet_customers' => 'nullable|string|max:500',
             'factsheet_customers_domestic' => 'nullable|string|max:500',
             'factsheet_customers_overseas' => 'nullable|string|max:500',
+            'factsheet_customers_domestic_list' => 'nullable|array',
+            'factsheet_customers_overseas_list' => 'nullable|array',
 
             // CTA Banner Section
             'about_cta_badge' => 'nullable|string|max:255',
@@ -125,6 +127,20 @@ class AdminCompanyProfileController extends Controller
             if ($request->has($key)) {
                 $this->settingService->set($key, $request->input($key), 'about');
             }
+        }
+
+        if ($request->has('factsheet_customers_domestic_list')) {
+            $domArr = array_values(array_filter((array)$request->input('factsheet_customers_domestic_list'), fn($v) => trim((string)$v) !== ''));
+            $domVal = implode(', ', $domArr);
+            $this->settingService->set('factsheet_customers_domestic', $domVal, 'about');
+            $this->settingService->set('factsheet_customers_domestic_list', json_encode($domArr, JSON_UNESCAPED_UNICODE), 'about');
+        }
+
+        if ($request->has('factsheet_customers_overseas_list')) {
+            $ovsArr = array_values(array_filter((array)$request->input('factsheet_customers_overseas_list'), fn($v) => trim((string)$v) !== ''));
+            $ovsVal = implode(', ', $ovsArr);
+            $this->settingService->set('factsheet_customers_overseas', $ovsVal, 'about');
+            $this->settingService->set('factsheet_customers_overseas_list', json_encode($ovsArr, JSON_UNESCAPED_UNICODE), 'about');
         }
 
         if ($request->hasFile('home_about_image')) {

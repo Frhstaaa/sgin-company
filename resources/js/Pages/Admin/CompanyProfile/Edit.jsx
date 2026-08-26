@@ -51,6 +51,24 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
         return [val.trim()];
     };
 
+    const parseCustomerList = (val, defaultList = ['']) => {
+        if (Array.isArray(val) && val.length > 0) return val;
+        if (!val || typeof val !== 'string') return defaultList;
+        try {
+            const parsed = JSON.parse(val);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        } catch (e) {}
+        if (val.includes('\n')) {
+            const lines = val.split('\n').map(s => s.trim()).filter(Boolean);
+            if (lines.length > 0) return lines;
+        }
+        if (val.includes(',')) {
+            const items = val.split(',').map(s => s.trim()).filter(Boolean);
+            if (items.length > 0) return items;
+        }
+        return val.trim() ? [val.trim()] : defaultList;
+    };
+
     const { data, setData, processing, recentlySuccessful, errors } = useForm({
         // Section 1: Header Banner & Quick Highlights
         about_hero_badge: settings.about_hero_badge || 'TENTANG KAMI / 会社概要',
@@ -111,6 +129,8 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
         factsheet_customers: settings.factsheet_customers || 'PT Denso Indonesia, Niterra Japan, Niterra India, Daido Kogyo Thailand',
         factsheet_customers_domestic: settings.factsheet_customers_domestic || 'PT. Denso Indonesia',
         factsheet_customers_overseas: settings.factsheet_customers_overseas || 'Niterra Japan & India, Daido Kogyo Thailand',
+        factsheet_customers_domestic_list: parseCustomerList(settings.factsheet_customers_domestic_list || settings.factsheet_customers_domestic, ['PT. Denso Indonesia']),
+        factsheet_customers_overseas_list: parseCustomerList(settings.factsheet_customers_overseas_list || settings.factsheet_customers_overseas, ['Daido Thailand', 'Niterra India dan Amerika']),
 
         // Section 5 & 6: Dynamic Repeaters
         history_timeline: initialTimeline,
@@ -214,6 +234,40 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
             setData('mission_list', data.mission_list.filter((_, i) => i !== index));
         } else {
             setData('mission_list', ['']);
+        }
+    };
+
+    // Domestic Customer Handlers
+    const handleAddDomesticCust = () => {
+        setData('factsheet_customers_domestic_list', [...data.factsheet_customers_domestic_list, '']);
+    };
+    const handleUpdateDomesticCust = (index, value) => {
+        const updated = [...data.factsheet_customers_domestic_list];
+        updated[index] = value;
+        setData('factsheet_customers_domestic_list', updated);
+    };
+    const handleRemoveDomesticCust = (index) => {
+        if (data.factsheet_customers_domestic_list.length > 1) {
+            setData('factsheet_customers_domestic_list', data.factsheet_customers_domestic_list.filter((_, i) => i !== index));
+        } else {
+            setData('factsheet_customers_domestic_list', ['']);
+        }
+    };
+
+    // Overseas Customer Handlers
+    const handleAddOverseasCust = () => {
+        setData('factsheet_customers_overseas_list', [...data.factsheet_customers_overseas_list, '']);
+    };
+    const handleUpdateOverseasCust = (index, value) => {
+        const updated = [...data.factsheet_customers_overseas_list];
+        updated[index] = value;
+        setData('factsheet_customers_overseas_list', updated);
+    };
+    const handleRemoveOverseasCust = (index) => {
+        if (data.factsheet_customers_overseas_list.length > 1) {
+            setData('factsheet_customers_overseas_list', data.factsheet_customers_overseas_list.filter((_, i) => i !== index));
+        } else {
+            setData('factsheet_customers_overseas_list', ['']);
         }
     };
 
@@ -932,30 +986,95 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
                                     />
                                 </div>
 
-                                <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
-                                    <div>
-                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                                            Pelanggan Domestik (Domestic Customers)
-                                        </label>
-                                        <input
-                                            type="text"
-                                            value={data.factsheet_customers_domestic}
-                                            onChange={(e) => setData('factsheet_customers_domestic', e.target.value)}
-                                            placeholder="PT. Denso Indonesia, dll."
-                                            className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
-                                        />
+                                <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                                    {/* Pelanggan Domestik List */}
+                                    <div className="p-5 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-4">
+                                        <div className="flex items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                                            <label className="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                                                <Building2 className="w-4 h-4 text-emerald-600" />
+                                                <span>Pelanggan Domestik (Domestic)</span>
+                                            </label>
+                                            <button
+                                                type="button"
+                                                onClick={handleAddDomesticCust}
+                                                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold cursor-pointer transition-all shadow-2xs"
+                                            >
+                                                <Plus className="w-3.5 h-3.5" />
+                                                <span>Tambah Pelanggan</span>
+                                            </button>
+                                        </div>
+
+                                        <div className="space-y-3">
+                                            {data.factsheet_customers_domestic_list.map((item, dIdx) => (
+                                                <div key={dIdx} className="flex items-center gap-2 group">
+                                                    <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-bold shrink-0">
+                                                        {dIdx + 1}
+                                                    </div>
+                                                    <input
+                                                        type="text"
+                                                        value={item}
+                                                        onChange={(e) => handleUpdateDomesticCust(dIdx, e.target.value)}
+                                                        placeholder={`Nama Pelanggan Domestik #${dIdx + 1}...`}
+                                                        className="flex-1 px-3 py-2 rounded-xl border border-slate-300 text-xs bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-bold text-slate-900"
+                                                    />
+                                                    {data.factsheet_customers_domestic_list.length > 1 && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleRemoveDomesticCust(dIdx)}
+                                                            className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors shrink-0"
+                                                            title="Hapus"
+                                                        >
+                                                            <Trash2 className="w-4 h-4" />
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                                            Pelanggan Ekspor (Overseas Customers)
-                                        </label>
-                                        <input
-                                            type="text"
-                                            value={data.factsheet_customers_overseas}
-                                            onChange={(e) => setData('factsheet_customers_overseas', e.target.value)}
-                                            placeholder="Niterra Japan & India, Daido Kogyo Thailand, dll."
-                                            className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
-                                        />
+
+                                    {/* Pelanggan Ekspor List */}
+                                    <div className="p-5 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-4">
+                                        <div className="flex items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                                            <label className="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                                                <Globe className="w-4 h-4 text-emerald-600" />
+                                                <span>Pelanggan Ekspor (Overseas)</span>
+                                            </label>
+                                            <button
+                                                type="button"
+                                                onClick={handleAddOverseasCust}
+                                                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold cursor-pointer transition-all shadow-2xs"
+                                            >
+                                                <Plus className="w-3.5 h-3.5" />
+                                                <span>Tambah Pelanggan</span>
+                                            </button>
+                                        </div>
+
+                                        <div className="space-y-3">
+                                            {data.factsheet_customers_overseas_list.map((item, oIdx) => (
+                                                <div key={oIdx} className="flex items-center gap-2 group">
+                                                    <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-bold shrink-0">
+                                                        {oIdx + 1}
+                                                    </div>
+                                                    <input
+                                                        type="text"
+                                                        value={item}
+                                                        onChange={(e) => handleUpdateOverseasCust(oIdx, e.target.value)}
+                                                        placeholder={`Nama Pelanggan Ekspor #${oIdx + 1}...`}
+                                                        className="flex-1 px-3 py-2 rounded-xl border border-slate-300 text-xs bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-bold text-slate-900"
+                                                    />
+                                                    {data.factsheet_customers_overseas_list.length > 1 && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleRemoveOverseasCust(oIdx)}
+                                                            className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors shrink-0"
+                                                            title="Hapus"
+                                                        >
+                                                            <Trash2 className="w-4 h-4" />
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

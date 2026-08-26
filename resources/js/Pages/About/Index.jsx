@@ -85,6 +85,29 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
         );
     };
 
+    const renderCustomerItems = (val, defaultVal) => {
+        let items = [];
+        if (Array.isArray(val) && val.length > 0) {
+            items = val;
+        } else if (typeof val === 'string' && val.trim()) {
+            try {
+                const parsed = JSON.parse(val);
+                if (Array.isArray(parsed) && parsed.length > 0) items = parsed;
+            } catch(e) {}
+            if (items.length === 0) {
+                items = val.split(/[,;\n]+/).map(s => s.trim()).filter(Boolean);
+            }
+        }
+        if (items.length === 0 && defaultVal) {
+            items = typeof defaultVal === 'string' ? defaultVal.split(/[,;\n]+/).map(s => s.trim()).filter(Boolean) : [defaultVal];
+        }
+        return (
+            <span className="text-xs sm:text-sm font-bold text-slate-900 leading-relaxed">
+                {items.join(', ')}
+            </span>
+        );
+    };
+
     return (
         <AppLayout>
             <Head>
@@ -554,22 +577,18 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                             </span>
                                         </div>
                                     </div>
-                                    <div className="p-4 sm:p-5 flex-1 space-y-1.5">
+                                    <div className="p-4 sm:p-5 flex-1 space-y-2">
                                         <div className="flex flex-wrap items-center gap-2">
-                                            <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-bold">
+                                            <span className="px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200/70 text-[11px] font-bold">
                                                 {t('about_cust_domestic_lbl', 'Domestik:')}
                                             </span>
-                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
-                                                {siteSettings.factsheet_customers_domestic || t('about_cust_domestic_val', 'PT. Denso Indonesia')}
-                                            </span>
+                                            {renderCustomerItems(siteSettings.factsheet_customers_domestic_list || siteSettings.factsheet_customers_domestic, t('about_cust_domestic_val', 'PT. Denso Indonesia'))}
                                         </div>
                                         <div className="flex flex-wrap items-center gap-2">
-                                            <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-bold">
+                                            <span className="px-2.5 py-0.5 rounded-md bg-teal-50 text-teal-800 border border-teal-200/70 text-[11px] font-bold">
                                                 {t('about_cust_overseas_lbl', 'Overseas (Ekspor):')}
                                             </span>
-                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
-                                                {siteSettings.factsheet_customers_overseas || t('about_cust_overseas_val', 'Niterra Japan & India, Daido Kogyo Thailand')}
-                                            </span>
+                                            {renderCustomerItems(siteSettings.factsheet_customers_overseas_list || siteSettings.factsheet_customers_overseas, t('about_cust_overseas_val', 'Niterra Japan & India, Daido Kogyo Thailand'))}
                                         </div>
                                         {/* Fallback if single factsheet_customers string is provided in Admin */}
                                         {siteSettings.factsheet_customers && !siteSettings.factsheet_customers_domestic && !siteSettings.factsheet_customers_overseas && (
