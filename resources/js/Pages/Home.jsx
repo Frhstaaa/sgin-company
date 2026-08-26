@@ -245,9 +245,9 @@ export default function Home({
                                 return (
                                     <ScrollReveal key={st.id || idx} delay={0.1 * (idx + 1)}>
                                         <div className="group bg-white p-5 sm:p-8 rounded-2xl shadow-xs hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200 flex flex-col justify-between h-full">
-                                            <div className="space-y-3 sm:space-y-4">
+                                            <div className="space-y-4 sm:space-y-5">
                                                 <div className="flex items-center justify-between">
-                                                    <span className="text-[10px] sm:text-xs font-bold font-jp text-slate-400 uppercase tracking-wider">
+                                                    <span className="text-xs sm:text-sm font-extrabold font-jp text-slate-600 uppercase tracking-wider">
                                                         {badgeTitle}
                                                     </span>
                                                     <div className="p-1.5 sm:p-2 rounded-xl bg-emerald-50 text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors">
@@ -255,15 +255,12 @@ export default function Home({
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5 sm:mb-1">
-                                                        {statTitle}
-                                                    </h3>
                                                     <div className="flex items-baseline gap-1 text-slate-900 font-extrabold tracking-tight">
                                                         <span className="text-2xl sm:text-3xl lg:text-4xl text-emerald-800 font-display font-black leading-tight">
                                                             {st.value}
                                                         </span>
                                                         {st.unit && (
-                                                            <span className="text-lg text-emerald-700 font-jp font-bold">
+                                                            <span className="text-base sm:text-lg text-emerald-700 font-jp font-bold">
                                                                 {st.unit}
                                                             </span>
                                                         )}
@@ -284,24 +281,21 @@ export default function Home({
                             <>
                                 <ScrollReveal delay={0.1}>
                                     <div className="group bg-white p-5 sm:p-8 rounded-2xl shadow-xs hover:shadow-xl transition-all duration-300 border border-slate-100 hover:border-emerald-200 flex flex-col justify-between h-full">
-                                        <div className="space-y-3 sm:space-y-4">
+                                        <div className="space-y-4 sm:space-y-5">
                                             <div className="flex items-center justify-between">
-                                                <span className="text-[10px] sm:text-xs font-bold font-jp text-slate-400 uppercase tracking-wider">
-                                                    創業年 / ESTABLISHED
+                                                <span className="text-xs sm:text-sm font-extrabold font-jp text-slate-600 uppercase tracking-wider">
+                                                    ESTABLISHED / 創業年
                                                 </span>
                                                 <div className="p-1.5 sm:p-2 rounded-xl bg-emerald-50 text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors">
                                                     <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
                                                 </div>
                                             </div>
                                             <div>
-                                                <h3 className="text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5 sm:mb-1">
-                                                    {t('stat_est_title', 'Tahun Berdiri')}
-                                                </h3>
                                                 <div className="flex items-baseline gap-1 text-slate-900 font-extrabold tracking-tight">
                                                     <span className="text-2xl sm:text-3xl lg:text-4xl text-emerald-800 font-display font-black leading-tight">
                                                         {t('stat_est_val', '1952')}
                                                     </span>
-                                                    <span className="text-lg text-emerald-700 font-jp font-bold">
+                                                    <span className="text-base sm:text-lg text-emerald-700 font-jp font-bold">
                                                         {t('stat_est_unit', '年')}
                                                     </span>
                                                 </div>
