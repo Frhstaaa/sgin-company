@@ -573,7 +573,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                             <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-bold">
                                                 {t('about_cust_overseas_lbl', 'Overseas (Ekspor):')}
                                             </span>
-                                            <span className="text-xs sm:text-sm text-slate-700">
+                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
                                                 {(lang === 'id' && siteSettings.factsheet_customers_overseas)
                                                     ? siteSettings.factsheet_customers_overseas
                                                     : t('about_cust_overseas_val', 'Niterra Japan & India, Daido Kogyo Thailand')}
