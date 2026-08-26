@@ -86,6 +86,8 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
         factsheet_site_area: settings.factsheet_site_area || '7.582 m²',
         factsheet_building_area: settings.factsheet_building_area || '3.913 m²',
         factsheet_customers: settings.factsheet_customers || 'PT Denso Indonesia, Niterra Japan, Niterra India, Daido Kogyo Thailand',
+        factsheet_customers_domestic: settings.factsheet_customers_domestic || 'PT. Denso Indonesia',
+        factsheet_customers_overseas: settings.factsheet_customers_overseas || 'Niterra Japan & India, Daido Kogyo Thailand',
 
         // Section 5 & 6: Dynamic Repeaters
         history_timeline: initialTimeline,
@@ -811,17 +813,31 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
                                     />
                                 </div>
 
-                                <div className="md:col-span-2">
-                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                                        Pelanggan Utama (Major Customers - Domestik & Overseas)
-                                    </label>
-                                    <input
-                                        type="text"
-                                        value={data.factsheet_customers}
-                                        onChange={(e) => setData('factsheet_customers', e.target.value)}
-                                        placeholder="PT Denso Indonesia, Niterra Co., Ltd. (Japan), Niterra India, Daido Kogyo Thailand"
-                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
-                                    />
+                                <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                            Pelanggan Domestik (Domestic Customers)
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={data.factsheet_customers_domestic}
+                                            onChange={(e) => setData('factsheet_customers_domestic', e.target.value)}
+                                            placeholder="PT. Denso Indonesia, dll."
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+                                            Pelanggan Ekspor (Overseas Customers)
+                                        </label>
+                                        <input
+                                            type="text"
+                                            value={data.factsheet_customers_overseas}
+                                            onChange={(e) => setData('factsheet_customers_overseas', e.target.value)}
+                                            placeholder="Niterra Japan & India, Daido Kogyo Thailand, dll."
+                                            className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>

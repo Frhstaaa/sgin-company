@@ -441,7 +441,9 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                             {p.capital || t('about_capital_val', 'USD 3,750,000')}
                                         </p>
                                         <p className="text-xs text-slate-600">
-                                            {t('about_capital_sub_val', 'Sugiyama Co., Ltd. (98.33%), Takahide Sugiyama (1.67%)')}
+                                            {(lang === 'id' && siteSettings.factsheet_shareholders) 
+                                                ? siteSettings.factsheet_shareholders 
+                                                : t('about_capital_sub_val', 'Sugiyama Co., Ltd. (98.33%), Takahide Sugiyama (1.67%)')}
                                         </p>
                                     </div>
                                 </div>
@@ -480,7 +482,9 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                     </div>
                                     <div className="p-4 sm:p-5 flex-1">
                                         <p className="text-xs sm:text-sm font-bold text-slate-900">
-                                            {t('about_area_val', 'Luas Lahan: 7.582 m² | Luas Bangunan Pabrik: 3.913 m²')}
+                                            {(lang === 'id' && (siteSettings.factsheet_site_area || siteSettings.factsheet_building_area))
+                                                ? `Luas Lahan: ${siteSettings.factsheet_site_area || '7.582 m²'} | Luas Bangunan: ${siteSettings.factsheet_building_area || '3.913 m²'}`
+                                                : t('about_area_val', 'Luas Lahan: 7.582 m² | Luas Bangunan Pabrik: 3.913 m²')}
                                         </p>
                                     </div>
                                 </div>
@@ -498,7 +502,9 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                     </div>
                                     <div className="p-4 sm:p-5 flex-1">
                                         <p className="text-xs sm:text-sm font-bold text-slate-900">
-                                            {siteSettings.factsheet_business_scope || t('about_scope_val', 'Manufaktur & Penjualan Suku Cadang Otomotif [Penempaan Dingin & Permesinan Presisi]')}
+                                            {(lang === 'id' && siteSettings.factsheet_business_scope) 
+                                                ? siteSettings.factsheet_business_scope 
+                                                : t('about_scope_val', 'Manufaktur & Penjualan Suku Cadang Otomotif [Penempaan Dingin & Permesinan Presisi]')}
                                         </p>
                                     </div>
                                 </div>
@@ -520,7 +526,9 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                                 {t('about_cust_domestic_lbl', 'Domestik:')}
                                             </span>
                                             <span className="text-xs sm:text-sm font-bold text-slate-900">
-                                                {t('about_cust_domestic_val', 'PT. Denso Indonesia')}
+                                                {(lang === 'id' && siteSettings.factsheet_customers_domestic)
+                                                    ? siteSettings.factsheet_customers_domestic
+                                                    : t('about_cust_domestic_val', 'PT. Denso Indonesia')}
                                             </span>
                                         </div>
                                         <div className="flex flex-wrap items-center gap-2">
@@ -528,9 +536,17 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                                 {t('about_cust_overseas_lbl', 'Overseas (Ekspor):')}
                                             </span>
                                             <span className="text-xs sm:text-sm text-slate-700">
-                                                {t('about_cust_overseas_val', 'Niterra Japan & India, Daido Kogyo Thailand')}
+                                                {(lang === 'id' && siteSettings.factsheet_customers_overseas)
+                                                    ? siteSettings.factsheet_customers_overseas
+                                                    : t('about_cust_overseas_val', 'Niterra Japan & India, Daido Kogyo Thailand')}
                                             </span>
                                         </div>
+                                        {/* Fallback if single factsheet_customers string is provided in Admin */}
+                                        {lang === 'id' && siteSettings.factsheet_customers && !siteSettings.factsheet_customers_domestic && !siteSettings.factsheet_customers_overseas && (
+                                            <div className="pt-1 text-xs text-slate-700 font-semibold border-t border-slate-100">
+                                                {siteSettings.factsheet_customers}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
 
@@ -547,7 +563,9 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                     </div>
                                     <div className="p-4 sm:p-5 flex-1">
                                         <p className="text-xs sm:text-sm font-bold text-slate-900">
-                                            {t('about_certs_val', 'ISO 9001:2015 & IATF 16949:2016 (On Progress) [SGS ID15/03091]')}
+                                            {(lang === 'id' && siteSettings.factsheet_certifications)
+                                                ? siteSettings.factsheet_certifications
+                                                : t('about_certs_val', 'ISO 9001:2015 & IATF 16949:2016 (On Progress) [SGS ID15/03091]')}
                                         </p>
                                     </div>
                                 </div>

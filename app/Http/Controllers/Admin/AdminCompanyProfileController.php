@@ -85,7 +85,9 @@ class AdminCompanyProfileController extends Controller
             'factsheet_shareholders' => 'nullable|string|max:255',
             'factsheet_site_area' => 'nullable|string|max:100',
             'factsheet_building_area' => 'nullable|string|max:100',
-            'factsheet_customers' => 'nullable|string|max:255',
+            'factsheet_customers' => 'nullable|string|max:500',
+            'factsheet_customers_domestic' => 'nullable|string|max:500',
+            'factsheet_customers_overseas' => 'nullable|string|max:500',
 
             // CTA Banner Section
             'about_cta_badge' => 'nullable|string|max:255',
@@ -110,6 +112,7 @@ class AdminCompanyProfileController extends Controller
             'about_pillar_badge', 'about_pillar_title', 'about_pillar_subtitle',
             'factsheet_certifications', 'factsheet_business_scope',
             'factsheet_shareholders', 'factsheet_site_area', 'factsheet_building_area', 'factsheet_customers',
+            'factsheet_customers_domestic', 'factsheet_customers_overseas',
             'about_cta_badge', 'about_cta_title', 'about_cta_lead',
             'about_cta_btn1_text', 'about_cta_btn1_link',
             'about_cta_btn2_text', 'about_cta_btn2_link',
