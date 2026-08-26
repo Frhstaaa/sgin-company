@@ -173,7 +173,11 @@ export function LanguageProvider({ children, initialPageProps = {} }) {
                 if (modelTranslations[type][lang]) {
                     const typeDict = modelTranslations[type][lang];
                     for (const k in typeDict) {
-                        if (k === 'president_name') {
+                        if (type === 'company_profile') {
+                            if (!result[k]) {
+                                result[k] = typeDict[k];
+                            }
+                        } else if (k === 'president_name') {
                             if (!result[k]) result[k] = typeDict[k];
                         } else if (typeDict[k] !== undefined && typeDict[k] !== null && typeDict[k] !== '') {
                             result[k] = typeDict[k];
