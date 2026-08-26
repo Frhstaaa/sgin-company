@@ -169,19 +169,22 @@ export default function Footer() {
                             </ul>
                         </div>
 
-                        {/* Col 3: Branches */}
+                        {/* Col 3: Japan Headquarters & Aichi Plant */}
                         <div className="space-y-3 col-span-2 sm:col-span-1">
                             <h4 className="text-xs font-bold uppercase tracking-wider text-emerald-400">
-                                {(lang === 'id' && siteSettings.footer_factory_title) ? siteSettings.footer_factory_title : t('footer_id_title', 'Pabrik Indonesia (ASEAN HUB)')}
+                                {(lang === 'id' && siteSettings.footer_hq_title) ? siteSettings.footer_hq_title : t('footer_hq_title', 'Kantor Pusat & Pabrik Jepang (HQ)')}
                             </h4>
                             <p className="text-xs text-emerald-200/80 leading-relaxed">
-                                {siteSettings.contact_address_id || t('footer_id_addr', 'Kawasan Greenland International Industrial Center (GIIC) Blok CF No. 10, Pasirranji, Cikarang Pusat, Bekasi 17530, Jawa Barat, Indonesia')}
+                                {siteSettings.footer_hq_addr || t('footer_hq_addr', '〒498-0000 123-4 Kajiya-cho, Yatomi City, Prefektur Aichi, Jepang')}
                             </p>
-                            {siteSettings.footer_factory_phone && (
-                                <p className="text-xs text-emerald-300 font-bold pt-1">
-                                    Tel: {siteSettings.footer_factory_phone}
+                            <div className="space-y-1 text-xs text-emerald-300/90 pt-1">
+                                <p className="font-mono">
+                                    {t('footer_hq_tel', 'Tel: 0567-68-7077')}
                                 </p>
-                            )}
+                                <p className="font-mono">
+                                    {t('footer_hq_fax', 'Fax: 0567-68-7080')}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
