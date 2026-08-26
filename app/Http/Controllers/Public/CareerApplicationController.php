@@ -58,10 +58,10 @@ class CareerApplicationController extends Controller
     {
         $validated = $request->validated();
 
-        // Handle CV upload
+        // Handle CV upload with secure randomized naming and sanitized extension
         if ($request->hasFile('cv_file')) {
             $file = $request->file('cv_file');
-            $safeName = Str::slug($validated['full_name']) . '-' . time() . '.' . $file->getClientOriginalExtension();
+            $safeName = Str::slug($validated['full_name']) . '-' . time() . '-' . Str::random(8) . '.' . ($file->extension() ?: 'pdf');
             $path = $file->storeAs('resumes', $safeName, 'public');
             $validated['cv_path'] = $path;
         }

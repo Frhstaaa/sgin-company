@@ -18,7 +18,7 @@ class StoreJobApplicationRequest extends FormRequest
             'career_id' => 'nullable|exists:careers,id',
             'position_title' => 'required|string|max:255',
             'full_name' => 'required|string|max:255',
-            'email' => 'required|email:rfc,dns|max:255',
+            'email' => 'required|email:rfc,filter|max:255',
             'phone' => 'required|string|max:30',
             'date_of_birth' => 'nullable|date',
             'gender' => 'nullable|string|in:Laki-laki,Perempuan,Lainnya',

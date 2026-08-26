@@ -491,9 +491,9 @@ if (file_exists($logFile) && filesize($logFile) > 0) {
         <div class="quick-nav">
             <a href="https://sgin.co.id" target="_blank">🌐 Buka Website Publik</a>
             <span style="color:#475569;">|</span>
-            <a href="https://sgin.co.id/admin" target="_blank">🔐 Buka Admin Dashboard</a>
+            <a href="https://sgin.co.id/sginco-manage" target="_blank">🔐 Akses Admin (/sginco-manage)</a>
             <span style="color:#475569;">|</span>
-            <a href="https://sgin.co.id/tentang-kami" target="_blank">🏢 Halaman Tentang Kami</a>
+            <a href="https://sgin.co.id/about-us" target="_blank">🏢 Halaman Tentang Kami</a>
         </div>
     </div>
 

@@ -152,15 +152,21 @@ Route::get('/storage/{path}', function (string $path) {
 | Admin Authentication Routes (Custom Private Route: /sginco-manage)
 |--------------------------------------------------------------------------
 */
-// Secure Private Access Route for CMS Admin
-Route::get('/sginco-manage', [AdminAuthController::class, 'showLogin'])->name('admin.login');
-Route::post('/sginco-manage', [AdminAuthController::class, 'login'])->name('admin.login.post');
-Route::post('/sginco-manage/logout', [AdminAuthController::class, 'logout'])->name('sginco.logout');
+// Secure Private Access Route for CMS Admin (Can be overridden via ADMIN_SECRET_PATH in .env)
+$adminSecretSlug = env('ADMIN_SECRET_PATH', 'sginco-manage');
 
-// Block legacy and common public admin probing paths with 404
-Route::get('/admin/login', fn () => abort(404));
-Route::post('/admin/login', fn () => abort(404));
-Route::get('/login', fn () => abort(404));
+Route::get("/{$adminSecretSlug}", [AdminAuthController::class, 'showLogin'])->name('admin.login');
+Route::post("/{$adminSecretSlug}", [AdminAuthController::class, 'login'])->name('admin.login.post');
+Route::post("/{$adminSecretSlug}/logout", [AdminAuthController::class, 'logout'])->name('sginco.logout');
+
+// Block legacy and common bot probing paths with 404 Not Found
+$blockedProbes = [
+    'admin/login', 'login', 'wp-admin', 'wp-login.php', 'administrator',
+    'backend', 'cpanel', 'user/login', 'auth/login', 'signin', 'admin.php',
+];
+foreach ($blockedProbes as $probe) {
+    Route::any($probe, fn () => abort(404));
+}
 
 Route::prefix('admin')->group(function () {
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');

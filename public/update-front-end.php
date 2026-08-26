@@ -318,7 +318,7 @@ if ($isRun) {
         <div class="quick-nav">
             <a href="https://sgin.co.id" target="_blank">🌐 Website Publik</a>
             <span style="color:#475569;">|</span>
-            <a href="https://sgin.co.id/admin" target="_blank">🔐 Admin Dashboard</a>
+            <a href="https://sgin.co.id/sginco-manage" target="_blank">🔐 Akses Admin (/sginco-manage)</a>
             <span style="color:#475569;">|</span>
             <a href="https://sgin.co.id/update.php">🛠️ Menu Full Updater</a>
         </div>
