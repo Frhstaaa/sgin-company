@@ -41,6 +41,50 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
         ? p.branches
         : (modelTranslations?.company_profile?.[lang]?.branches || p.branches || defaultBranches);
 
+    const renderPoints = (val, defaultVal) => {
+        let items = [];
+        if (Array.isArray(val)) {
+            items = val.filter(Boolean);
+        } else if (typeof val === 'string' && val.trim()) {
+            try {
+                const parsed = JSON.parse(val);
+                if (Array.isArray(parsed)) items = parsed.filter(Boolean);
+            } catch (e) {}
+            if (items.length === 0) {
+                if (val.includes('\n')) {
+                    items = val.split('\n').map(s => s.trim().replace(/^\d+[\.\)]\s*/, '')).filter(Boolean);
+                } else {
+                    const numSplit = val.split(/(?=\d+[\.\)]\s+)/).map(s => s.trim().replace(/^\d+[\.\)]\s*/, '')).filter(Boolean);
+                    if (numSplit.length > 1) items = numSplit;
+                    else items = [val.trim()];
+                }
+            }
+        } else if (defaultVal) {
+            items = Array.isArray(defaultVal) ? defaultVal : [defaultVal];
+        }
+
+        if (items.length <= 1) {
+            return (
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                    {items[0] || ''}
+                </p>
+            );
+        }
+
+        return (
+            <ul className="space-y-3 text-xs sm:text-sm text-slate-700 leading-relaxed">
+                {items.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5">
+                        <span className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 text-[11px] font-black flex items-center justify-center shrink-0 mt-0.5 shadow-2xs border border-emerald-200/80">
+                            {idx + 1}
+                        </span>
+                        <span className="flex-1 font-medium">{item}</span>
+                    </li>
+                ))}
+            </ul>
+        );
+    };
+
     return (
         <AppLayout>
             <Head>
@@ -265,9 +309,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                         {t('about_philosophy_title', 'Filosofi Perusahaan')}
                                     </h3>
 
-                                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                        {p.philosophy || 'Menempa kualitas terbaik melalui penguasaan teknologi, dedikasi karyawan, dan kepuasan pelanggan yang berkelanjutan.'}
-                                    </p>
+                                    {renderPoints(p.philosophy, t('about_philosophy_desc', 'Menempa kualitas terbaik melalui penguasaan teknologi, dedikasi karyawan, dan kepuasan pelanggan yang berkelanjutan.'))}
                                 </div>
 
                                 <div className="pt-4 mt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-bold text-emerald-800">
@@ -294,9 +336,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                         {t('about_vision_title', 'Visi Global')}
                                     </h3>
 
-                                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                        {p.vision || 'Menjadi tolok ukur global dalam teknologi penempaan dingin dan komponen presisi masa depan.'}
-                                    </p>
+                                    {renderPoints(p.vision, t('about_vision_desc', 'Menjadi tolok ukur global dalam teknologi penempaan dingin dan komponen presisi masa depan.'))}
                                 </div>
 
                                 <div className="pt-4 mt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-bold text-emerald-800">
@@ -323,9 +363,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                         {t('about_mission_title', 'Misi Strategis')}
                                     </h3>
 
-                                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                                        {p.mission || 'Menghadirkan produk presisi bernilai tambah tinggi dengan efisiensi sumber daya maksimal.'}
-                                    </p>
+                                    {renderPoints(p.mission, t('about_mission_desc', 'Menghadirkan produk presisi bernilai tambah tinggi dengan efisiensi sumber daya maksimal.'))}
                                 </div>
 
                                 <div className="pt-4 mt-6 border-t border-slate-100 flex items-center gap-2 text-xs font-bold text-emerald-800">

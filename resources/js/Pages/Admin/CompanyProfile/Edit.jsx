@@ -33,6 +33,24 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
         ? profile.branches
         : defaultBranches;
 
+    const parseToList = (val, defaultList) => {
+        if (Array.isArray(val) && val.length > 0) return val;
+        if (!val || typeof val !== 'string') return defaultList;
+        try {
+            const parsed = JSON.parse(val);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        } catch (e) {}
+        if (val.includes('\n')) {
+            const lines = val.split('\n').map(s => s.trim().replace(/^\d+[\.\)]\s*/, '')).filter(Boolean);
+            if (lines.length > 0) return lines;
+        }
+        const numberedMatches = val.split(/(?=\d+[\.\)]\s+)/).map(s => s.trim().replace(/^\d+[\.\)]\s*/, '')).filter(Boolean);
+        if (numberedMatches.length > 1) {
+            return numberedMatches;
+        }
+        return [val.trim()];
+    };
+
     const { data, setData, processing, recentlySuccessful, errors } = useForm({
         // Section 1: Header Banner & Quick Highlights
         about_hero_badge: settings.about_hero_badge || 'TENTANG KAMI / 会社概要',
@@ -71,8 +89,13 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
         about_pillar_title: settings.about_pillar_title || 'Fondasi Integritas, Penguasaan Teknologi & Masa Depan',
         about_pillar_subtitle: settings.about_pillar_subtitle || 'Tiga pilar filosofis yang memandu setiap langkah rekayasa presisi, manufaktur zero-defect, dan kepuasan pelanggan global.',
         philosophy: profile.philosophy || 'Menempa kualitas terbaik melalui penguasaan teknologi, dedikasi karyawan, dan kepuasan pelanggan yang berkelanjutan.',
-        vision: profile.vision || 'Menjadi tolok ukur global dalam teknologi penempaan dingin dan komponen presisi masa depan.',
-        mission: profile.mission || 'Menghadirkan produk presisi bernilai tambah tinggi dengan efisiensi sumber daya maksimal.',
+        vision: profile.vision || '',
+        mission: profile.mission || '',
+        vision_list: parseToList(profile.vision, ['Menjadi perusahaan yang berdaya saing global berbasiskan Kualitas Terbaik dan Nilai Terbaik.']),
+        mission_list: parseToList(profile.mission, [
+            'Berorientasi pada kepuasan pelanggan dengan menerapkan prinsip produk bermutu tinggi secara menyeluruh.',
+            'Menerapkan standar terbaik untuk menjamin kualitas produk dengan perbaikan mutu berkelanjutan.'
+        ]),
 
         // Section 4: Data Legalitas Perusahaan (Factsheet)
         company_name: profile.company_name || 'PT. Sugiyama Indonesia',
@@ -158,6 +181,40 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
     const handleRemoveBranch = (index) => {
         const updated = data.branches.filter((_, i) => i !== index);
         setData('branches', updated);
+    };
+
+    // Vision List Handlers
+    const handleAddVision = () => {
+        setData('vision_list', [...data.vision_list, '']);
+    };
+    const handleUpdateVision = (index, value) => {
+        const updated = [...data.vision_list];
+        updated[index] = value;
+        setData('vision_list', updated);
+    };
+    const handleRemoveVision = (index) => {
+        if (data.vision_list.length > 1) {
+            setData('vision_list', data.vision_list.filter((_, i) => i !== index));
+        } else {
+            setData('vision_list', ['']);
+        }
+    };
+
+    // Mission List Handlers
+    const handleAddMission = () => {
+        setData('mission_list', [...data.mission_list, '']);
+    };
+    const handleUpdateMission = (index, value) => {
+        const updated = [...data.mission_list];
+        updated[index] = value;
+        setData('mission_list', updated);
+    };
+    const handleRemoveMission = (index) => {
+        if (data.mission_list.length > 1) {
+            setData('mission_list', data.mission_list.filter((_, i) => i !== index));
+        } else {
+            setData('mission_list', ['']);
+        }
     };
 
     const handleSubmit = (e) => {
@@ -632,33 +689,95 @@ export default function AdminCompanyProfileEdit({ profile = {}, settings = {} })
                                 />
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2 flex items-center gap-1.5">
-                                        <Globe className="w-3.5 h-3.5 text-emerald-600" />
-                                        <span>2. Visi Global (ビジョン)</span>
-                                    </label>
-                                    <textarea
-                                        rows="3"
-                                        value={data.vision}
-                                        onChange={(e) => setData('vision', e.target.value)}
-                                        placeholder="Menjadi tolok ukur global dalam teknologi penempaan dingin..."
-                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium leading-relaxed"
-                                    />
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                                {/* 2. Visi List Repeater */}
+                                <div className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200 space-y-4">
+                                    <div className="flex items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                                        <label className="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                                            <Globe className="w-4 h-4 text-emerald-600" />
+                                            <span>2. Poin Visi Perusahaan (ビジョン)</span>
+                                        </label>
+                                        <button
+                                            type="button"
+                                            onClick={handleAddVision}
+                                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold cursor-pointer transition-all shadow-2xs"
+                                        >
+                                            <Plus className="w-3.5 h-3.5" />
+                                            <span>Tambah Poin</span>
+                                        </button>
+                                    </div>
+
+                                    <div className="space-y-3">
+                                        {data.vision_list.map((item, vIdx) => (
+                                            <div key={vIdx} className="flex items-start gap-2 group">
+                                                <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-bold shrink-0 mt-2">
+                                                    {vIdx + 1}
+                                                </div>
+                                                <textarea
+                                                    rows="2"
+                                                    value={item}
+                                                    onChange={(e) => handleUpdateVision(vIdx, e.target.value)}
+                                                    placeholder={`Poin Visi #${vIdx + 1}...`}
+                                                    className="flex-1 px-3 py-2 rounded-xl border border-slate-300 text-xs bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium leading-relaxed"
+                                                />
+                                                {data.vision_list.length > 1 && (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleRemoveVision(vIdx)}
+                                                        className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors shrink-0 mt-2"
+                                                        title="Hapus Poin"
+                                                    >
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </button>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
 
-                                <div>
-                                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2 flex items-center gap-1.5">
-                                        <Award className="w-3.5 h-3.5 text-emerald-600" />
-                                        <span>3. Misi Strategis (ミッション)</span>
-                                    </label>
-                                    <textarea
-                                        rows="3"
-                                        value={data.mission}
-                                        onChange={(e) => setData('mission', e.target.value)}
-                                        placeholder="Menghadirkan produk presisi bernilai tambah tinggi..."
-                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm bg-slate-50/40 focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium leading-relaxed"
-                                    />
+                                {/* 3. Misi List Repeater */}
+                                <div className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200 space-y-4">
+                                    <div className="flex items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                                        <label className="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                                            <Award className="w-4 h-4 text-emerald-600" />
+                                            <span>3. Poin Misi Perusahaan (ミッション)</span>
+                                        </label>
+                                        <button
+                                            type="button"
+                                            onClick={handleAddMission}
+                                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold cursor-pointer transition-all shadow-2xs"
+                                        >
+                                            <Plus className="w-3.5 h-3.5" />
+                                            <span>Tambah Poin</span>
+                                        </button>
+                                    </div>
+
+                                    <div className="space-y-3">
+                                        {data.mission_list.map((item, mIdx) => (
+                                            <div key={mIdx} className="flex items-start gap-2 group">
+                                                <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-bold shrink-0 mt-2">
+                                                    {mIdx + 1}
+                                                </div>
+                                                <textarea
+                                                    rows="2"
+                                                    value={item}
+                                                    onChange={(e) => handleUpdateMission(mIdx, e.target.value)}
+                                                    placeholder={`Poin Misi #${mIdx + 1}...`}
+                                                    className="flex-1 px-3 py-2 rounded-xl border border-slate-300 text-xs bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all font-medium leading-relaxed"
+                                                />
+                                                {data.mission_list.length > 1 && (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleRemoveMission(mIdx)}
+                                                        className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-colors shrink-0 mt-2"
+                                                        title="Hapus Poin"
+                                                    >
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </button>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>

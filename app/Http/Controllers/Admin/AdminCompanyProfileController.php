@@ -38,9 +38,12 @@ class AdminCompanyProfileController extends Controller
             'president_message' => 'nullable|string',
             'president_photo' => 'nullable|image|max:5120',
             'president_photo_url' => 'nullable|string',
-            'philosophy' => 'nullable|string',
-            'vision' => 'nullable|string',
-            'mission' => 'nullable|string',
+            'philosophy' => 'nullable',
+            'vision' => 'nullable',
+            'mission' => 'nullable',
+            'vision_list' => 'nullable|array',
+            'mission_list' => 'nullable|array',
+            'philosophy_list' => 'nullable|array',
             'history_timeline' => 'nullable|array',
             'certifications' => 'nullable|array',
             'branches' => 'nullable|array',
@@ -131,6 +134,29 @@ class AdminCompanyProfileController extends Controller
 
         $presidentPhoto = $request->file('president_photo');
         
+        if ($request->has('vision_list')) {
+            $visionArr = array_values(array_filter((array)$request->input('vision_list'), fn($v) => trim((string)$v) !== ''));
+            $validated['vision'] = count($visionArr) > 0 ? json_encode($visionArr, JSON_UNESCAPED_UNICODE) : null;
+        } elseif (is_array($validated['vision'] ?? null)) {
+            $validated['vision'] = json_encode(array_values(array_filter($validated['vision'])), JSON_UNESCAPED_UNICODE);
+        }
+
+        if ($request->has('mission_list')) {
+            $missionArr = array_values(array_filter((array)$request->input('mission_list'), fn($m) => trim((string)$m) !== ''));
+            $validated['mission'] = count($missionArr) > 0 ? json_encode($missionArr, JSON_UNESCAPED_UNICODE) : null;
+        } elseif (is_array($validated['mission'] ?? null)) {
+            $validated['mission'] = json_encode(array_values(array_filter($validated['mission'])), JSON_UNESCAPED_UNICODE);
+        }
+
+        if ($request->has('philosophy_list')) {
+            $philArr = array_values(array_filter((array)$request->input('philosophy_list'), fn($p) => trim((string)$p) !== ''));
+            $validated['philosophy'] = count($philArr) > 0 ? json_encode($philArr, JSON_UNESCAPED_UNICODE) : null;
+        } elseif (is_array($validated['philosophy'] ?? null)) {
+            $validated['philosophy'] = json_encode(array_values(array_filter($validated['philosophy'])), JSON_UNESCAPED_UNICODE);
+        }
+
+        unset($validated['vision_list'], $validated['mission_list'], $validated['philosophy_list']);
+
         // Remove site setting keys from validated array before updating company_profiles model
         foreach ($settingKeys as $key) {
             unset($validated[$key]);
