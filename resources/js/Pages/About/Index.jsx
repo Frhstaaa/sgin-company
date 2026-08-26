@@ -88,20 +88,20 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                             {/* Quick Highlights Bar */}
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-4">
                                 <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{siteSettings.about_stat1_label || 'Berdiri'}</p>
-                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{siteSettings.about_stat1_value || '1952 (70+ Thn)'}</p>
+                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{t('about_stat1_label', 'Berdiri')}</p>
+                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{t('about_stat1_value', '1952 (70+ Thn)')}</p>
                                 </div>
                                 <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{siteSettings.about_stat2_label || 'Sertifikasi'}</p>
-                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{siteSettings.about_stat2_value || 'IATF 16949'}</p>
+                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{t('about_stat2_label', 'Sertifikasi')}</p>
+                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{t('about_stat2_value', 'IATF 16949')}</p>
                                 </div>
                                 <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{siteSettings.about_stat3_label || 'Karyawan'}</p>
-                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{siteSettings.about_stat3_value || p.employees_count || '280 Grup'}</p>
+                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{t('about_stat3_label', 'Karyawan')}</p>
+                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{t('about_stat3_value', '93 Karyawan')}</p>
                                 </div>
                                 <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs">
-                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{siteSettings.about_stat4_label || 'Lokasi Hub'}</p>
-                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{siteSettings.about_stat4_value || 'GIIC Cikarang'}</p>
+                                    <p className="text-[10px] text-emerald-400 font-bold uppercase">{t('about_stat4_label', 'Lokasi Hub')}</p>
+                                    <p className="text-xs sm:text-sm font-black text-white mt-0.5">{t('about_stat4_value', 'GIIC Cikarang')}</p>
                                 </div>
                             </div>
                         </motion.div>
@@ -135,7 +135,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                 <div className="space-y-2">
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[10px] sm:text-xs font-bold">
                                         <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
-                                        <span>{(lang === 'id' && siteSettings.about_president_badge) ? siteSettings.about_president_badge : 'PESAN KEPEMIMPINAN / 代表挨拶'}</span>
+                                        <span>{(lang === 'id' && siteSettings.about_president_badge) ? siteSettings.about_president_badge : t('about_president_badge', 'PESAN KEPEMIMPINAN / 代表挨拶')}</span>
                                     </div>
                                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
                                         {(lang === 'id' && siteSettings.about_president_title) ? siteSettings.about_president_title : t('about_president_title', 'Komitmen Presisi Tanpa Kompromi & Semangat Kaizen')}
@@ -172,7 +172,7 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
 
                                             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-100/80 text-emerald-800 text-[11px] font-bold border border-emerald-200 shrink-0">
                                                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
-                                                <span>{siteSettings.about_president_tag || 'Sugiyama Group Executive'}</span>
+                                                <span>{siteSettings.about_president_tag || t('about_president_tag', 'Sugiyama Group Executive')}</span>
                                             </span>
                                         </div>
                                     </div>
@@ -196,8 +196,8 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                                 <ShieldCheck className="w-3.5 h-3.5" />
                                             </div>
                                             <div className="text-left">
-                                                <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider leading-none">Standar Mutu</p>
-                                                <p className="text-[11px] font-black text-slate-900 font-mono leading-tight mt-0.5">{siteSettings.home_about_badge_quality || 'IATF 16949 & ISO 9001'}</p>
+                                                <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider leading-none">{t('home_about_quality_title', 'Standar Mutu')}</p>
+                                                <p className="text-[11px] font-black text-slate-900 font-mono leading-tight mt-0.5">{t('home_about_quality_val', 'IATF 16949 & ISO 9001')}</p>
                                             </div>
                                         </div>
 
@@ -206,8 +206,8 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                                 <Award className="w-3.5 h-3.5" />
                                             </div>
                                             <div className="text-left">
-                                                <p className="text-[9px] font-bold text-amber-700 uppercase tracking-wider leading-none">Sejak 1952</p>
-                                                <p className="text-[11px] font-black text-slate-900 leading-tight mt-0.5">{siteSettings.home_about_badge_heritage || 'Aichi, Jepang'}</p>
+                                                <p className="text-[9px] font-bold text-amber-700 uppercase tracking-wider leading-none">{t('home_about_heritage_title', 'Sejak 1952')}</p>
+                                                <p className="text-[11px] font-black text-slate-900 leading-tight mt-0.5">{t('home_about_heritage_val', 'Aichi, Jepang')}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -215,11 +215,11 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
                                     {/* Plant Label on Bottom */}
                                     <div className="absolute bottom-3.5 left-3.5 right-3.5 p-3 sm:p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 text-slate-900 flex items-center justify-between text-xs z-10 shadow-lg">
                                         <div>
-                                            <p className="font-extrabold text-slate-900 text-xs sm:text-sm">{siteSettings.home_about_plant_title || 'Pabrik & Kantor GIIC Cikarang'}</p>
-                                            <p className="text-[10px] text-slate-500">{siteSettings.home_about_plant_subtitle || 'Greenland International Industrial Center (GIIC)'}</p>
+                                            <p className="font-extrabold text-slate-900 text-xs sm:text-sm">{t('home_about_plant_title', 'Pabrik & Kantor GIIC Cikarang')}</p>
+                                            <p className="text-[10px] text-slate-500">{t('home_about_plant_subtitle', 'Greenland International Industrial Center (GIIC)')}</p>
                                         </div>
                                         <span className="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 font-mono font-bold text-[10px] border border-emerald-300/60 shrink-0">
-                                            {siteSettings.home_about_plant_tag || 'ASEAN Hub'}
+                                            {t('home_about_plant_tag', 'ASEAN Hub')}
                                         </span>
                                     </div>
                                 </div>
@@ -344,128 +344,214 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
             <section className="py-16 md:py-24 bg-white border-b border-slate-200/60 relative overflow-hidden">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
                     <ScrollReveal>
-                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-100 pb-6">
+                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-6">
                             <div className="space-y-2">
                                 <span className="text-[10px] sm:text-xs font-bold text-emerald-800 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 inline-block">
                                     {t('about_factsheet_badge', 'DATA LEGALITAS / 会社概要')}
                                 </span>
                                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-                                    {t('about_data_title', 'Ringkasan Data & Legalitas Perusahaan')}
+                                    {t('about_data_title', 'Ringkasan Legalitas & Data Perusahaan')}
                                 </h2>
+                                <p className="text-xs sm:text-sm text-slate-500">
+                                    {t('about_data_sub', 'Informasi resmi profil korporat dan operasional manufaktur PT. Sugiyama Indonesia.')}
+                                </p>
                             </div>
-                            <span className="text-xs font-jp text-slate-400 font-bold">
-                                公式企業情報 / Official Corporate Data
+                            <span className="text-xs font-jp text-emerald-800 font-bold px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 shrink-0">
+                                会社概要 / CORPORATE PROFILE
                             </span>
                         </div>
 
-                        {/* Factsheet Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 pt-4">
-                            {/* Card 1: Nama Resmi & Group */}
-                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
-                                    <Building2 className="w-5 h-5" />
+                        {/* Japanese-Style Factsheet List / Table */}
+                        <div className="mt-8 rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white overflow-hidden shadow-md">
+                            <div className="divide-y divide-slate-200/80">
+                                
+                                {/* Row 1: Company Name */}
+                                <div className="flex flex-col sm:flex-row sm:items-center hover:bg-emerald-50/30 transition-colors">
+                                    <div className="w-full sm:w-72 lg:w-80 p-4 sm:p-5 bg-slate-50/70 sm:border-r border-slate-200 flex items-center gap-3 shrink-0">
+                                        <div className="w-1.5 h-6 rounded-full bg-emerald-600" />
+                                        <div className="flex items-center gap-2">
+                                            <Building2 className="w-4 h-4 text-emerald-700" />
+                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
+                                                {t('about_company_name_label', 'Nama Perusahaan')}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4 sm:p-5 flex-1 space-y-1">
+                                        <p className="text-sm sm:text-base font-black text-slate-900">
+                                            {companyName}
+                                        </p>
+                                        <p className="text-xs text-emerald-800 font-semibold">
+                                            {t('about_group_label', 'Grup Perusahaan')}: {t('about_group_val', 'Sugiyama Co., Ltd. (Jepang)')}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_company_name_label', 'Nama Perusahaan')}</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{companyName}</p>
-                                    <p className="text-xs text-emerald-800 font-bold">Group: Sugiyama Co., Ltd. (Japan)</p>
-                                </div>
-                            </div>
 
-                            {/* Card 2: Tahun Berdiri & Mulai Produksi */}
-                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
-                                    <Calendar className="w-5 h-5" />
+                                {/* Row 2: Founded & Production Start */}
+                                <div className="flex flex-col sm:flex-row sm:items-center hover:bg-emerald-50/30 transition-colors">
+                                    <div className="w-full sm:w-72 lg:w-80 p-4 sm:p-5 bg-slate-50/70 sm:border-r border-slate-200 flex items-center gap-3 shrink-0">
+                                        <div className="w-1.5 h-6 rounded-full bg-emerald-600" />
+                                        <div className="flex items-center gap-2">
+                                            <Calendar className="w-4 h-4 text-emerald-700" />
+                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
+                                                {t('about_est_label', 'Tahun Berdiri & Mulai Produksi')}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4 sm:p-5 flex-1">
+                                        <p className="text-xs sm:text-sm font-bold text-slate-900">
+                                            {t('about_est_val', '9 April 2012 (Mulai Produksi: November 2012)')}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_est_label', 'Pendirian & Produksi')}</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{p.established_date || '9 April 2012'}</p>
-                                    <p className="text-xs text-slate-500">Mulai Produksi: November 2012</p>
-                                </div>
-                            </div>
 
-                            {/* Card 3: Presiden Direktur */}
-                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
-                                    <Users className="w-5 h-5" />
+                                {/* Row 3: President Director */}
+                                <div className="flex flex-col sm:flex-row sm:items-center hover:bg-emerald-50/30 transition-colors">
+                                    <div className="w-full sm:w-72 lg:w-80 p-4 sm:p-5 bg-slate-50/70 sm:border-r border-slate-200 flex items-center gap-3 shrink-0">
+                                        <div className="w-1.5 h-6 rounded-full bg-emerald-600" />
+                                        <div className="flex items-center gap-2">
+                                            <Users className="w-4 h-4 text-emerald-700" />
+                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
+                                                {t('about_president_name_label', 'Presiden Direktur')}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4 sm:p-5 flex-1 flex items-center gap-3">
+                                        <p className="text-xs sm:text-sm font-bold text-slate-900">
+                                            {t('about_president_name_val', 'Yuichi Sugiyama')}
+                                        </p>
+                                        <span className="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-bold">
+                                            President Director
+                                        </span>
+                                    </div>
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_president_name_label', 'Presiden Direktur')}</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{p.president_name || 'Yuichi Sugiyama'}</p>
-                                    <p className="text-xs text-emerald-800 font-bold">President Director</p>
-                                </div>
-                            </div>
 
-                            {/* Card 4: Modal & Pemegang Saham */}
-                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
-                                    <Award className="w-5 h-5" />
+                                {/* Row 4: Registered Capital & Shareholders */}
+                                <div className="flex flex-col sm:flex-row sm:items-center hover:bg-emerald-50/30 transition-colors">
+                                    <div className="w-full sm:w-72 lg:w-80 p-4 sm:p-5 bg-slate-50/70 sm:border-r border-slate-200 flex items-center gap-3 shrink-0">
+                                        <div className="w-1.5 h-6 rounded-full bg-emerald-600" />
+                                        <div className="flex items-center gap-2">
+                                            <Award className="w-4 h-4 text-emerald-700" />
+                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
+                                                {t('about_capital_label', 'Modal Dasar & Pemegang Saham')}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4 sm:p-5 flex-1 space-y-1">
+                                        <p className="text-xs sm:text-sm font-black font-mono text-slate-900">
+                                            {p.capital || t('about_capital_val', 'USD 3,750,000')}
+                                        </p>
+                                        <p className="text-xs text-slate-600">
+                                            {t('about_capital_sub_val', 'Sugiyama Co., Ltd. (98.33%), Takahide Sugiyama (1.67%)')}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_capital_label', 'Modal Dasar & Pemegang Saham')}</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900 font-mono">{p.capital || 'USD 3.750.000'}</p>
-                                    <p className="text-[11px] text-slate-500">{siteSettings.factsheet_shareholders || 'Sugiyama Co., Ltd. 98.33%, Takahide Sugiyama 1.67%'}</p>
-                                </div>
-                            </div>
 
-                            {/* Card 5: Jumlah Tenaga Kerja */}
-                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
-                                    <Users className="w-5 h-5" />
+                                {/* Row 5: Total Workforce */}
+                                <div className="flex flex-col sm:flex-row sm:items-center hover:bg-emerald-50/30 transition-colors">
+                                    <div className="w-full sm:w-72 lg:w-80 p-4 sm:p-5 bg-slate-50/70 sm:border-r border-slate-200 flex items-center gap-3 shrink-0">
+                                        <div className="w-1.5 h-6 rounded-full bg-emerald-600" />
+                                        <div className="flex items-center gap-2">
+                                            <Users className="w-4 h-4 text-emerald-700" />
+                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
+                                                {t('about_emp_label', 'Jumlah Karyawan')}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4 sm:p-5 flex-1 space-y-1">
+                                        <p className="text-xs sm:text-sm font-bold text-slate-900">
+                                            {p.employees_count || t('about_emp_val', '93 Karyawan (per Des 2024)')}
+                                        </p>
+                                        <p className="text-xs text-slate-600">
+                                            {t('about_emp_sub_val', '90 Tenaga Kerja Lokal & 3 Expatriate Jepang')}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_emp_label', 'Jumlah Karyawan')}</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{p.employees_count || '93 Orang'}</p>
-                                    <p className="text-xs text-slate-500">90 Tenaga Kerja Lokal & 3 Expatriate</p>
-                                </div>
-                            </div>
 
-                            {/* Card 6: Luas Lahan & Bangunan Pabrik */}
-                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
-                                    <Factory className="w-5 h-5" />
+                                {/* Row 6: Land & Factory Building Area */}
+                                <div className="flex flex-col sm:flex-row sm:items-center hover:bg-emerald-50/30 transition-colors">
+                                    <div className="w-full sm:w-72 lg:w-80 p-4 sm:p-5 bg-slate-50/70 sm:border-r border-slate-200 flex items-center gap-3 shrink-0">
+                                        <div className="w-1.5 h-6 rounded-full bg-emerald-600" />
+                                        <div className="flex items-center gap-2">
+                                            <Factory className="w-4 h-4 text-emerald-700" />
+                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
+                                                {t('about_area_label', 'Luas Lahan & Bangunan Pabrik')}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4 sm:p-5 flex-1">
+                                        <p className="text-xs sm:text-sm font-bold text-slate-900">
+                                            {t('about_area_val', 'Luas Lahan: 7.582 m² | Luas Bangunan Pabrik: 3.913 m²')}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_area_label', 'Luas Lahan & Bangunan')}</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{t('about_site_area', 'Lahan:')} {siteSettings.factsheet_site_area || '7.582 m²'}</p>
-                                    <p className="text-xs text-slate-500">{t('about_building_area', 'Luas Bangunan Pabrik:')} {siteSettings.factsheet_building_area || '3.913 m²'}</p>
-                                </div>
-                            </div>
 
-                            {/* Card 7: Bidang Usaha Inti */}
-                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
-                                    <Cpu className="w-5 h-5" />
+                                {/* Row 7: Business Scope */}
+                                <div className="flex flex-col sm:flex-row sm:items-center hover:bg-emerald-50/30 transition-colors">
+                                    <div className="w-full sm:w-72 lg:w-80 p-4 sm:p-5 bg-slate-50/70 sm:border-r border-slate-200 flex items-center gap-3 shrink-0">
+                                        <div className="w-1.5 h-6 rounded-full bg-emerald-600" />
+                                        <div className="flex items-center gap-2">
+                                            <Cpu className="w-4 h-4 text-emerald-700" />
+                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
+                                                {t('about_scope_label', 'Bidang Usaha (Business Scope)')}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4 sm:p-5 flex-1">
+                                        <p className="text-xs sm:text-sm font-bold text-slate-900">
+                                            {siteSettings.factsheet_business_scope || t('about_scope_val', 'Manufaktur & Penjualan Suku Cadang Otomotif [Penempaan Dingin & Permesinan Presisi]')}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_scope_label', 'Bidang Usaha (Business Scope)')}</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{siteSettings.factsheet_business_scope || 'Manufacturing & Sales for Automotive Parts'}</p>
-                                    <p className="text-xs text-slate-500">[ Forging, Precision Machining ]</p>
-                                </div>
-                            </div>
 
-                            {/* Card 8: Pelanggan Utama (Major Customers) */}
-                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
-                                    <Globe className="w-5 h-5" />
+                                {/* Row 8: Major Customers */}
+                                <div className="flex flex-col sm:flex-row sm:items-center hover:bg-emerald-50/30 transition-colors">
+                                    <div className="w-full sm:w-72 lg:w-80 p-4 sm:p-5 bg-slate-50/70 sm:border-r border-slate-200 flex items-center gap-3 shrink-0">
+                                        <div className="w-1.5 h-6 rounded-full bg-emerald-600" />
+                                        <div className="flex items-center gap-2">
+                                            <Globe className="w-4 h-4 text-emerald-700" />
+                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
+                                                {t('about_cust_label', 'Pelanggan Utama (Major Customers)')}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4 sm:p-5 flex-1 space-y-1.5">
+                                        <div className="flex flex-wrap items-center gap-2">
+                                            <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-bold">
+                                                {t('about_cust_domestic_lbl', 'Domestik:')}
+                                            </span>
+                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
+                                                {t('about_cust_domestic_val', 'PT. Denso Indonesia')}
+                                            </span>
+                                        </div>
+                                        <div className="flex flex-wrap items-center gap-2">
+                                            <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[11px] font-bold">
+                                                {t('about_cust_overseas_lbl', 'Overseas (Ekspor):')}
+                                            </span>
+                                            <span className="text-xs sm:text-sm text-slate-700">
+                                                {t('about_cust_overseas_val', 'Niterra Japan & India, Daido Kogyo Thailand')}
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_cust_label', 'Pelanggan Utama (Major Customers)')}</p>
-                                    <p className="text-xs font-bold text-slate-900">Domestik: PT Denso Indonesia</p>
-                                    <p className="text-[11px] text-slate-500">Overseas: Niterra Japan & India, Daido Kogyo Thailand</p>
-                                </div>
-                            </div>
 
-                            {/* Card 9: Standar Sertifikasi Mutu */}
-                            <div className="p-5 sm:p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:bg-slate-100/60 transition-colors flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-emerald-800 flex items-center justify-center shrink-0 shadow-xs">
-                                    <ShieldCheck className="w-5 h-5" />
+                                {/* Row 9: Quality Management Standards */}
+                                <div className="flex flex-col sm:flex-row sm:items-center hover:bg-emerald-50/30 transition-colors">
+                                    <div className="w-full sm:w-72 lg:w-80 p-4 sm:p-5 bg-slate-50/70 sm:border-r border-slate-200 flex items-center gap-3 shrink-0">
+                                        <div className="w-1.5 h-6 rounded-full bg-emerald-600" />
+                                        <div className="flex items-center gap-2">
+                                            <ShieldCheck className="w-4 h-4 text-emerald-700" />
+                                            <span className="text-xs sm:text-sm font-bold text-slate-900">
+                                                {t('about_certs_label', 'Standar Sertifikasi Mutu')}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4 sm:p-5 flex-1">
+                                        <p className="text-xs sm:text-sm font-bold text-slate-900">
+                                            {t('about_certs_val', 'ISO 9001:2015 & IATF 16949:2016 (On Progress) [SGS ID15/03091]')}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="space-y-1">
-                                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">{t('about_certs_label', 'Standar Sertifikasi Mutu')}</p>
-                                    <p className="text-sm sm:text-base font-extrabold text-slate-900">{siteSettings.factsheet_certifications || 'ISO 9001:2015 & IATF 16949:2016'}</p>
-                                    <p className="text-xs text-slate-500">Certified by SGS (ID15/03091)</p>
-                                </div>
+
                             </div>
                         </div>
                     </ScrollReveal>
@@ -473,58 +559,69 @@ export default function AboutIndex({ profile = {}, equipmentCount = 0 }) {
             </section>
 
             {/* ========================================================================= */}
-            {/* 5. HISTORY & MILESTONE TIMELINE */}
+            {/* 5. HISTORY & MILESTONE TIMELINE (JAPANESE LIST FORMAT) */}
             {/* ========================================================================= */}
             {timelineData && timelineData.length > 0 && (
                 <section className="py-16 md:py-24 bg-slate-50 border-b border-slate-200/60 relative overflow-hidden">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
                         <ScrollReveal>
-                            <div className="text-center max-w-3xl mx-auto space-y-3">
-                                <span className="text-[10px] sm:text-xs font-bold text-emerald-800 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 inline-block">
-                                    {(lang === 'id' && siteSettings.about_history_badge) ? siteSettings.about_history_badge : t('about_history_badge', 'SEJARAH & MILESTONE / 沿革')}
+                            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-6">
+                                <div className="space-y-2">
+                                    <span className="text-[10px] sm:text-xs font-bold text-emerald-800 uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-100/80 border border-emerald-200 inline-block">
+                                        {(lang === 'id' && siteSettings.about_history_badge) ? siteSettings.about_history_badge : t('about_history_badge', 'SEJARAH & MILESTONE / 沿革')}
+                                    </span>
+                                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+                                        {t('about_history_title', 'Perjalanan Sejarah & Milestone Perkembangan')}
+                                    </h2>
+                                    <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
+                                        {(lang === 'id' && siteSettings.about_history_lead) ? siteSettings.about_history_lead : t('about_history_lead', 'Tonggak penting perjalanan manufaktur presisi PT. Sugiyama Indonesia sejak pendirian hingga ekspansi pasar global.')}
+                                    </p>
+                                </div>
+                                <span className="text-xs font-jp text-emerald-800 font-bold px-3 py-1.5 rounded-lg bg-emerald-50 border border-emerald-200 shrink-0">
+                                    沿革 / HISTORY & MILESTONES
                                 </span>
-                                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-                                    {t('about_history_title', 'Perjalanan & Milestone Sejarah Perkembangan')}
-                                </h2>
-                                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
-                                    {(lang === 'id' && siteSettings.about_history_lead) ? siteSettings.about_history_lead : t('about_history_lead', 'Lebih dari 7 dekade dedikasi tanpa henti dalam menempa keahlian manufaktur presisi kelas dunia dari Aichi hingga Indonesia.')}
-                                </p>
                             </div>
-                        </ScrollReveal>
 
-                        {/* Stepper Timeline Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
-                            {timelineData.map((item, idx) => {
-                                const yearText = typeof item === 'object' ? item.year : item;
-                                const eventText = typeof item === 'object' ? item.event : '';
+                            {/* Japanese-Style Chronological List / Table */}
+                            <div className="mt-8 rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white overflow-hidden shadow-md">
+                                <div className="divide-y divide-slate-200/80">
+                                    {timelineData.map((item, idx) => {
+                                        const yearText = typeof item === 'object' ? item.year : item;
+                                        const eventText = typeof item === 'object' ? item.event : '';
 
-                                return (
-                                    <ScrollReveal key={idx} delay={idx * 0.08} direction="up" className="h-full">
-                                        <div className="p-6 rounded-3xl bg-white border border-slate-200/90 hover:border-emerald-300 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full group">
-                                            <div className="space-y-3">
-                                                <div className="flex items-center justify-between">
-                                                    <span className="px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-black font-mono tracking-wider">
-                                                        {yearText}
-                                                    </span>
-                                                    <span className="w-8 h-8 rounded-full bg-slate-100 text-slate-400 group-hover:bg-emerald-800 group-hover:text-white flex items-center justify-center text-xs font-bold transition-colors">
-                                                        {String(idx + 1).padStart(2, '0')}
+                                        return (
+                                            <div 
+                                                key={idx} 
+                                                className="flex flex-col sm:flex-row sm:items-center hover:bg-emerald-50/30 transition-colors group"
+                                            >
+                                                {/* Left Column: Period Badge */}
+                                                <div className="w-full sm:w-48 lg:w-56 p-4 sm:p-5 bg-slate-50/70 sm:border-r border-slate-200 flex items-center justify-between sm:justify-start gap-3 shrink-0">
+                                                    <div className="flex items-center gap-2.5">
+                                                        <div className="w-1.5 h-5 rounded-full bg-emerald-600 group-hover:scale-y-125 transition-transform" />
+                                                        <span className="px-3 py-1 rounded-lg bg-emerald-100 text-emerald-900 font-mono font-black text-xs sm:text-sm border border-emerald-300/70 shadow-2xs">
+                                                            {yearText}
+                                                        </span>
+                                                    </div>
+                                                    <span className="sm:hidden text-[10px] font-bold text-slate-400 font-mono">
+                                                        #{String(idx + 1).padStart(2, '0')}
                                                     </span>
                                                 </div>
 
-                                                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed pt-1">
-                                                    {eventText || 'Pengembangan lini produksi presisi dan penguatan kapabilitas manufaktur berstandar Jepang.'}
-                                                </p>
+                                                {/* Right Column: Event Milestone Details */}
+                                                <div className="p-4 sm:p-5 flex-1 flex items-center justify-between gap-4">
+                                                    <p className="text-xs sm:text-sm text-slate-800 leading-relaxed font-medium">
+                                                        {eventText || 'Pengembangan lini produksi presisi dan penguatan kapabilitas manufaktur berstandar Jepang.'}
+                                                    </p>
+                                                    <span className="hidden sm:flex w-7 h-7 rounded-full bg-slate-100 text-slate-400 group-hover:bg-emerald-800 group-hover:text-white items-center justify-center text-xs font-bold font-mono transition-colors shrink-0">
+                                                        {String(idx + 1).padStart(2, '0')}
+                                                    </span>
+                                                </div>
                                             </div>
-
-                                            <div className="pt-4 mt-4 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-bold text-emerald-700">
-                                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                                                <span>Milestone</span>
-                                            </div>
-                                        </div>
-                                    </ScrollReveal>
-                                );
-                            })}
-                        </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </ScrollReveal>
                     </div>
                 </section>
             )}
