@@ -3,5 +3,8 @@ Allow: /
 Disallow: /admin/
 Disallow: /sginco-manage
 Disallow: /cpanel-setup.php
+Disallow: /deploy.php
+Disallow: /update.php
+Disallow: /update-front-end.php
 
 Sitemap: https://sgin.co.id/sitemap.xml

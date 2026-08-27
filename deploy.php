@@ -214,12 +214,11 @@ if ($isRun) {
         echo "   Artisan storage:link: " . $symlinkOut . "\n\n";
     }
 
-    // 5. DATABASE MIGRATION & SEED
-    echo "[5/6] 🗄️ Menjalankan migrasi database & default data...\n";
+    // 5. DATABASE MIGRATION (SAFE - PRESERVE EXISTING DATA)
+    echo "[5/6] 🗄️ Menjalankan migrasi struktur database (Aman, tanpa merubah/menimpa data yang ada)...\n";
     $migOut = runCmd("{$phpCli} artisan migrate --force");
     echo "   Migrate: " . $migOut . "\n";
-    $seedOut = runCmd("{$phpCli} artisan db:seed --force");
-    echo "   DB Seed: " . $seedOut . "\n\n";
+    echo "   🔒 Database & Data: 100% Utuh & Aman (db:seed tidak dijalankan agar data yang sudah diisi tidak tertimpa).\n\n";
 
     // 6. CLEAR ALL CACHE & OPTIMIZE
     echo "[6/6] ⚡ Membersihkan seluruh cache Laravel...\n";

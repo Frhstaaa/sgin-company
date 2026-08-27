@@ -158,9 +158,9 @@ if ($action === 'git_pull') {
         $outputLog .= runCmd("{$phpCli} artisan storage:link") . "\n";
     }
 } elseif ($action === 'migrate') {
-    $outputLog .= "=== MIGRASI DATABASE ===\n";
+    $outputLog .= "=== MIGRASI DATABASE (AMAN - TANPA SEED) ===\n";
     $outputLog .= runCmd("{$phpCli} artisan migrate --force") . "\n";
-    $outputLog .= runCmd("{$phpCli} artisan db:seed --class=DatabaseSeeder --force") . "\n";
+    $outputLog .= "ℹ️ Data yang ada tetap aman (db:seed tidak dijalankan).\n";
 } elseif ($action === 'db_seed') {
     $outputLog .= "=== SEED DATABASE (UPDATE OFFICIAL DATA) ===\n";
     $outputLog .= runCmd("{$phpCli} artisan db:seed --force") . "\n";
