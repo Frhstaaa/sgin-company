@@ -3,16 +3,21 @@ import { Head, useForm, usePage } from '@inertiajs/react';
 import { Lock, Mail, ArrowRight, ShieldCheck, AlertCircle } from 'lucide-react';
 
 export default function Login() {
-    const { flash } = usePage().props;
+    const { flash, csrf_token } = usePage().props;
+    const metaToken = typeof document !== 'undefined' ? (document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '') : '';
+
     const { data, setData, post, processing, errors } = useForm({
         email: '',
         password: '',
         remember: false,
+        _token: csrf_token || metaToken || '',
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/sginco-manage');
+        post('/sginco-manage', {
+            preserveScroll: true,
+        });
     };
 
     return (

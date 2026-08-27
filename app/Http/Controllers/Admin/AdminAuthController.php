@@ -17,12 +17,14 @@ class AdminAuthController extends Controller
     /**
      * Display the stealth admin login page.
      */
-    public function showLogin(): Response|RedirectResponse
+    public function showLogin(Request $request): Response|RedirectResponse
     {
         if (Auth::check()) {
             return redirect()->route('admin.dashboard');
         }
-        return Inertia::render('Admin/Auth/Login');
+        return Inertia::render('Admin/Auth/Login', [
+            'csrf_token' => csrf_token(),
+        ]);
     }
 
     /**
