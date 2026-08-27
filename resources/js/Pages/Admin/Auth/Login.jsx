@@ -1,8 +1,9 @@
 import React from 'react';
-import { Head, useForm } from '@inertiajs/react';
-import { Lock, Mail, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Head, useForm, usePage } from '@inertiajs/react';
+import { Lock, Mail, ArrowRight, ShieldCheck, AlertCircle } from 'lucide-react';
 
 export default function Login() {
+    const { flash } = usePage().props;
     const { data, setData, post, processing, errors } = useForm({
         email: '',
         password: '',
@@ -34,6 +35,18 @@ export default function Login() {
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4">
                 <div className="bg-white/95 backdrop-blur-md py-8 px-6 sm:px-10 shadow-2xl rounded-3xl border border-slate-100 space-y-6">
+                    {flash?.message && (
+                        <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-2 text-emerald-800 text-xs font-medium">
+                            <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                            <span>{flash.message}</span>
+                        </div>
+                    )}
+                    {flash?.error && (
+                        <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-2 text-rose-800 text-xs font-medium">
+                            <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                            <span>{flash.error}</span>
+                        </div>
+                    )}
                     <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off">
                         <div>
                             <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
