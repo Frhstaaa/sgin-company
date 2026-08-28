@@ -248,7 +248,58 @@ if ($isAuthorized && isset($_POST['action'])) {
         }
     }
 
-    // 3. TOGGLE MAINTENANCE MODE
+    // 4. RESET ALL DATABASE IMAGES TO DEFAULT PLACEHOLDER
+    elseif ($act === 'reset_images_placeholder') {
+        if ($laravelReady) {
+            $actionLogs[] = "🔄 <strong>Mereset seluruh data gambar di database ke placeholder bawaan...</strong>";
+            try {
+                $placeholder = '/images/sgin-placeholder.png';
+                $updatedCount = 0;
+
+                $tables = [
+                    'products' => ['image_url'],
+                    'product_categories' => ['image_url'],
+                    'equipment' => ['image_url'],
+                    'technologies' => ['image_url'],
+                    'business_units' => ['image_url'],
+                    'hero_slides' => ['image_url'],
+                    'news' => ['cover_image'],
+                    'company_profiles' => ['president_photo_url'],
+                    'production_processes' => ['image_url'],
+                ];
+
+                foreach ($tables as $t => $cols) {
+                    if (\Illuminate\Support\Facades\Schema::hasTable($t)) {
+                        foreach ($cols as $c) {
+                            $affected = \Illuminate\Support\Facades\DB::table($t)->where($c, 'like', '/storage/%')->orWhereNull($c)->update([$c => $placeholder]);
+                            $updatedCount += $affected;
+                            $actionLogs[] = "✔ Tabel <code>{$t}</code>: {$affected} baris diperbarui ke placeholder.";
+                        }
+                    }
+                }
+
+                if (\Illuminate\Support\Facades\Schema::hasTable('site_settings')) {
+                    $settingKeys = [
+                        'home_about_image', 'home_facility_image', 'home_process_image',
+                        'banner_home', 'banner_about', 'banner_tech', 'banner_business',
+                        'banner_equipment', 'banner_production_process', 'banner_products',
+                        'banner_news', 'banner_careers', 'banner_contact'
+                    ];
+                    $affected = \Illuminate\Support\Facades\DB::table('site_settings')->whereIn('key', $settingKeys)->where('value', 'like', '/storage/%')->update(['value' => $placeholder]);
+                    $actionLogs[] = "✔ Tabel <code>site_settings</code>: {$affected} banner diperbarui.";
+                    $updatedCount += $affected;
+                }
+
+                $actionLogs[] = "<br>🎉 <strong>Sukses! Total {$updatedCount} gambar berhasil direset ke placeholder resmi. Error 404 pada gambar sekarang hilang 100%!</strong>";
+                $actionStatus = 'success';
+            } catch (\Throwable $e) {
+                $actionLogs[] = "✖ Gagal mereset gambar: " . htmlspecialchars($e->getMessage());
+                $actionStatus = 'error';
+            }
+        }
+    }
+
+    // 5. TOGGLE MAINTENANCE MODE
     elseif ($act === 'toggle_down' || $act === 'toggle_up') {
         if ($laravelReady) {
             try {
@@ -415,6 +466,17 @@ if (file_exists($logPath) && is_readable($logPath)) {
                     </div>
                     <button type="submit" name="action" value="artisan_optimize" class="btn btn-amber">
                         ⚡ Optimize Production
+                    </button>
+                </div>
+
+                <!-- Card 5: Reset Missing Images -->
+                <div class="card" style="border-color:#ec4899;">
+                    <div>
+                        <h3 style="color:#f472b6;">🖼️ Reset Semua Gambar 404 ke Placeholder</h3>
+                        <p>Mengganti semua referensi gambar di database yang filenya hilang/404 ke logo placeholder resmi (<code>/images/sgin-placeholder.png</code>).</p>
+                    </div>
+                    <button type="submit" name="action" value="reset_images_placeholder" class="btn" style="background:#db2777;">
+                        🔄 Reset Gambar 404 Sekarang
                     </button>
                 </div>
 

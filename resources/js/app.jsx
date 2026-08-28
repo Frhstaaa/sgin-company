@@ -17,6 +17,19 @@ router.on('invalid', (event) => {
     }
 });
 
+// Global Image Error (404) Auto-Fallback Handler
+if (typeof window !== 'undefined') {
+    window.addEventListener('error', (event) => {
+        if (event.target && event.target.tagName === 'IMG') {
+            const fallbackSrc = '/images/sgin-placeholder.png';
+            if (event.target.src && !event.target.src.endsWith(fallbackSrc) && !event.target.dataset.fallbackApplied) {
+                event.target.dataset.fallbackApplied = 'true';
+                event.target.src = fallbackSrc;
+            }
+        }
+    }, true);
+}
+
 createInertiaApp({
     title: (title) => title ? `${title} | ${appName}` : appName,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.jsx`, import.meta.glob('./Pages/**/*.jsx')),
