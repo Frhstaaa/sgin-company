@@ -177,20 +177,42 @@ if ($isAuthorized && isset($_POST['action'])) {
                 $placeholderSrc = __DIR__ . '/images/sgin-placeholder.png';
                 $fixedCount = 0;
 
+                // 1. Scan specific database columns
                 foreach ($tablesAndCols as $table => $cols) {
                     try {
                         if (\Illuminate\Support\Facades\Schema::hasTable($table)) {
                             foreach ($cols as $col) {
-                                $rows = \Illuminate\Support\Facades\DB::table($table)->whereNotNull($col)->where($col, 'like', '/storage/%')->pluck($col);
-                                foreach ($rows as $url) {
-                                    $relPath = ltrim(str_replace('/storage/', '', $url), '/');
-                                    $destPath = $targetStorage . '/' . $relPath;
+                                $rows = \Illuminate\Support\Facades\DB::table($table)->whereNotNull($col)->pluck($col);
+                                foreach ($rows as $val) {
+                                    if (!is_string($val)) continue;
                                     
-                                    if (!file_exists($destPath)) {
+                                    // Match any path like /storage/xxx or pure filename
+                                    $urls = [];
+                                    if (str_contains($val, '/storage/')) {
+                                        $urls[] = $val;
+                                    } elseif (preg_match('/[a-zA-Z0-9_-]+\.(webp|jpg|jpeg|png)/i', $val, $m)) {
+                                        $urls[] = '/storage/' . $m[0];
+                                    }
+
+                                    foreach ($urls as $url) {
+                                        $relPath = ltrim(str_replace('/storage/', '', $url), '/');
+                                        $destPath = $targetStorage . '/' . $relPath;
+                                        $destPublic = $publicStorage . '/' . $relPath;
+                                        
                                         @mkdir(dirname($destPath), 0775, true);
                                         if (file_exists($placeholderSrc)) {
-                                            @copy($placeholderSrc, $destPath);
-                                            $fixedCount++;
+                                            if (!file_exists($destPath)) {
+                                                @copy($placeholderSrc, $destPath);
+                                                @chmod($destPath, 0775);
+                                                $fixedCount++;
+                                            }
+                                            if (!is_link($publicStorage) && is_dir($publicStorage)) {
+                                                @mkdir(dirname($destPublic), 0775, true);
+                                                if (!file_exists($destPublic)) {
+                                                    @copy($placeholderSrc, $destPublic);
+                                                    @chmod($destPublic, 0775);
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -201,8 +223,36 @@ if ($isAuthorized && isset($_POST['action'])) {
                     }
                 }
 
+                // 2. Pre-generate common missing filenames in all subdirectories just in case
+                $knownMissing = [
+                    'TbLY22h7nfk5vVPJONxE.webp',
+                    'PFOysEBSufnrNcETN0zC.webp',
+                    'ND6tKPwoJ5IHVP231JfWxOc2cANb0MdcyW3Y0Oje.jpg',
+                    '0tFUnRqZm7ktr2JYrEJe.webp',
+                ];
+                $allFolders = ['', 'hero', 'products', 'news', 'company', 'banners', 'equipment', 'technologies', 'business', 'processes', 'settings', 'careers', 'uploads'];
+                foreach ($knownMissing as $fname) {
+                    foreach ($allFolders as $fld) {
+                        $targetFile = $targetStorage . ($fld ? '/' . $fld : '') . '/' . $fname;
+                        @mkdir(dirname($targetFile), 0775, true);
+                        if (!file_exists($targetFile) && file_exists($placeholderSrc)) {
+                            @copy($placeholderSrc, $targetFile);
+                            @chmod($targetFile, 0775);
+                            $fixedCount++;
+                        }
+                        if (!is_link($publicStorage) && is_dir($publicStorage)) {
+                            $pubFile = $publicStorage . ($fld ? '/' . $fld : '') . '/' . $fname;
+                            @mkdir(dirname($pubFile), 0775, true);
+                            if (!file_exists($pubFile) && file_exists($placeholderSrc)) {
+                                @copy($placeholderSrc, $pubFile);
+                                @chmod($pubFile, 0775);
+                            }
+                        }
+                    }
+                }
+
                 if ($fixedCount > 0) {
-                    $actionLogs[] = "✔ Berhasil meregenerasi <strong>{$fixedCount}</strong> file gambar yang hilang dengan placeholder!";
+                    $actionLogs[] = "✔ Berhasil meregenerasi <strong>{$fixedCount}</strong> berkas gambar yang hilang dengan placeholder resmi!";
                 } else {
                     $actionLogs[] = "✔ Seluruh berkas gambar di database dalam kondisi normal / sudah ada di disk.";
                 }
