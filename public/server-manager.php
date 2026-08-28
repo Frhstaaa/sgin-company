@@ -155,6 +155,60 @@ if ($isAuthorized && isset($_POST['action'])) {
         $actionLogs[] = "<br>🧪 <strong>Pengujian Akses URL Storage:</strong>";
         $actionLogs[] = "File Uji: <a href='{$testUrl}' target='_blank' style='color:#38bdf8;text-decoration:underline;'>{$testUrl}</a> (Klik untuk memverifikasi)";
 
+        // Auto-fix Missing Database Image Files (e.g. 0tFUnRqZm7ktr2JYrEJe.webp)
+        if ($laravelReady) {
+            $actionLogs[] = "<br>🖼 <strong>Memeriksa dan meregenerasi gambar database yang hilang...</strong>";
+            try {
+                $tablesAndCols = [
+                    'hero_slides' => ['image_url'],
+                    'products' => ['image_url'],
+                    'product_categories' => ['image_url'],
+                    'news' => ['cover_image'],
+                    'equipment' => ['image_url'],
+                    'technologies' => ['image_url'],
+                    'business_units' => ['image_url'],
+                    'company_profiles' => ['president_photo_url'],
+                    'production_processes' => ['image_url'],
+                    'site_settings' => ['value'],
+                ];
+
+                $placeholderSrc = __DIR__ . '/images/sgin-placeholder.png';
+                $fixedCount = 0;
+
+                foreach ($tablesAndCols as $table => $cols) {
+                    try {
+                        if (\Illuminate\Support\Facades\Schema::hasTable($table)) {
+                            foreach ($cols as $col) {
+                                $rows = \Illuminate\Support\Facades\DB::table($table)->whereNotNull($col)->where($col, 'like', '/storage/%')->pluck($col);
+                                foreach ($rows as $url) {
+                                    $relPath = ltrim(str_replace('/storage/', '', $url), '/');
+                                    $destPath = $targetStorage . '/' . $relPath;
+                                    
+                                    if (!file_exists($destPath)) {
+                                        @mkdir(dirname($destPath), 0775, true);
+                                        if (file_exists($placeholderSrc)) {
+                                            @copy($placeholderSrc, $destPath);
+                                            $fixedCount++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } catch (\Throwable $tblEx) {
+                        // Skip if table doesn't exist
+                    }
+                }
+
+                if ($fixedCount > 0) {
+                    $actionLogs[] = "✔ Berhasil meregenerasi <strong>{$fixedCount}</strong> file gambar yang hilang dengan placeholder!";
+                } else {
+                    $actionLogs[] = "✔ Seluruh berkas gambar di database dalam kondisi normal / sudah ada di disk.";
+                }
+            } catch (\Throwable $scanEx) {
+                $actionLogs[] = "ℹ Pemeriksaan gambar database dilewati: " . $scanEx->getMessage();
+            }
+        }
+
         $actionStatus = 'success';
     }
 

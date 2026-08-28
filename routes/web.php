@@ -127,9 +127,35 @@ Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap')
 // Public Storage File Delivery Fallback (For cPanel & Shared Hosting)
 Route::get('/storage/{path}', function (string $path) {
     $filePath = storage_path('app/public/' . $path);
+
+    // 1. If not found at direct path, search in common storage subfolders
     if (!file_exists($filePath)) {
+        $subfolders = ['hero', 'products', 'news', 'banners', 'careers', 'technologies', 'business', 'equipment', 'processes', 'company', 'settings', 'job-applications'];
+        $filename = basename($path);
+        foreach ($subfolders as $folder) {
+            $candidate = storage_path('app/public/' . $folder . '/' . $filename);
+            if (file_exists($candidate)) {
+                $filePath = $candidate;
+                break;
+            }
+        }
+    }
+
+    // 2. If still not found and it is an image request, fallback to placeholder image
+    if (!file_exists($filePath)) {
+        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+        if (in_array($extension, ['webp', 'jpg', 'jpeg', 'png', 'gif', 'svg', 'bmp'])) {
+            $placeholder = public_path('images/sgin-placeholder.png');
+            if (file_exists($placeholder)) {
+                return response()->file($placeholder, [
+                    'Content-Type' => 'image/png',
+                    'Cache-Control' => 'public, max-age=86400',
+                ]);
+            }
+        }
         abort(404);
     }
+
     $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
     $mimeType = match ($extension) {
         'webp' => 'image/webp',
