@@ -15,7 +15,8 @@ class AdminCompanyProfileController extends Controller
 {
     public function __construct(
         protected CompanyProfileService $profileService,
-        protected SettingService $settingService
+        protected SettingService $settingService,
+        protected \App\Services\FileUploadService $fileUploadService
     ) {}
 
     public function edit(): Response
@@ -144,8 +145,8 @@ class AdminCompanyProfileController extends Controller
         }
 
         if ($request->hasFile('home_about_image')) {
-            $path = $request->file('home_about_image')->store('company', 'public');
-            $this->settingService->set('home_about_image', '/storage/' . $path, 'about');
+            $url = $this->fileUploadService->uploadImage($request->file('home_about_image'), 'company');
+            $this->settingService->set('home_about_image', $url, 'about');
         }
 
         $presidentPhoto = $request->file('president_photo');

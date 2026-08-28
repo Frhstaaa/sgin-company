@@ -13,7 +13,8 @@ use Inertia\Response;
 class AdminPageBannerController extends Controller
 {
     public function __construct(
-        protected SettingService $settingService
+        protected SettingService $settingService,
+        protected \App\Services\FileUploadService $fileUploadService
     ) {}
 
     public function index(): Response
@@ -65,13 +66,13 @@ class AdminPageBannerController extends Controller
         }
 
         if ($request->hasFile('home_facility_image')) {
-            $path = $request->file('home_facility_image')->store('banners', 'public');
-            $this->settingService->set('home_facility_image', '/storage/' . $path, 'banners');
+            $url = $this->fileUploadService->uploadImage($request->file('home_facility_image'), 'banners');
+            $this->settingService->set('home_facility_image', $url, 'banners');
         }
 
         if ($request->hasFile('home_process_image')) {
-            $path = $request->file('home_process_image')->store('banners', 'public');
-            $this->settingService->set('home_process_image', '/storage/' . $path, 'banners');
+            $url = $this->fileUploadService->uploadImage($request->file('home_process_image'), 'banners');
+            $this->settingService->set('home_process_image', $url, 'banners');
         }
 
         return back()->with('success', 'Seluruh Banner Halaman & Konten Beranda berhasil diperbarui.');

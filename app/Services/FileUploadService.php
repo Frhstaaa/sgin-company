@@ -3,73 +3,90 @@
 namespace App\Services;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class FileUploadService
 {
     /**
-     * Upload an image file to public storage
+     * Upload an image file to public storage with automatic folder creation,
+     * permission handling (0775), and WebP conversion.
      */
     public function uploadImage(UploadedFile $file, string $folder = 'uploads'): string
     {
+        // 1. Pastikan folder fisik di server selalu ada dengan izin tulis
+        $targetDir = storage_path('app/public/' . trim($folder, '/'));
+        if (!is_dir($targetDir)) {
+            @mkdir($targetDir, 0775, true);
+            @chmod($targetDir, 0775);
+        }
+
         $extension = strtolower($file->getClientOriginalExtension());
         $supportedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
 
-        // Automatically convert to WebP if supported
-        if (in_array($extension, $supportedExtensions) && function_exists('imagewebp')) {
+        // 2. Coba konversi ke WebP untuk efisiensi jika GD mendukung imagewebp
+        if (in_array($extension, $supportedExtensions) && function_exists('imagewebp') && function_exists('imagecreatefromstring')) {
             try {
-                $imageContent = file_get_contents($file->getRealPath());
-                $image = @imagecreatefromstring($imageContent);
-                
-                if ($image !== false) {
-                    // Preserve transparency
-                    imagepalettetotruecolor($image);
-                    imagealphablending($image, false); // Fix for PNG transparency
-                    imagesavealpha($image, true);
-                    
-                    // Convert to WEBP (quality 85) using temp file for better compatibility
-                    $tempPath = tempnam(sys_get_temp_dir(), 'webp_');
-                    if (imagewebp($image, $tempPath, 85)) {
-                        $webpContent = file_get_contents($tempPath);
-                        unlink($tempPath);
-                        imagedestroy($image);
-                        
-                        if ($webpContent) {
-                            $filename = Str::random(20) . '.webp';
-                            $path = $folder . '/' . $filename;
-                            Storage::disk('public')->put($path, $webpContent);
-                            return '/storage/' . $path;
+                $imageContent = @file_get_contents($file->getRealPath());
+                if ($imageContent) {
+                    $image = @imagecreatefromstring($imageContent);
+                    if ($image !== false) {
+                        imagepalettetotruecolor($image);
+                        imagealphablending($image, false);
+                        imagesavealpha($image, true);
+
+                        $filename = Str::random(24) . '.webp';
+                        $destPath = $targetDir . '/' . $filename;
+
+                        if (@imagewebp($image, $destPath, 85)) {
+                            @chmod($destPath, 0775);
+                            imagedestroy($image);
+                            return '/storage/' . trim($folder, '/') . '/' . $filename;
                         }
-                    } else {
                         imagedestroy($image);
-                        if (file_exists($tempPath)) {
-                            unlink($tempPath);
-                        }
                     }
                 }
-            } catch (\Exception $e) {
-                // Ignore errors and fallback to original upload
+            } catch (\Throwable $e) {
+                Log::warning('WebP conversion fallback triggered: ' . $e->getMessage());
             }
         }
 
-        // Fallback for non-image or unsupported formats
-        $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
-        $path = $file->storeAs($folder, $filename, 'public');
-        return '/storage/' . $path;
+        // 3. Fallback Handal: Simpan file asli langsung ke disk storage
+        $safeExt = $extension ?: 'jpg';
+        $filename = Str::random(24) . '.' . $safeExt;
+        $destPath = $targetDir . '/' . $filename;
+
+        // Pindahkan file langsung
+        try {
+            $file->move($targetDir, $filename);
+            @chmod($destPath, 0775);
+            return '/storage/' . trim($folder, '/') . '/' . $filename;
+        } catch (\Throwable $e) {
+            Log::error('Direct file move failed, attempting Storage put: ' . $e->getMessage());
+            $relPath = trim($folder, '/') . '/' . $filename;
+            Storage::disk('public')->put($relPath, file_get_contents($file->getRealPath()));
+            return '/storage/' . $relPath;
+        }
     }
 
     /**
-     * Delete an image from storage
+     * Delete an image safely from storage
      */
     public function deleteImage(?string $url): bool
     {
-        if (!$url) return false;
-        
-        $path = str_replace('/storage/', '', $url);
-        if (Storage::disk('public')->exists($path)) {
-            return Storage::disk('public')->delete($path);
+        if (!$url || str_starts_with($url, '/images/')) {
+            return false;
         }
+
+        $relPath = ltrim(str_replace('/storage/', '', $url), '/');
+        $fullPath = storage_path('app/public/' . $relPath);
+
+        if (file_exists($fullPath)) {
+            @unlink($fullPath);
+            return true;
+        }
+
         return false;
     }
 }
