@@ -148,6 +148,31 @@ if ($isAuthorized && isset($_POST['action'])) {
             $actionLogs[] = "ℹ Symlink OS diblokir oleh hosting. Mode fallback aktif: route <code>/storage/{path}</code> di Laravel akan melayani file secara langsung.";
         }
 
+        // Sinkronisasi file dari storage/app/public ke public/storage jika bukan symlink
+        if (!is_link($publicStorage) && is_dir($targetStorage)) {
+            $syncDir = function ($src, $dst) use (&$syncDir) {
+                if (!is_dir($dst)) @mkdir($dst, 0775, true);
+                $dir = @opendir($src);
+                if ($dir) {
+                    while (false !== ($file = readdir($dir))) {
+                        if ($file !== '.' && $file !== '..') {
+                            if (is_dir($src . '/' . $file)) {
+                                $syncDir($src . '/' . $file, $dst . '/' . $file);
+                            } else {
+                                if (!file_exists($dst . '/' . $file)) {
+                                    @copy($src . '/' . $file, $dst . '/' . $file);
+                                    @chmod($dst . '/' . $file, 0775);
+                                }
+                            }
+                        }
+                    }
+                    closedir($dir);
+                }
+            };
+            $syncDir($targetStorage, $publicStorage);
+            $actionLogs[] = "✔ Seluruh berkas media disinkronkan ke <code>public/storage</code>.";
+        }
+
         // Buat file tes untuk pengujian URL
         $testFileName = 'storage-test-' . time() . '.txt';
         $testFilePath = $targetStorage . '/' . $testFileName;

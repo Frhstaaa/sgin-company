@@ -11,21 +11,31 @@ class FileUploadService
 {
     /**
      * Upload an image file to public storage with automatic folder creation,
-     * permission handling (0775), and WebP conversion.
+     * dual storage mirroring (for cPanel compatibility), permission handling (0775),
+     * and WebP conversion.
      */
     public function uploadImage(UploadedFile $file, string $folder = 'uploads'): string
     {
-        // 1. Pastikan folder fisik di server selalu ada dengan izin tulis
-        $targetDir = storage_path('app/public/' . trim($folder, '/'));
-        if (!is_dir($targetDir)) {
-            @mkdir($targetDir, 0775, true);
-            @chmod($targetDir, 0775);
+        $cleanFolder = trim($folder, '/');
+
+        // 1. Direktori Target Primer (storage/app/public/...)
+        $primaryDir = storage_path('app/public/' . $cleanFolder);
+        if (!is_dir($primaryDir)) {
+            @mkdir($primaryDir, 0775, true);
+            @chmod($primaryDir, 0775);
+        }
+
+        // 2. Direktori Publik Sekunder (public/storage/...) jika public/storage bukan symlink
+        $publicDir = public_path('storage/' . $cleanFolder);
+        if (!is_dir($publicDir) && !is_link(public_path('storage'))) {
+            @mkdir($publicDir, 0775, true);
+            @chmod($publicDir, 0775);
         }
 
         $extension = strtolower($file->getClientOriginalExtension());
         $supportedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
 
-        // 2. Coba konversi ke WebP untuk efisiensi jika GD mendukung imagewebp
+        // 3. Coba konversi ke WebP untuk efisiensi jika GD mendukung
         if (in_array($extension, $supportedExtensions) && function_exists('imagewebp') && function_exists('imagecreatefromstring')) {
             try {
                 $imageContent = @file_get_contents($file->getRealPath());
@@ -37,12 +47,18 @@ class FileUploadService
                         imagesavealpha($image, true);
 
                         $filename = Str::random(24) . '.webp';
-                        $destPath = $targetDir . '/' . $filename;
+                        $primaryPath = $primaryDir . '/' . $filename;
+                        $publicPath = $publicDir . '/' . $filename;
 
-                        if (@imagewebp($image, $destPath, 85)) {
-                            @chmod($destPath, 0775);
+                        if (@imagewebp($image, $primaryPath, 85)) {
+                            @chmod($primaryPath, 0775);
+                            // Salin juga ke public/storage jika folder fisik terpisah
+                            if (is_dir($publicDir) && !file_exists($publicPath)) {
+                                @copy($primaryPath, $publicPath);
+                                @chmod($publicPath, 0775);
+                            }
                             imagedestroy($image);
-                            return '/storage/' . trim($folder, '/') . '/' . $filename;
+                            return '/storage/' . $cleanFolder . '/' . $filename;
                         }
                         imagedestroy($image);
                     }
@@ -52,19 +68,25 @@ class FileUploadService
             }
         }
 
-        // 3. Fallback Handal: Simpan file asli langsung ke disk storage
+        // 4. Fallback Handal: Simpan file asli langsung ke disk storage
         $safeExt = $extension ?: 'jpg';
         $filename = Str::random(24) . '.' . $safeExt;
-        $destPath = $targetDir . '/' . $filename;
+        $primaryPath = $primaryDir . '/' . $filename;
+        $publicPath = $publicDir . '/' . $filename;
 
-        // Pindahkan file langsung
         try {
-            $file->move($targetDir, $filename);
-            @chmod($destPath, 0775);
-            return '/storage/' . trim($folder, '/') . '/' . $filename;
+            $file->move($primaryDir, $filename);
+            @chmod($primaryPath, 0775);
+
+            if (is_dir($publicDir) && !file_exists($publicPath)) {
+                @copy($primaryPath, $publicPath);
+                @chmod($publicPath, 0775);
+            }
+
+            return '/storage/' . $cleanFolder . '/' . $filename;
         } catch (\Throwable $e) {
             Log::error('Direct file move failed, attempting Storage put: ' . $e->getMessage());
-            $relPath = trim($folder, '/') . '/' . $filename;
+            $relPath = $cleanFolder . '/' . $filename;
             Storage::disk('public')->put($relPath, file_get_contents($file->getRealPath()));
             return '/storage/' . $relPath;
         }
@@ -80,13 +102,19 @@ class FileUploadService
         }
 
         $relPath = ltrim(str_replace('/storage/', '', $url), '/');
-        $fullPath = storage_path('app/public/' . $relPath);
+        $primaryPath = storage_path('app/public/' . $relPath);
+        $publicPath = public_path('storage/' . $relPath);
 
-        if (file_exists($fullPath)) {
-            @unlink($fullPath);
-            return true;
+        $deleted = false;
+        if (file_exists($primaryPath)) {
+            @unlink($primaryPath);
+            $deleted = true;
+        }
+        if (file_exists($publicPath) && !is_link(public_path('storage'))) {
+            @unlink($publicPath);
+            $deleted = true;
         }
 
-        return false;
+        return $deleted;
     }
 }
